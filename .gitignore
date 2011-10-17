@@ -1,0 +1,9 @@
+.idea
+.project
+.classpath
+local.properties
+*.iml
+*.ipr
+out
+build.xml
+
