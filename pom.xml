@@ -1,0 +1,145 @@
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <modelVersion>4.0.0</modelVersion>
+ 
+    <groupId>org.mifos</groupId>
+    <artifactId>mifos-android-client</artifactId>
+    <version>1.0</version>
+    
+    <packaging>apk</packaging>
+
+    <name>Mifos Android Client</name>
+    <description>Mifos Android Client is a mobile client integrated with Mifos system, aimed at supporting Loan Officers</description>
+    <url>http://www.mifos.org</url>
+    
+    <organization>
+        <name>Mifos</name>
+        <url>http://www.mifos.org</url>
+    </organization>
+    
+    <issueManagement>
+        <system>JIRA</system>
+        <url>http://mifosforge.jira.com/</url>
+    </issueManagement> 
+
+    <ciManagement>
+        <system>Hudson</system>
+        <url>https://ci.mifos.org/hudson/</url>
+    </ciManagement>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <properties>
+        <android-platform>7</android-platform>
+        <android-emulator>${env.MIFOS_AC_EMULATOR}</android-emulator>
+        <maven-android-plugin-version>2.8.4</maven-android-plugin-version>
+        <maven-compiler-plugin-version>2.3.2</maven-compiler-plugin-version>
+        <android-version>2.1_r1</android-version>
+        <spring-android-version>1.0.0.M2</spring-android-version>
+        <jackson-version>1.7.2</jackson-version>
+        <simple-version>2.4.1</simple-version>
+        <android-rome-version>1.0.0-r2</android-rome-version>
+    </properties>
+ 
+    <build>
+        <sourceDirectory>src</sourceDirectory>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                <artifactId>maven-android-plugin</artifactId>
+                <version>${maven-android-plugin-version}</version>
+                <configuration>
+                    <sdk>
+                        <platform>${android-platform}</platform>
+                    </sdk>
+                    <emulator>
+                        <avd>${android-emulator}</avd>
+                    </emulator>
+                    <deleteConflictingFiles>true</deleteConflictingFiles>
+                    <undeployBeforeDeploy>true</undeployBeforeDeploy>
+                </configuration>
+                <extensions>true</extensions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin-version}</version>
+            </plugin>
+        </plugins>
+    </build>
+ 
+    <dependencies>
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>android</artifactId>
+            <version>${android-version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.android</groupId>
+            <artifactId>spring-android-rest-template</artifactId>
+            <version>${spring-android-version}</version>
+        </dependency>
+        <dependency>
+            <!-- Using Jackson for JSON marshaling -->
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>${jackson-version}</version>
+        </dependency>
+        <dependency>
+            <!-- Using Simple for XML marshaling -->
+            <groupId>org.simpleframework</groupId>
+            <artifactId>simple-xml</artifactId>
+            <version>${simple-version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>stax</artifactId>
+                    <groupId>stax</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>stax-api</artifactId>
+                    <groupId>stax</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <!-- Using ROME for RSS and ATOM feeds -->
+            <groupId>com.google.code.android-rome-feed-reader</groupId>
+            <artifactId>android-rome-feed-reader</artifactId>
+            <version>${android-rome-version}</version>
+        </dependency>
+    </dependencies>
+ 
+    <repositories>
+        <!-- For developing with Android ROME Feed Reader -->
+        <repository>
+            <id>android-rome-feed-reader-repository</id>
+            <name>Android ROME Feed Reader Repository</name>
+            <url>https://android-rome-feed-reader.googlecode.com/svn/maven2/releases</url>
+        </repository>
+        <!-- For testing against latest Spring snapshots -->
+        <repository>
+            <id>org.springframework.maven.snapshot</id>
+            <name>Spring Maven Snapshot Repository</name>
+            <url>http://maven.springframework.org/snapshot</url>
+            <releases><enabled>false</enabled></releases>
+            <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+        <!-- For developing against latest Spring milestones -->
+        <repository>
+            <id>org.springframework.maven.milestone</id>
+            <name>Spring Maven Milestone Repository</name>
+            <url>http://maven.springframework.org/milestone</url>
+            <snapshots><enabled>false</enabled></snapshots>
+        </repository>
+    </repositories>
+ 
+</project>
