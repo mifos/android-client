@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/changeServerAddress"
+          android:title="@string/menu_change_address"
+          android:titleCondensed="@string/menu_change_address_condensed"
+          />
+
+</menu>

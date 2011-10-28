@@ -29,14 +29,10 @@ import org.mifos.androidclient.util.ui.UIUtils;
 
 public class ClientMainActivity extends MifosActivity {
 
-    private UIUtils mUIUtils;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-
-        mUIUtils = new UIUtils(this);
     }
 
     @Override

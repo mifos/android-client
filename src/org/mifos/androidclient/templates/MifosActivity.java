@@ -21,9 +21,49 @@
 package org.mifos.androidclient.templates;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import org.mifos.androidclient.R;
+import org.mifos.androidclient.util.MifosConstants;
+import org.mifos.androidclient.util.ui.UIUtils;
 
-public class MifosActivity extends Activity {
+public abstract class MifosActivity extends Activity {
+
+    protected UIUtils mUIUtils;
+
+    @Override
+    public void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        mUIUtils = new UIUtils(this);
+    }
 
     public final static String MIFOS_APPLICATION_PREFERENCES = "MifosApplicationPreferences";
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.changeServerAddress:
+                mUIUtils.promptForTextInput(getString(R.string.dialog_server_address), new UIUtils.OnInputCommit() {
+                public void onCommit(Object inputData) {
+                    SharedPreferences settings = getSharedPreferences(MIFOS_APPLICATION_PREFERENCES, MODE_PRIVATE);
+                    SharedPreferences.Editor editor = settings.edit();
+                    editor.putString(MifosConstants.MIFOS_SERVER_ADDRESS_KEY, (String)inputData);
+                    editor.commit();
+                }
+            });
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
 }

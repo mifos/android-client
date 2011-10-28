@@ -14,4 +14,10 @@
 
     <string name="dialog_server_address">Please provide a Mifos server address:</string>
 
+    <!--
+        Menus and menu items related strings:
+    -->
+    <string name="menu_change_address">Change server address</string>
+    <string name="menu_change_address_condensed">Chg. serv.</string>
+
 </resources>
