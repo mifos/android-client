@@ -22,6 +22,7 @@ package org.mifos.androidclient.main;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.templates.MifosActivity;
 import org.mifos.androidclient.util.MifosConstants;
@@ -36,41 +37,43 @@ public class ClientMainActivity extends MifosActivity {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        checkForServerAddressAndRun();
+    public void onStart() {
+        super.onStart();
+        checkForServerAddress();
+    }
+
+    /**
+     * Called upon pressing the clients list button.<br />
+     * Configured in the layout file of this activity.
+     *
+     * @param view the button which was pressed
+     */
+    public void onClientListSelected(View view) {
+
     }
 
     /**
      * Checks whether the Mifos server address has been specified or not and
      * displays a dialog prompting for it in the latter case.
      */
-    private void checkForServerAddressAndRun() {
+    private void checkForServerAddress() {
         final SharedPreferences settings = getSharedPreferences(MIFOS_APPLICATION_PREFERENCES, MODE_PRIVATE);
-        if (settings.contains(MifosConstants.MIFOS_SERVER_ADDRESS_KEY)) {
-            runMain();
-        } else {
+        if (!settings.contains(MifosConstants.MIFOS_SERVER_ADDRESS_KEY)) {
             mUIUtils.promptForTextInput(getString(R.string.dialog_server_address), new UIUtils.DialogCallbacks() {
                 @Override
                 public void onCommit(Object inputData) {
                     SharedPreferences.Editor editor = settings.edit();
-                    editor.putString(MifosConstants.MIFOS_SERVER_ADDRESS_KEY, (String)inputData);
+                    editor.putString(MifosConstants.MIFOS_SERVER_ADDRESS_KEY, (String) inputData);
                     editor.commit();
                     mUIUtils.displayLongMessage(getString(R.string.toast_first_address_set));
-                    runMain();
                 }
 
                 @Override
                 public void onCancel() {
                     mUIUtils.displayLongMessage(getString(R.string.toast_first_address_canceled));
-                    runMain();
                 }
             });
         }
-    }
-
-    private void runMain() {
-
     }
 
 }

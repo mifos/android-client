@@ -31,4 +31,11 @@
     -->
     <string name="client_main_button_client_list">Browse clients</string>
 
+    <!--
+        String values for LoginActivity:
+    -->
+    <string name="login_login_label">Username:</string>
+    <string name="login_password_label">Password:</string>
+    <string name="login_button">Log in</string>
+
 </resources>
