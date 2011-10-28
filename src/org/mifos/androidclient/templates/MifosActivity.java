@@ -18,18 +18,12 @@
  * explanation of the license and how it is applied.
  */
 
-package org.mifos.androidclient;
+package org.mifos.androidclient.templates;
 
 import android.app.Activity;
-import android.os.Bundle;
-import org.springframework.web.client.RestTemplate;
 
-public class ClientMainActivity extends Activity {
+public class MifosActivity extends Activity {
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-    }
+    public final static String MIFOS_APPLICATION_PREFERENCES = "MifosApplicationPreferences";
 
 }

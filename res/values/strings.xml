@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!--
+        Global application text values:
+    -->
     <string name="app_name">Mifos Android Client</string>
+
+    <!--
+        Text values relates to user dialogs:
+    -->
+    <string name="dialog_ok">Ok</string>
+    <string name="dialog_cancel">Cancel</string>
+
+    <string name="dialog_server_address">Please provide a Mifos server address:</string>
+
 </resources>
