@@ -53,14 +53,21 @@ public abstract class MifosActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.changeServerAddress:
-                mUIUtils.promptForTextInput(getString(R.string.dialog_server_address), new UIUtils.OnInputCommit() {
-                public void onCommit(Object inputData) {
-                    SharedPreferences settings = getSharedPreferences(MIFOS_APPLICATION_PREFERENCES, MODE_PRIVATE);
-                    SharedPreferences.Editor editor = settings.edit();
-                    editor.putString(MifosConstants.MIFOS_SERVER_ADDRESS_KEY, (String)inputData);
-                    editor.commit();
-                }
-            });
+                mUIUtils.promptForTextInput(getString(R.string.dialog_server_address), new UIUtils.DialogCallbacks() {
+
+                    @Override
+                    public void onCommit(Object inputData) {
+                        SharedPreferences settings = getSharedPreferences(MIFOS_APPLICATION_PREFERENCES, MODE_PRIVATE);
+                        SharedPreferences.Editor editor = settings.edit();
+                        editor.putString(MifosConstants.MIFOS_SERVER_ADDRESS_KEY, (String) inputData);
+                        editor.commit();
+                        mUIUtils.displayLongMessage(getString(R.string.toast_address_set));
+                    }
+
+                    @Override
+                    public void onCancel() { }
+
+                });
             default:
                 return super.onOptionsItemSelected(item);
         }

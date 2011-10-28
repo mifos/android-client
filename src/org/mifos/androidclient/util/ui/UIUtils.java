@@ -27,6 +27,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import org.mifos.androidclient.R;
 
 /**
@@ -44,14 +45,32 @@ public class UIUtils {
     }
 
     /**
+     * Displays a short duration toast message.
+     *
+     * @param messageText the text to be displayed
+     */
+    public void displayShortMessage(String messageText) {
+        displayMessage(messageText, Toast.LENGTH_SHORT);
+    }
+
+    /**
+     * Displays a long duration toast message.
+     *
+     * @param messageText the text to be displayed
+     */
+    public void displayLongMessage(String messageText) {
+        displayMessage(messageText, Toast.LENGTH_LONG);
+    }
+
+    /**
      * Displays a simple dialog which prompts user for text input. The user can either
      * commit the input or cancel the dialog.
      *
      * @param labelText the label to be used for the dialog
-     * @userCommitCallback the callback to be invoked when user commits the input
+     * @param callbacks the callbacks to be invoked when user interacts with the input
      * @return input provided by the user, or null value if the dialog was canceled
      */
-    public void promptForTextInput(String labelText, final OnInputCommit userCommitCallback) {
+    public void promptForTextInput(String labelText, final DialogCallbacks callbacks) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         final View dialogView = mLayoutInflater.inflate(R.layout.text_input_dialog, null);
         final TextView dialogLabel = (TextView)dialogView.findViewById(R.id.dialogLabel);
@@ -61,23 +80,36 @@ public class UIUtils {
         builder
             .setView(dialogView)
             .setPositiveButton(mContext.getText(R.string.dialog_ok), new DialogInterface.OnClickListener() {
+                @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    userCommitCallback.onCommit(textInput.getText().toString().trim());
+                    callbacks.onCommit(textInput.getText().toString().trim());
                 }
             })
             .setNegativeButton(mContext.getText(R.string.dialog_cancel), new DialogInterface.OnClickListener() {
+                @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
+                    callbacks.onCancel();
                     dialogInterface.cancel();
+                }
+            })
+            .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialogInterface) {
+                    callbacks.onCancel();
                 }
             })
             .show();
     }
 
+    private void displayMessage(String messageText, int duration) {
+        Toast.makeText(mContext, messageText, duration).show();
+    }
+
     /**
-     * An interface representing the callback which should be invoked
-     * when the user commits dialog input.
+     * An interface representing the callbacks which should be invoked
+     * when the user interacts with an input dialog.
      */
-    public interface OnInputCommit {
+    public interface DialogCallbacks {
 
         /**
          * Called upon user committing the input.
@@ -86,6 +118,10 @@ public class UIUtils {
          */
         void onCommit(Object inputData);
 
+        /**
+         * Called upon cancelling the dialog.
+         */
+        void onCancel();
     }
 
 }

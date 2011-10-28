@@ -3,7 +3,6 @@
 
     <item android:id="@+id/changeServerAddress"
           android:title="@string/menu_change_address"
-          android:titleCondensed="@string/menu_change_address_condensed"
           />
 
 </menu>

@@ -41,16 +41,28 @@ public class ClientMainActivity extends MifosActivity {
         checkForServerAddressAndRun();
     }
 
+    /**
+     * Checks whether the Mifos server address has been specified or not and
+     * displays a dialog prompting for it in the latter case.
+     */
     private void checkForServerAddressAndRun() {
         final SharedPreferences settings = getSharedPreferences(MIFOS_APPLICATION_PREFERENCES, MODE_PRIVATE);
         if (settings.contains(MifosConstants.MIFOS_SERVER_ADDRESS_KEY)) {
             runMain();
         } else {
-            mUIUtils.promptForTextInput(getString(R.string.dialog_server_address), new UIUtils.OnInputCommit() {
+            mUIUtils.promptForTextInput(getString(R.string.dialog_server_address), new UIUtils.DialogCallbacks() {
+                @Override
                 public void onCommit(Object inputData) {
                     SharedPreferences.Editor editor = settings.edit();
                     editor.putString(MifosConstants.MIFOS_SERVER_ADDRESS_KEY, (String)inputData);
                     editor.commit();
+                    mUIUtils.displayLongMessage(getString(R.string.toast_first_address_set));
+                    runMain();
+                }
+
+                @Override
+                public void onCancel() {
+                    mUIUtils.displayLongMessage(getString(R.string.toast_first_address_canceled));
                     runMain();
                 }
             });

@@ -4,10 +4,13 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="Welcome to the Mifos Android Client!"
-    />
+
+    <Button
+        android:id="@+id/view_clients_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/client_main_button_client_list"
+        />
+
 </LinearLayout>
 
