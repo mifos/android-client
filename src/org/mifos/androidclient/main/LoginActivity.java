@@ -24,6 +24,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.RequestStatus;
 import org.mifos.androidclient.net.services.LoginService;
@@ -33,6 +34,7 @@ public class LoginActivity extends MifosActivity {
 
     private EditText mLoginField;
     private EditText mPasswordField;
+    private TextView mLoginErrors;
 
     private LoginService mLoginService;
     private LoginTask mLoginTask;
@@ -44,6 +46,7 @@ public class LoginActivity extends MifosActivity {
 
         mLoginField = (EditText)findViewById(R.id.login_login);
         mPasswordField = (EditText)findViewById(R.id.login_password);
+        mLoginErrors = (TextView)findViewById(R.id.login_errors);
         mLoginService = new LoginService(this);
     }
 
@@ -84,6 +87,15 @@ public class LoginActivity extends MifosActivity {
         protected void onPostExecute(Boolean loginSuccessful) {
             super.onPostExecute(loginSuccessful);
             mUIUtils.cancelProgressDialog();
+            if (loginSuccessful) {
+                if (mLoginErrors.isShown()) {
+                    mLoginErrors.setVisibility(View.INVISIBLE);
+                }
+            } else {
+                if(!mLoginErrors.isShown()) {
+                    mLoginErrors.setVisibility(View.VISIBLE);
+                }
+            }
         }
 
     }
