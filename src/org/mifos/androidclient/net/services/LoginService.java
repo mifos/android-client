@@ -21,7 +21,7 @@
 package org.mifos.androidclient.net.services;
 
 import android.content.Context;
-import org.mifos.androidclient.entities.RequestStatus;
+import org.mifos.androidclient.entities.SessionStatus;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
@@ -37,7 +37,7 @@ public class LoginService extends RestNetworkService {
         super(context);
     }
 
-    public RequestStatus logIn(String userName, String password) {
+    public SessionStatus logIn(String userName, String password) {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
         params.add(USERNAME_KEY, userName);
         params.add(PASSWORD_KEY, password);
@@ -45,7 +45,7 @@ public class LoginService extends RestNetworkService {
 
         String url = getServerUrl() + LOGIN_PATH;
 
-        return mRestConnector.postForObject(url, params, RequestStatus.class);
+        return mRestConnector.postForObject(url, params, SessionStatus.class);
     }
 
 }

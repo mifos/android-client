@@ -20,18 +20,18 @@
 
 package org.mifos.androidclient.main;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import org.mifos.androidclient.R;
-import org.mifos.androidclient.entities.RequestStatus;
+import org.mifos.androidclient.entities.SessionStatus;
 import org.mifos.androidclient.net.services.LoginService;
 import org.mifos.androidclient.templates.MifosActivity;
+import org.mifos.androidclient.templates.ServiceConnectivityTask;
 import org.springframework.web.client.RestClientException;
-
-import java.net.UnknownHostException;
 
 public class LoginActivity extends MifosActivity {
 
@@ -65,72 +65,37 @@ public class LoginActivity extends MifosActivity {
         runLoginTask(userLogin, userPassword);
     }
 
-
     private void runLoginTask(String login, String password) {
         if (mLoginTask == null || mLoginTask.getStatus() != AsyncTask.Status.RUNNING) {
-            mLoginTask = (LoginTask)new LoginTask().execute(login, password);
+            mLoginTask = new LoginTask(this, getString(R.string.dialog_login_title), getString(R.string.dialog_login_message));
+            mLoginTask.execute(login, password);
         }
     }
 
-    private class LoginTask extends AsyncTask<String, Void, Boolean> {
+    private class LoginTask extends ServiceConnectivityTask<String, Void, Boolean> {
 
-        private String[] mCauses;
-        private String mErrorCause;
-        private Object mLock;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            mLock = new Object();
-            mCauses = new String[2];
-            mCauses[0] = getString(R.string.toast_connection_error);
-            mCauses[1] = getString(R.string.toast_address_invalid);
-            mUIUtils.displayProgressDialog(getString(R.string.dialog_login_title), getString(R.string.dialog_login_message), false);
+        public LoginTask(Context context, String progressTitle, String progressMessage) {
+            super(context, progressTitle, progressMessage);
         }
 
         @Override
-        protected Boolean doInBackground(String... strings) {
-            RequestStatus status = null;
-            try {
-                status = mLoginService.logIn(strings[0], strings[1]);
-            } catch (RestClientException e) {
-                setErrorCause(mCauses[0]);
-                return null;
-            } catch (IllegalArgumentException e) {
-                setErrorCause(mCauses[1]);
-                return null;
-            }
+        protected Boolean doInBackgroundBodyBody(String... params)
+                throws RestClientException, IllegalArgumentException {
+            SessionStatus status = mLoginService.logIn(params[0], params[1]);
             return status.isSuccessful();
         }
 
         @Override
-        protected void onPostExecute(Boolean loginSuccessful) {
-            super.onPostExecute(loginSuccessful);
-            mUIUtils.cancelProgressDialog();
-            if (loginSuccessful != null) {
-                if (loginSuccessful) {
-                    if (mLoginErrors.isShown()) {
-                        mLoginErrors.setVisibility(View.INVISIBLE);
-                    }
-                } else {
-                    if(!mLoginErrors.isShown()) {
-                        mLoginErrors.setVisibility(View.VISIBLE);
-                    }
+        protected void onPostExecuteBody(Boolean result) {
+            if (result) {
+                if (mLoginErrors.isShown()) {
+                    mLoginErrors.setVisibility(View.INVISIBLE);
+                    finish();
                 }
             } else {
-                mUIUtils.displayLongMessage(getErrorCause());
-            }
-        }
-
-        private void setErrorCause(String cause) {
-            synchronized (mLock) {
-                mErrorCause = cause;
-            }
-        }
-
-        private String getErrorCause() {
-            synchronized (mLock) {
-                return mErrorCause;
+                if(!mLoginErrors.isShown()) {
+                    mLoginErrors.setVisibility(View.VISIBLE);
+                }
             }
         }
 

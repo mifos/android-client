@@ -16,6 +16,7 @@
 
     <string name="dialog_login_title">Logging in</string>
     <string name="dialog_login_message">Please wait...</string>
+    <string name="dialog_checking_session">Checking user session</string>
 
     <!--
         Text values for toast messages:

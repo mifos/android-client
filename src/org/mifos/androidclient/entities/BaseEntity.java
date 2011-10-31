@@ -20,16 +20,12 @@
 
 package org.mifos.androidclient.entities;
 
-/**
- * Represents the status returned by certain REST request,
- * e.g. when trying to log in to the Mifos system.
- */
-public class RequestStatus {
+public abstract class BaseEntity {
 
     public final static String SUCCESS  = "Success";
     public final static String SESSION_EXPIRED = "session expired";
 
-    private String status;
+    private String status = "";
 
     public String getStatus() {
         return status;
@@ -40,7 +36,7 @@ public class RequestStatus {
     }
 
     public boolean isSuccessful() {
-        return status.equals(SUCCESS);
+        return !status.equals(SESSION_EXPIRED);
     }
 
 }
