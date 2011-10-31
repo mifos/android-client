@@ -51,7 +51,9 @@ public abstract class MifosActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.changeServerAddress:
-                mUIUtils.promptForTextInput(getString(R.string.dialog_server_address), new UIUtils.DialogCallbacks() {
+                SharedPreferences settings = getSharedPreferences(ApplicationConstants.MIFOS_APPLICATION_PREFERENCES, MODE_PRIVATE);
+                String currentAddress = settings.getString(ApplicationConstants.MIFOS_SERVER_ADDRESS_KEY, getString(R.string.server_name_template));
+                mUIUtils.promptForTextInput(getString(R.string.dialog_server_address), currentAddress, new UIUtils.DialogCallbacks() {
 
                     @Override
                     public void onCommit(Object inputData) {

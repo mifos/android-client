@@ -16,7 +16,6 @@
         android:layout_height="wrap_content"
         android:inputType="textUri"
         android:layout_below="@id/dialogLabel"
-        android:text="http://"
         />
 
 </RelativeLayout>

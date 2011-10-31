@@ -91,12 +91,13 @@ public class UIUtils {
      * @param callbacks the callbacks to be invoked when user interacts with the input
      * @return input provided by the user, or null value if the dialog was canceled
      */
-    public void promptForTextInput(String labelText, final DialogCallbacks callbacks) {
+    public void promptForTextInput(String labelText, String defaultValue, final DialogCallbacks callbacks) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         final View dialogView = mLayoutInflater.inflate(R.layout.text_input_dialog, null);
         final TextView dialogLabel = (TextView)dialogView.findViewById(R.id.dialogLabel);
         dialogLabel.setText(labelText);
         final EditText textInput = (EditText)dialogView.findViewById(R.id.dialogInput);
+        textInput.setText(defaultValue);
 
         builder
             .setView(dialogView)

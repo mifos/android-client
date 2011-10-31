@@ -6,6 +6,8 @@
     -->
     <string name="app_name">Mifos Android Client</string>
 
+    <string name="server_name_template">http://</string>
+
     <!--
         Text values relates to user dialogs:
     -->

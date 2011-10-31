@@ -61,7 +61,7 @@ public class ClientMainActivity extends MifosActivity {
     private void checkForServerAddress() {
         final SharedPreferences settings = getSharedPreferences(ApplicationConstants.MIFOS_APPLICATION_PREFERENCES, MODE_PRIVATE);
         if (!settings.contains(ApplicationConstants.MIFOS_SERVER_ADDRESS_KEY)) {
-            mUIUtils.promptForTextInput(getString(R.string.dialog_server_address), new UIUtils.DialogCallbacks() {
+            mUIUtils.promptForTextInput(getString(R.string.dialog_server_address), getString(R.string.server_name_template), new UIUtils.DialogCallbacks() {
                 @Override
                 public void onCommit(Object inputData) {
                     SharedPreferences.Editor editor = settings.edit();
