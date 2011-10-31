@@ -32,18 +32,17 @@ public abstract class RestNetworkService {
     protected Context mContext;
     protected RestConnector mRestConnector;
 
-    private String mServerUrl;
+    private SharedPreferences mSettings;
 
     public RestNetworkService(Context context) {
         mContext = context;
         mRestConnector = RestConnector.getInstance();
 
-        SharedPreferences settings = mContext.getSharedPreferences(ApplicationConstants.MIFOS_APPLICATION_PREFERENCES, mContext.MODE_PRIVATE);
-        mServerUrl = settings.getString(ApplicationConstants.MIFOS_SERVER_ADDRESS_KEY, "");
+        mSettings = mContext.getSharedPreferences(ApplicationConstants.MIFOS_APPLICATION_PREFERENCES, mContext.MODE_PRIVATE);
     }
 
     protected String getServerUrl() {
-        return mServerUrl;
+        return mSettings.getString(ApplicationConstants.MIFOS_SERVER_ADDRESS_KEY, "");
     }
 
 }

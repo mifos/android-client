@@ -29,6 +29,9 @@ import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.RequestStatus;
 import org.mifos.androidclient.net.services.LoginService;
 import org.mifos.androidclient.templates.MifosActivity;
+import org.springframework.web.client.RestClientException;
+
+import java.net.UnknownHostException;
 
 public class LoginActivity extends MifosActivity {
 
@@ -71,15 +74,32 @@ public class LoginActivity extends MifosActivity {
 
     private class LoginTask extends AsyncTask<String, Void, Boolean> {
 
+        private String[] mCauses;
+        private String mErrorCause;
+        private Object mLock;
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            mLock = new Object();
+            mCauses = new String[2];
+            mCauses[0] = getString(R.string.toast_connection_error);
+            mCauses[1] = getString(R.string.toast_address_invalid);
             mUIUtils.displayProgressDialog(getString(R.string.dialog_login_title), getString(R.string.dialog_login_message), false);
         }
 
         @Override
         protected Boolean doInBackground(String... strings) {
-            RequestStatus status = mLoginService.logIn(strings[0], strings[1]);
+            RequestStatus status = null;
+            try {
+                status = mLoginService.logIn(strings[0], strings[1]);
+            } catch (RestClientException e) {
+                setErrorCause(mCauses[0]);
+                return null;
+            } catch (IllegalArgumentException e) {
+                setErrorCause(mCauses[1]);
+                return null;
+            }
             return status.isSuccessful();
         }
 
@@ -87,14 +107,30 @@ public class LoginActivity extends MifosActivity {
         protected void onPostExecute(Boolean loginSuccessful) {
             super.onPostExecute(loginSuccessful);
             mUIUtils.cancelProgressDialog();
-            if (loginSuccessful) {
-                if (mLoginErrors.isShown()) {
-                    mLoginErrors.setVisibility(View.INVISIBLE);
+            if (loginSuccessful != null) {
+                if (loginSuccessful) {
+                    if (mLoginErrors.isShown()) {
+                        mLoginErrors.setVisibility(View.INVISIBLE);
+                    }
+                } else {
+                    if(!mLoginErrors.isShown()) {
+                        mLoginErrors.setVisibility(View.VISIBLE);
+                    }
                 }
             } else {
-                if(!mLoginErrors.isShown()) {
-                    mLoginErrors.setVisibility(View.VISIBLE);
-                }
+                mUIUtils.displayLongMessage(getErrorCause());
+            }
+        }
+
+        private void setErrorCause(String cause) {
+            synchronized (mLock) {
+                mErrorCause = cause;
+            }
+        }
+
+        private String getErrorCause() {
+            synchronized (mLock) {
+                return mErrorCause;
             }
         }
 

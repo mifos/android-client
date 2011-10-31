@@ -23,6 +23,14 @@
     <string name="toast_first_address_set">The Mifos server address has been set. You can change it later in the options menu.</string>
     <string name="toast_address_set">The Mifos server address has been changed.</string>
     <string name="toast_first_address_canceled">The Mifos server address has not been set. Please set it using the options menu.</string>
+    <string name="toast_connection_error">
+        There appears to be a network connection problem. Please make sure You are connected
+        to the internet and the Mifos server address is correct.
+    </string>
+    <string name="toast_address_invalid">
+        The server address You provided appears to be invalid. Please make sure it is correct and
+        retry.
+    </string>
 
     <!--
         Menus and menu items related strings:
