@@ -21,11 +21,31 @@
 package org.mifos.androidclient.net.services;
 
 import android.content.Context;
+import org.mifos.androidclient.entities.RequestStatus;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 public class LoginService extends RestNetworkService {
 
+    private final static String USERNAME_KEY = "j_username";
+    private final static String PASSWORD_KEY = "j_password";
+    private final static String SPRING_REDIRECT_KEY = "spring-security-redirect";
+
+    private final static String LOGIN_PATH = "/j_spring_security_check";
+
     public LoginService(Context context) {
         super(context);
+    }
+
+    public RequestStatus logIn(String userName, String password) {
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
+        params.add(USERNAME_KEY, userName);
+        params.add(PASSWORD_KEY, password);
+        params.add(SPRING_REDIRECT_KEY, STATUS_PATH);
+
+        String url = getServerUrl() + LOGIN_PATH;
+
+        return mRestConnector.postForObject(url, params, RequestStatus.class);
     }
 
 }

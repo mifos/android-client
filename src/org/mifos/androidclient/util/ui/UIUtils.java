@@ -21,8 +21,10 @@
 package org.mifos.androidclient.util.ui;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -38,6 +40,7 @@ public class UIUtils {
 
     private Context mContext;
     private LayoutInflater mLayoutInflater;
+    private ProgressDialog mProgressDialog;
 
     public UIUtils(Context context) {
         mContext = context;
@@ -60,6 +63,24 @@ public class UIUtils {
      */
     public void displayLongMessage(String messageText) {
         displayMessage(messageText, Toast.LENGTH_LONG);
+    }
+
+    public void displayProgressDialog(String title, String message, boolean cancelable) {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(mContext);
+        }
+        if (!mProgressDialog.isShowing()) {
+            mProgressDialog.setTitle(title);
+            mProgressDialog.setMessage(message);
+            mProgressDialog.setCancelable(cancelable);
+            mProgressDialog.show();
+        }
+    }
+
+    public void cancelProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.cancel();
+        }
     }
 
     /**
@@ -102,7 +123,9 @@ public class UIUtils {
     }
 
     private void displayMessage(String messageText, int duration) {
-        Toast.makeText(mContext, messageText, duration).show();
+        Toast message = Toast.makeText(mContext, messageText, duration);
+        message.setGravity(Gravity.CENTER, 0, 0);
+        message.show();
     }
 
     /**

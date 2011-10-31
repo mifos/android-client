@@ -39,6 +39,7 @@
         android:layout_width="fill_parent"
         android:layout_below="@id/login_password"
         android:text="@string/login_button"
+        android:onClick="onLoginClicked"
         />
 
 </RelativeLayout>

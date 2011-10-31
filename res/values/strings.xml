@@ -14,6 +14,9 @@
 
     <string name="dialog_server_address">Please provide a Mifos server address:</string>
 
+    <string name="dialog_login_title">Logging in</string>
+    <string name="dialog_login_message">Please wait...</string>
+
     <!--
         Text values for toast messages:
     -->

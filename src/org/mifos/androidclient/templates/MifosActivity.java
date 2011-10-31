@@ -27,7 +27,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import org.mifos.androidclient.R;
-import org.mifos.androidclient.util.MifosConstants;
+import org.mifos.androidclient.util.ApplicationConstants;
 import org.mifos.androidclient.util.ui.UIUtils;
 
 public abstract class MifosActivity extends Activity {
@@ -39,8 +39,6 @@ public abstract class MifosActivity extends Activity {
         super.onCreate(bundle);
         mUIUtils = new UIUtils(this);
     }
-
-    public final static String MIFOS_APPLICATION_PREFERENCES = "MifosApplicationPreferences";
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -57,9 +55,9 @@ public abstract class MifosActivity extends Activity {
 
                     @Override
                     public void onCommit(Object inputData) {
-                        SharedPreferences settings = getSharedPreferences(MIFOS_APPLICATION_PREFERENCES, MODE_PRIVATE);
+                        SharedPreferences settings = getSharedPreferences(ApplicationConstants.MIFOS_APPLICATION_PREFERENCES, MODE_PRIVATE);
                         SharedPreferences.Editor editor = settings.edit();
-                        editor.putString(MifosConstants.MIFOS_SERVER_ADDRESS_KEY, (String) inputData);
+                        editor.putString(ApplicationConstants.MIFOS_SERVER_ADDRESS_KEY, (String) inputData);
                         editor.commit();
                         mUIUtils.displayLongMessage(getString(R.string.toast_address_set));
                     }

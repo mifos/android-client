@@ -21,16 +21,29 @@
 package org.mifos.androidclient.net.services;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import org.mifos.androidclient.net.RestConnector;
+import org.mifos.androidclient.util.ApplicationConstants;
 
 public abstract class RestNetworkService {
+
+    protected final static String STATUS_PATH = "/status.json";
 
     protected Context mContext;
     protected RestConnector mRestConnector;
 
+    private String mServerUrl;
+
     public RestNetworkService(Context context) {
         mContext = context;
         mRestConnector = RestConnector.getInstance();
+
+        SharedPreferences settings = mContext.getSharedPreferences(ApplicationConstants.MIFOS_APPLICATION_PREFERENCES, mContext.MODE_PRIVATE);
+        mServerUrl = settings.getString(ApplicationConstants.MIFOS_SERVER_ADDRESS_KEY, "");
+    }
+
+    protected String getServerUrl() {
+        return mServerUrl;
     }
 
 }

@@ -20,16 +20,72 @@
 
 package org.mifos.androidclient.main;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 import org.mifos.androidclient.R;
+import org.mifos.androidclient.entities.RequestStatus;
+import org.mifos.androidclient.net.services.LoginService;
 import org.mifos.androidclient.templates.MifosActivity;
 
 public class LoginActivity extends MifosActivity {
+
+    private EditText mLoginField;
+    private EditText mPasswordField;
+
+    private LoginService mLoginService;
+    private LoginTask mLoginTask;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_panel);
+
+        mLoginField = (EditText)findViewById(R.id.login_login);
+        mPasswordField = (EditText)findViewById(R.id.login_password);
+        mLoginService = new LoginService(this);
+    }
+
+    /**
+     * Executed when the login button is pressed by the user.<br />
+     * Configured in the layout file of this activity.
+     *
+     * @param loginButton the button which has been pressed
+     */
+    public void onLoginClicked(View loginButton) {
+        String userLogin = mLoginField.getText().toString();
+        String userPassword = mPasswordField.getText().toString();
+        runLoginTask(userLogin, userPassword);
+    }
+
+
+    private void runLoginTask(String login, String password) {
+        if (mLoginTask == null || mLoginTask.getStatus() != AsyncTask.Status.RUNNING) {
+            mLoginTask = (LoginTask)new LoginTask().execute(login, password);
+        }
+    }
+
+    private class LoginTask extends AsyncTask<String, Void, Boolean> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mUIUtils.displayProgressDialog(getString(R.string.dialog_login_title), getString(R.string.dialog_login_message), false);
+        }
+
+        @Override
+        protected Boolean doInBackground(String... strings) {
+            RequestStatus status = mLoginService.logIn(strings[0], strings[1]);
+            return status.isSuccessful();
+        }
+
+        @Override
+        protected void onPostExecute(Boolean loginSuccessful) {
+            super.onPostExecute(loginSuccessful);
+            mUIUtils.cancelProgressDialog();
+        }
+
     }
 
 }
