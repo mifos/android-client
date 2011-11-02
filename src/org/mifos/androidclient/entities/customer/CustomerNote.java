@@ -18,23 +18,38 @@
  * explanation of the license and how it is applied.
  */
 
-package org.mifos.androidclient.main;
+package org.mifos.androidclient.entities.customer;
 
-import android.os.Bundle;
-import org.mifos.androidclient.R;
-import org.mifos.androidclient.templates.MifosActivity;
+import org.mifos.androidclient.entities.BaseEntity;
 
-public class ClientsListActivity extends MifosActivity {
+public class CustomerNote extends BaseEntity {
 
-    @Override
-    public void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        setContentView(R.layout.clients_list);
+    private String comment;
+    private String commentDate;
+    private String personnelName;
+
+    public String getComment() {
+        return comment;
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public String getCommentDate() {
+        return commentDate;
+    }
+
+    public void setCommentDate(String commentDate) {
+        this.commentDate = commentDate;
+    }
+
+    public String getPersonnelName() {
+        return personnelName;
+    }
+
+    public void setPersonnelName(String personnelName) {
+        this.personnelName = personnelName;
     }
 
 }

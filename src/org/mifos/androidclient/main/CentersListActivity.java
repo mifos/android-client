@@ -25,7 +25,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.ListView;
 import org.mifos.androidclient.R;
-import org.mifos.androidclient.entities.ClientsData;
+import org.mifos.androidclient.entities.simple.CustomersData;
 import org.mifos.androidclient.templates.DownloaderActivity;
 import org.mifos.androidclient.templates.ServiceConnectivityTask;
 import org.springframework.web.client.RestClientException;
@@ -33,8 +33,8 @@ import org.springframework.web.client.RestClientException;
 public class CentersListActivity extends DownloaderActivity {
 
     private ListView mCentersList;
-    private ClientsListTask mClientsListTask;
-    private ClientsData mClientsData;
+    private CustomersListTask mCustomersListTask;
+    private CustomersData mCustomersData;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -50,14 +50,14 @@ public class CentersListActivity extends DownloaderActivity {
     }
 
     private void runClientsListTask() {
-        if (mClientsListTask == null || mClientsListTask.getStatus() != AsyncTask.Status.RUNNING) {
+        if (mCustomersListTask == null || mCustomersListTask.getStatus() != AsyncTask.Status.RUNNING) {
 
         }
     }
 
-    private class ClientsListTask extends ServiceConnectivityTask<Void, Void, Boolean> {
+    private class CustomersListTask extends ServiceConnectivityTask<Void, Void, Boolean> {
 
-        public ClientsListTask(Context context, String progressTitle, String progressMessage) {
+        public CustomersListTask(Context context, String progressTitle, String progressMessage) {
             super(context, progressTitle, progressMessage);
         }
 

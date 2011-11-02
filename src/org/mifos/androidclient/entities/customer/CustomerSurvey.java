@@ -18,38 +18,38 @@
  * explanation of the license and how it is applied.
  */
 
-package org.mifos.androidclient.entities;
+package org.mifos.androidclient.entities.customer;
 
-import java.util.List;
+import org.mifos.androidclient.entities.BaseEntity;
 
-public class Group {
+public class CustomerSurvey extends BaseEntity {
 
-    private Integer id;
-    private String name;
-    private List<Client> clients;
+    private Integer instanceId;
+    private String surveyName;
+    private String dateConducted;
 
-    public Integer getId() {
-        return id;
+    public Integer getInstanceId() {
+        return instanceId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setInstanceId(Integer instanceId) {
+        this.instanceId = instanceId;
     }
 
-    public String getName() {
-        return name;
+    public String getSurveyName() {
+        return surveyName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSurveyName(String surveyName) {
+        this.surveyName = surveyName;
     }
 
-    public List<Client> getClients() {
-        return clients;
+    public String getDateConducted() {
+        return dateConducted;
     }
 
-    public void setClients(List<Client> clients) {
-        this.clients = clients;
+    public void setDateConducted(String dateConducted) {
+        this.dateConducted = dateConducted;
     }
 
 }

@@ -16,7 +16,7 @@
         </activity>
         <activity android:name=".main.LoginActivity" />
         <activity android:name=".main.CentersListActivity" />
-        <activity android:name=".main.ClientsListActivity" />
+        <activity android:name=".main.CustomersListActivity" />
     </application>
 
 </manifest> 

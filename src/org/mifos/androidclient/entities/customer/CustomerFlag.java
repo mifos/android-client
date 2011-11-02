@@ -18,47 +18,20 @@
  * explanation of the license and how it is applied.
  */
 
-package org.mifos.androidclient.entities;
+package org.mifos.androidclient.entities.customer;
 
-import java.util.List;
+import org.mifos.androidclient.entities.BaseEntity;
 
-public class Center extends BaseEntity {
+public class CustomerFlag extends BaseEntity {
 
-    private Integer id;
-    private String name;
-    private List<Group> groups;
-    private List<Client> clients;
+    private String statusFlagName;
 
-    public Integer getId() {
-        return id;
+    public String getStatusFlagName() {
+        return statusFlagName;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Group> getGroups() {
-        return groups;
-    }
-
-    public void setGroups(List<Group> groups) {
-        this.groups = groups;
-    }
-
-    public List<Client> getClients() {
-        return clients;
-    }
-
-    public void setClients(List<Client> clients) {
-        this.clients = clients;
+    public void setStatusFlagName(String statusFlagName) {
+        this.statusFlagName = statusFlagName;
     }
 
 }

@@ -18,8 +18,29 @@
  * explanation of the license and how it is applied.
  */
 
-package org.mifos.androidclient.entities;
+package org.mifos.androidclient.entities.customer;
 
-public class Client {
+import org.mifos.androidclient.entities.BaseEntity;
+
+public class CustomerAccountSummary extends BaseEntity {
+
+    private String globalAccountNum;
+    private String nextDueAmount;
+
+    public String getGlobalAccountNum() {
+        return globalAccountNum;
+    }
+
+    public void setGlobalAccountNum(String globalAccountNum) {
+        this.globalAccountNum = globalAccountNum;
+    }
+
+    public String getNextDueAmount() {
+        return nextDueAmount;
+    }
+
+    public void setNextDueAmount(String nextDueAmount) {
+        this.nextDueAmount = nextDueAmount;
+    }
 
 }

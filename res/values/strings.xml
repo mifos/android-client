@@ -43,7 +43,7 @@
     <!--
         String values for ClientMainActivity:
     -->
-    <string name="client_main_button_client_list">Browse clients</string>
+    <string name="client_main_button_client_list">Browse customers</string>
 
     <!--
         String values for LoginActivity:
@@ -60,7 +60,7 @@
     <string name="centerslist_no_center">Clients with no center</string>
 
     <!--
-        String values for ClientsListActivity:
+        String values for CustomersListActivity:
     -->
     <string name="clientslist_label"></string>
 
