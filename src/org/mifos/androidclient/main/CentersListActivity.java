@@ -22,14 +22,14 @@ package org.mifos.androidclient.main;
 
 import android.os.Bundle;
 import org.mifos.androidclient.R;
-import org.mifos.androidclient.templates.MifosActivity;
+import org.mifos.androidclient.templates.DownloaderActivity;
 
-public class ClientsListActivity extends MifosActivity {
+public class CentersListActivity extends DownloaderActivity {
 
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setContentView(R.layout.clients_list);
+        setContentView(R.layout.centers_list);
     }
 
     @Override

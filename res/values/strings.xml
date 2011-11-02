@@ -53,4 +53,10 @@
     <string name="login_button">Log in</string>
     <string name="login_errors">The login or password You provided was incorrect. Please correct the values and retry.</string>
 
+    <!--
+        String values for CentersListActivity:
+    -->
+    <string name="centerslist_label">Choose a center:</string>
+    <string name="centerslist_no_center">Clients with no center</string>
+
 </resources>

@@ -36,7 +36,7 @@ public abstract class BaseEntity {
     }
 
     public boolean isSuccessful() {
-        return !status.equals(SESSION_EXPIRED);
+        return status != null ? !status.equals(SESSION_EXPIRED) : true;
     }
 
 }

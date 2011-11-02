@@ -50,7 +50,7 @@ public class ClientMainActivity extends MifosActivity {
      * @param view the button which was pressed
      */
     public void onClientListSelected(View view) {
-        Intent intent = new Intent().setClass(this, ClientsListActivity.class);
+        Intent intent = new Intent().setClass(this, CentersListActivity.class);
         startActivity(intent);
     }
 

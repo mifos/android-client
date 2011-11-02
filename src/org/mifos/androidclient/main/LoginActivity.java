@@ -90,8 +90,8 @@ public class LoginActivity extends MifosActivity {
             if (result) {
                 if (mLoginErrors.isShown()) {
                     mLoginErrors.setVisibility(View.INVISIBLE);
-                    finish();
                 }
+                finish();
             } else {
                 if(!mLoginErrors.isShown()) {
                     mLoginErrors.setVisibility(View.VISIBLE);
