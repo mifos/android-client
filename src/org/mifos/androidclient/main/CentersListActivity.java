@@ -20,21 +20,57 @@
 
 package org.mifos.androidclient.main;
 
+import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.widget.ListView;
 import org.mifos.androidclient.R;
+import org.mifos.androidclient.entities.ClientsData;
 import org.mifos.androidclient.templates.DownloaderActivity;
+import org.mifos.androidclient.templates.ServiceConnectivityTask;
+import org.springframework.web.client.RestClientException;
 
 public class CentersListActivity extends DownloaderActivity {
+
+    private ListView mCentersList;
+    private ClientsListTask mClientsListTask;
+    private ClientsData mClientsData;
 
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.centers_list);
+
+        mCentersList = (ListView)findViewById(R.id.centers_list);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+    }
+
+    private void runClientsListTask() {
+        if (mClientsListTask == null || mClientsListTask.getStatus() != AsyncTask.Status.RUNNING) {
+
+        }
+    }
+
+    private class ClientsListTask extends ServiceConnectivityTask<Void, Void, Boolean> {
+
+        public ClientsListTask(Context context, String progressTitle, String progressMessage) {
+            super(context, progressTitle, progressMessage);
+        }
+
+        @Override
+        protected Boolean doInBackgroundBodyBody(Void... params) throws RestClientException, IllegalArgumentException {
+            return null;
+        }
+
+        @Override
+        protected void onPostExecuteBody(Boolean aBoolean) {
+
+        }
+
     }
 
 }
