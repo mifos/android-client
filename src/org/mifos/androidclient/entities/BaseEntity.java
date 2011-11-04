@@ -20,6 +20,9 @@
 
 package org.mifos.androidclient.entities;
 
+/**
+ * A base class for entities downloaded from the Mifos server.
+ */
 public abstract class BaseEntity {
 
     public final static String SUCCESS  = "Success";

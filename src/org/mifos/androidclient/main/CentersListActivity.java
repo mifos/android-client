@@ -21,12 +21,16 @@
 package org.mifos.androidclient.main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.simple.Center;
 import org.mifos.androidclient.entities.simple.CustomersData;
+import org.mifos.androidclient.entities.simple.Group;
 import org.mifos.androidclient.net.services.CustomerService;
 import org.mifos.androidclient.templates.DownloaderActivity;
 import org.mifos.androidclient.templates.ServiceConnectivityTask;
@@ -37,7 +41,7 @@ import org.springframework.web.client.RestClientException;
 
 import java.util.ArrayList;
 
-public class CentersListActivity extends DownloaderActivity {
+public class CentersListActivity extends DownloaderActivity implements AdapterView.OnItemClickListener {
 
     private ListView mCentersList;
     private CustomersListTask mCustomersListTask;
@@ -59,6 +63,14 @@ public class CentersListActivity extends DownloaderActivity {
         runClientsListTask();
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long rowId) {
+        Center center = (Center)adapterView.getAdapter().getItem(position);
+        Intent intent = new Intent().setClass(this, CustomersListActivity.class);
+        intent.putExtra(Group.BUNDLE_KEY, new ArrayList<Group>(center.getGroups()));
+        startActivity(intent);
+    }
+
     /**
      * Refreshes contents of the centers list.
      */
@@ -67,6 +79,7 @@ public class CentersListActivity extends DownloaderActivity {
                 this,
                 new ArrayList<SimpleListItem>(mCustomersData.getCenters())
         ));
+        mCentersList.setOnItemClickListener(this);
     }
 
     /**

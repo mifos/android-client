@@ -21,15 +21,37 @@
 package org.mifos.androidclient.main;
 
 import android.os.Bundle;
+import android.widget.ExpandableListView;
 import org.mifos.androidclient.R;
+import org.mifos.androidclient.entities.simple.Group;
 import org.mifos.androidclient.templates.MifosActivity;
+import org.mifos.androidclient.util.listadapters.SimpleExpandableListAdapter;
+import org.mifos.androidclient.util.listadapters.SimpleListItem;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class CustomersListActivity extends MifosActivity {
+
+    private ExpandableListView mCustomersList;
 
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.clients_list);
+
+        mCustomersList = (ExpandableListView)findViewById(R.id.clientslist_list);
+
+        List<Group> groups = (List<Group>)getIntent().getSerializableExtra(Group.BUNDLE_KEY);
+        Map<SimpleListItem, List<SimpleListItem>> items = new HashMap<SimpleListItem, List<SimpleListItem>>();
+        if (groups != null) {
+            for (Group group : groups) {
+                items.put(group, new ArrayList<SimpleListItem>(group.getClients()));
+            }
+        }
+        mCustomersList.setAdapter(new SimpleExpandableListAdapter(this, items));
     }
 
     @Override

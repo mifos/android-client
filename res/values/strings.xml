@@ -63,6 +63,6 @@
     <!--
         String values for CustomersListActivity:
     -->
-    <string name="clientslist_label"></string>
+    <string name="clientslist_label">Select a customer to view it\'s details:</string>
 
 </resources>

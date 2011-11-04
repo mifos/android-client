@@ -25,6 +25,11 @@ import org.mifos.androidclient.util.listadapters.SimpleListItem;
 
 import java.util.List;
 
+/**
+ * A simple bean class representing a Mifos center in a basic form.
+ * Used on list - provides a display name and an identifier which can
+ * be used to fetch more detailed data.
+ */
 public class Center extends BaseEntity implements SimpleListItem {
 
     private Integer id;
@@ -35,6 +40,11 @@ public class Center extends BaseEntity implements SimpleListItem {
     @Override
     public String getListLabel() {
         return getDisplayName();
+    }
+
+    @Override
+    public int getItemIdentifier() {
+        return getId();
     }
 
     public Integer getId() {

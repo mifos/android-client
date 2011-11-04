@@ -20,8 +20,13 @@
 
 package org.mifos.androidclient.util.listadapters;
 
+/**
+ * An interface used to ensure list items will provide a label
+ * to be displayed in the rows.
+ */
 public interface SimpleListItem {
 
     public String getListLabel();
+    public int getItemIdentifier();
 
 }

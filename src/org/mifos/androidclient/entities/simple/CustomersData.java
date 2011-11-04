@@ -24,6 +24,10 @@ import org.mifos.androidclient.entities.BaseEntity;
 
 import java.util.List;
 
+/**
+ * Used to aggregate data which is downloaded when a list of
+ * Loan Officer's clients is requested from the Mifos server.
+ */
 public class CustomersData extends BaseEntity {
 
     private List<Center> centers;

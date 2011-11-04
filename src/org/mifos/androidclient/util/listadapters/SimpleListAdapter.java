@@ -30,6 +30,10 @@ import org.mifos.androidclient.R;
 
 import java.util.List;
 
+/**
+ * Represents an adapter which can be used with standard lists.<br />
+ * Is designed to work with entities which implement the {@link SimpleListItem}.
+ */
 public class SimpleListAdapter extends ArrayAdapter<SimpleListItem> {
 
     public SimpleListAdapter(Context context, List<SimpleListItem> objects) {

@@ -20,14 +20,34 @@
 
 package org.mifos.androidclient.entities.simple;
 
+import org.mifos.androidclient.util.listadapters.SimpleListItem;
+
+import java.io.Serializable;
 import java.util.List;
 
-public class Group {
+/**
+ * A simple bean class representing a Mifos group in a basic form.
+ * Used on list - provides a display name and an identifier which can
+ * be used to fetch more detailed data.
+ */
+public class Group implements SimpleListItem, Serializable {
+
+    public static final String BUNDLE_KEY = Group.class.getSimpleName();
 
     private Integer id;
     private String displayName;
     private String searchId;
     private List<Customer> clients;
+
+    @Override
+    public String getListLabel() {
+        return getDisplayName();
+    }
+
+    @Override
+    public int getItemIdentifier() {
+        return getId();
+    }
 
     public Integer getId() {
         return id;
