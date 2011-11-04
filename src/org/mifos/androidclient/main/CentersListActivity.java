@@ -25,16 +25,24 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.ListView;
 import org.mifos.androidclient.R;
+import org.mifos.androidclient.entities.simple.Center;
 import org.mifos.androidclient.entities.simple.CustomersData;
+import org.mifos.androidclient.net.services.CustomerService;
 import org.mifos.androidclient.templates.DownloaderActivity;
 import org.mifos.androidclient.templates.ServiceConnectivityTask;
+import org.mifos.androidclient.util.ApplicationConstants;
+import org.mifos.androidclient.util.listadapters.SimpleListAdapter;
+import org.mifos.androidclient.util.listadapters.SimpleListItem;
 import org.springframework.web.client.RestClientException;
+
+import java.util.ArrayList;
 
 public class CentersListActivity extends DownloaderActivity {
 
     private ListView mCentersList;
     private CustomersListTask mCustomersListTask;
     private CustomersData mCustomersData;
+    private CustomerService mCustomerService;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -42,33 +50,66 @@ public class CentersListActivity extends DownloaderActivity {
         setContentView(R.layout.centers_list);
 
         mCentersList = (ListView)findViewById(R.id.centers_list);
+        mCustomerService = new CustomerService(this);
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onSessionActive() {
+        super.onSessionActive();
+        runClientsListTask();
     }
 
+    /**
+     * Refreshes contents of the centers list.
+     */
+    private void repopulateCustomersList() {
+        mCentersList.setAdapter(new SimpleListAdapter(
+                this,
+                new ArrayList<SimpleListItem>(mCustomersData.getCenters())
+        ));
+    }
+
+    /**
+     * Checks if the task is not currently running and launches it
+     * otherwise.
+     */
     private void runClientsListTask() {
         if (mCustomersListTask == null || mCustomersListTask.getStatus() != AsyncTask.Status.RUNNING) {
-
+            mCustomersListTask = new CustomersListTask(
+                    this,
+                    getString(R.string.dialog_getting_customer_data),
+                    getString(R.string.dialog_login_message)
+            );
+            mCustomersListTask.execute((Void[])null);
         }
     }
 
-    private class CustomersListTask extends ServiceConnectivityTask<Void, Void, Boolean> {
+    /**
+     * Downloads the list of loan officer's customers from the server. Refreshes
+     * the list of centers upon successful download.
+     */
+    private class CustomersListTask extends ServiceConnectivityTask<Void, Void, CustomersData> {
 
         public CustomersListTask(Context context, String progressTitle, String progressMessage) {
             super(context, progressTitle, progressMessage);
         }
 
         @Override
-        protected Boolean doInBackgroundBodyBody(Void... params) throws RestClientException, IllegalArgumentException {
-            return null;
+        protected CustomersData doInBackgroundBody(Void... params) throws RestClientException, IllegalArgumentException {
+            return mCustomerService.getLoanOfficersCustomers();
         }
 
         @Override
-        protected void onPostExecuteBody(Boolean aBoolean) {
-
+        protected void onPostExecuteBody(CustomersData result) {
+            mCustomersData = result;
+            if (mCustomersData.getGroups() != null && mCustomersData.getGroups().size() > 0) {
+                Center emptyCenter = new Center();
+                emptyCenter.setDisplayName(getString(R.string.centerslist_no_center));
+                emptyCenter.setId(ApplicationConstants.DUMMY_IDENTIFIER);
+                emptyCenter.setSearchId(ApplicationConstants.EMPTY_STRING);
+                emptyCenter.setGroups(mCustomersData.getGroups());
+            }
+            repopulateCustomersList();
         }
 
     }

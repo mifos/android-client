@@ -59,6 +59,11 @@ public abstract class DownloaderActivity extends MifosActivity {
         }
     }
 
+    /**
+     * Called when the session status check completes successfully.
+     */
+    protected void onSessionActive() { }
+
     private class SessionStatusCheckTask extends ServiceConnectivityTask<Void, Void, Boolean> {
 
         public SessionStatusCheckTask(Context context, String progressTitle, String progressMessage) {
@@ -66,7 +71,7 @@ public abstract class DownloaderActivity extends MifosActivity {
         }
 
         @Override
-        protected Boolean doInBackgroundBodyBody(Void... params) throws RestClientException, IllegalArgumentException {
+        protected Boolean doInBackgroundBody(Void... params) throws RestClientException, IllegalArgumentException {
             SessionStatus status = mSessionStatusService.getSessionStatus();
             return status.isSuccessful();
         }
@@ -76,6 +81,8 @@ public abstract class DownloaderActivity extends MifosActivity {
             if (!result) {
                 Intent intent = new Intent().setClass(mContext, LoginActivity.class);
                 startActivity(intent);
+            } else {
+                onSessionActive();
             }
         }
 

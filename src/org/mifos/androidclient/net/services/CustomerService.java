@@ -18,40 +18,22 @@
  * explanation of the license and how it is applied.
  */
 
-package org.mifos.androidclient.entities.simple;
+package org.mifos.androidclient.net.services;
 
-import org.mifos.androidclient.entities.BaseEntity;
+import android.content.Context;
+import org.mifos.androidclient.entities.simple.CustomersData;
 
-import java.util.List;
+public class CustomerService extends RestNetworkService {
 
-public class CustomersData extends BaseEntity {
+    private final static String LOAN_OFFICER_CUSTOMERS_PATH = "/personnel/clients/id-current.json";
 
-    private List<Center> centers;
-    private List<Group> groups;
-    private List<Customer> clients;
-
-    public List<Center> getCenters() {
-        return centers;
+    public CustomerService(Context context) {
+        super(context);
     }
 
-    public void setCenters(List<Center> centers) {
-        this.centers = centers;
-    }
-
-    public List<Group> getGroups() {
-        return groups;
-    }
-
-    public void setGroups(List<Group> groups) {
-        this.groups = groups;
-    }
-
-    public List<Customer> getClients() {
-        return clients;
-    }
-
-    public void setClients(List<Customer> customer) {
-        this.clients = customer;
+    public CustomersData getLoanOfficersCustomers() {
+        String url = getServerUrl() + LOAN_OFFICER_CUSTOMERS_PATH;
+        return mRestConnector.getForObject(url, CustomersData.class);
     }
 
 }

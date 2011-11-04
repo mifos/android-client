@@ -38,7 +38,7 @@ public abstract class ServiceConnectivityTask<Params, Progress, Result> extends 
 
     private String[] mCauses;
     private String mErrorCause;
-    private Object mLock;
+    private final Object mLock;
     private String mProgressTitle;
     private String mProgressMessage;
 
@@ -53,7 +53,7 @@ public abstract class ServiceConnectivityTask<Params, Progress, Result> extends 
         mProgressMessage = progressMessage;
     }
 
-    protected abstract Result doInBackgroundBodyBody(Params... params) throws RestClientException, IllegalArgumentException;
+    protected abstract Result doInBackgroundBody(Params... params) throws RestClientException, IllegalArgumentException;
 
     protected abstract void onPostExecuteBody(Result result);
 
@@ -65,9 +65,9 @@ public abstract class ServiceConnectivityTask<Params, Progress, Result> extends 
 
     @Override
     protected Result doInBackground(Params... params) {
-        Result result = null;
+        Result result;
         try {
-            result = doInBackgroundBodyBody(params);
+            result = doInBackgroundBody(params);
         } catch (RestClientException e) {
             setErrorCause(mCauses[0]);
             return null;

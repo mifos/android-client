@@ -25,8 +25,9 @@ import java.util.List;
 public class Group {
 
     private Integer id;
-    private String name;
-    private List<Customer> customers;
+    private String displayName;
+    private String searchId;
+    private List<Customer> clients;
 
     public Integer getId() {
         return id;
@@ -36,20 +37,28 @@ public class Group {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getDisplayName() {
+        return displayName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
-    public List<Customer> getCustomers() {
-        return customers;
+    public String getSearchId() {
+        return searchId;
     }
 
-    public void setCustomers(List<Customer> customers) {
-        this.customers = customers;
+    public void setSearchId(String searchId) {
+        this.searchId = searchId;
+    }
+
+    public List<Customer> getClients() {
+        return clients;
+    }
+
+    public void setClients(List<Customer> clients) {
+        this.clients = clients;
     }
 
 }

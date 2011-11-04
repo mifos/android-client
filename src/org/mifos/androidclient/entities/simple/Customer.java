@@ -22,4 +22,41 @@ package org.mifos.androidclient.entities.simple;
 
 public class Customer {
 
+    private Integer id;
+    private String displayName;
+    private String globalCustNum;
+    private String searchId;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public String getGlobalCustNum() {
+        return globalCustNum;
+    }
+
+    public void setGlobalCustNum(String globalCustNum) {
+        this.globalCustNum = globalCustNum;
+    }
+
+    public String getSearchId() {
+        return searchId;
+    }
+
+    public void setSearchId(String searchId) {
+        this.searchId = searchId;
+    }
+
 }

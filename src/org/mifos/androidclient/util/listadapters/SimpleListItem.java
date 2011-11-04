@@ -18,40 +18,10 @@
  * explanation of the license and how it is applied.
  */
 
-package org.mifos.androidclient.entities.simple;
+package org.mifos.androidclient.util.listadapters;
 
-import org.mifos.androidclient.entities.BaseEntity;
+public interface SimpleListItem {
 
-import java.util.List;
-
-public class CustomersData extends BaseEntity {
-
-    private List<Center> centers;
-    private List<Group> groups;
-    private List<Customer> clients;
-
-    public List<Center> getCenters() {
-        return centers;
-    }
-
-    public void setCenters(List<Center> centers) {
-        this.centers = centers;
-    }
-
-    public List<Group> getGroups() {
-        return groups;
-    }
-
-    public void setGroups(List<Group> groups) {
-        this.groups = groups;
-    }
-
-    public List<Customer> getClients() {
-        return clients;
-    }
-
-    public void setClients(List<Customer> customer) {
-        this.clients = customer;
-    }
+    public String getListLabel();
 
 }

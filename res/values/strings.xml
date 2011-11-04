@@ -19,6 +19,7 @@
     <string name="dialog_login_title">Logging in</string>
     <string name="dialog_login_message">Please wait...</string>
     <string name="dialog_checking_session">Checking user session</string>
+    <string name="dialog_getting_customer_data">Getting customer data</string>
 
     <!--
         Text values for toast messages:
@@ -57,7 +58,7 @@
         String values for CentersListActivity:
     -->
     <string name="centerslist_label">Choose a center:</string>
-    <string name="centerslist_no_center">Clients with no center</string>
+    <string name="centerslist_no_center">Customers without a center</string>
 
     <!--
         String values for CustomersListActivity:

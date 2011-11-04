@@ -21,15 +21,21 @@
 package org.mifos.androidclient.entities.simple;
 
 import org.mifos.androidclient.entities.BaseEntity;
+import org.mifos.androidclient.util.listadapters.SimpleListItem;
 
 import java.util.List;
 
-public class Center extends BaseEntity {
+public class Center extends BaseEntity implements SimpleListItem {
 
     private Integer id;
-    private String name;
+    private String displayName;
+    private String searchId;
     private List<Group> groups;
-    private List<Customer> customers;
+
+    @Override
+    public String getListLabel() {
+        return getDisplayName();
+    }
 
     public Integer getId() {
         return id;
@@ -39,12 +45,20 @@ public class Center extends BaseEntity {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getDisplayName() {
+        return displayName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public String getSearchId() {
+        return searchId;
+    }
+
+    public void setSearchId(String searchId) {
+        this.searchId = searchId;
     }
 
     public List<Group> getGroups() {
@@ -53,14 +67,6 @@ public class Center extends BaseEntity {
 
     public void setGroups(List<Group> groups) {
         this.groups = groups;
-    }
-
-    public List<Customer> getCustomers() {
-        return customers;
-    }
-
-    public void setCustomers(List<Customer> customers) {
-        this.customers = customers;
     }
 
 }
