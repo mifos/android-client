@@ -67,7 +67,7 @@ public class LoginActivity extends MifosActivity {
 
     private void runLoginTask(String login, String password) {
         if (mLoginTask == null || mLoginTask.getStatus() != AsyncTask.Status.RUNNING) {
-            mLoginTask = new LoginTask(this, getString(R.string.dialog_login_title), getString(R.string.dialog_login_message));
+            mLoginTask = new LoginTask(this, getString(R.string.dialog_login_title), getString(R.string.dialog_loading_message));
             mLoginTask.execute(login, password);
         }
     }

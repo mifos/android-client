@@ -21,11 +21,15 @@
 package org.mifos.androidclient.net.services;
 
 import android.content.Context;
+import org.mifos.androidclient.entities.customer.CustomerDetails;
 import org.mifos.androidclient.entities.simple.CustomersData;
 
 public class CustomerService extends RestNetworkService {
 
     private final static String LOAN_OFFICER_CUSTOMERS_PATH = "/personnel/clients/id-current.json";
+
+    private final static String CUSTOMER_DETAILS_PATH_PREFIX = "/client/num-";
+    private final static String CUSTOMER_DETAILS_PATH_SUFFIX = ".json";
 
     public CustomerService(Context context) {
         super(context);
@@ -34,6 +38,11 @@ public class CustomerService extends RestNetworkService {
     public CustomersData getLoanOfficersCustomers() {
         String url = getServerUrl() + LOAN_OFFICER_CUSTOMERS_PATH;
         return mRestConnector.getForObject(url, CustomersData.class);
+    }
+
+    public CustomerDetails getCustomerDetails(String customerNumber) {
+        String url = getServerUrl() + CUSTOMER_DETAILS_PATH_PREFIX + customerNumber + CUSTOMER_DETAILS_PATH_SUFFIX;
+        return mRestConnector.getForObject(url, CustomerDetails.class);
     }
 
 }

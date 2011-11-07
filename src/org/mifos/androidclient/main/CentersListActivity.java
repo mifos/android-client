@@ -91,7 +91,7 @@ public class CentersListActivity extends DownloaderActivity implements AdapterVi
             mCustomersListTask = new CustomersListTask(
                     this,
                     getString(R.string.dialog_getting_customer_data),
-                    getString(R.string.dialog_login_message)
+                    getString(R.string.dialog_loading_message)
             );
             mCustomersListTask.execute((Void[])null);
         }

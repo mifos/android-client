@@ -31,6 +31,8 @@ import java.io.Serializable;
  */
 public class Customer implements SimpleListItem, Serializable {
 
+    public static final String BUNDLE_KEY = Customer.class.getSimpleName();
+
     private Integer id;
     private String displayName;
     private String globalCustNum;

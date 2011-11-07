@@ -20,9 +20,12 @@
 
 package org.mifos.androidclient.main;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ExpandableListView;
 import org.mifos.androidclient.R;
+import org.mifos.androidclient.entities.simple.Customer;
 import org.mifos.androidclient.entities.simple.Group;
 import org.mifos.androidclient.templates.MifosActivity;
 import org.mifos.androidclient.util.listadapters.SimpleExpandableListAdapter;
@@ -33,14 +36,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CustomersListActivity extends MifosActivity {
+public class CustomersListActivity extends MifosActivity implements ExpandableListView.OnChildClickListener {
 
     private ExpandableListView mCustomersList;
 
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setContentView(R.layout.clients_list);
+        setContentView(R.layout.customers_list);
 
         mCustomersList = (ExpandableListView)findViewById(R.id.clientslist_list);
 
@@ -52,11 +55,16 @@ public class CustomersListActivity extends MifosActivity {
             }
         }
         mCustomersList.setAdapter(new SimpleExpandableListAdapter(this, items));
+        mCustomersList.setOnChildClickListener(this);
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    public boolean onChildClick(ExpandableListView parent, View view, int groupPos, int childPos, long id) {
+        Customer customer = (Customer)parent.getExpandableListAdapter().getChild(groupPos, childPos);
+        Intent intent = new Intent().setClass(this, CustomerDetailsActivity.class);
+        intent.putExtra(Customer.BUNDLE_KEY, customer);
+        startActivity(intent);
+        return true;
     }
 
 }

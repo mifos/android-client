@@ -17,6 +17,7 @@
         <activity android:name=".main.LoginActivity" />
         <activity android:name=".main.CentersListActivity" />
         <activity android:name=".main.CustomersListActivity" />
+        <activity android:name=".main.CustomerDetailsActivity" />
     </application>
 
 </manifest> 
