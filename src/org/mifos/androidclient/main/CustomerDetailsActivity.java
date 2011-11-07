@@ -23,7 +23,9 @@ package org.mifos.androidclient.main;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TabHost;
+import android.widget.TextView;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.customer.CustomerDetails;
 import org.mifos.androidclient.entities.simple.Customer;
@@ -71,7 +73,30 @@ public class CustomerDetailsActivity extends DownloaderActivity {
 
     private void updateContent(CustomerDetails details) {
         if (details != null) {
+            View tabContent = findViewById(R.id.customerDetails_overview_tab);
+            TextView textView = (TextView)tabContent.findViewById(R.id.customerOverview_name);
+            textView.setText(details.getClientDisplay().getDisplayName());
+            textView = (TextView)tabContent.findViewById(R.id.customerOverview_systemId);
+            textView.setText(details.getClientDisplay().getGlobalCustNum());
+            textView = (TextView)tabContent.findViewById(R.id.customerOverview_status);
+            textView.setText(details.getClientDisplay().getStatus());
 
+            textView = (TextView)tabContent.findViewById(R.id.customerOverview_loanCycleNo);
+            textView.setText(details.getClientPerformanceHistory().getLoanCycleNumber().toString());
+            textView = (TextView)tabContent.findViewById(R.id.customerOverview_amountOfLastLoan);
+            textView.setText(details.getClientPerformanceHistory().getLastLoanAmount());
+            textView = (TextView)tabContent.findViewById(R.id.customerOverview_noOfActiveLoans);
+            textView.setText(details.getClientPerformanceHistory().getNoOfActiveLoans().toString());
+            textView = (TextView)tabContent.findViewById(R.id.customerOverview_delinquentPortfolio);
+            textView.setText(details.getClientPerformanceHistory().getDelinquentPortfolioAmount());
+            textView = (TextView)tabContent.findViewById(R.id.customerOverview_totalSavings);
+            textView.setText(details.getClientPerformanceHistory().getTotalSavingsAmount());
+            textView = (TextView)tabContent.findViewById(R.id.customerOverview_meetingsAttended);
+            textView.setText(details.getClientPerformanceHistory().getMeetingsAttended().toString());
+            textView = (TextView)tabContent.findViewById(R.id.customerOverview_meetingsMissed);
+            textView.setText(details.getClientPerformanceHistory().getMeetingsMissed().toString());
+
+            tabContent.setVisibility(View.VISIBLE);
         }
     }
 

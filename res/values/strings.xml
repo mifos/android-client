@@ -75,4 +75,17 @@
     <string name="customerDetails_tab_accounts">Accounts</string>
     <string name="customerDetails_tab_additional">Additional Info</string>
 
+    <string name="customerOverview_status_label">Status:&#160;</string>
+    <string name="customerOverview_systemId_label">System ID:&#160;</string>
+
+    <string name="customerOverview_performance_history_label">Performance History:</string>
+    <string name="customerOverview_loanCycleNo_label">Loan Cycle #:&#160;</string>
+    <string name="customerOverview_amountOfLastLoan_label">Amount of last Loan:&#160;</string>
+    <string name="customerOverview_noOfActiveLoans_label"># of active Loans:&#160;</string>
+    <string name="customerOverview_delinquentPortfolio_label">Delinquent Portfolio:&#160;</string>
+    <string name="customerOverview_totalSavings_label">Total Savings:&#160;</string>
+    <string name="customerOverview_meetingsAttended_label">Meetings Attended:&#160;</string>
+    <string name="customerOverview_meetingsMissed_label">Meetings Missed:&#160;</string>
+    <string name="customerOverview_loanCyclePerProduct_label">Loan Cycle per Product:&#160;</string>
+
 </resources>
