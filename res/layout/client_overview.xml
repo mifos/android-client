@@ -9,20 +9,28 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/customerOverview_name"
-            android:layout_width="fill_parent"
+            android:id="@+id/customerOverview_name_label"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/customerOverview_name_label"
             />
         <TextView
+            android:id="@+id/customerOverview_name"
+            android:layout_toRightOf="@id/customerOverview_name_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
             android:id="@+id/customerOverview_status_label"
-            android:layout_below="@id/customerOverview_name"
+            android:layout_below="@id/customerOverview_name_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/customerOverview_status_label"
             />
         <TextView
             android:id="@+id/customerOverview_status"
-            android:layout_toRightOf="@id/customerOverview_name"
+            android:layout_toRightOf="@id/customerOverview_name_label"
             android:layout_below="@id/customerOverview_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -87,5 +87,6 @@
     <string name="customerOverview_meetingsAttended_label">Meetings Attended:&#160;</string>
     <string name="customerOverview_meetingsMissed_label">Meetings Missed:&#160;</string>
     <string name="customerOverview_loanCyclePerProduct_label">Loan Cycle per Product:&#160;</string>
+    <string name="customerOverview_name_label">Client name:&#160;</string>
 
 </resources>
