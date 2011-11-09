@@ -25,7 +25,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ExpandableListView;
 import org.mifos.androidclient.R;
-import org.mifos.androidclient.entities.simple.Customer;
+import org.mifos.androidclient.entities.simple.AbstractCustomer;
 import org.mifos.androidclient.entities.simple.Group;
 import org.mifos.androidclient.templates.MifosActivity;
 import org.mifos.androidclient.util.listadapters.SimpleExpandableListAdapter;
@@ -60,9 +60,9 @@ public class CustomersListActivity extends MifosActivity implements ExpandableLi
 
     @Override
     public boolean onChildClick(ExpandableListView parent, View view, int groupPos, int childPos, long id) {
-        Customer customer = (Customer)parent.getExpandableListAdapter().getChild(groupPos, childPos);
+        AbstractCustomer customer = (AbstractCustomer)parent.getExpandableListAdapter().getChild(groupPos, childPos);
         Intent intent = new Intent().setClass(this, CustomerDetailsActivity.class);
-        intent.putExtra(Customer.BUNDLE_KEY, customer);
+        intent.putExtra(AbstractCustomer.BUNDLE_KEY, customer);
         startActivity(intent);
         return true;
     }

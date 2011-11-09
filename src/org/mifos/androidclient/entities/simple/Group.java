@@ -22,7 +22,6 @@ package org.mifos.androidclient.entities.simple;
 
 import org.mifos.androidclient.util.listadapters.SimpleListItem;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -30,13 +29,10 @@ import java.util.List;
  * Used on list - provides a display name and an identifier which can
  * be used to fetch more detailed data.
  */
-public class Group implements SimpleListItem, Serializable {
+public class Group extends AbstractCustomer implements SimpleListItem {
 
     public static final String BUNDLE_KEY = Group.class.getSimpleName();
 
-    private Integer id;
-    private String displayName;
-    private String searchId;
     private List<Customer> clients;
 
     @Override
@@ -47,30 +43,6 @@ public class Group implements SimpleListItem, Serializable {
     @Override
     public int getItemIdentifier() {
         return getId();
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
-
-    public String getSearchId() {
-        return searchId;
-    }
-
-    public void setSearchId(String searchId) {
-        this.searchId = searchId;
     }
 
     public List<Customer> getClients() {

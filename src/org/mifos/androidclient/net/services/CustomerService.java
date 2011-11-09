@@ -21,15 +21,20 @@
 package org.mifos.androidclient.net.services;
 
 import android.content.Context;
+import org.mifos.androidclient.entities.customer.CenterDetails;
 import org.mifos.androidclient.entities.customer.ClientDetails;
-import org.mifos.androidclient.entities.simple.CustomersData;
+import org.mifos.androidclient.entities.customer.CustomerDetailsEntity;
+import org.mifos.androidclient.entities.customer.GroupDetails;
+import org.mifos.androidclient.entities.simple.*;
 
 public class CustomerService extends RestNetworkService {
 
     private final static String LOAN_OFFICER_CUSTOMERS_PATH = "/personnel/clients/id-current.json";
 
-    private final static String CUSTOMER_DETAILS_PATH_PREFIX = "/client/num-";
-    private final static String CUSTOMER_DETAILS_PATH_SUFFIX = ".json";
+    private final static String CLIENT_DETAILS_PATH_PREFIX = "/client/num-";
+    private final static String GROUP_DETAILS_PATH_PREFIX = "/group/num-";
+    private final static String CENTER_DETAILS_PATH_PREFIX = "/center/num-";
+    private final static String PATH_SUFFIX = ".json";
 
     public CustomerService(Context context) {
         super(context);
@@ -41,8 +46,30 @@ public class CustomerService extends RestNetworkService {
     }
 
     public ClientDetails getClientDetails(String customerNumber) {
-        String url = getServerUrl() + CUSTOMER_DETAILS_PATH_PREFIX + customerNumber + CUSTOMER_DETAILS_PATH_SUFFIX;
+        String url = getServerUrl() + CLIENT_DETAILS_PATH_PREFIX + customerNumber + PATH_SUFFIX;
         return mRestConnector.getForObject(url, ClientDetails.class);
+    }
+
+    public GroupDetails getGroupDetails(String groupNumber) {
+        String url = getServerUrl() + GROUP_DETAILS_PATH_PREFIX + groupNumber + PATH_SUFFIX;
+        return mRestConnector.getForObject(url, GroupDetails.class);
+    }
+
+    public CenterDetails getCenterDetails(String centerNumber) {
+        String url = getServerUrl() + CENTER_DETAILS_PATH_PREFIX + centerNumber + PATH_SUFFIX;
+        return mRestConnector.getForObject(url, CenterDetails.class);
+    }
+
+    public CustomerDetailsEntity getDetailsForEntity(AbstractCustomer customer) {
+        CustomerDetailsEntity details = null;
+        if (customer.getClass() == Customer.class) {
+            details = getClientDetails(customer.getGlobalCustNum());
+        } else if (customer.getClass() == Group.class) {
+            details = getGroupDetails(customer.getGlobalCustNum());
+        } else if (customer.getClass() == Center.class) {
+            details = getCenterDetails(customer.getGlobalCustNum());
+        }
+        return details;
     }
 
 }

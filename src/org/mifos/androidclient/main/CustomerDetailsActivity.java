@@ -23,14 +23,11 @@ package org.mifos.androidclient.main;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TabHost;
-import android.widget.TextView;
 import org.mifos.androidclient.R;
-import org.mifos.androidclient.entities.customer.ClientDetails;
-import org.mifos.androidclient.entities.simple.Customer;
+import org.mifos.androidclient.entities.customer.CustomerDetailsEntity;
+import org.mifos.androidclient.entities.simple.AbstractCustomer;
 import org.mifos.androidclient.net.services.CustomerService;
 import org.mifos.androidclient.templates.CustomerDetailsViewBuilder;
 import org.mifos.androidclient.templates.DownloaderActivity;
@@ -41,7 +38,7 @@ import org.springframework.web.client.RestClientException;
 
 public class CustomerDetailsActivity extends DownloaderActivity {
 
-    private Customer mCustomer;
+    private AbstractCustomer mCustomer;
     private CustomerDetailsTask mCustomerDetailsTask;
     private CustomerService mCustomerService;
 
@@ -65,7 +62,7 @@ public class CustomerDetailsActivity extends DownloaderActivity {
         tabs.addTab(accountsSpec);
         tabs.addTab(additionalSpec);
 
-        mCustomer = (Customer)getIntent().getSerializableExtra(Customer.BUNDLE_KEY);
+        mCustomer = (AbstractCustomer)getIntent().getSerializableExtra(AbstractCustomer.BUNDLE_KEY);
         mCustomerService = new CustomerService(this);
     }
 
@@ -75,7 +72,7 @@ public class CustomerDetailsActivity extends DownloaderActivity {
         runCustomerDetailsTask();
     }
 
-    private void updateContent(ClientDetails details) {
+    private void updateContent(CustomerDetailsEntity details) {
         if (details != null) {
             LinearLayout tabContent = (LinearLayout)findViewById(R.id.customer_overview);
             ViewBuilderFactory factory = new ViewBuilderFactory(this);
@@ -99,26 +96,26 @@ public class CustomerDetailsActivity extends DownloaderActivity {
                     getString(R.string.dialog_getting_customer_data),
                     getString(R.string.dialog_loading_message)
             );
-            mCustomerDetailsTask.execute(mCustomer.getGlobalCustNum());
+            mCustomerDetailsTask.execute(mCustomer);
         }
     }
 
     /**
      * Downloads the details of a select client from the Mifos server.
      */
-    private class CustomerDetailsTask extends ServiceConnectivityTask<String, Void, ClientDetails> {
+    private class CustomerDetailsTask extends ServiceConnectivityTask<AbstractCustomer, Void, CustomerDetailsEntity> {
 
         public CustomerDetailsTask(Context context, String progressTitle, String progressMessage) {
             super(context, progressTitle, progressMessage);
         }
 
         @Override
-        protected ClientDetails doInBackgroundBody(String... params) throws RestClientException, IllegalArgumentException {
-            return mCustomerService.getClientDetails(params[0]);
+        protected CustomerDetailsEntity doInBackgroundBody(AbstractCustomer... params) throws RestClientException, IllegalArgumentException {
+            return mCustomerService.getDetailsForEntity(params[0]);
         }
 
         @Override
-        protected void onPostExecuteBody(ClientDetails clientDetails) {
+        protected void onPostExecuteBody(CustomerDetailsEntity clientDetails) {
             updateContent(clientDetails);
         }
 
