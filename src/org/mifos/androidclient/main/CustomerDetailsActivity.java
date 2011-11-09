@@ -27,7 +27,7 @@ import android.view.View;
 import android.widget.TabHost;
 import android.widget.TextView;
 import org.mifos.androidclient.R;
-import org.mifos.androidclient.entities.customer.CustomerDetails;
+import org.mifos.androidclient.entities.customer.ClientDetails;
 import org.mifos.androidclient.entities.simple.Customer;
 import org.mifos.androidclient.net.services.CustomerService;
 import org.mifos.androidclient.templates.DownloaderActivity;
@@ -50,13 +50,13 @@ public class CustomerDetailsActivity extends DownloaderActivity {
         tabs.setup();
         TabHost.TabSpec overviewSpec = tabs.newTabSpec(getString(R.string.customerDetails_tab_overview));
         overviewSpec.setIndicator(getString(R.string.customerDetails_tab_overview));
-        overviewSpec.setContent(R.id.customerDetails_overview_tab);
+        overviewSpec.setContent(R.id.customer_overview);
         TabHost.TabSpec accountsSpec = tabs.newTabSpec(getString(R.string.customerDetails_tab_accounts));
         accountsSpec.setIndicator(getString(R.string.customerDetails_tab_accounts));
-        accountsSpec.setContent(R.id.customerDetails_accounts_tab);
+        accountsSpec.setContent(R.id.customer_accounts);
         TabHost.TabSpec additionalSpec = tabs.newTabSpec(getString(R.string.customerDetails_tab_additional));
         additionalSpec.setIndicator(getString(R.string.customerDetails_tab_additional));
-        additionalSpec.setContent(R.id.customerDetails_additional_tab);
+        additionalSpec.setContent(R.id.customer_additional);
         tabs.addTab(overviewSpec);
         tabs.addTab(accountsSpec);
         tabs.addTab(additionalSpec);
@@ -71,9 +71,9 @@ public class CustomerDetailsActivity extends DownloaderActivity {
         runCustomerDetailsTask();
     }
 
-    private void updateContent(CustomerDetails details) {
+    private void updateContent(ClientDetails details) {
         if (details != null) {
-            View tabContent = findViewById(R.id.customerDetails_overview_tab);
+            View tabContent = findViewById(R.id.customer_overview);
             TextView textView = (TextView)tabContent.findViewById(R.id.customerOverview_name);
             textView.setText(details.getClientDisplay().getDisplayName());
             textView = (TextView)tabContent.findViewById(R.id.customerOverview_systemId);
@@ -118,20 +118,20 @@ public class CustomerDetailsActivity extends DownloaderActivity {
     /**
      * Downloads the details of a select client from the Mifos server.
      */
-    private class CustomerDetailsTask extends ServiceConnectivityTask<String, Void, CustomerDetails> {
+    private class CustomerDetailsTask extends ServiceConnectivityTask<String, Void, ClientDetails> {
 
         public CustomerDetailsTask(Context context, String progressTitle, String progressMessage) {
             super(context, progressTitle, progressMessage);
         }
 
         @Override
-        protected CustomerDetails doInBackgroundBody(String... params) throws RestClientException, IllegalArgumentException {
-            return mCustomerService.getCustomerDetails(params[0]);
+        protected ClientDetails doInBackgroundBody(String... params) throws RestClientException, IllegalArgumentException {
+            return mCustomerService.getClientDetails(params[0]);
         }
 
         @Override
-        protected void onPostExecuteBody(CustomerDetails customerDetails) {
-            updateContent(customerDetails);
+        protected void onPostExecuteBody(ClientDetails clientDetails) {
+            updateContent(clientDetails);
         }
 
     }

@@ -21,7 +21,7 @@
 package org.mifos.androidclient.net.services;
 
 import android.content.Context;
-import org.mifos.androidclient.entities.customer.CustomerDetails;
+import org.mifos.androidclient.entities.customer.ClientDetails;
 import org.mifos.androidclient.entities.simple.CustomersData;
 
 public class CustomerService extends RestNetworkService {
@@ -40,9 +40,9 @@ public class CustomerService extends RestNetworkService {
         return mRestConnector.getForObject(url, CustomersData.class);
     }
 
-    public CustomerDetails getCustomerDetails(String customerNumber) {
+    public ClientDetails getClientDetails(String customerNumber) {
         String url = getServerUrl() + CUSTOMER_DETAILS_PATH_PREFIX + customerNumber + CUSTOMER_DETAILS_PATH_SUFFIX;
-        return mRestConnector.getForObject(url, CustomerDetails.class);
+        return mRestConnector.getForObject(url, ClientDetails.class);
     }
 
 }
