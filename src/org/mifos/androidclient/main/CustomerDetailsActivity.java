@@ -24,14 +24,18 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TabHost;
 import android.widget.TextView;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.customer.ClientDetails;
 import org.mifos.androidclient.entities.simple.Customer;
 import org.mifos.androidclient.net.services.CustomerService;
+import org.mifos.androidclient.templates.CustomerDetailsViewBuilder;
 import org.mifos.androidclient.templates.DownloaderActivity;
 import org.mifos.androidclient.templates.ServiceConnectivityTask;
+import org.mifos.androidclient.templates.ViewBuilderFactory;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestClientException;
 
@@ -73,30 +77,14 @@ public class CustomerDetailsActivity extends DownloaderActivity {
 
     private void updateContent(ClientDetails details) {
         if (details != null) {
-            View tabContent = findViewById(R.id.customer_overview);
-            TextView textView = (TextView)tabContent.findViewById(R.id.customerOverview_name);
-            textView.setText(details.getClientDisplay().getDisplayName());
-            textView = (TextView)tabContent.findViewById(R.id.customerOverview_systemId);
-            textView.setText(details.getClientDisplay().getGlobalCustNum());
-            textView = (TextView)tabContent.findViewById(R.id.customerOverview_status);
-            textView.setText(details.getClientDisplay().getStatus());
+            LinearLayout tabContent = (LinearLayout)findViewById(R.id.customer_overview);
+            ViewBuilderFactory factory = new ViewBuilderFactory(this);
+            CustomerDetailsViewBuilder builder = factory.createCustomerDetailsViewBuilder(details);
 
-            textView = (TextView)tabContent.findViewById(R.id.customerOverview_loanCycleNo);
-            textView.setText(details.getClientPerformanceHistory().getLoanCycleNumber().toString());
-            textView = (TextView)tabContent.findViewById(R.id.customerOverview_amountOfLastLoan);
-            textView.setText(details.getClientPerformanceHistory().getLastLoanAmount());
-            textView = (TextView)tabContent.findViewById(R.id.customerOverview_noOfActiveLoans);
-            textView.setText(details.getClientPerformanceHistory().getNoOfActiveLoans().toString());
-            textView = (TextView)tabContent.findViewById(R.id.customerOverview_delinquentPortfolio);
-            textView.setText(details.getClientPerformanceHistory().getDelinquentPortfolioAmount());
-            textView = (TextView)tabContent.findViewById(R.id.customerOverview_totalSavings);
-            textView.setText(details.getClientPerformanceHistory().getTotalSavingsAmount());
-            textView = (TextView)tabContent.findViewById(R.id.customerOverview_meetingsAttended);
-            textView.setText(details.getClientPerformanceHistory().getMeetingsAttended().toString());
-            textView = (TextView)tabContent.findViewById(R.id.customerOverview_meetingsMissed);
-            textView.setText(details.getClientPerformanceHistory().getMeetingsMissed().toString());
-
-            tabContent.setVisibility(View.VISIBLE);
+            if (tabContent.getChildCount() > 0) {
+                tabContent.removeAllViews();
+            }
+            tabContent.addView(builder.buildOverviewView());
         }
     }
 

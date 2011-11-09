@@ -20,6 +20,9 @@
 
 package org.mifos.androidclient.entities.customer;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CenterDetails extends CustomerDetailsEntity {
 
     private CenterDisplay centerDisplay;
