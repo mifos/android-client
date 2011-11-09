@@ -24,20 +24,14 @@ import org.mifos.androidclient.entities.BaseEntity;
 
 import java.util.List;
 
-public class ClientDisplay extends BaseEntity {
+public class ClientDisplay extends CustomerDisplay {
 
-    private String displayName;
     private Integer age;
-    private Integer customerId;
     private Integer loanOfficerId;
-    private Integer branchId;
     private String maritalStatus;
-    private String globalCustNum;
     private String governmentId;
-    private String externalId;
     private String customerActivationDate;
     private Integer customerLevelId;
-    private String customerStatusName;
     private String spouseFatherName;
     private String dateOfBirth;
     private String trainedDate;
@@ -48,7 +42,6 @@ public class ClientDisplay extends BaseEntity {
     private String handicapped;
     private Integer numChildren;
     private String povertyStatus;
-    private Integer customerStatusId;
     private String loanOfficerName;
     private String parentCustomerDisplayName;
     private String customerFormedByDisplayName;
@@ -59,28 +52,12 @@ public class ClientDisplay extends BaseEntity {
     private Boolean areFamilyDetailsRequired;
     private String spouseFatherValue;
 
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
-
     public Integer getAge() {
         return age;
     }
 
     public void setAge(Integer age) {
         this.age = age;
-    }
-
-    public Integer getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
     }
 
     public Integer getLoanOfficerId() {
@@ -91,14 +68,6 @@ public class ClientDisplay extends BaseEntity {
         this.loanOfficerId = loanOfficerId;
     }
 
-    public Integer getBranchId() {
-        return branchId;
-    }
-
-    public void setBranchId(Integer branchId) {
-        this.branchId = branchId;
-    }
-
     public String getMaritalStatus() {
         return maritalStatus;
     }
@@ -107,28 +76,12 @@ public class ClientDisplay extends BaseEntity {
         this.maritalStatus = maritalStatus;
     }
 
-    public String getGlobalCustNum() {
-        return globalCustNum;
-    }
-
-    public void setGlobalCustNum(String globalCustNum) {
-        this.globalCustNum = globalCustNum;
-    }
-
     public String getGovernmentId() {
         return governmentId;
     }
 
     public void setGovernmentId(String governmentId) {
         this.governmentId = governmentId;
-    }
-
-    public String getExternalId() {
-        return externalId;
-    }
-
-    public void setExternalId(String externalId) {
-        this.externalId = externalId;
     }
 
     public String getCustomerActivationDate() {
@@ -145,14 +98,6 @@ public class ClientDisplay extends BaseEntity {
 
     public void setCustomerLevelId(Integer customerLevelId) {
         this.customerLevelId = customerLevelId;
-    }
-
-    public String getCustomerStatusName() {
-        return customerStatusName;
-    }
-
-    public void setCustomerStatusName(String customerStatusName) {
-        this.customerStatusName = customerStatusName;
     }
 
     public String getSpouseFatherName() {
@@ -233,14 +178,6 @@ public class ClientDisplay extends BaseEntity {
 
     public void setPovertyStatus(String povertyStatus) {
         this.povertyStatus = povertyStatus;
-    }
-
-    public Integer getCustomerStatusId() {
-        return customerStatusId;
-    }
-
-    public void setCustomerStatusId(Integer customerStatusId) {
-        this.customerStatusId = customerStatusId;
     }
 
     public String getLoanOfficerName() {
