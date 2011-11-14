@@ -23,12 +23,12 @@ package org.mifos.androidclient.main.views.helpers;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ExpandableListView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import org.mifos.androidclient.R;
-import org.mifos.androidclient.entities.customer.*;
+import org.mifos.androidclient.entities.customer.AccountBasicInformation;
+import org.mifos.androidclient.entities.customer.GroupDetails;
+import org.mifos.androidclient.entities.customer.LoanAccountBasicInformation;
+import org.mifos.androidclient.entities.customer.SavingsAccountBasicInformation;
 import org.mifos.androidclient.main.views.adapters.AccountsExpandableListAdapter;
 import org.mifos.androidclient.templates.CustomerDetailsViewBuilder;
 
@@ -37,12 +37,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ClientDetailsViewBuilder implements CustomerDetailsViewBuilder {
+public class GroupDetailsViewBuilder implements CustomerDetailsViewBuilder {
 
     private Context mContext;
-    private ClientDetails mDetails;
+    private GroupDetails mDetails;
 
-    public ClientDetailsViewBuilder(Context context, ClientDetails details) {
+    public GroupDetailsViewBuilder(Context context, GroupDetails details) {
         mContext = context;
         mDetails = details;
     }
@@ -50,44 +50,7 @@ public class ClientDetailsViewBuilder implements CustomerDetailsViewBuilder {
     @Override
     public View buildOverviewView() {
         LayoutInflater inflater = getLayoutInflater();
-        View view = inflater.inflate(R.layout.client_overview, null);
-
-        TextView textView = (TextView)view.findViewById(R.id.customerOverview_name);
-        textView.setText(mDetails.getClientDisplay().getDisplayName());
-        textView = (TextView)view.findViewById(R.id.customerOverview_systemId);
-        textView.setText(mDetails.getClientDisplay().getGlobalCustNum());
-        textView = (TextView)view.findViewById(R.id.customerOverview_status);
-        textView.setText(mDetails.getClientDisplay().getStatus());
-
-        textView = (TextView)view.findViewById(R.id.customerOverview_loanCycleNo);
-        textView.setText(mDetails.getClientPerformanceHistory().getLoanCycleNumber().toString());
-        textView = (TextView)view.findViewById(R.id.customerOverview_amountOfLastLoan);
-        textView.setText(mDetails.getClientPerformanceHistory().getLastLoanAmount());
-        textView = (TextView)view.findViewById(R.id.customerOverview_noOfActiveLoans);
-        textView.setText(mDetails.getClientPerformanceHistory().getNoOfActiveLoans().toString());
-        textView = (TextView)view.findViewById(R.id.customerOverview_delinquentPortfolio);
-        textView.setText(mDetails.getClientPerformanceHistory().getDelinquentPortfolioAmount());
-        textView = (TextView)view.findViewById(R.id.customerOverview_totalSavings);
-        textView.setText(mDetails.getClientPerformanceHistory().getTotalSavingsAmount());
-        textView = (TextView)view.findViewById(R.id.customerOverview_meetingsAttended);
-        textView.setText(mDetails.getClientPerformanceHistory().getMeetingsAttended().toString());
-        textView = (TextView)view.findViewById(R.id.customerOverview_meetingsMissed);
-        textView.setText(mDetails.getClientPerformanceHistory().getMeetingsMissed().toString());
-
-        if (mDetails.getClientPerformanceHistory().getLoanCycleCounters().size() > 0) {
-            textView = (TextView)view.findViewById(R.id.customerOverview_loanCyclePerProduct_label);
-            textView.setVisibility(View.VISIBLE);
-
-            LinearLayout loanCyclePerProduct = (LinearLayout)view.findViewById(R.id.customerOverview_loanCyclePerProduct);
-            ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            for (LoanCycleCounter counter : mDetails.getClientPerformanceHistory().getLoanCycleCounters()) {
-                textView = new TextView(mContext);
-                textView.setLayoutParams(params);
-                textView.setText(counter.getOfferingName() + ": " + counter.getCounter());
-                loanCyclePerProduct.addView(textView);
-            }
-        }
-
+        View view = inflater.inflate(R.layout.group_overview, null);
         return view;
     }
 

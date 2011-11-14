@@ -21,9 +21,13 @@
 package org.mifos.androidclient.templates;
 
 import android.content.Context;
+import org.mifos.androidclient.entities.customer.CenterDetails;
 import org.mifos.androidclient.entities.customer.ClientDetails;
 import org.mifos.androidclient.entities.customer.CustomerDetailsEntity;
+import org.mifos.androidclient.entities.customer.GroupDetails;
+import org.mifos.androidclient.main.views.helpers.CenterDetailsViewBuilder;
 import org.mifos.androidclient.main.views.helpers.ClientDetailsViewBuilder;
+import org.mifos.androidclient.main.views.helpers.GroupDetailsViewBuilder;
 
 public class ViewBuilderFactory {
 
@@ -36,6 +40,10 @@ public class ViewBuilderFactory {
     public CustomerDetailsViewBuilder createCustomerDetailsViewBuilder(CustomerDetailsEntity entity) {
         if (entity.getClass() == ClientDetails.class) {
             return new ClientDetailsViewBuilder(mContext, (ClientDetails)entity);
+        } else if (entity.getClass() == GroupDetails.class) {
+            return new GroupDetailsViewBuilder(mContext, (GroupDetails)entity);
+        } else if (entity.getClass() == CenterDetails.class) {
+            return new CenterDetailsViewBuilder(mContext, (CenterDetails)entity);
         }
         return null;
     }

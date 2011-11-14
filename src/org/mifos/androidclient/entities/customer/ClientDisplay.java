@@ -20,21 +20,17 @@
 
 package org.mifos.androidclient.entities.customer;
 
-import org.mifos.androidclient.entities.BaseEntity;
-
 import java.util.List;
 
 public class ClientDisplay extends CustomerDisplay {
 
     private Integer age;
-    private Integer loanOfficerId;
     private String maritalStatus;
     private String governmentId;
     private String customerActivationDate;
     private Integer customerLevelId;
     private String spouseFatherName;
     private String dateOfBirth;
-    private String trainedDate;
     private List<ClientFamilyDetail> familyDetails;
     private String businessActivities;
     private String citizenship;
@@ -42,7 +38,6 @@ public class ClientDisplay extends CustomerDisplay {
     private String handicapped;
     private Integer numChildren;
     private String povertyStatus;
-    private String loanOfficerName;
     private String parentCustomerDisplayName;
     private String customerFormedByDisplayName;
     private Boolean blackListed;
@@ -58,14 +53,6 @@ public class ClientDisplay extends CustomerDisplay {
 
     public void setAge(Integer age) {
         this.age = age;
-    }
-
-    public Integer getLoanOfficerId() {
-        return loanOfficerId;
-    }
-
-    public void setLoanOfficerId(Integer loanOfficerId) {
-        this.loanOfficerId = loanOfficerId;
     }
 
     public String getMaritalStatus() {
@@ -114,14 +101,6 @@ public class ClientDisplay extends CustomerDisplay {
 
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
-    }
-
-    public String getTrainedDate() {
-        return trainedDate;
-    }
-
-    public void setTrainedDate(String trainedDate) {
-        this.trainedDate = trainedDate;
     }
 
     public List<ClientFamilyDetail> getFamilyDetails() {
@@ -178,14 +157,6 @@ public class ClientDisplay extends CustomerDisplay {
 
     public void setPovertyStatus(String povertyStatus) {
         this.povertyStatus = povertyStatus;
-    }
-
-    public String getLoanOfficerName() {
-        return loanOfficerName;
-    }
-
-    public void setLoanOfficerName(String loanOfficerName) {
-        this.loanOfficerName = loanOfficerName;
     }
 
     public String getParentCustomerDisplayName() {

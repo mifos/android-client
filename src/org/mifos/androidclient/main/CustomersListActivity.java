@@ -71,8 +71,12 @@ public class CustomersListActivity extends MifosActivity
     }
 
     @Override
-    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
         if (view.getId() == R.id.expandableListGroup) {
+            Group group = (Group)adapterView.getAdapter().getItem(position);
+            Intent intent = new Intent().setClass(this, CustomerDetailsActivity.class);
+            intent.putExtra(AbstractCustomer.BUNDLE_KEY, group);
+            startActivity(intent);
             return true;
         }
         return false;

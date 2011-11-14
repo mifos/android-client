@@ -28,6 +28,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import org.mifos.androidclient.R;
+import org.mifos.androidclient.entities.simple.AbstractCustomer;
 import org.mifos.androidclient.entities.simple.Center;
 import org.mifos.androidclient.entities.simple.CustomersData;
 import org.mifos.androidclient.entities.simple.Group;
@@ -74,7 +75,10 @@ public class CentersListActivity extends DownloaderActivity
 
     @Override
     public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long rowId) {
-        System.out.println(position);
+        Center center = (Center)adapterView.getAdapter().getItem(position);
+        Intent intent = new Intent().setClass(this, CustomerDetailsActivity.class);
+        intent.putExtra(AbstractCustomer.BUNDLE_KEY, center);
+        startActivity(intent);
         return true;
     }
 

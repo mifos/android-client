@@ -27,10 +27,15 @@ public abstract class CustomerDisplay extends BaseEntity {
     private Integer customerId;
     private String globalCustNum;
     private String displayName;
+    private Integer loanOfficerId;
+    private String loanOfficerName;
     private Integer branchId;
     private String externalId;
     private Integer customerStatusId;
     private String customerStatusName;
+    private String trainedDate;
+    private Boolean trained;
+    private Boolean blackListed;
 
     public Integer getCustomerId() {
         return customerId;
@@ -86,6 +91,46 @@ public abstract class CustomerDisplay extends BaseEntity {
 
     public void setCustomerStatusName(String customerStatusName) {
         this.customerStatusName = customerStatusName;
+    }
+
+    public String getLoanOfficerName() {
+        return loanOfficerName;
+    }
+
+    public void setLoanOfficerName(String loanOfficerName) {
+        this.loanOfficerName = loanOfficerName;
+    }
+
+    public Integer getLoanOfficerId() {
+        return loanOfficerId;
+    }
+
+    public void setLoanOfficerId(Integer loanOfficerId) {
+        this.loanOfficerId = loanOfficerId;
+    }
+
+    public String getTrainedDate() {
+        return trainedDate;
+    }
+
+    public void setTrainedDate(String trainedDate) {
+        this.trainedDate = trainedDate;
+    }
+
+    public Boolean getTrained() {
+        return trained;
+    }
+
+    public void setTrained(Boolean trained) {
+        this.trained = trained;
+    }
+
+    public Boolean getBlackListed() {
+        return blackListed;
+    }
+
+    public void setBlackListed(Boolean blacklisted) {
+        this.blackListed = blacklisted;
     }
 
 }

@@ -20,7 +20,7 @@
 
 package org.mifos.androidclient.entities.customer;
 
-public class GroupDisplay {
+public class GroupDisplay extends CustomerDisplay {
 
     private String parentCustomerDisplayName;
     private String customerFormedByDisplayName;
