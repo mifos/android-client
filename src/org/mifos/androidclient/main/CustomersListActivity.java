@@ -23,6 +23,7 @@ package org.mifos.androidclient.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ExpandableListView;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.simple.AbstractCustomer;
@@ -36,7 +37,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CustomersListActivity extends MifosActivity implements ExpandableListView.OnChildClickListener {
+public class CustomersListActivity extends MifosActivity
+        implements ExpandableListView.OnChildClickListener, AdapterView.OnItemLongClickListener {
 
     private ExpandableListView mCustomersList;
 
@@ -56,6 +58,7 @@ public class CustomersListActivity extends MifosActivity implements ExpandableLi
         }
         mCustomersList.setAdapter(new SimpleExpandableListAdapter(this, items));
         mCustomersList.setOnChildClickListener(this);
+        mCustomersList.setOnItemLongClickListener(this);
     }
 
     @Override
@@ -65,6 +68,14 @@ public class CustomersListActivity extends MifosActivity implements ExpandableLi
         intent.putExtra(AbstractCustomer.BUNDLE_KEY, customer);
         startActivity(intent);
         return true;
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+        if (view.getId() == R.id.expandableListGroup) {
+            return true;
+        }
+        return false;
     }
 
 }

@@ -41,7 +41,8 @@ import org.springframework.web.client.RestClientException;
 
 import java.util.ArrayList;
 
-public class CentersListActivity extends DownloaderActivity implements AdapterView.OnItemClickListener {
+public class CentersListActivity extends DownloaderActivity
+        implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
     private ListView mCentersList;
     private CustomersListTask mCustomersListTask;
@@ -71,6 +72,12 @@ public class CentersListActivity extends DownloaderActivity implements AdapterVi
         startActivity(intent);
     }
 
+    @Override
+    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long rowId) {
+        System.out.println(position);
+        return true;
+    }
+
     /**
      * Refreshes contents of the centers list.
      */
@@ -80,6 +87,7 @@ public class CentersListActivity extends DownloaderActivity implements AdapterVi
                 new ArrayList<SimpleListItem>(mCustomersData.getCenters())
         ));
         mCentersList.setOnItemClickListener(this);
+        mCentersList.setOnItemLongClickListener(this);
     }
 
     /**
