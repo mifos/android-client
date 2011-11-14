@@ -23,9 +23,12 @@ package org.mifos.androidclient.main.viewhelpers;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.customer.ClientDetails;
+import org.mifos.androidclient.entities.customer.LoanCycleCounter;
 import org.mifos.androidclient.templates.CustomerDetailsViewBuilder;
 
 public class ClientDetailsViewBuilder implements CustomerDetailsViewBuilder {
@@ -64,6 +67,20 @@ public class ClientDetailsViewBuilder implements CustomerDetailsViewBuilder {
         textView.setText(mDetails.getClientPerformanceHistory().getMeetingsAttended().toString());
         textView = (TextView)view.findViewById(R.id.customerOverview_meetingsMissed);
         textView.setText(mDetails.getClientPerformanceHistory().getMeetingsMissed().toString());
+
+        if (mDetails.getClientPerformanceHistory().getLoanCycleCounters().size() > 0) {
+            textView = (TextView)view.findViewById(R.id.customerOverview_loanCyclePerProduct_label);
+            textView.setVisibility(View.VISIBLE);
+
+            LinearLayout loanCyclePerProduct = (LinearLayout)view.findViewById(R.id.customerOverview_loanCyclePerProduct);
+            ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            for (LoanCycleCounter counter : mDetails.getClientPerformanceHistory().getLoanCycleCounters()) {
+                textView = new TextView(mContext);
+                textView.setLayoutParams(params);
+                textView.setText(counter.getOfferingName() + ": " + counter.getCounter());
+                loanCyclePerProduct.addView(textView);
+            }
+        }
 
         return view;
     }

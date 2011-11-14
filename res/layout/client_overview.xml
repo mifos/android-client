@@ -155,6 +155,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
+
+        <TextView
+            android:id="@+id/customerOverview_loanCyclePerProduct_label"
+            android:layout_below="@id/customerOverview_meetingsMissed_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/customerOverview_loanCyclePerProduct_label"
+            android:visibility="invisible"
+            />
+        <LinearLayout
+            android:id="@+id/customerOverview_loanCyclePerProduct"
+            android:layout_below="@id/customerOverview_loanCyclePerProduct_label"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp">
+
+        </LinearLayout>
+
     </RelativeLayout>
 
 </ScrollView>
