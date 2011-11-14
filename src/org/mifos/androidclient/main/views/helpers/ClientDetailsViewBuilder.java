@@ -18,18 +18,24 @@
  * explanation of the license and how it is applied.
  */
 
-package org.mifos.androidclient.main.viewhelpers;
+package org.mifos.androidclient.main.views.helpers;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.mifos.androidclient.R;
-import org.mifos.androidclient.entities.customer.ClientDetails;
-import org.mifos.androidclient.entities.customer.LoanCycleCounter;
+import org.mifos.androidclient.entities.customer.*;
+import org.mifos.androidclient.main.views.adapters.AccountsExpandableListAdapter;
 import org.mifos.androidclient.templates.CustomerDetailsViewBuilder;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ClientDetailsViewBuilder implements CustomerDetailsViewBuilder {
 
@@ -87,7 +93,32 @@ public class ClientDetailsViewBuilder implements CustomerDetailsViewBuilder {
 
     @Override
     public View buildAccountsView() {
-        return null;
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.customer_accounts, null);
+        ExpandableListView list = (ExpandableListView)view.findViewById(R.id.customerAccounts_list);
+
+        Map<String, List<AccountBasicInformation>> items = new HashMap<String, List<AccountBasicInformation>>();
+        if (mDetails.getLoanAccountsInUse()!= null && mDetails.getLoanAccountsInUse().size() > 0) {
+            String loanLabel = mContext.getString(R.string.loan_label);
+            List<AccountBasicInformation> loanAccounts = new ArrayList<AccountBasicInformation>();
+            for (LoanAccountBasicInformation account : mDetails.getLoanAccountsInUse()) {
+                loanAccounts.add(account);
+            }
+            items.put(loanLabel, loanAccounts);
+        }
+        if (mDetails.getSavingsAccountsInUse() != null && mDetails.getSavingsAccountsInUse().size() > 0) {
+            String savingsLabel = mContext.getString(R.string.savings_label);
+            List<AccountBasicInformation> savingsAccounts = new ArrayList<AccountBasicInformation>();
+            for (SavingsAccountBasicInformation account : mDetails.getSavingsAccountsInUse()) {
+                savingsAccounts.add(account);
+            }
+            items.put(savingsLabel, savingsAccounts);
+        }
+        if (items.size() > 0) {
+            list.setAdapter(new AccountsExpandableListAdapter(mContext, items));
+        }
+
+        return view;
     }
 
     @Override

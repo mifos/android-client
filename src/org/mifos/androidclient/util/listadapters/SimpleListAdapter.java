@@ -37,7 +37,7 @@ import java.util.List;
 public class SimpleListAdapter extends ArrayAdapter<SimpleListItem> {
 
     public SimpleListAdapter(Context context, List<SimpleListItem> objects) {
-        super(context, R.layout.simple_list_item, objects);
+        super(context, R.layout.simple_list_child, objects);
     }
 
     @Override

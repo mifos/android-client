@@ -23,7 +23,7 @@ package org.mifos.androidclient.templates;
 import android.content.Context;
 import org.mifos.androidclient.entities.customer.ClientDetails;
 import org.mifos.androidclient.entities.customer.CustomerDetailsEntity;
-import org.mifos.androidclient.main.viewhelpers.ClientDetailsViewBuilder;
+import org.mifos.androidclient.main.views.helpers.ClientDetailsViewBuilder;
 
 public class ViewBuilderFactory {
 

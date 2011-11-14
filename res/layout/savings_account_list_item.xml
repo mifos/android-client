@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:paddingTop="7dp"
+              android:paddingBottom="7dp"
+              android:paddingLeft="14dp">
+
+    <TextView
+        android:id="@+id/savingsAccountListItem_accountName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:id="@+id/savingsAccountListItem_status_label"
+        android:layout_below="@id/savingsAccountListItem_accountName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/savingsAccountListItem_status_label"
+        />
+    <TextView
+        android:id="@+id/savingsAccountListItem_status"
+        android:layout_below="@id/savingsAccountListItem_accountName"
+        android:layout_toRightOf="@id/savingsAccountListItem_status_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:id="@+id/savingsAccountListItem_balance_label"
+        android:layout_below="@id/savingsAccountListItem_status_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/savingsAccountListItem_balance_label"
+        />
+    <TextView
+        android:id="@+id/savingsAccountListItem_balance"
+        android:layout_below="@id/savingsAccountListItem_status_label"
+        android:layout_toRightOf="@id/savingsAccountListItem_balance_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+</RelativeLayout>

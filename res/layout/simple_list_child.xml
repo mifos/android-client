@@ -8,8 +8,9 @@
         android:id="@+id/simple_list_item_label"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="7dp"
-        android:paddingLeft="14dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="30dp"
         />
 
 </LinearLayout>

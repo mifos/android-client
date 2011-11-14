@@ -99,7 +99,7 @@ public class SimpleExpandableListAdapter extends BaseExpandableListAdapter {
         View row;
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            row = inflater.inflate(R.layout.simple_list_item, parent, false);
+            row = inflater.inflate(R.layout.simple_list_group, parent, false);
         } else {
             row = convertView;
         }
@@ -116,7 +116,7 @@ public class SimpleExpandableListAdapter extends BaseExpandableListAdapter {
         View row;
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            row = inflater.inflate(R.layout.simple_list_item, parent, false);
+            row = inflater.inflate(R.layout.simple_list_child, parent, false);
         } else {
             row = convertView;
         }

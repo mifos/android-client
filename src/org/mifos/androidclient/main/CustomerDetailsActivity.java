@@ -82,6 +82,12 @@ public class CustomerDetailsActivity extends DownloaderActivity {
                 tabContent.removeAllViews();
             }
             tabContent.addView(builder.buildOverviewView());
+
+            tabContent = (LinearLayout)findViewById(R.id.customer_accounts);
+            if (tabContent.getChildCount() > 0) {
+                tabContent.removeAllViews();
+            }
+            tabContent.addView(builder.buildAccountsView());
         }
     }
 
