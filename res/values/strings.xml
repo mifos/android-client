@@ -6,7 +6,7 @@
     -->
     <string name="app_name">Mifos Android Client</string>
 
-    <string name="server_name_template">http://</string>
+    <string name="server_name_template">http://ci.mifos.org:8085/mifos</string>
 
     <!--
         Text values relates to user dialogs:
@@ -64,13 +64,13 @@
     -->
     <string name="centerslist_label">Choose a center:</string>
     <string name="centerslist_no_center">Customers without a center</string>
-    <string name="centersList_hint">Do a long click on a center to view it\'s details.</string>
+    <string name="centersList_hint">Click on a center to go to it\'s groups. Do a long click on a center to view it\'s details.</string>
 
     <!--
         String values for CustomersListActivity:
     -->
     <string name="clientslist_label">Select a customer to view it\'s details:</string>
-    <string name="clientsList_hint">Do a long click on a group to view it\'s details.</string>
+    <string name="clientsList_hint">Click on a group to view it\'s clients (if any). Do a long click on a group to view it\'s details.</string>
 
     <!--
         String values for CustomerDetailsActivity:
