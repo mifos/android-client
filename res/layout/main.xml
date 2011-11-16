@@ -5,6 +5,13 @@
     android:layout_height="fill_parent"
     >
 
+    <TextView
+        style="@style/Header"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/client_main_label"
+        />
+
     <Button
         android:id="@+id/view_clients_button"
         android:layout_width="fill_parent"

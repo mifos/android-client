@@ -48,6 +48,7 @@
         String values for ClientMainActivity:
     -->
     <string name="client_main_button_client_list">Browse customers</string>
+    <string name="client_main_label">Welcome to Mifos\nAndroid client!</string>
 
     <!--
         String values for LoginActivity:
@@ -56,6 +57,7 @@
     <string name="login_password_label">Password:</string>
     <string name="login_button">Log in</string>
     <string name="login_errors">The login or password You provided was incorrect. Please correct the values and retry.</string>
+    <string name="login_header">Please log in:</string>
 
     <!--
         String values for CentersListActivity:

@@ -5,6 +5,7 @@
               android:layout_height="fill_parent">
 
     <TextView
+        style="@style/Header"
         android:id="@+id/clientslist_label"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

@@ -5,6 +5,17 @@
         <item name="android:textColor">#F5F5F5</item>
     </style>
 
+    <style name="Header" parent="@android:style/TextAppearance.Large">
+        <item name="android:textColor">#EE7621</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="Errors" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textColor">#FF2400</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
     <style name="Shifted">
         <item name="android:paddingLeft">14dp</item>
     </style>
