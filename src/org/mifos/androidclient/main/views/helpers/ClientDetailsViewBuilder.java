@@ -57,7 +57,7 @@ public class ClientDetailsViewBuilder implements CustomerDetailsViewBuilder {
         textView = (TextView)view.findViewById(R.id.customerOverview_systemId);
         textView.setText(mDetails.getClientDisplay().getGlobalCustNum());
         textView = (TextView)view.findViewById(R.id.customerOverview_status);
-        textView.setText(mDetails.getClientDisplay().getStatus());
+        textView.setText(mDetails.getClientDisplay().getCustomerStatusName());
 
         textView = (TextView)view.findViewById(R.id.customerOverview_loanCycleNo);
         textView.setText(mDetails.getClientPerformanceHistory().getLoanCycleNumber().toString());

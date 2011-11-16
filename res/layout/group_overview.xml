@@ -1,7 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent">
 
-</LinearLayout>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            style="@style/Label"
+            android:id="@+id/customerOverview_name_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/customerOverview_name_label"
+            />
+        <TextView
+            style="@style/Shifted"
+            android:id="@+id/customerOverview_name"
+            android:layout_below="@id/customerOverview_name_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            style="@style/Label"
+            android:id="@+id/customerOverview_status_label"
+            android:layout_below="@id/customerOverview_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/customerOverview_status_label"
+            />
+        <TextView
+            style="@style/Shifted"
+            android:id="@+id/customerOverview_status"
+            android:layout_below="@id/customerOverview_status_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            style="@style/Label"
+            android:id="@+id/customerOverview_systemId_label"
+            android:layout_below="@id/customerOverview_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/customerOverview_systemId_label"
+            />
+        <TextView
+            style="@style/Shifted"
+            android:id="@+id/customerOverview_systemId"
+            android:layout_below="@id/customerOverview_systemId_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            style="@style/Label"
+            android:id="@+id/customerOverview_performance_history_label"
+            android:paddingTop="7dp"
+            android:layout_below="@id/customerOverview_systemId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/customerOverview_performance_history_label"
+            />
+
+        <RelativeLayout
+            style="@style/Shifted"
+            android:orientation="vertical"
+            android:layout_below="@id/customerOverview_performance_history_label"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:id="@+id/groupOverview_noOfActiveClients_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/groupOverview_noOfActiveClients_label"
+                />
+            <TextView
+                android:id="@+id/groupOverview_noOfActiveClients"
+                android:layout_toRightOf="@id/groupOverview_noOfActiveClients_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/groupOverview_amountOfLastGroupLoan_label"
+                android:layout_below="@id/groupOverview_noOfActiveClients_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/groupOverview_amountOfLastGroupLoan_label"
+                />
+            <TextView
+                android:id="@+id/groupOverview_amountOfLastGroupLoan"
+                android:layout_below="@id/groupOverview_noOfActiveClients_label"
+                android:layout_toRightOf="@id/groupOverview_amountOfLastGroupLoan_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/groupOverview_averageIndividualLoanSize_label"
+                android:layout_below="@id/groupOverview_amountOfLastGroupLoan_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/groupOverview_averageIndividualLoanSize_label"
+                />
+            <TextView
+                android:id="@+id/groupOverview_averageIndividualLoanSize"
+                android:layout_below="@id/groupOverview_amountOfLastGroupLoan_label"
+                android:layout_toRightOf="@id/groupOverview_averageIndividualLoanSize_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/groupOverview_totalLoanPortfolio_label"
+                android:layout_below="@id/groupOverview_averageIndividualLoanSize_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/groupOverview_totalLoanPortfolio_label"
+                />
+            <TextView
+                android:id="@+id/groupOverview_totalLoanPortfolio"
+                android:layout_below="@id/groupOverview_averageIndividualLoanSize_label"
+                android:layout_toRightOf="@id/groupOverview_totalLoanPortfolio_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/groupOverview_portfolioAtRisk_label"
+                android:layout_below="@id/groupOverview_totalLoanPortfolio_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/groupOverview_portfolioAtRisk_label"
+                />
+            <TextView
+                android:id="@+id/groupOverview_portfolioAtRisk"
+                android:layout_below="@id/groupOverview_totalLoanPortfolio_label"
+                android:layout_toRightOf="@id/groupOverview_portfolioAtRisk_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/groupOverview_totalSavings_label"
+                android:layout_below="@id/groupOverview_portfolioAtRisk_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/groupOverview_totalSavings_label"
+                />
+            <TextView
+                android:id="@+id/groupOverview_totalSavings"
+                android:layout_below="@id/groupOverview_portfolioAtRisk_label"
+                android:layout_toRightOf="@id/groupOverview_totalSavings_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/groupOverview_loanCyclePerProduct_label"
+                android:layout_below="@id/groupOverview_totalSavings_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:text="@string/groupOverview_loanCyclePerProduct_label"
+                />
+            <LinearLayout
+                android:id="@+id/groupOverview_loanCyclePerProduct"
+                android:layout_below="@id/groupOverview_loanCyclePerProduct_label"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/Shifted">
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</ScrollView>

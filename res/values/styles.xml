@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="Label" parent="@android:style/TextAppearance.Medium">
         <item name="android:textColor">#F5F5F5</item>
     </style>
+
+    <style name="Shifted">
+        <item name="android:paddingLeft">14dp</item>
+    </style>
+
 </resources>

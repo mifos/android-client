@@ -23,13 +23,12 @@ package org.mifos.androidclient.main.views.helpers;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.mifos.androidclient.R;
-import org.mifos.androidclient.entities.customer.AccountBasicInformation;
-import org.mifos.androidclient.entities.customer.GroupDetails;
-import org.mifos.androidclient.entities.customer.LoanAccountBasicInformation;
-import org.mifos.androidclient.entities.customer.SavingsAccountBasicInformation;
+import org.mifos.androidclient.entities.customer.*;
 import org.mifos.androidclient.main.views.adapters.AccountsExpandableListAdapter;
 import org.mifos.androidclient.templates.CustomerDetailsViewBuilder;
 
@@ -52,6 +51,41 @@ public class GroupDetailsViewBuilder implements CustomerDetailsViewBuilder {
     public View buildOverviewView() {
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.group_overview, null);
+
+        TextView textView = (TextView)view.findViewById(R.id.customerOverview_name);
+        textView.setText(mDetails.getGroupDisplay().getDisplayName());
+        textView = (TextView)view.findViewById(R.id.customerOverview_systemId);
+        textView.setText(mDetails.getGroupDisplay().getGlobalCustNum());
+        textView = (TextView)view.findViewById(R.id.customerOverview_status);
+        textView.setText(mDetails.getGroupDisplay().getCustomerStatusName());
+
+        textView = (TextView)view.findViewById(R.id.groupOverview_noOfActiveClients);
+        textView.setText(mDetails.getGroupPerformanceHistory().getActiveClientCount());
+        textView = (TextView)view.findViewById(R.id.groupOverview_amountOfLastGroupLoan);
+        textView.setText(mDetails.getGroupPerformanceHistory().getLastGroupLoanAmount());
+        textView = (TextView)view.findViewById(R.id.groupOverview_averageIndividualLoanSize);
+        textView.setText(mDetails.getGroupPerformanceHistory().getAvgLoanAmountForMember());
+        textView = (TextView)view.findViewById(R.id.groupOverview_totalLoanPortfolio);
+        textView.setText(mDetails.getGroupPerformanceHistory().getTotalOutStandingLoanAmount());
+        textView = (TextView)view.findViewById(R.id.groupOverview_portfolioAtRisk);
+        textView.setText(mDetails.getGroupPerformanceHistory().getPortfolioAtRisk());
+        textView = (TextView)view.findViewById(R.id.groupOverview_totalSavings);
+        textView.setText(mDetails.getGroupPerformanceHistory().getTotalSavingsAmount());
+
+        if (mDetails.getGroupPerformanceHistory().getLoanCycleCounters().size() > 0) {
+            textView = (TextView)view.findViewById(R.id.groupOverview_loanCyclePerProduct_label);
+            textView.setVisibility(View.VISIBLE);
+
+            LinearLayout loanCyclePerProduct = (LinearLayout)view.findViewById(R.id.groupOverview_loanCyclePerProduct);
+            ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            for (LoanCycleCounter counter : mDetails.getGroupPerformanceHistory().getLoanCycleCounters()) {
+                textView = new TextView(mContext);
+                textView.setLayoutParams(params);
+                textView.setText(counter.getOfferingName() + ": " + counter.getCounter());
+                loanCyclePerProduct.addView(textView);
+            }
+        }
+
         return view;
     }
 

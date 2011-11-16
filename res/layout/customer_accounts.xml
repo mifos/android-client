@@ -19,14 +19,14 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/loanAccounts_amountDue_label"
             />
 
         <TextView
             android:id="@+id/loanAccounts_amountDue"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
 

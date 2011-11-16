@@ -102,4 +102,12 @@
 
     <string name="loanAccounts_amountDue_label">Amount due:&#160;</string>
 
+    <string name="groupOverview_noOfActiveClients_label"># of active Clients:&#160;</string>
+    <string name="groupOverview_amountOfLastGroupLoan_label">Amount of last Group Loan:&#160;</string>
+    <string name="groupOverview_averageIndividualLoanSize_label">Avg individual Loan size:&#160;</string>
+    <string name="groupOverview_totalLoanPortfolio_label">Total Loan portfolio:&#160;</string>
+    <string name="groupOverview_portfolioAtRisk_label">Portfolio at risk:&#160;</string>
+    <string name="groupOverview_totalSavings_label">Total Savings:&#160;</string>
+    <string name="groupOverview_loanCyclePerProduct_label">Loan Cycle per Product:&#160;</string>
+
 </resources>
