@@ -77,7 +77,7 @@ public class GroupDetailsViewBuilder implements CustomerDetailsViewBuilder {
             textView.setVisibility(View.VISIBLE);
 
             LinearLayout loanCyclePerProduct = (LinearLayout)view.findViewById(R.id.groupOverview_loanCyclePerProduct);
-            ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             for (LoanCycleCounter counter : mDetails.getGroupPerformanceHistory().getLoanCycleCounters()) {
                 textView = new TextView(mContext);
                 textView.setLayoutParams(params);

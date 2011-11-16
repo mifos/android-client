@@ -21,12 +21,15 @@
 package org.mifos.androidclient.templates;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import org.mifos.androidclient.R;
+import org.mifos.androidclient.main.ClientMainActivity;
+import org.mifos.androidclient.net.RestConnector;
 import org.mifos.androidclient.util.ApplicationConstants;
 import org.mifos.androidclient.util.ui.UIUtils;
 
@@ -103,9 +106,18 @@ public abstract class MifosActivity extends Activity {
                     public void onCancel() { }
 
                 });
+                break;
+            case R.id.logOut:
+                resetUserCredentials();
+                RestConnector.resetConnection();
+                startActivity(new Intent().setClass(this, ClientMainActivity.class));
+                break;
+            case R.id.synchronize:
+                break;
             default:
-                return super.onOptionsItemSelected(item);
+                break;
         }
+        return super.onOptionsItemSelected(item);
     }
 
 }

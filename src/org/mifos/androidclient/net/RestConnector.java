@@ -35,6 +35,10 @@ public class RestConnector extends RestTemplate {
         return sInstance;
     }
 
+    public static void resetConnection() {
+        sInstance = null;
+    }
+
     public void setLoggedIn(boolean loggedIn) {
         this.loggedIn = loggedIn;
     }

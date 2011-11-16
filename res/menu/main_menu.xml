@@ -5,4 +5,12 @@
           android:title="@string/menu_change_address"
           />
 
+    <item android:id="@+id/logOut"
+          android:title="@string/menu_log_out"
+          />
+
+    <item android:id="@+id/synchronize"
+          android:title="@string/menu_synchronize"
+          />
+
 </menu>

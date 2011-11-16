@@ -43,6 +43,8 @@
         Menus and menu items related strings:
     -->
     <string name="menu_change_address">Change server address</string>
+    <string name="menu_log_out">Log out</string>
+    <string name="menu_synchronize">Synchronize</string>
 
     <!--
         String values for ClientMainActivity:

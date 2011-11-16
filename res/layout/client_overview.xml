@@ -178,6 +178,7 @@
                 />
             <LinearLayout
                 android:id="@+id/customerOverview_loanCyclePerProduct"
+                android:orientation="vertical"
                 android:layout_below="@id/customerOverview_loanCyclePerProduct_label"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
