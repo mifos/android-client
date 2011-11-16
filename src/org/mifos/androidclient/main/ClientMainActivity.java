@@ -35,6 +35,8 @@ public class ClientMainActivity extends MifosActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        resetUserCredentials();
     }
 
     @Override

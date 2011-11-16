@@ -82,8 +82,14 @@ public class LoginActivity extends MifosActivity {
         @Override
         protected Boolean doInBackgroundBody(String... params)
                 throws RestClientException, IllegalArgumentException {
+            boolean result = false;
             SessionStatus status = mLoginService.logIn(params[0], params[1]);
-            return status.isSuccessful();
+            if (status.isSuccessful()) {
+                setUserLogin(params[0]);
+                setUserPassword(params[1]);
+                result = true;
+            }
+            return result;
         }
 
         @Override

@@ -47,6 +47,41 @@ public abstract class MifosActivity extends Activity {
         return true;
     }
 
+    protected boolean hasUserCredentials() {
+        SharedPreferences settings = getSharedPreferences(ApplicationConstants.MIFOS_APPLICATION_PREFERENCES, MODE_PRIVATE);
+        return settings.contains(ApplicationConstants.USER_LOGIN) && settings.contains(ApplicationConstants.USER_PASSWORD);
+    }
+
+    protected void resetUserCredentials() {
+        SharedPreferences settings = getSharedPreferences(ApplicationConstants.MIFOS_APPLICATION_PREFERENCES, MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.remove(ApplicationConstants.USER_LOGIN)
+              .remove(ApplicationConstants.USER_PASSWORD)
+              .commit();
+    }
+
+    protected String getUserPassword() {
+        SharedPreferences settings = getSharedPreferences(ApplicationConstants.MIFOS_APPLICATION_PREFERENCES, MODE_PRIVATE);
+        return settings.getString(ApplicationConstants.USER_PASSWORD, ApplicationConstants.EMPTY_STRING);
+    }
+
+    protected void setUserPassword(String password) {
+        SharedPreferences settings = getSharedPreferences(ApplicationConstants.MIFOS_APPLICATION_PREFERENCES, MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(ApplicationConstants.USER_PASSWORD, password).commit();
+    }
+
+    protected String getUserLogin() {
+        SharedPreferences settings = getSharedPreferences(ApplicationConstants.MIFOS_APPLICATION_PREFERENCES, MODE_PRIVATE);
+        return settings.getString(ApplicationConstants.USER_LOGIN, ApplicationConstants.EMPTY_STRING);
+    }
+
+    protected void setUserLogin(String login) {
+        SharedPreferences settings = getSharedPreferences(ApplicationConstants.MIFOS_APPLICATION_PREFERENCES, MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(ApplicationConstants.USER_LOGIN, login).commit();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

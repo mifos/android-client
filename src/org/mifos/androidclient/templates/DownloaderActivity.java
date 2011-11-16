@@ -28,6 +28,7 @@ import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.SessionStatus;
 import org.mifos.androidclient.main.LoginActivity;
 import org.mifos.androidclient.net.RestConnector;
+import org.mifos.androidclient.net.services.LoginService;
 import org.mifos.androidclient.net.services.SessionStatusService;
 import org.springframework.web.client.RestClientException;
 
@@ -39,12 +40,14 @@ import org.springframework.web.client.RestClientException;
 public abstract class DownloaderActivity extends MifosActivity {
 
     private SessionStatusService mSessionStatusService;
+    private LoginService mLoginService;
     private SessionStatusCheckTask mSessionStatusCheckTask;
 
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         mSessionStatusService = new SessionStatusService(this);
+        mLoginService = new LoginService(this);
     }
 
     @Override
@@ -77,8 +80,21 @@ public abstract class DownloaderActivity extends MifosActivity {
 
         @Override
         protected Boolean doInBackgroundBody(Void... params) throws RestClientException, IllegalArgumentException {
+            boolean result = false;
             SessionStatus status = mSessionStatusService.getSessionStatus();
-            return status.isSuccessful();
+            if (status.isSuccessful()) {
+                result = true;
+            } else {
+                if (hasUserCredentials()) {
+                    status = mLoginService.logIn(getUserLogin(), getUserPassword());
+                    if (status.isSuccessful()) {
+                        result = true;
+                    } else {
+                        result = false;
+                    }
+                }
+            }
+            return result;
         }
 
         @Override
