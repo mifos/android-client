@@ -28,6 +28,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.SessionStatus;
+import org.mifos.androidclient.net.RestConnector;
 import org.mifos.androidclient.net.services.LoginService;
 import org.mifos.androidclient.templates.MifosActivity;
 import org.mifos.androidclient.templates.ServiceConnectivityTask;
@@ -91,6 +92,7 @@ public class LoginActivity extends MifosActivity {
                 if (mLoginErrors.isShown()) {
                     mLoginErrors.setVisibility(View.INVISIBLE);
                 }
+                RestConnector.getInstance().setLoggedIn(true);
                 finish();
             } else {
                 if(!mLoginErrors.isShown()) {

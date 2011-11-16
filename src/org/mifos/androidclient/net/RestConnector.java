@@ -26,6 +26,8 @@ public class RestConnector extends RestTemplate {
 
     private static volatile RestConnector sInstance;
 
+    private boolean loggedIn;
+
     public static RestConnector getInstance() {
         if (sInstance == null) {
             sInstance = new RestConnector();
@@ -33,8 +35,17 @@ public class RestConnector extends RestTemplate {
         return sInstance;
     }
 
+    public void setLoggedIn(boolean loggedIn) {
+        this.loggedIn = loggedIn;
+    }
+
+    public boolean isLoggedIn() {
+        return loggedIn;
+    }
+
     private RestConnector() {
         super();
+        loggedIn = false;
     }
 
 }

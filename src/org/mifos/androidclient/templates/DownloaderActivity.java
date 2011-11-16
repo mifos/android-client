@@ -27,6 +27,7 @@ import android.os.Bundle;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.SessionStatus;
 import org.mifos.androidclient.main.LoginActivity;
+import org.mifos.androidclient.net.RestConnector;
 import org.mifos.androidclient.net.services.SessionStatusService;
 import org.springframework.web.client.RestClientException;
 
@@ -49,7 +50,11 @@ public abstract class DownloaderActivity extends MifosActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        runSessionStatusCheckTask();
+        if (!RestConnector.getInstance().isLoggedIn()) {
+            runSessionStatusCheckTask();
+        } else {
+            onSessionActive();
+        }
     }
 
     private void runSessionStatusCheckTask() {

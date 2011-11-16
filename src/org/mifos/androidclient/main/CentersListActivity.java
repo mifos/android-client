@@ -61,8 +61,9 @@ public class CentersListActivity extends DownloaderActivity
 
     @Override
     protected void onSessionActive() {
-        super.onSessionActive();
-        runClientsListTask();
+        if (mCustomersData == null) {
+            runClientsListTask();
+        }
     }
 
     @Override
