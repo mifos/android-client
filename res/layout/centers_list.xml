@@ -12,11 +12,20 @@
         android:text="@string/centerslist_label"
         />
 
+    <TextView
+        style="@style/Info"
+        android:id="@+id/centers_list_hint"
+        android:layout_below="@id/centers_list_label"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/centersList_hint"
+        />
+
     <ListView
         android:id="@+id/centers_list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/centers_list_label"
+        android:layout_below="@id/centers_list_hint"
         />
 
 </RelativeLayout>

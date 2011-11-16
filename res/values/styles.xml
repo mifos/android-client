@@ -16,6 +16,12 @@
         <item name="android:padding">10dp</item>
     </style>
 
+    <style name="Info" parent="@android:style/TextAppearance.Small">
+        <item name="android:textStyle">italic</item>
+        <item name="android:textColor">#FAFAFA</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
     <style name="Shifted">
         <item name="android:paddingLeft">14dp</item>
     </style>

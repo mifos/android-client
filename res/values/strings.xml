@@ -64,11 +64,13 @@
     -->
     <string name="centerslist_label">Choose a center:</string>
     <string name="centerslist_no_center">Customers without a center</string>
+    <string name="centersList_hint">Do a long click on a center to view it\'s details.</string>
 
     <!--
         String values for CustomersListActivity:
     -->
     <string name="clientslist_label">Select a customer to view it\'s details:</string>
+    <string name="clientsList_hint">Do a long click on a group to view it\'s details.</string>
 
     <!--
         String values for CustomerDetailsActivity:

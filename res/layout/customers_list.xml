@@ -12,11 +12,20 @@
         android:text="@string/clientslist_label"
         />
 
+    <TextView
+        style="@style/Info"
+        android:id="@+id/clientsList_hint"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/clientslist_label"
+        android:text="@string/clientsList_hint"
+        />
+
     <ExpandableListView
         android:id="@+id/clientslist_list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/clientslist_label"
+        android:layout_below="@id/clientsList_hint"
         android:groupIndicator="@null"
         />
 
