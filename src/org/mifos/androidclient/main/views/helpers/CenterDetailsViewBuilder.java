@@ -51,6 +51,23 @@ public class CenterDetailsViewBuilder implements CustomerDetailsViewBuilder {
     public View buildOverviewView() {
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.center_overview, null);
+
+        TextView textView = (TextView)view.findViewById(R.id.customerOverview_name);
+        textView.setText(mDetails.getCenterDisplay().getDisplayName());
+        textView = (TextView)view.findViewById(R.id.customerOverview_systemId);
+        textView.setText(mDetails.getCenterDisplay().getGlobalCustNum());
+        textView = (TextView)view.findViewById(R.id.customerOverview_status);
+        textView.setText(mDetails.getCenterDisplay().getCustomerStatusName());
+
+        textView = (TextView)view.findViewById(R.id.centerOverview_noOfActiveClients);
+        textView.setText(mDetails.getCenterPerformanceHistory().getNumberOfClients().toString());
+        textView = (TextView)view.findViewById(R.id.centerOverview_noOfActiveGroups);
+        textView.setText(mDetails.getCenterPerformanceHistory().getNumberOfGroups().toString());
+        textView = (TextView)view.findViewById(R.id.centerOverview_totalLoanPortfolio);
+        textView.setText(mDetails.getCenterPerformanceHistory().getTotalOutstandingPortfolio());
+        textView = (TextView)view.findViewById(R.id.centerOverview_totalSavings);
+        textView.setText(mDetails.getCenterPerformanceHistory().getTotalSavings());
+
         return view;
     }
 

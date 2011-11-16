@@ -110,4 +110,9 @@
     <string name="groupOverview_totalSavings_label">Total Savings:&#160;</string>
     <string name="groupOverview_loanCyclePerProduct_label">Loan Cycle per Product:&#160;</string>
 
+    <string name="centerOverview_noOfActiveClients_label"># of active Clients:&#160;</string>
+    <string name="centerOverview_noOfActiveGroups_label"># of active Groups:&#160;</string>
+    <string name="centerOverview_totalLoanPortfolio_label">Total Loan portfolio:&#160;</string>
+    <string name="centerOverview_totalSavings">Total Savings:&#160;</string>
+
 </resources>

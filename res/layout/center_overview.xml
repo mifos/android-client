@@ -1,7 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent">
 
-</LinearLayout>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            style="@style/Label"
+            android:id="@+id/customerOverview_name_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/customerOverview_name_label"
+            />
+        <TextView
+            style="@style/Shifted"
+            android:id="@+id/customerOverview_name"
+            android:layout_below="@id/customerOverview_name_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            style="@style/Label"
+            android:id="@+id/customerOverview_status_label"
+            android:layout_below="@id/customerOverview_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/customerOverview_status_label"
+            />
+        <TextView
+            style="@style/Shifted"
+            android:id="@+id/customerOverview_status"
+            android:layout_below="@id/customerOverview_status_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            style="@style/Label"
+            android:id="@+id/customerOverview_systemId_label"
+            android:layout_below="@id/customerOverview_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/customerOverview_systemId_label"
+            />
+        <TextView
+            style="@style/Shifted"
+            android:id="@+id/customerOverview_systemId"
+            android:layout_below="@id/customerOverview_systemId_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            style="@style/Label"
+            android:id="@+id/customerOverview_performance_history_label"
+            android:paddingTop="7dp"
+            android:layout_below="@id/customerOverview_systemId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/customerOverview_performance_history_label"
+            />
+
+        <RelativeLayout
+            style="@style/Shifted"
+            android:orientation="vertical"
+            android:layout_below="@id/customerOverview_performance_history_label"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:id="@+id/centerOverview_noOfActiveClients_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/centerOverview_noOfActiveClients_label"
+                />
+            <TextView
+                android:id="@+id/centerOverview_noOfActiveClients"
+                android:layout_toRightOf="@id/centerOverview_noOfActiveClients_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/centerOverview_noOfActiveGroups_label"
+                android:layout_below="@id/centerOverview_noOfActiveClients_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/centerOverview_noOfActiveGroups_label"
+                />
+            <TextView
+                android:id="@+id/centerOverview_noOfActiveGroups"
+                android:layout_below="@id/centerOverview_noOfActiveClients_label"
+                android:layout_toRightOf="@id/centerOverview_noOfActiveGroups_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/centerOverview_totalLoanPortfolio_label"
+                android:layout_below="@id/centerOverview_noOfActiveGroups_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/centerOverview_totalLoanPortfolio_label"
+                />
+            <TextView
+                android:id="@+id/centerOverview_totalLoanPortfolio"
+                android:layout_below="@id/centerOverview_noOfActiveGroups_label"
+                android:layout_toRightOf="@id/centerOverview_totalLoanPortfolio_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/centerOverview_totalSavings_label"
+                android:layout_below="@id/centerOverview_totalLoanPortfolio_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/centerOverview_totalLoanPortfolio_label"
+                />
+            <TextView
+                android:id="@+id/centerOverview_totalSavings"
+                android:layout_below="@id/centerOverview_totalLoanPortfolio_label"
+                android:layout_toRightOf="@id/centerOverview_totalSavings_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</ScrollView>
