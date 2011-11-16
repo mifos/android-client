@@ -117,12 +117,18 @@ public class CustomerDetailsActivity extends DownloaderActivity {
 
         @Override
         protected CustomerDetailsEntity doInBackgroundBody(AbstractCustomer... params) throws RestClientException, IllegalArgumentException {
-            return mCustomerService.getDetailsForEntity(params[0]);
+            CustomerDetailsEntity result = null;
+            if (mCustomerService != null) {
+                result = mCustomerService.getDetailsForEntity(params[0]);
+            }
+            return result;
         }
 
         @Override
         protected void onPostExecuteBody(CustomerDetailsEntity clientDetails) {
-            updateContent(clientDetails);
+            if (clientDetails != null) {
+                updateContent(clientDetails);
+            }
         }
 
     }

@@ -121,20 +121,26 @@ public class CentersListActivity extends DownloaderActivity
 
         @Override
         protected CustomersData doInBackgroundBody(Void... params) throws RestClientException, IllegalArgumentException {
-            return mCustomerService.getLoanOfficersCustomers();
+            CustomersData result = null;
+            if (mCustomerService != null) {
+                result =  mCustomerService.getLoanOfficersCustomers();
+            }
+            return result;
         }
 
         @Override
         protected void onPostExecuteBody(CustomersData result) {
-            mCustomersData = result;
-            if (mCustomersData.getGroups() != null && mCustomersData.getGroups().size() > 0) {
-                Center emptyCenter = new Center();
-                emptyCenter.setDisplayName(getString(R.string.centerslist_no_center));
-                emptyCenter.setId(ApplicationConstants.DUMMY_IDENTIFIER);
-                emptyCenter.setSearchId(ApplicationConstants.EMPTY_STRING);
-                emptyCenter.setGroups(mCustomersData.getGroups());
+            if (result != null) {
+                mCustomersData = result;
+                if (mCustomersData.getGroups() != null && mCustomersData.getGroups().size() > 0) {
+                    Center emptyCenter = new Center();
+                    emptyCenter.setDisplayName(getString(R.string.centerslist_no_center));
+                    emptyCenter.setId(ApplicationConstants.DUMMY_IDENTIFIER);
+                    emptyCenter.setSearchId(ApplicationConstants.EMPTY_STRING);
+                    emptyCenter.setGroups(mCustomersData.getGroups());
+                }
+                repopulateCustomersList();
             }
-            repopulateCustomersList();
         }
 
     }
