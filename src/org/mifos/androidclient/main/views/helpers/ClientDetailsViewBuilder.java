@@ -97,6 +97,9 @@ public class ClientDetailsViewBuilder implements CustomerDetailsViewBuilder {
         View view = inflater.inflate(R.layout.customer_accounts, null);
         ExpandableListView list = (ExpandableListView)view.findViewById(R.id.customerAccounts_list);
 
+        TextView chargesAmountDue = (TextView)view.findViewById(R.id.loanAccounts_amountDue);
+        chargesAmountDue.setText(mDetails.getCustomerAccountSummary().getNextDueAmount());
+
         Map<String, List<AccountBasicInformation>> items = new HashMap<String, List<AccountBasicInformation>>();
         if (mDetails.getLoanAccountsInUse()!= null && mDetails.getLoanAccountsInUse().size() > 0) {
             String loanLabel = mContext.getString(R.string.loan_label);

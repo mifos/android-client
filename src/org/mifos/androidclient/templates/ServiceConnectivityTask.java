@@ -60,7 +60,7 @@ public abstract class ServiceConnectivityTask<Params, Progress, Result> extends 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        mUIUtils.displayProgressDialog(mProgressTitle, mProgressMessage, false);
+        mUIUtils.displayProgressDialog(mProgressTitle, mProgressMessage, true);
     }
 
     @Override

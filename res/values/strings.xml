@@ -96,8 +96,10 @@
     <string name="loanAccountListItem_outstandingBalance_label">Outstanding balance:&#160;</string>
     <string name="loanAccountListItem_amountDue_label">Amount due:&#160;</string>
 
-    <string name="loan_label">Loan</string>
-    <string name="savings_label">Savings</string>
-    <string name="charges_label">Charges</string>
+    <string name="loan_label">Loan Accounts</string>
+    <string name="savings_label">Savings Accounts</string>
+    <string name="charges_label">Client Charges:</string>
+
+    <string name="loanAccounts_amountDue_label">Amount due:&#160;</string>
 
 </resources>

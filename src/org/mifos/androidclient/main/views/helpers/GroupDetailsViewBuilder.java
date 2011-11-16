@@ -24,6 +24,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.customer.AccountBasicInformation;
 import org.mifos.androidclient.entities.customer.GroupDetails;
@@ -59,6 +60,9 @@ public class GroupDetailsViewBuilder implements CustomerDetailsViewBuilder {
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.customer_accounts, null);
         ExpandableListView list = (ExpandableListView)view.findViewById(R.id.customerAccounts_list);
+
+        TextView chargesAmountDue = (TextView)view.findViewById(R.id.loanAccounts_amountDue);
+        chargesAmountDue.setText(mDetails.getCustomerAccountSummary().getNextDueAmount());
 
         Map<String, List<AccountBasicInformation>> items = new HashMap<String, List<AccountBasicInformation>>();
         if (mDetails.getLoanAccountsInUse()!= null && mDetails.getLoanAccountsInUse().size() > 0) {
