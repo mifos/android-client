@@ -20,6 +20,7 @@
 
 package org.mifos.androidclient.templates;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -30,6 +31,7 @@ import org.mifos.androidclient.main.LoginActivity;
 import org.mifos.androidclient.net.RestConnector;
 import org.mifos.androidclient.net.services.LoginService;
 import org.mifos.androidclient.net.services.SessionStatusService;
+import org.mifos.androidclient.util.ApplicationConstants;
 import org.springframework.web.client.RestClientException;
 
 /**
@@ -67,6 +69,26 @@ public abstract class DownloaderActivity extends MifosActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case LoginActivity.REQUEST_CODE:
+                switch (resultCode) {
+                    case Activity.RESULT_OK:
+                        break;
+                    case Activity.RESULT_CANCELED:
+                        finish();
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
     /**
      * Called when the session status check completes successfully.
      */
@@ -101,7 +123,7 @@ public abstract class DownloaderActivity extends MifosActivity {
         protected void onPostExecuteBody(Boolean result) {
             if (!result) {
                 Intent intent = new Intent().setClass(mContext, LoginActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, LoginActivity.REQUEST_CODE);
             } else {
                 onSessionActive();
             }

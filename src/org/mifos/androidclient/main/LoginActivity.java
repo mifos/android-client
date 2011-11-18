@@ -20,6 +20,7 @@
 
 package org.mifos.androidclient.main;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -35,6 +36,8 @@ import org.mifos.androidclient.templates.ServiceConnectivityTask;
 import org.springframework.web.client.RestClientException;
 
 public class LoginActivity extends MifosActivity {
+
+    public static final int REQUEST_CODE = 1;
 
     private EditText mLoginField;
     private EditText mPasswordField;
@@ -64,6 +67,13 @@ public class LoginActivity extends MifosActivity {
         String userLogin = mLoginField.getText().toString();
         String userPassword = mPasswordField.getText().toString();
         runLoginTask(userLogin, userPassword);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        setResult(Activity.RESULT_CANCELED);
+        finish();
     }
 
     private void runLoginTask(String login, String password) {
@@ -99,6 +109,7 @@ public class LoginActivity extends MifosActivity {
                     mLoginErrors.setVisibility(View.INVISIBLE);
                 }
                 RestConnector.getInstance().setLoggedIn(true);
+                setResult(Activity.RESULT_OK);
                 finish();
             } else {
                 if(!mLoginErrors.isShown()) {
