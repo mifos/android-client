@@ -21,13 +21,19 @@
 package org.mifos.androidclient.main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 import org.mifos.androidclient.R;
+import org.mifos.androidclient.entities.customer.AccountBasicInformation;
 import org.mifos.androidclient.entities.customer.CustomerDetailsEntity;
 import org.mifos.androidclient.entities.simple.AbstractCustomer;
+import org.mifos.androidclient.main.views.adapters.AccountsExpandableListAdapter;
 import org.mifos.androidclient.net.services.CustomerService;
 import org.mifos.androidclient.templates.CustomerDetailsViewBuilder;
 import org.mifos.androidclient.templates.DownloaderActivity;
@@ -36,7 +42,8 @@ import org.mifos.androidclient.templates.ViewBuilderFactory;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestClientException;
 
-public class CustomerDetailsActivity extends DownloaderActivity {
+public class CustomerDetailsActivity extends DownloaderActivity
+        implements ExpandableListView.OnChildClickListener {
 
     private AbstractCustomer mCustomer;
     private CustomerDetailsTask mCustomerDetailsTask;
@@ -72,11 +79,22 @@ public class CustomerDetailsActivity extends DownloaderActivity {
         runCustomerDetailsTask();
     }
 
+    @Override
+    public boolean onChildClick(ExpandableListView expandableListView, View view, int groupPos, int childPos, long id) {
+        AccountsExpandableListAdapter adapter = (AccountsExpandableListAdapter)expandableListView.getExpandableListAdapter();
+        AccountBasicInformation account = (AccountBasicInformation)adapter.getChild(groupPos, childPos);
+        Intent intent = new Intent().setClass(this, AccountDetailsActivity.class);
+        intent.putExtra(AccountBasicInformation.BUNDLE_KEY, account);
+        startActivity(intent);
+        return true;
+    }
+
     private void updateContent(CustomerDetailsEntity details) {
         if (details != null) {
             LinearLayout tabContent = (LinearLayout)findViewById(R.id.customer_overview);
             ViewBuilderFactory factory = new ViewBuilderFactory(this);
             CustomerDetailsViewBuilder builder = factory.createCustomerDetailsViewBuilder(details);
+            View view;
 
             if (tabContent.getChildCount() > 0) {
                 tabContent.removeAllViews();
@@ -87,8 +105,15 @@ public class CustomerDetailsActivity extends DownloaderActivity {
             if (tabContent.getChildCount() > 0) {
                 tabContent.removeAllViews();
             }
-            tabContent.addView(builder.buildAccountsView());
+            view = builder.buildAccountsView();
+            setupAccountsListListeners(view);
+            tabContent.addView(view);
         }
+    }
+
+    private void setupAccountsListListeners(View view) {
+        ExpandableListView list = (ExpandableListView)view.findViewById(R.id.customerAccounts_list);
+        list.setOnChildClickListener(this);
     }
 
     private void runCustomerDetailsTask() {

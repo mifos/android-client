@@ -17,6 +17,9 @@ import java.util.Map;
 
 public class AccountsExpandableListAdapter extends BaseExpandableListAdapter {
 
+    public static final int LOANS = 0;
+    public static final int SAVINGS = 1;
+
     private Context mContext;
     private Map<Integer, String> mKeys;
     private Map<Integer, List<AccountBasicInformation>> mValues;
@@ -24,6 +27,17 @@ public class AccountsExpandableListAdapter extends BaseExpandableListAdapter {
     public AccountsExpandableListAdapter(Context context, Map<String, List<AccountBasicInformation>> items) {
         mContext = context;
         splitItems(items);
+    }
+
+    public int getAccountTypeForGroup(int group) {
+        AccountBasicInformation account = mValues.get(group).get(0);
+        int type;
+        if (account.getClass() == LoanAccountBasicInformation.class) {
+            type = LOANS;
+        } else {
+            type = SAVINGS;
+        }
+        return type;
     }
 
     @Override

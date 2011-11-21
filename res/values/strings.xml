@@ -121,4 +121,10 @@
     <string name="centerOverview_totalLoanPortfolio_label">Total Loan portfolio:&#160;</string>
     <string name="centerOverview_totalSavings">Total Savings:&#160;</string>
 
+    <!--
+        String values for AccountDetailsActivity:
+    -->
+    <string name="accountDetails_tab_overview">Account Overview</string>
+    <string name="accountDetails_tab_additionalInfo">Account Details</string>
+
 </resources>
