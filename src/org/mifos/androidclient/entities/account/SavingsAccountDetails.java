@@ -21,10 +21,84 @@
 package org.mifos.androidclient.entities.account;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.mifos.androidclient.entities.customer.CustomerNote;
+
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SavingsAccountDetails extends AbstractAccountDetails {
 
+    private String accountStateName;
+    private Double accountBalance;
+    private String dueDate;
+    private Double totalAmountDue;
+    private SavingsPerformanceHistory performanceHistory;
+    private List<SavingsActivity> recentActivity;
+    private List<CustomerNote> recentNoteDtos;
+    private String recommendedOrMandatoryAmount;
 
+    public String getAccountStateName() {
+        return accountStateName;
+    }
+
+    public void setAccountStateName(String accountStateName) {
+        this.accountStateName = accountStateName;
+    }
+
+    public Double getAccountBalance() {
+        return accountBalance;
+    }
+
+    public void setAccountBalance(Double accountBalance) {
+        this.accountBalance = accountBalance;
+    }
+
+    public String getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public Double getTotalAmountDue() {
+        return totalAmountDue;
+    }
+
+    public void setTotalAmountDue(Double totalAmountDue) {
+        this.totalAmountDue = totalAmountDue;
+    }
+
+    public SavingsPerformanceHistory getPerformanceHistory() {
+        return performanceHistory;
+    }
+
+    public void setPerformanceHistory(SavingsPerformanceHistory performanceHistory) {
+        this.performanceHistory = performanceHistory;
+    }
+
+    public List<SavingsActivity> getRecentActivity() {
+        return recentActivity;
+    }
+
+    public void setRecentActivity(List<SavingsActivity> recentActivity) {
+        this.recentActivity = recentActivity;
+    }
+
+    public List<CustomerNote> getRecentNoteDtos() {
+        return recentNoteDtos;
+    }
+
+    public void setRecentNoteDtos(List<CustomerNote> recentNoteDtos) {
+        this.recentNoteDtos = recentNoteDtos;
+    }
+
+    public String getRecommendedOrMandatoryAmount() {
+        return recommendedOrMandatoryAmount;
+    }
+
+    public void setRecommendedOrMandatoryAmount(String recommendedOrMandatoryAmount) {
+        this.recommendedOrMandatoryAmount = recommendedOrMandatoryAmount;
+    }
 
 }
