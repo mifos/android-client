@@ -28,6 +28,7 @@ import org.mifos.androidclient.util.ApplicationConstants;
 public abstract class RestNetworkService {
 
     protected final static String STATUS_PATH = "/status.json";
+    protected final static String PATH_SUFFIX = ".json";
 
     protected Context mContext;
     protected RestConnector mRestConnector;
@@ -38,7 +39,7 @@ public abstract class RestNetworkService {
         mContext = context;
         mRestConnector = RestConnector.getInstance();
 
-        mSettings = mContext.getSharedPreferences(ApplicationConstants.MIFOS_APPLICATION_PREFERENCES, mContext.MODE_PRIVATE);
+        mSettings = mContext.getSharedPreferences(ApplicationConstants.MIFOS_APPLICATION_PREFERENCES, Context.MODE_PRIVATE);
     }
 
     protected String getServerUrl() {

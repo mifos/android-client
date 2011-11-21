@@ -25,7 +25,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
@@ -48,6 +47,7 @@ public class CustomerDetailsActivity extends DownloaderActivity
     private AbstractCustomer mCustomer;
     private CustomerDetailsTask mCustomerDetailsTask;
     private CustomerService mCustomerService;
+    private CustomerDetailsEntity mDetails;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -76,7 +76,9 @@ public class CustomerDetailsActivity extends DownloaderActivity
     @Override
     protected void onSessionActive() {
         super.onSessionActive();
-        runCustomerDetailsTask();
+        if (mDetails == null) {
+            runCustomerDetailsTask();
+        }
     }
 
     @Override
@@ -91,6 +93,7 @@ public class CustomerDetailsActivity extends DownloaderActivity
 
     private void updateContent(CustomerDetailsEntity details) {
         if (details != null) {
+            mDetails = details;
             LinearLayout tabContent = (LinearLayout)findViewById(R.id.customer_overview);
             ViewBuilderFactory factory = new ViewBuilderFactory(this);
             CustomerDetailsViewBuilder builder = factory.createCustomerDetailsViewBuilder(details);

@@ -21,17 +21,24 @@
 package org.mifos.androidclient.main;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.TabHost;
 import org.mifos.androidclient.R;
+import org.mifos.androidclient.entities.account.AbstractAccountDetails;
 import org.mifos.androidclient.entities.customer.AccountBasicInformation;
+import org.mifos.androidclient.net.services.AccountService;
 import org.mifos.androidclient.templates.DownloaderActivity;
 import org.mifos.androidclient.templates.ServiceConnectivityTask;
+import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestClientException;
 
 public class AccountDetailsActivity extends DownloaderActivity {
 
     private AccountBasicInformation mAccount;
+    private AbstractAccountDetails mDetails;
+    private AccountService mAccountService;
+    private AccountDetailsTask mAccountDetailsTask;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -50,22 +57,58 @@ public class AccountDetailsActivity extends DownloaderActivity {
         tabs.addTab(additionalInfoSpec);
 
         mAccount = (AccountBasicInformation)getIntent().getSerializableExtra(AccountBasicInformation.BUNDLE_KEY);
+        mAccountService = new AccountService(this);
     }
 
-    private class AccountDetailsTask extends ServiceConnectivityTask<AccountBasicInformation, Void, Object> {
+    @Override
+    protected void onSessionActive() {
+        super.onSessionActive();
+        if (mDetails == null) {
+            runAccountDetailsTask();
+        }
+    }
+
+    private void updateContent(AbstractAccountDetails details) {
+        if (details != null) {
+            mDetails = details;
+        }
+    }
+
+    private void runAccountDetailsTask() {
+        if (mAccount == null || !StringUtils.hasLength(mAccount.getGlobalAccountNum())) {
+            mUIUtils.displayLongMessage(getString(R.string.toast_customer_id_not_available));
+            return;
+        }
+        if (mAccountDetailsTask == null || mAccountDetailsTask.getStatus() != AsyncTask.Status.RUNNING) {
+            mAccountDetailsTask = new AccountDetailsTask(
+                    this,
+                    getString(R.string.dialog_getting_account_data),
+                    getString(R.string.dialog_loading_message)
+            );
+            mAccountDetailsTask.execute(mAccount);
+        }
+    }
+
+    private class AccountDetailsTask extends ServiceConnectivityTask<AccountBasicInformation, Void, AbstractAccountDetails> {
 
         public AccountDetailsTask(Context context, String progressTitle, String progressMessage) {
             super(context, progressTitle, progressMessage);
         }
 
         @Override
-        protected Object doInBackgroundBody(AccountBasicInformation... params) throws RestClientException, IllegalArgumentException {
-            return null;
+        protected AbstractAccountDetails doInBackgroundBody(AccountBasicInformation... params) throws RestClientException, IllegalArgumentException {
+            AbstractAccountDetails details = null;
+            if (mAccountService != null) {
+                details = mAccountService.getAccountDetailsForEntity(params[0]);
+            }
+            return details;
         }
 
         @Override
-        protected void onPostExecuteBody(Object o) {
-
+        protected void onPostExecuteBody(AbstractAccountDetails details) {
+            if (details != null) {
+                updateContent(details);
+            }
         }
     }
 

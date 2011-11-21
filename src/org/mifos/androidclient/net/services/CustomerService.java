@@ -34,7 +34,6 @@ public class CustomerService extends RestNetworkService {
     private final static String CLIENT_DETAILS_PATH_PREFIX = "/client/num-";
     private final static String GROUP_DETAILS_PATH_PREFIX = "/group/num-";
     private final static String CENTER_DETAILS_PATH_PREFIX = "/center/num-";
-    private final static String PATH_SUFFIX = ".json";
 
     public CustomerService(Context context) {
         super(context);

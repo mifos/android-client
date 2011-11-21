@@ -20,6 +20,7 @@
     <string name="dialog_loading_message">Please wait...</string>
     <string name="dialog_checking_session">Checking user session</string>
     <string name="dialog_getting_customer_data">Getting customer data</string>
+    <string name="dialog_getting_account_data">Getting account data</string>
 
     <!--
         Text values for toast messages:
@@ -37,6 +38,9 @@
     </string>
     <string name="toast_customer_id_not_available">
         The customer identifier is not available, cannot download customer data.
+    </string>
+    <string name="toast_account_id_not_available">
+        The account number is not available, cannot download account data.
     </string>
 
     <!--
