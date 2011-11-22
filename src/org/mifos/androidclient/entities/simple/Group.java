@@ -37,7 +37,13 @@ public class Group extends AbstractCustomer implements SimpleListItem {
 
     @Override
     public String getListLabel() {
-        return getDisplayName();
+        String listLabel;
+        if (clients != null && clients.size() > 0) {
+            listLabel = getDisplayName() + " (" + clients.size() + ")";
+        } else {
+            listLabel = getDisplayName();
+        }
+        return listLabel;
     }
 
     @Override

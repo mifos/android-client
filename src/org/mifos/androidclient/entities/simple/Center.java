@@ -35,7 +35,13 @@ public class Center extends AbstractCustomer implements SimpleListItem {
 
     @Override
     public String getListLabel() {
-        return getDisplayName();
+        String listLabel;
+        if (groups != null && groups.size() > 0) {
+            listLabel = getDisplayName() + " (" + groups.size() + ")";
+        } else {
+            listLabel = getDisplayName();
+        }
+        return listLabel;
     }
 
     @Override
