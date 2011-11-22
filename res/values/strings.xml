@@ -133,4 +133,9 @@
     <string name="accountDetails_tab_overview">Account Overview</string>
     <string name="accountDetails_tab_additionalInfo">Account Details</string>
 
+    <!--
+        String values for AccountTransactionHistoryActivity
+    -->
+    <string name="transactionHistory_label">Account\'s Transaction History</string>
+
 </resources>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent">
+
+    <TextView
+        style="@style/Header"
+        android:id="@+id/transactionHistory_label"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/transactionHistory_label"
+        />
+
+    <ListView
+        android:id="@+id/transactionHistory_list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/transactionHistory_label"
+        />
+
+</RelativeLayout>

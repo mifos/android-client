@@ -21,6 +21,7 @@
         <activity android:name=".main.CustomersListActivity" />
         <activity android:name=".main.CustomerDetailsActivity" />
         <activity android:name=".main.AccountDetailsActivity" />
+        <activity android:name=".main.AccountTransactionHistoryActivity" />
     </application>
 
 </manifest> 
