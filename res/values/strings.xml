@@ -8,6 +8,8 @@
 
     <string name="server_name_template">http://ci.mifos.org:8085/mifos</string>
 
+    <string name="not_implemented_yet_message">To be implemented soon!</string>
+
     <!--
         Text values relates to user dialogs:
     -->
