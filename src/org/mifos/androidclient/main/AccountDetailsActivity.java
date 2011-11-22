@@ -23,13 +23,16 @@ package org.mifos.androidclient.main;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.widget.LinearLayout;
 import android.widget.TabHost;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.account.AbstractAccountDetails;
 import org.mifos.androidclient.entities.customer.AccountBasicInformation;
 import org.mifos.androidclient.net.services.AccountService;
+import org.mifos.androidclient.templates.AccountDetailsViewBuilder;
 import org.mifos.androidclient.templates.DownloaderActivity;
 import org.mifos.androidclient.templates.ServiceConnectivityTask;
+import org.mifos.androidclient.templates.ViewBuilderFactory;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestClientException;
 
@@ -71,6 +74,20 @@ public class AccountDetailsActivity extends DownloaderActivity {
     private void updateContent(AbstractAccountDetails details) {
         if (details != null) {
             mDetails = details;
+            ViewBuilderFactory factory = new ViewBuilderFactory(this);
+            AccountDetailsViewBuilder builder = factory.createAccountDetailsViewBuilder(details);
+
+            LinearLayout tabContent = (LinearLayout)findViewById(R.id.account_overview);
+            if (tabContent.getChildCount() > 0) {
+                tabContent.removeAllViews();
+            }
+            tabContent.addView(builder.buildOverviewView());
+
+            tabContent = (LinearLayout)findViewById(R.id.account_details);
+            if (tabContent.getChildCount() > 0) {
+                tabContent.removeAllViews();
+            }
+            tabContent.addView(builder.buildDetailsView());
         }
     }
 

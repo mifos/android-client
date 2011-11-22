@@ -21,13 +21,14 @@
 package org.mifos.androidclient.templates;
 
 import android.content.Context;
+import org.mifos.androidclient.entities.account.AbstractAccountDetails;
+import org.mifos.androidclient.entities.account.LoanAccountDetails;
+import org.mifos.androidclient.entities.account.SavingsAccountDetails;
 import org.mifos.androidclient.entities.customer.CenterDetails;
 import org.mifos.androidclient.entities.customer.ClientDetails;
 import org.mifos.androidclient.entities.customer.CustomerDetailsEntity;
 import org.mifos.androidclient.entities.customer.GroupDetails;
-import org.mifos.androidclient.main.views.helpers.CenterDetailsViewBuilder;
-import org.mifos.androidclient.main.views.helpers.ClientDetailsViewBuilder;
-import org.mifos.androidclient.main.views.helpers.GroupDetailsViewBuilder;
+import org.mifos.androidclient.main.views.helpers.*;
 
 public class ViewBuilderFactory {
 
@@ -46,6 +47,16 @@ public class ViewBuilderFactory {
             return new CenterDetailsViewBuilder(mContext, (CenterDetails)entity);
         }
         return null;
+    }
+
+    public AccountDetailsViewBuilder createAccountDetailsViewBuilder(AbstractAccountDetails entity) {
+        AccountDetailsViewBuilder builder = null;
+        if (entity.getClass() == LoanAccountDetails.class) {
+            builder = new LoanAccountDetailsViewBuilder(mContext, (LoanAccountDetails)entity);
+        } else if (entity.getClass() == SavingsAccountDetails.class) {
+            builder = new SavingsAccountDetailsViewBuilder(mContext, (SavingsAccountDetails)entity);
+        }
+        return builder;
     }
 
 }
