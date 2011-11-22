@@ -22,17 +22,26 @@ package org.mifos.androidclient.entities.account;
 
 public class SavingsPerformanceHistory {
 
-    private String dateAccountOpened;
+    private String openedDate;
     private Double totalDeposits;
     private Double totalInterestEarned;
     private Double totalWithdrawals;
+    private String missedDeposits;
 
-    public String getDateAccountOpened() {
-        return dateAccountOpened;
+    public String getMissedDeposits() {
+        return missedDeposits;
     }
 
-    public void setDateAccountOpened(String dateAccountOpened) {
-        this.dateAccountOpened = dateAccountOpened;
+    public void setMissedDeposits(String missedDeposits) {
+        this.missedDeposits = missedDeposits;
+    }
+
+    public String getOpenedDate() {
+        return openedDate;
+    }
+
+    public void setOpenedDate(String openedDate) {
+        this.openedDate = openedDate;
     }
 
     public Double getTotalDeposits() {

@@ -36,6 +36,15 @@ public class SavingsAccountDetails extends AbstractAccountDetails {
     private List<SavingsActivity> recentActivity;
     private List<CustomerNote> recentNoteDtos;
     private String recommendedOrMandatoryAmount;
+    private String depositTypeName;
+
+    public String getDepositTypeName() {
+        return depositTypeName;
+    }
+
+    public void setDepositTypeName(String depositTypeName) {
+        this.depositTypeName = depositTypeName;
+    }
 
     public String getAccountStateName() {
         return accountStateName;
