@@ -124,7 +124,29 @@ public class GroupDetailsViewBuilder implements CustomerDetailsViewBuilder {
 
     @Override
     public View buildAdditionalView() {
-        return null;
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.group_additional, null);
+
+        TextView textView = (TextView)view.findViewById(R.id.groupAdditional_approvalDate);
+        textView.setText(mDetails.getGroupDisplay().getCustomerActivationDate());
+        textView = (TextView)view.findViewById(R.id.groupAdditional_recruitedBy);
+        textView.setText(mDetails.getGroupDisplay().getCustomerFormedByDisplayName());
+
+        if(mDetails.getRecentCustomerNotes() != null && mDetails.getRecentCustomerNotes().size() > 0 ) {
+            textView = (TextView)view.findViewById(R.id.groupAdditional_recentNotes_label);
+            textView.setVisibility(View.VISIBLE);
+
+            LinearLayout recentNotesLayout = (LinearLayout)view.findViewById(R.id.groupAdditional_recentNotes);
+            ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            for(CustomerNote note : mDetails.getRecentCustomerNotes()){
+                textView = new TextView(mContext);
+                textView.setLayoutParams(params);
+                textView.setText(note.getComment() +" "+ note.getCommentDate() + " " + note.getPersonnelName());
+                recentNotesLayout.addView(textView);
+            }
+        }
+
+        return view;
     }
 
     private LayoutInflater getLayoutInflater() {

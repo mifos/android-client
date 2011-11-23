@@ -126,7 +126,37 @@ public class ClientDetailsViewBuilder implements CustomerDetailsViewBuilder {
 
     @Override
     public View buildAdditionalView() {
-        return null;
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.client_additional, null);
+
+        TextView textView = (TextView)view.findViewById(R.id.customerAdditional_customerActivation);
+        textView.setText(mDetails.getClientDisplay().getCustomerActivationDate());
+        textView = (TextView)view.findViewById(R.id.customerAdditional_RecruitByDisplayName);
+        textView.setText(mDetails.getClientDisplay().getCustomerFormedByDisplayName());
+        textView = (TextView)view.findViewById(R.id.customerAdditional_dateOfBirthDay);
+        textView.setText(mDetails.getClientDisplay().getDateOfBirth());
+        textView =(TextView)view.findViewById(R.id.customerAdditional_ethinicity);
+        textView.setText(mDetails.getClientDisplay().getEthnicity());
+        textView = (TextView)view.findViewById(R.id.customerAdditional_educationLevel);
+        textView.setText(mDetails.getClientDisplay().getEducationLevel());
+        textView = (TextView)view.findViewById(R.id.customerAdditional_citizenship);
+        textView.setText(mDetails.getClientDisplay().getCitizenship());
+
+        if(mDetails.getRecentCustomerNotes() != null && mDetails.getRecentCustomerNotes().size() > 0 ) {
+            textView = (TextView)view.findViewById(R.id.customerAdditional_recentNotes_label);
+            textView.setVisibility(View.VISIBLE);
+
+            LinearLayout recentNotesLayout = (LinearLayout)view.findViewById(R.id.customerAdditional_recentNotes);
+            ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+           for(CustomerNote note : mDetails.getRecentCustomerNotes()){
+                textView = new TextView(mContext);
+                textView.setLayoutParams(params);
+                textView.setText(note.getComment() +" "+ note.getCommentDate() + " " + note.getPersonnelName());
+                recentNotesLayout.addView(textView);
+            }
+        }
+
+        return view;
     }
 
     private LayoutInflater getLayoutInflater() {

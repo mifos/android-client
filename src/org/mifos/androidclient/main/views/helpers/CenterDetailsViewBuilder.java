@@ -23,11 +23,14 @@ package org.mifos.androidclient.main.views.helpers;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.customer.AccountBasicInformation;
 import org.mifos.androidclient.entities.customer.CenterDetails;
+import org.mifos.androidclient.entities.customer.CustomerNote;
 import org.mifos.androidclient.entities.customer.SavingsAccountBasicInformation;
 import org.mifos.androidclient.main.views.adapters.AccountsExpandableListAdapter;
 import org.mifos.androidclient.templates.CustomerDetailsViewBuilder;
@@ -98,7 +101,30 @@ public class CenterDetailsViewBuilder implements CustomerDetailsViewBuilder {
 
     @Override
     public View buildAdditionalView() {
-        return null;
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.center_additional, null);
+
+        TextView textView = (TextView)view.findViewById(R.id.centerAdditional_mfiJoining);
+        textView.setText(mDetails.getCenterDisplay().getMfiJoiningDate());
+        textView =(TextView)view.findViewById(R.id.centerAdditional_centerStart);
+        textView.setText(mDetails.getCenterDisplay().getCreatedDate());
+        textView =(TextView)view.findViewById(R.id.centerAdditional_loanOfficer_name);
+
+        if(mDetails.getRecentCustomerNotes() != null && mDetails.getRecentCustomerNotes().size() > 0 ) {
+            textView = (TextView)view.findViewById(R.id.centerAdditional_recentNotes_label);
+            textView.setVisibility(View.VISIBLE);
+
+           LinearLayout recentNotesLayout = (LinearLayout)view.findViewById(R.id.centerAdditional_recentNotes);
+           ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+           for(CustomerNote note : mDetails.getRecentCustomerNotes()){
+                textView = new TextView(mContext);
+                textView.setLayoutParams(params);
+                textView.setText(note.getComment() +" "+ note.getCommentDate() + " " + note.getPersonnelName());
+                recentNotesLayout.addView(textView);
+            }
+        }
+
+        return view;
     }
 
     private LayoutInflater getLayoutInflater() {

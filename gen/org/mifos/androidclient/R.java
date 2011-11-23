@@ -13,10 +13,292 @@ public final class R {
     public static final class drawable {
         public static final int icon=0x7f020000;
     }
+    public static final class id {
+        public static final int accountDetails_tabHost=0x7f070000;
+        public static final int account_details=0x7f070002;
+        public static final int account_overview=0x7f070001;
+        public static final int centerAdditional_ceneterStart_label=0x7f070005;
+        public static final int centerAdditional_centerStart=0x7f070006;
+        public static final int centerAdditional_loanOfficer_name=0x7f070008;
+        public static final int centerAdditional_loanOfficer_name_label=0x7f070007;
+        public static final int centerAdditional_mfiJoining=0x7f070004;
+        public static final int centerAdditional_mfiJoining_label=0x7f070003;
+        public static final int centerAdditional_recentNotes=0x7f07000a;
+        public static final int centerAdditional_recentNotes_label=0x7f070009;
+        public static final int centerOverview_noOfActiveClients=0x7f070013;
+        public static final int centerOverview_noOfActiveClients_label=0x7f070012;
+        public static final int centerOverview_noOfActiveGroups=0x7f070015;
+        public static final int centerOverview_noOfActiveGroups_label=0x7f070014;
+        public static final int centerOverview_totalLoanPortfolio=0x7f070017;
+        public static final int centerOverview_totalLoanPortfolio_label=0x7f070016;
+        public static final int centerOverview_totalSavings=0x7f070019;
+        public static final int centerOverview_totalSavings_label=0x7f070018;
+        public static final int centers_list=0x7f07001c;
+        public static final int centers_list_hint=0x7f07001b;
+        public static final int centers_list_label=0x7f07001a;
+        public static final int changeServerAddress=0x7f070075;
+        public static final int clientsList_hint=0x7f070044;
+        public static final int clientslist_label=0x7f070043;
+        public static final int clientslist_list=0x7f070045;
+        public static final int customerAccounts_list=0x7f07003e;
+        public static final int customerAdditional_RecruitByDisplayName=0x7f070021;
+        public static final int customerAdditional_RecruitByDisplayName_label=0x7f070020;
+        public static final int customerAdditional_citizenship=0x7f07002a;
+        public static final int customerAdditional_citizenship_label=0x7f070029;
+        public static final int customerAdditional_customerActivation=0x7f07001f;
+        public static final int customerAdditional_customerActivationDate_label=0x7f07001e;
+        public static final int customerAdditional_dateOfBirthDay=0x7f070024;
+        public static final int customerAdditional_dateOfBirthDay_label=0x7f070023;
+        public static final int customerAdditional_educationLevel=0x7f070028;
+        public static final int customerAdditional_educationLevel_label=0x7f070027;
+        public static final int customerAdditional_ethinicity=0x7f070026;
+        public static final int customerAdditional_ethinicity_label=0x7f070025;
+        public static final int customerAdditional_mfiInformation_label=0x7f07001d;
+        public static final int customerAdditional_personalInformation_label=0x7f070022;
+        public static final int customerAdditional_recentNotes=0x7f07002c;
+        public static final int customerAdditional_recentNotes_label=0x7f07002b;
+        public static final int customerDetails_tabhost=0x7f07003f;
+        public static final int customerOverview_amountOfLastLoan=0x7f070030;
+        public static final int customerOverview_amountOfLastLoan_label=0x7f07002f;
+        public static final int customerOverview_delinquentPortfolio=0x7f070034;
+        public static final int customerOverview_delinquentPortfolio_label=0x7f070033;
+        public static final int customerOverview_loanCycleNo=0x7f07002e;
+        public static final int customerOverview_loanCycleNo_label=0x7f07002d;
+        public static final int customerOverview_loanCyclePerProduct=0x7f07003c;
+        public static final int customerOverview_loanCyclePerProduct_label=0x7f07003b;
+        public static final int customerOverview_meetingsAttended=0x7f070038;
+        public static final int customerOverview_meetingsAttended_label=0x7f070037;
+        public static final int customerOverview_meetingsMissed=0x7f07003a;
+        public static final int customerOverview_meetingsMissed_label=0x7f070039;
+        public static final int customerOverview_name=0x7f07000c;
+        public static final int customerOverview_name_label=0x7f07000b;
+        public static final int customerOverview_noOfActiveLoans=0x7f070032;
+        public static final int customerOverview_noOfActiveLoans_label=0x7f070031;
+        public static final int customerOverview_performance_history_label=0x7f070011;
+        public static final int customerOverview_status=0x7f07000e;
+        public static final int customerOverview_status_label=0x7f07000d;
+        public static final int customerOverview_systemId=0x7f070010;
+        public static final int customerOverview_systemId_label=0x7f07000f;
+        public static final int customerOverview_totalSavings=0x7f070036;
+        public static final int customerOverview_totalSavings_label=0x7f070035;
+        public static final int customer_accounts=0x7f070041;
+        public static final int customer_additional=0x7f070042;
+        public static final int customer_overview=0x7f070040;
+        public static final int dialogInput=0x7f070072;
+        public static final int dialogLabel=0x7f070071;
+        public static final int expandableListGroup=0x7f07006f;
+        public static final int groupAdditional_approvalDate=0x7f070047;
+        public static final int groupAdditional_approvalDate_label=0x7f070046;
+        public static final int groupAdditional_recentNotes=0x7f07004b;
+        public static final int groupAdditional_recentNotes_label=0x7f07004a;
+        public static final int groupAdditional_recruitedBy=0x7f070049;
+        public static final int groupAdditional_recruitedBy_label=0x7f070048;
+        public static final int groupOverview_amountOfLastGroupLoan=0x7f07004f;
+        public static final int groupOverview_amountOfLastGroupLoan_label=0x7f07004e;
+        public static final int groupOverview_averageIndividualLoanSize=0x7f070051;
+        public static final int groupOverview_averageIndividualLoanSize_label=0x7f070050;
+        public static final int groupOverview_loanCyclePerProduct=0x7f070059;
+        public static final int groupOverview_loanCyclePerProduct_label=0x7f070058;
+        public static final int groupOverview_noOfActiveClients=0x7f07004d;
+        public static final int groupOverview_noOfActiveClients_label=0x7f07004c;
+        public static final int groupOverview_portfolioAtRisk=0x7f070055;
+        public static final int groupOverview_portfolioAtRisk_label=0x7f070054;
+        public static final int groupOverview_totalLoanPortfolio=0x7f070053;
+        public static final int groupOverview_totalLoanPortfolio_label=0x7f070052;
+        public static final int groupOverview_totalSavings=0x7f070057;
+        public static final int groupOverview_totalSavings_label=0x7f070056;
+        public static final int loanAccountListItem_accountName=0x7f07005a;
+        public static final int loanAccountListItem_amountDue=0x7f070060;
+        public static final int loanAccountListItem_amountDue_label=0x7f07005f;
+        public static final int loanAccountListItem_outstandingBalance=0x7f07005e;
+        public static final int loanAccountListItem_outstandingBalance_label=0x7f07005d;
+        public static final int loanAccountListItem_status=0x7f07005c;
+        public static final int loanAccountListItem_status_label=0x7f07005b;
+        public static final int loanAccounts_amountDue=0x7f07003d;
+        public static final int logOut=0x7f070076;
+        public static final int login_button=0x7f070067;
+        public static final int login_errors=0x7f070066;
+        public static final int login_header=0x7f070061;
+        public static final int login_label=0x7f070062;
+        public static final int login_login=0x7f070063;
+        public static final int login_password=0x7f070065;
+        public static final int password_label=0x7f070064;
+        public static final int savingsAccountListItem_accountName=0x7f070069;
+        public static final int savingsAccountListItem_balance=0x7f07006d;
+        public static final int savingsAccountListItem_balance_label=0x7f07006c;
+        public static final int savingsAccountListItem_status=0x7f07006b;
+        public static final int savingsAccountListItem_status_label=0x7f07006a;
+        public static final int simple_list_item_label=0x7f07006e;
+        public static final int synchronize=0x7f070077;
+        public static final int textInputDialog=0x7f070070;
+        public static final int transactionHistory_label=0x7f070073;
+        public static final int transactionHistory_list=0x7f070074;
+        public static final int view_clients_button=0x7f070068;
+    }
     public static final class layout {
-        public static final int main=0x7f030000;
+        public static final int account_details=0x7f030000;
+        public static final int center_additional=0x7f030001;
+        public static final int center_overview=0x7f030002;
+        public static final int centers_list=0x7f030003;
+        public static final int client_additional=0x7f030004;
+        public static final int client_overview=0x7f030005;
+        public static final int customer_accounts=0x7f030006;
+        public static final int customer_details=0x7f030007;
+        public static final int customers_list=0x7f030008;
+        public static final int group_additional=0x7f030009;
+        public static final int group_overview=0x7f03000a;
+        public static final int loan_account_list_item=0x7f03000b;
+        public static final int login_panel=0x7f03000c;
+        public static final int main=0x7f03000d;
+        public static final int savings_account_list_item=0x7f03000e;
+        public static final int simple_list_child=0x7f03000f;
+        public static final int simple_list_group=0x7f030010;
+        public static final int simple_list_item=0x7f030011;
+        public static final int text_input_dialog=0x7f030012;
+        public static final int transaction_history=0x7f030013;
+        public static final int transaction_history_item=0x7f030014;
+    }
+    public static final class menu {
+        public static final int main_menu=0x7f060000;
     }
     public static final class string {
+        public static final int accountDetails_tab_additionalInfo=0x7f040055;
+        /** 
+        String values for AccountDetailsActivity:
+    
+         */
+        public static final int accountDetails_tab_overview=0x7f040054;
+        /** 
+        Global application text values:
+    
+         */
         public static final int app_name=0x7f040000;
+        public static final int centerAdditional_centerStart_label=0x7f040047;
+        public static final int centerAdditional_loanOfficer_name_label=0x7f040048;
+        public static final int centerAdditional_mfiJoining_label=0x7f040046;
+        public static final int centerAdditional_recentNotes_label=0x7f040052;
+        public static final int centerOverview_noOfActiveClients_label=0x7f040042;
+        public static final int centerOverview_noOfActiveGroups_label=0x7f040043;
+        public static final int centerOverview_totalLoanPortfolio_label=0x7f040044;
+        public static final int centerOverview_totalSavings=0x7f040045;
+        public static final int centersList_hint=0x7f04001e;
+        /** 
+        String values for CentersListActivity:
+    
+         */
+        public static final int centerslist_label=0x7f04001c;
+        public static final int centerslist_no_center=0x7f04001d;
+        public static final int charges_label=0x7f040037;
+        /** 
+        String values for ClientMainActivity:
+    
+         */
+        public static final int client_main_button_client_list=0x7f040015;
+        public static final int client_main_label=0x7f040016;
+        public static final int clientsList_hint=0x7f040020;
+        /** 
+        String values for CustomersListActivity:
+    
+         */
+        public static final int clientslist_label=0x7f04001f;
+        public static final int customerAdditional_RecruitByDisplayName_label=0x7f04004c;
+        public static final int customerAdditional_citizenship_label=0x7f040050;
+        public static final int customerAdditional_customerActivationDate_label=0x7f04004b;
+        public static final int customerAdditional_dateOfBirthDay_label=0x7f04004d;
+        public static final int customerAdditional_educationLevel_label=0x7f04004f;
+        public static final int customerAdditional_ethinicity_label=0x7f04004e;
+        public static final int customerAdditional_mfiInformation_label=0x7f040049;
+        public static final int customerAdditional_personalInformation_label=0x7f04004a;
+        public static final int customerAdditional_recentNotes_label=0x7f040051;
+        public static final int customerDetails_tab_accounts=0x7f040022;
+        public static final int customerDetails_tab_additional=0x7f040023;
+        /** 
+        String values for CustomerDetailsActivity:
+    
+         */
+        public static final int customerDetails_tab_overview=0x7f040021;
+        public static final int customerOverview_amountOfLastLoan_label=0x7f040028;
+        public static final int customerOverview_delinquentPortfolio_label=0x7f04002a;
+        public static final int customerOverview_loanCycleNo_label=0x7f040027;
+        public static final int customerOverview_loanCyclePerProduct_label=0x7f04002e;
+        public static final int customerOverview_meetingsAttended_label=0x7f04002c;
+        public static final int customerOverview_meetingsMissed_label=0x7f04002d;
+        public static final int customerOverview_name_label=0x7f04002f;
+        public static final int customerOverview_noOfActiveLoans_label=0x7f040029;
+        public static final int customerOverview_performance_history_label=0x7f040026;
+        public static final int customerOverview_status_label=0x7f040024;
+        public static final int customerOverview_systemId_label=0x7f040025;
+        public static final int customerOverview_totalSavings_label=0x7f04002b;
+        public static final int dialog_cancel=0x7f040004;
+        public static final int dialog_checking_session=0x7f040008;
+        public static final int dialog_getting_account_data=0x7f04000a;
+        public static final int dialog_getting_customer_data=0x7f040009;
+        public static final int dialog_loading_message=0x7f040007;
+        public static final int dialog_login_title=0x7f040006;
+        /** 
+        Text values relates to user dialogs:
+    
+         */
+        public static final int dialog_ok=0x7f040003;
+        public static final int dialog_server_address=0x7f040005;
+        public static final int groupAdditional_approvalDate_label=0x7f040040;
+        public static final int groupAdditional_recentNotes_label=0x7f040053;
+        public static final int groupAdditional_recruitedBy_label=0x7f040041;
+        public static final int groupOverview_amountOfLastGroupLoan_label=0x7f04003a;
+        public static final int groupOverview_averageIndividualLoanSize_label=0x7f04003b;
+        public static final int groupOverview_loanCyclePerProduct_label=0x7f04003f;
+        public static final int groupOverview_noOfActiveClients_label=0x7f040039;
+        public static final int groupOverview_portfolioAtRisk_label=0x7f04003d;
+        public static final int groupOverview_totalLoanPortfolio_label=0x7f04003c;
+        public static final int groupOverview_totalSavings_label=0x7f04003e;
+        public static final int loanAccountListItem_amountDue_label=0x7f040034;
+        public static final int loanAccountListItem_outstandingBalance_label=0x7f040033;
+        public static final int loanAccountListItem_status_label=0x7f040032;
+        public static final int loanAccounts_amountDue_label=0x7f040038;
+        public static final int loan_label=0x7f040035;
+        public static final int login_button=0x7f040019;
+        public static final int login_errors=0x7f04001a;
+        public static final int login_header=0x7f04001b;
+        /** 
+        String values for LoginActivity:
+    
+         */
+        public static final int login_login_label=0x7f040017;
+        public static final int login_password_label=0x7f040018;
+        /** 
+        Menus and menu items related strings:
+    
+         */
+        public static final int menu_change_address=0x7f040012;
+        public static final int menu_log_out=0x7f040013;
+        public static final int menu_synchronize=0x7f040014;
+        public static final int not_implemented_yet_message=0x7f040002;
+        public static final int savingsAccountListItem_balance_label=0x7f040030;
+        public static final int savingsAccountListItem_status_label=0x7f040031;
+        public static final int savings_label=0x7f040036;
+        public static final int server_name_template=0x7f040001;
+        public static final int toast_account_id_not_available=0x7f040011;
+        public static final int toast_address_invalid=0x7f04000f;
+        public static final int toast_address_set=0x7f04000c;
+        public static final int toast_connection_error=0x7f04000e;
+        public static final int toast_customer_id_not_available=0x7f040010;
+        public static final int toast_first_address_canceled=0x7f04000d;
+        /** 
+        Text values for toast messages:
+    
+         */
+        public static final int toast_first_address_set=0x7f04000b;
+        /** 
+        String values for AccountTransactionHistoryActivity
+    
+         */
+        public static final int transactionHistory_label=0x7f040056;
+    }
+    public static final class style {
+        public static final int Errors=0x7f050002;
+        public static final int Header=0x7f050001;
+        public static final int Info=0x7f050003;
+        public static final int Label=0x7f050000;
+        public static final int Shifted=0x7f050004;
     }
 }

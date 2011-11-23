@@ -4,6 +4,7 @@
 local.properties
 *.iml
 *.ipr
+*.iws
 out
 build.xml
 target

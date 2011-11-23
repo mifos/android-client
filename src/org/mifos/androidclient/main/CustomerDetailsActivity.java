@@ -111,6 +111,14 @@ public class CustomerDetailsActivity extends DownloaderActivity
             view = builder.buildAccountsView();
             setupAccountsListListeners(view);
             tabContent.addView(view);
+
+            tabContent.addView(builder.buildAccountsView());
+
+            tabContent = (LinearLayout)findViewById(R.id.customer_additional);
+            if(tabContent.getChildCount() > 0){
+                tabContent.removeAllViews();
+            }
+            tabContent.addView(builder.buildAdditionalView());
         }
     }
 
