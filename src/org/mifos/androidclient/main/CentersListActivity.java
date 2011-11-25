@@ -55,6 +55,9 @@ public class CentersListActivity extends DownloaderActivity
         super.onCreate(bundle);
         setContentView(R.layout.centers_list);
 
+        if (bundle != null && bundle.containsKey(CustomersData.BUNDLE_KEY)) {
+            mCustomersData = (CustomersData)bundle.getSerializable(CustomersData.BUNDLE_KEY);
+        }
         mCentersList = (ListView)findViewById(R.id.centers_list);
         mCustomerService = new CustomerService(this);
     }
@@ -63,7 +66,14 @@ public class CentersListActivity extends DownloaderActivity
     protected void onSessionActive() {
         if (mCustomersData == null) {
             runClientsListTask();
+        } else {
+            repopulateCustomersList(mCustomersData);
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putSerializable(CustomersData.BUNDLE_KEY, mCustomersData);
     }
 
     @Override
@@ -86,10 +96,10 @@ public class CentersListActivity extends DownloaderActivity
     /**
      * Refreshes contents of the centers list.
      */
-    private void repopulateCustomersList() {
+    private void repopulateCustomersList(CustomersData data) {
         mCentersList.setAdapter(new SimpleListAdapter(
                 this,
-                new ArrayList<SimpleListItem>(mCustomersData.getCenters())
+                new ArrayList<SimpleListItem>(data.getCenters())
         ));
         mCentersList.setOnItemClickListener(this);
         mCentersList.setOnItemLongClickListener(this);
@@ -140,7 +150,7 @@ public class CentersListActivity extends DownloaderActivity
                     emptyCenter.setSearchId(ApplicationConstants.EMPTY_STRING);
                     emptyCenter.setGroups(mCustomersData.getGroups());
                 }
-                repopulateCustomersList();
+                repopulateCustomersList(result);
             }
         }
 

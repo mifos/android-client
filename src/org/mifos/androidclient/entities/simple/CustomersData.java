@@ -22,13 +22,16 @@ package org.mifos.androidclient.entities.simple;
 
 import org.mifos.androidclient.entities.BaseEntity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Used to aggregate data which is downloaded when a list of
  * Loan Officer's clients is requested from the Mifos server.
  */
-public class CustomersData extends BaseEntity {
+public class CustomersData extends BaseEntity implements Serializable {
+
+    public static final String BUNDLE_KEY = CustomersData.class.getSimpleName();
 
     private List<Center> centers;
     private List<Group> groups;

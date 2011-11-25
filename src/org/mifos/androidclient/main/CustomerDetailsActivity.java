@@ -69,6 +69,9 @@ public class CustomerDetailsActivity extends DownloaderActivity
         tabs.addTab(accountsSpec);
         tabs.addTab(additionalSpec);
 
+        if (bundle != null && bundle.containsKey(CustomerDetailsEntity.BUNDLE_KEY)) {
+            mDetails = (CustomerDetailsEntity)bundle.getSerializable(CustomerDetailsEntity.BUNDLE_KEY);
+        }
         mCustomer = (AbstractCustomer)getIntent().getSerializableExtra(AbstractCustomer.BUNDLE_KEY);
         mCustomerService = new CustomerService(this);
     }
@@ -78,7 +81,14 @@ public class CustomerDetailsActivity extends DownloaderActivity
         super.onSessionActive();
         if (mDetails == null) {
             runCustomerDetailsTask();
+        } else {
+            updateContent(mDetails);
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putSerializable(CustomerDetailsEntity.BUNDLE_KEY, mDetails);
     }
 
     @Override

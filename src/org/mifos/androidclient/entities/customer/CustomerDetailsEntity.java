@@ -22,9 +22,12 @@ package org.mifos.androidclient.entities.customer;
 
 import org.mifos.androidclient.entities.BaseEntity;
 
+import java.io.Serializable;
 import java.util.List;
 
-public abstract class CustomerDetailsEntity extends BaseEntity {
+public abstract class CustomerDetailsEntity extends BaseEntity implements Serializable {
+
+    public static final String BUNDLE_KEY = CustomerDetailsEntity.class.getSimpleName();
 
     private CustomerAccountSummary customerAccountSummary;
     private Address address;
