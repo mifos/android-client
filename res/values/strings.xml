@@ -121,7 +121,7 @@
     <string name="groupOverview_portfolioAtRisk_label">Portfolio at risk:&#160;</string>
     <string name="groupOverview_totalSavings_label">Total Savings:&#160;</string>
     <string name="groupOverview_loanCyclePerProduct_label">Loan Cycle per Product:&#160;</string>
-    <string name="groupAdditional_approvalDate_label">Group approval:&#160;</string>
+    <string name="groupAdditional_approvalDate_label">Group approval date:&#160;</string>
     <string name="groupAdditional_recruitedBy_label">Recruited By:&#160;</string>
 
 
@@ -136,7 +136,7 @@
 
     <string name="customerAdditional_mfiInformation_label">MFI Information:&#160;</string>
     <string name="customerAdditional_personalInformation_label">Personal Information:&#160;</string>
-    <string name="customerAdditional_customerActivationDate_label">Customer start date:&#160;</string>
+    <string name="customerAdditional_customerActivationDate_label">Client start date:&#160;</string>
     <string name="customerAdditional_RecruitByDisplayName_label">Recruited By:&#160;</string>
     <string name="customerAdditional_dateOfBirthDay_label">Date Of Birth:&#160;</string>
     <string name="customerAdditional_ethinicity_label">Ethnicity:&#160;</string>
