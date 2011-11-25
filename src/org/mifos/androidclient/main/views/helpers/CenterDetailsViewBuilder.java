@@ -109,6 +109,7 @@ public class CenterDetailsViewBuilder implements CustomerDetailsViewBuilder {
         textView =(TextView)view.findViewById(R.id.centerAdditional_centerStart);
         textView.setText(mDetails.getCenterDisplay().getCreatedDate());
         textView =(TextView)view.findViewById(R.id.centerAdditional_loanOfficer_name);
+        textView.setText(mDetails.getCenterDisplay().getLoanOfficerName());
 
         if(mDetails.getRecentCustomerNotes() != null && mDetails.getRecentCustomerNotes().size() > 0 ) {
             textView = (TextView)view.findViewById(R.id.centerAdditional_recentNotes_label);
