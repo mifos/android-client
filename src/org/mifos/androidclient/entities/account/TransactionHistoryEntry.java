@@ -20,8 +20,10 @@
 
 package org.mifos.androidclient.entities.account;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.mifos.androidclient.util.listadapters.SimpleListItem;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TransactionHistoryEntry implements SimpleListItem {
 
     private String transactionDate;

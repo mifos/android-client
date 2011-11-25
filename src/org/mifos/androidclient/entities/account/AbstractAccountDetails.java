@@ -24,6 +24,8 @@ import org.mifos.androidclient.entities.BaseEntity;
 
 public abstract class AbstractAccountDetails extends BaseEntity {
 
+    public static final String ACCOUNT_NUMBER_BUNDLE_KEY = AbstractAccountDetails.class.getSimpleName() + "-accountNumber";
+
     private String globalAccountNum;
 
     public String getGlobalAccountNum() {

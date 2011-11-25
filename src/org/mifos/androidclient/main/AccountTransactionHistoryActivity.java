@@ -24,26 +24,45 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import org.mifos.androidclient.R;
+import org.mifos.androidclient.entities.account.AbstractAccountDetails;
 import org.mifos.androidclient.entities.account.TransactionHistoryEntry;
 import org.mifos.androidclient.net.services.AccountService;
 import org.mifos.androidclient.templates.DownloaderActivity;
 import org.mifos.androidclient.templates.ServiceConnectivityTask;
 import org.springframework.web.client.RestClientException;
 
+import java.util.*;
+
 public class AccountTransactionHistoryActivity extends DownloaderActivity {
 
     private String mAccountNumber;
     private AccountService mAccountService;
     private TransactionHistoryTask mTransactionHistoryTask;
+    private List<TransactionHistoryEntry> mTransactionHistoryEntries;
 
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.transaction_history);
 
-        //mAccountNumber = getIntent().getStringExtra(BUNDLE_ID);
-
+        mAccountNumber = getIntent().getStringExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY);
         mAccountService = new AccountService(this);
+    }
+
+    @Override
+    protected void onSessionActive() {
+        super.onSessionActive();
+        if (mTransactionHistoryEntries == null) {
+            runTransactionHistoryTask();
+        } else {
+            updateContent(mTransactionHistoryEntries);
+        }
+    }
+
+    private void updateContent(List<TransactionHistoryEntry> entries) {
+        if (entries != null) {
+            mTransactionHistoryEntries = entries;
+        }
     }
 
     private void runTransactionHistoryTask() {
@@ -67,11 +86,17 @@ public class AccountTransactionHistoryActivity extends DownloaderActivity {
 
         @Override
         protected TransactionHistoryEntry[] doInBackgroundBody(String... params) throws RestClientException, IllegalArgumentException {
-            return new TransactionHistoryEntry[0];
+            TransactionHistoryEntry[] entries = new TransactionHistoryEntry[0];
+            if (mAccountService != null) {
+                entries = mAccountService.getAccountTransactionHistory(params[0]);
+            }
+            return entries;
         }
 
         @Override
         protected void onPostExecuteBody(TransactionHistoryEntry[] transactionHistoryEntries) {
+            List<TransactionHistoryEntry> entries = new ArrayList<TransactionHistoryEntry>(Arrays.asList(transactionHistoryEntries));
+            updateContent(entries);
         }
 
     }
