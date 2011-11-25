@@ -136,11 +136,11 @@
 
     <string name="customerAdditional_mfiInformation_label">MFI Information:&#160;</string>
     <string name="customerAdditional_personalInformation_label">Personal Information:&#160;</string>
-    <string name="customerAdditional_customerActivationDate_label">Borrower start date:&#160;</string>
+    <string name="customerAdditional_customerActivationDate_label">Customer start date:&#160;</string>
     <string name="customerAdditional_RecruitByDisplayName_label">Recruited By:&#160;</string>
     <string name="customerAdditional_dateOfBirthDay_label">Date Of Birth:&#160;</string>
     <string name="customerAdditional_ethinicity_label">Ethnicity:&#160;</string>
-    <string name="customerAdditional_educationLevel_label">EducationLevel:&#160;</string>
+    <string name="customerAdditional_educationLevel_label">Education Level:&#160;</string>
     <string name="customerAdditional_citizenship_label">Citizenship:&#160;</string>
 
     <string name="customerAdditional_recentNotes_label">Recent Notes:&#160;</string>
