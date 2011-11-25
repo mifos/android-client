@@ -28,6 +28,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SavingsAccountDetails extends AbstractAccountDetails {
 
+    private SavingsProduct productDetails;
     private String accountStateName;
     private Double accountBalance;
     private String dueDate;
@@ -37,6 +38,14 @@ public class SavingsAccountDetails extends AbstractAccountDetails {
     private List<CustomerNote> recentNoteDtos;
     private String recommendedOrMandatoryAmount;
     private String depositTypeName;
+
+    public SavingsProduct getProductDetails() {
+        return productDetails;
+    }
+
+    public void setProductDetails(SavingsProduct productDetails) {
+        this.productDetails = productDetails;
+    }
 
     public String getDepositTypeName() {
         return depositTypeName;
