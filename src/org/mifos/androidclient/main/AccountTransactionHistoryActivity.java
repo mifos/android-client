@@ -21,17 +21,42 @@
 package org.mifos.androidclient.main;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.account.TransactionHistoryEntry;
+import org.mifos.androidclient.net.services.AccountService;
 import org.mifos.androidclient.templates.DownloaderActivity;
 import org.mifos.androidclient.templates.ServiceConnectivityTask;
 import org.springframework.web.client.RestClientException;
 
 public class AccountTransactionHistoryActivity extends DownloaderActivity {
 
+    private String mAccountNumber;
+    private AccountService mAccountService;
+    private TransactionHistoryTask mTransactionHistoryTask;
+
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
+        setContentView(R.layout.transaction_history);
+
+        //mAccountNumber = getIntent().getStringExtra(BUNDLE_ID);
+
+        mAccountService = new AccountService(this);
+    }
+
+    private void runTransactionHistoryTask() {
+        if (mAccountNumber != null) {
+            if (mTransactionHistoryTask == null || mTransactionHistoryTask.getStatus() != AsyncTask.Status.RUNNING) {
+                mTransactionHistoryTask = new TransactionHistoryTask(
+                        this,
+                        getString(R.string.dialog_loading_message),
+                        getString(R.string.dialog_getting_transaction_history)
+                );
+                mTransactionHistoryTask.execute(mAccountNumber);
+            }
+        }
     }
 
     private class TransactionHistoryTask extends ServiceConnectivityTask<String, Void, TransactionHistoryEntry[]> {

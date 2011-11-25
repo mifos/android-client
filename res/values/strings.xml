@@ -23,6 +23,7 @@
     <string name="dialog_checking_session">Checking user session</string>
     <string name="dialog_getting_customer_data">Getting customer data</string>
     <string name="dialog_getting_account_data">Getting account data</string>
+    <string name="dialog_getting_transaction_history">Getting transaction history</string>
 
     <!--
         Text values for toast messages:
