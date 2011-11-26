@@ -94,6 +94,7 @@
 
             </TableLayout>
 
+
              <TextView
                 style="@style/Label"
                 android:id="@+id/accountOverviewSavings_recentNotes_label"
@@ -107,10 +108,11 @@
                 android:id="@+id/accountOverviewSavings_recentNotes"
                 android:orientation="vertical"
                 android:layout_below="@id/accountOverviewSavings_recentNotes_label"
-                android:layout_width="fill_parent"
+               android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp">
             </LinearLayout>
+
             <!--
             PERFORMANCE HISTORY
             -->
@@ -205,35 +207,3 @@
 
         </RelativeLayout>
 </ScrollView>
-
-<!--
- <TextView
-    style="@style/Shifted"
-    android:id=""
-    android:layout_below=""
-    android:layout_toRightOf=""
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    />
-
-     <TableRow>
-            <TextView
-                style="@style/Shifted"
-                android:id=""
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-            />
-            <TextView
-                style="@style/Shifted"
-                android:id=""
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-            />
-            <TextView
-                style="@style/Shifted"
-                android:id=""
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-            />
-     </TableRow>
--->

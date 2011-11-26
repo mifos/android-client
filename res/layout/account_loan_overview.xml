@@ -325,10 +325,7 @@
 
             </TableLayout>
 
-            <!--
-                RECENT ACTIVITY TABLE
-            -->
-            <TextView
+           <TextView
                 style="@style/Label"
                 android:id="@+id/accountOverviewLoan_recentActivity_label"
                 android:layout_below="@id/accountSummaryTable_label"
@@ -344,8 +341,7 @@
              android:layout_width="fill_parent"
              android:layout_height="fill_parent"
              android:paddingBottom="3dp">
-
-            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+         <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_below="@id/accountOverviewLoan_recentActivity_label"
@@ -365,6 +361,7 @@
     <!--
             RECENT NOTES
      -->
+
             <TextView
                 style="@style/Label"
                 android:id="@+id/accountOverviewLoan_recentNotes_label"
@@ -383,6 +380,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp">
             </LinearLayout>
+
             <!--
                 PERFORMANCE HISTORY
             -->
@@ -459,43 +457,6 @@
                 android:layout_height="wrap_content"
                 />
 
-
-
     </RelativeLayout>
 
 </ScrollView>
-
-
-
-
-            <!--
-             <TextView
-                style="@style/Shifted"
-                android:id=""
-                android:layout_below=""
-                android:layout_toRightOf=""
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
-
-                 <TableRow>
-                        <TextView
-                            style="@style/Shifted"
-                            android:id=""
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                        />
-                        <TextView
-                            style="@style/Shifted"
-                            android:id=""
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                        />
-                        <TextView
-                            style="@style/Shifted"
-                            android:id=""
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                        />
-                 </TableRow>
-            -->

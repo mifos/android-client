@@ -33,7 +33,6 @@ import org.mifos.androidclient.entities.account.LoanAccountDetails;
 import org.mifos.androidclient.entities.account.LoanActivity;
 import org.mifos.androidclient.entities.customer.CustomerNote;
 import org.mifos.androidclient.templates.AccountDetailsViewBuilder;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -56,7 +55,6 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
         prepareAccountInformation(view);
         prepareAccountSummary(view);
 
-
         TableLayout LoanRecentActivityLayout = (TableLayout)view.findViewById(R.id.tableLoan_recentActivity);
         if(mDetails.getRecentAccountActivity() !=null && mDetails.getRecentAccountActivity().size() > 0){
 
@@ -68,7 +66,6 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
         }
 
         preparePerformanceHistory(view);
-
         return view;
     }
 
@@ -78,7 +75,6 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
         View view = inflater.inflate(R.layout.account_loan_details, null);
         return view;
     }
-
 
     private void preparePerformanceHistory(View view) {
         TextView textView = (TextView)view.findViewById(R.id.accountOverviewLoan_noOfPayments);
@@ -103,8 +99,6 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
                 recentNotesLayout.addView(textView);
         }
     }
-
-
 
     private void prepareAccountInformation(View view) {
         TextView textView = (TextView)view.findViewById(R.id.accountOverviewLoan_accountName);
@@ -158,6 +152,7 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
         textView.setText(mDetails.getLoanSummary().getTotalAmntDue());
     }
 
+
     private void prepareLoanActivityTable(View view, TableLayout loanRecentActivityLayout) {
         TextView textView;
         long sDate;Date date;DateFormat df;
@@ -165,7 +160,6 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
         textView.setVisibility(View.VISIBLE);
 
         TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT,TableRow.LayoutParams.WRAP_CONTENT);
-
         TableRow tableRow = new TableRow(mContext);
         tableRow.setLayoutParams(params);
         textView = new TextView(mContext);
