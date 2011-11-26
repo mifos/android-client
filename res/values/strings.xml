@@ -154,6 +154,45 @@
     <string name="accountDetails_tab_overview">Account Overview</string>
     <string name="accountDetails_tab_additionalInfo">Account Details</string>
 
+    <string name="accountOverviewLoan_accountSummary_label">Account Summary</string>
+    <string name="accountOverviewLoan_status_label">Status:&#160;</string>
+    <string name="accountOverviewLoan_disbursalDate_label">Disbursal date:&#160;</string>
+    <string name="accountOverviewLoan_purposeOfLoan_label">Purpose of Loan:&#160;</string>
+    <string name="accountOverviewLoan_totalAmountDueOn_label">Total amount due on</string>
+    <string name="accountOverviewLoan_amountInArrears_label">Amount in arrears:&#160;</string>
+    <string name="accountOverviewLoan_originalLoan_label">Loan</string>
+    <string name="accountOverviewLoan_amountPaid_label">Paid</string>
+    <string name="accountOverviewLoan_loanBalance_label">Balance</string>
+    <string name="accountOverviewLoan_principal_label">Principal</string>
+    <string name="accountOverviewLoan_interest_label">Interest</string>
+    <string name="accountOverviewLoan_fees_label">Fees</string>
+    <string name="accountOverviewLoan_penalty_label">Penalty</string>
+    <string name="accountOverviewLoan_total_label">Total</string>
+    <string name="accountOverviewLoan_recentActivity_label">Recent activate</string>
+    <string name="accountOverviewLoan_recentNotes_label">Recent notes</string>
+    <string name="accountOverviewLoan_performanceHistory_label">Performance history</string>
+
+    <string name="accountOverviewSavings_accountStatus_label">Status:&#160;</string>
+    <string name="accountOverviewSavings_accountBalance_label">Account Balance:&#160;</string>
+    <string name="accountOverviewSavings_totalAmountDue_label">Total amount due on:&#160;</string>
+    <string name="accountOverviewSavings_recentActivity_label">Recent activate</string>
+
+    <string name="tableSavings_recentActivity_date_label">Date</string>
+    <string name="tableSavings_recentActivity_description_label">Description</string>
+    <string name="tableSavings_recentActivity_amount_label">Amount</string>
+
+    <string name="tableLoan_recentActivity_actionDate">&#160;Date&#160;</string>
+    <string name="tableLoan_recentActivity_activity">&#160;Activity&#160;</string>
+    <string name="tableLoan_recentActivity_principal">&#160;Principal&#160;</string>
+    <string name="tableLoan_recentActivity_interest">&#160;Interest&#160;</string>
+    <string name="tableLoan_recentActivity_fees">&#160;Fees&#160;</string>
+    <string name="tableLoan_recentActivity_penalty">&#160;Penalty&#160;</string>
+    <string name="tableLoan_recentActivity_total">&#160;Total&#160;</string>
+    <string name="tableLoan_recentActivity_principalRunning">&#160;Principal balance&#160;</string>
+    <string name="tableLoan_recentActivity_interestRunning">&#160;Interest balance&#160;</string>
+    <string name="tableLoan_recentActivity_feesRunning">&#160;Fees balance&#160;</string>
+    <string name="tableLoan_recentActivity_totalRunning">&#160;Total balance&#160;</string>
+
     <!--
         String values for AccountTransactionHistoryActivity
     -->

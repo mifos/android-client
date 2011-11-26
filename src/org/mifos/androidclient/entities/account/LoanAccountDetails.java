@@ -20,6 +20,7 @@
 
 package org.mifos.androidclient.entities.account;
 
+import android.util.SparseArray;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.mifos.androidclient.entities.customer.CustomerNote;
 
@@ -63,9 +64,17 @@ public class LoanAccountDetails extends AbstractAccountDetails {
     private  String createdDate;
     private LoanPerformanceHistory performanceHistory;
     private Boolean group;
-    private List<LoanActivity> recentAccountActivities;
+    private List<LoanActivity> recentAccountActivity;
     private Boolean disbursed;
     private List<CustomerNote> recentNoteDtos;
+
+    public List<LoanActivity> getRecentAccountActivity() {
+        return recentAccountActivity;
+    }
+
+    public void setRecentAccountActivity(List<LoanActivity> recentAccountActivity) {
+        this.recentAccountActivity = recentAccountActivity;
+    }
 
     public String getAccountStateName() {
         return accountStateName;
@@ -347,13 +356,6 @@ public class LoanAccountDetails extends AbstractAccountDetails {
         this.group = group;
     }
 
-    public List<LoanActivity> getRecentAccountActivities() {
-        return recentAccountActivities;
-    }
-
-    public void setRecentAccountActivities(List<LoanActivity> recentAccountActivities) {
-        this.recentAccountActivities = recentAccountActivities;
-    }
 
     public Boolean getDisbursed() {
         return disbursed;
@@ -370,5 +372,4 @@ public class LoanAccountDetails extends AbstractAccountDetails {
     public void setRecentNoteDtos(List<CustomerNote> recentNoteDtos) {
         this.recentNoteDtos = recentNoteDtos;
     }
-
 }

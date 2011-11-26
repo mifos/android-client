@@ -21,13 +21,24 @@
 package org.mifos.androidclient.main.views.helpers;
 
 import android.content.Context;
+import android.provider.ContactsContract;
+import android.text.Layout;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.*;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.account.LoanAccountDetails;
+import org.mifos.androidclient.entities.account.LoanActivity;
+import org.mifos.androidclient.entities.customer.CustomerNote;
 import org.mifos.androidclient.templates.AccountDetailsViewBuilder;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder {
 
@@ -41,12 +52,30 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
 
     @Override
     public View buildOverviewView() {
-        TextView view = new TextView(mContext);
-        view.setText(mContext.getString(R.string.not_implemented_yet_message));
-        view.setTextAppearance(mContext, R.style.Info);
-        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
-        view.setLayoutParams(params);
-        view.setGravity(Gravity.CENTER);
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.account_loan_overview, null);
+
+        prepareAccountInformation(view);
+        prepareAccountSummary(view);
+
+        TableLayout.LayoutParams params = new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT,TableLayout.LayoutParams.WRAP_CONTENT);
+        TableLayout LoanRecentActivityLayout = (TableLayout)view.findViewById(R.id.tableLoan_recentActivity);
+        if(mDetails.getRecentAccountActivity() !=null && mDetails.getRecentAccountActivity().size() > 0){
+
+            prepareLoanActivityTable(view, params, LoanRecentActivityLayout);
+        }
+        /*
+        if(mDetails.get){
+        LinearLayout recentNotesLayout = (LinearLayout)view.findViewById(R.id.accountOverviewLoan_recentNotes);
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        for(CustomerNote accNote: mDetails.getRecentNoteDtos()) {
+                textView = new TextView(mContext);
+                textView.setLayoutParams(params);
+                textView.setText(accNote.getComment() +" "+ accNote.getCommentDate() + " " + accNote.getPersonnelName());
+                recentNotesLayout.addView(textView);
+        }
+        }
+        */
         return view;
     }
 
@@ -59,6 +88,173 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
         view.setLayoutParams(params);
         view.setGravity(Gravity.CENTER);
         return view;
+    }
+
+    private void prepareAccountInformation(View view) {
+        TextView textView = (TextView)view.findViewById(R.id.accountOverviewLoan_accountName);
+        textView.setText(mDetails.getPrdOfferingName());
+        textView = (TextView)view.findViewById(R.id.accountOverviewLoan_accountNumber);
+        textView.setText("#" + mDetails.getGlobalAccountNum());
+        textView = (TextView)view.findViewById(R.id.accountOverviewLoan_status);
+        textView.setText(mDetails.getAccountStateName());
+        textView =(TextView)view.findViewById(R.id.accountOverviewLoan_disbursalDate);
+        long sDate = Long.parseLong(mDetails.getDisbursementDate());
+        Date date = new Date(sDate);
+        DateFormat df = new SimpleDateFormat("dd/MM/yyy");
+        textView.setText(df.format(date).toString());
+    }
+
+    private void prepareAccountSummary(View view) {
+        TextView textView;
+        textView = (TextView)view.findViewById(R.id.accountOverviewLoan_totalAmountDueOn);
+        textView.setText(mDetails.getNextMeetingDate() + ": " + mDetails.getTotalAmountDue());
+        textView = (TextView)view.findViewById(R.id.accountOverviewLoan_amountInArrears);
+        textView.setText(mDetails.getTotalAmountInArrears());
+        textView = (TextView)view.findViewById(R.id.accountOverviewLoan_originalPrincipal);
+        textView.setText(mDetails.getLoanSummary().getOriginalPrincipal());
+        textView = (TextView)view.findViewById(R.id.accountOverviewLoan_principalPaid);
+        textView.setText(mDetails.getLoanSummary().getPrincipalPaid());
+        textView = (TextView)view.findViewById(R.id.accountOverviewLoan_principalDue);
+        textView.setText(mDetails.getLoanSummary().getPrincipalDue());
+        textView =(TextView)view.findViewById(R.id.accountOverviewLoan_originalInterest);
+        textView.setText(mDetails.getLoanSummary().getOriginalInterest());
+        textView =(TextView)view.findViewById(R.id.accountOverviewLoan_interestPaid);
+        textView.setText(mDetails.getLoanSummary().getInterestPaid());
+        textView =(TextView)view.findViewById(R.id.accountOverviewLoan_interestDue);
+        textView.setText(mDetails.getLoanSummary().getInterestDue());
+        textView =(TextView)view.findViewById(R.id.accountOverviewLoan_originalFees);
+        textView.setText(mDetails.getLoanSummary().getOriginalFees());
+        textView =(TextView)view.findViewById(R.id.accountOverviewLoan_feesPaid);
+        textView.setText(mDetails.getLoanSummary().getFeesPaid());
+        textView =(TextView)view.findViewById(R.id.accountOverviewLoan_feesDue);
+        textView.setText(mDetails.getLoanSummary().getFeesDue());
+        textView =(TextView)view.findViewById(R.id.accountOverviewLoan_originalPenalty);
+        textView.setText(mDetails.getLoanSummary().getOriginalPenalty());
+        textView =(TextView)view.findViewById(R.id.accountOverviewLoan_penaltyPaid);
+        textView.setText(mDetails.getLoanSummary().getPenaltyDue());
+        textView =(TextView)view.findViewById(R.id.accountOverviewLoan_penaltyDue);
+        textView.setText(mDetails.getLoanSummary().getPenaltyDue());
+        textView =(TextView)view.findViewById(R.id.accountOverviewLoan_originalTotal);
+        textView.setText(mDetails.getLoanSummary().getTotalLoanAmnt());
+        textView =(TextView)view.findViewById(R.id.accountOverviewLoan_totalPaid);
+        textView.setText(mDetails.getLoanSummary().getTotalAmntPaid());
+        textView =(TextView)view.findViewById(R.id.accountOverviewLoan_totalDue);
+        textView.setText(mDetails.getLoanSummary().getTotalAmntDue());
+    }
+
+    private void prepareLoanActivityTable(View view, TableLayout.LayoutParams params, TableLayout loanRecentActivityLayout) {
+        TextView textView;
+        long sDate;Date date;DateFormat df;
+        textView = (TextView)view.findViewById(R.id.accountOverviewLoan_recentActivity_label);
+        textView.setVisibility(View.VISIBLE);
+
+        TableRow tableRow = new TableRow(mContext);
+        tableRow.setLayoutParams(params);
+        textView = new TextView(mContext);
+        textView.setGravity(Gravity.CENTER_HORIZONTAL);
+        textView.setText(R.string.tableLoan_recentActivity_actionDate);
+        tableRow.addView(textView);
+        textView = new TextView(mContext);
+        textView.setGravity(Gravity.CENTER_HORIZONTAL);
+        textView.setText(R.string.tableLoan_recentActivity_activity);
+        tableRow.addView(textView);
+        textView = new TextView(mContext);
+        textView.setGravity(Gravity.CENTER_HORIZONTAL);
+        textView.setText(R.string.tableLoan_recentActivity_principal);
+        tableRow.addView(textView);
+        textView = new TextView(mContext);
+        textView.setGravity(Gravity.CENTER_HORIZONTAL);
+        textView.setText(R.string.tableLoan_recentActivity_interest);
+        tableRow.addView(textView);
+        textView = new TextView(mContext);
+        textView.setGravity(Gravity.CENTER_HORIZONTAL);
+        textView.setText(R.string.tableLoan_recentActivity_fees);
+        tableRow.addView(textView);
+        textView = new TextView(mContext);
+        textView.setGravity(Gravity.CENTER_HORIZONTAL);
+        textView.setText(R.string.tableLoan_recentActivity_penalty);
+        tableRow.addView(textView);
+        textView = new TextView(mContext);
+        textView.setGravity(Gravity.CENTER_HORIZONTAL);
+        textView.setText(R.string.tableLoan_recentActivity_total);
+        tableRow.addView(textView);
+        textView = new TextView(mContext);
+        textView.setGravity(Gravity.CENTER_HORIZONTAL);
+        textView.setText(R.string.tableLoan_recentActivity_principalRunning);
+        tableRow.addView(textView);
+        textView = new TextView(mContext);
+        textView.setGravity(Gravity.CENTER_HORIZONTAL);
+        textView.setText(R.string.tableLoan_recentActivity_interestRunning);
+        tableRow.addView(textView);
+        textView = new TextView(mContext);
+        textView.setGravity(Gravity.CENTER_HORIZONTAL);
+        textView.setText(R.string.tableLoan_recentActivity_feesRunning);
+        tableRow.addView(textView);
+        textView = new TextView(mContext);
+        textView.setGravity(Gravity.CENTER_HORIZONTAL);
+        textView.setText(R.string.tableLoan_recentActivity_totalRunning);
+        tableRow.addView(textView);
+        loanRecentActivityLayout.addView(tableRow);
+
+        for(LoanActivity loanActivity: mDetails.getRecentAccountActivity()){
+            tableRow = new TableRow(mContext);
+            tableRow.setLayoutParams(params);
+            textView = new TextView(mContext);
+            textView.setGravity(Gravity.RIGHT);
+            sDate = Long.parseLong(loanActivity.getActionDate());
+            date = new Date(sDate);
+            df = new SimpleDateFormat("dd/MM/yyy");
+            textView.setText(df.format(date).toString());
+            tableRow.addView(textView);
+            textView = new TextView(mContext);
+            textView.setGravity(Gravity.CENTER_HORIZONTAL);
+            textView.setText(loanActivity.getActivity());
+            tableRow.addView(textView);
+            textView = new TextView(mContext);
+            textView.setGravity(Gravity.CENTER_HORIZONTAL);
+            textView.setText(loanActivity.getPrincipal());
+            tableRow.addView(textView);
+            textView = new TextView(mContext);
+            textView.setGravity(Gravity.CENTER_HORIZONTAL);
+            textView.setText(loanActivity.getInterest());
+            tableRow.addView(textView);
+            textView = new TextView(mContext);
+            textView.setGravity(Gravity.CENTER_HORIZONTAL);
+            textView.setText(loanActivity.getFees());
+            tableRow.addView(textView);
+            textView = new TextView(mContext);
+            textView.setGravity(Gravity.CENTER_HORIZONTAL);
+            textView.setText(loanActivity.getPenalty());
+            tableRow.addView(textView);
+            textView = new TextView(mContext);
+            textView.setGravity(Gravity.CENTER_HORIZONTAL);
+            textView.setText(loanActivity.getTotal());
+            tableRow.addView(textView);
+            textView = new TextView(mContext);
+            textView.setGravity(Gravity.CENTER_HORIZONTAL);
+            textView.setText(loanActivity.getRunningBalancePrinciple());
+            tableRow.addView(textView);
+            textView = new TextView(mContext);
+            textView.setGravity(Gravity.CENTER_HORIZONTAL);
+            textView.setText(loanActivity.getRunningBalanceInterest());
+            tableRow.addView(textView);
+            textView = new TextView(mContext);
+            textView.setGravity(Gravity.CENTER_HORIZONTAL);
+            textView.setText(loanActivity.getRunningBalanceFees());
+            tableRow.addView(textView);
+            textView = new TextView(mContext);
+            textView.setGravity(Gravity.CENTER_HORIZONTAL);
+            textView.setText(loanActivity.getTotalValue().toString());
+            tableRow.addView(textView);
+            loanRecentActivityLayout.addView(tableRow);
+
+        }
+    }
+
+
+
+    private LayoutInflater getLayoutInflater() {
+        return (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
 }

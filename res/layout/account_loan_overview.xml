@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+
+            <TextView
+                style="@style/Label"
+                android:id="@+id/accountOverviewLoan_accountName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+             <TextView
+                style="@style/Label"
+                android:id="@+id/accountOverviewLoan_accountNumber"
+                android:layout_below="@id/accountOverviewLoan_accountName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewLoan_status_label"
+                android:layout_below="@id/accountOverviewLoan_accountNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accountOverviewLoan_status_label"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewLoan_status"
+                android:layout_below="@id/accountOverviewLoan_accountNumber"
+                android:layout_toRightOf="@id/accountOverviewLoan_status_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewLoan_disbursalDate_label"
+                android:layout_below="@id/accountOverviewLoan_status_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accountOverviewLoan_disbursalDate_label"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewLoan_disbursalDate"
+                android:layout_below="@id/accountOverviewLoan_status_label"
+                android:layout_toRightOf="@id/accountOverviewLoan_disbursalDate_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewLoan_purposeOfLoan_label"
+                android:layout_below="@id/accountOverviewLoan_disbursalDate_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewLoan_purposeOfLoan"
+                android:layout_below="@id/accountOverviewLoan_disbursalDate_label"
+                android:layout_toRightOf="@id/accountOverviewLoan_purposeOfLoan_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                style="@style/Label"
+                android:id="@+id/accountOverviewLoan_accountSummary_label"
+                android:layout_below="@id/accountOverviewLoan_purposeOfLoan_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accountOverviewLoan_accountSummary_label"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewLoan_totalAmountDueOn_label"
+                android:layout_below="@id/accountOverviewLoan_accountSummary_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accountOverviewLoan_totalAmountDueOn_label"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewLoan_totalAmountDueOn"
+                android:layout_below="@id/accountOverviewLoan_accountSummary_label"
+                android:layout_toRightOf="@id/accountOverviewLoan_totalAmountDueOn_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewLoan_amountInArrears_label"
+                android:layout_below="@id/accountOverviewLoan_totalAmountDueOn_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accountOverviewLoan_amountInArrears_label"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewLoan_amountInArrears"
+                android:layout_below="@id/accountOverviewLoan_totalAmountDueOn_label"
+                android:layout_toRightOf="@id/accountOverviewLoan_amountInArrears_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/accountSummaryTable_label"
+                android:layout_below="@id/accountOverviewLoan_amountInArrears_label"
+                android:layout_marginTop="8dip"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:stretchColumns="4">
+
+
+                <TableRow>
+                    <TextView
+                        style="@style/Shifted"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                    <TextView
+                        style="@style/Shifted"
+                        android:id="@+id/accountOverviewLoan_originalLoan_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/accountOverviewLoan_originalLoan_label"
+                         android:gravity="right"
+                        />
+                    <TextView
+                        style="@style/Shifted"
+                        android:id="@+id/accountOverviewLoan_amountPaid_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/accountOverviewLoan_amountPaid_label"
+                        />
+                    <TextView
+                        style="@style/Shifted"
+                        android:id="@+id/accountOverviewLoan_loanBalance_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/accountOverviewLoan_loanBalance_label"
+                        android:gravity="right"
+                        />
+                    </TableRow>
+
+                    <View
+                        android:layout_height="2dip"
+                        android:background="#FF909090" />
+
+                    <TableRow>
+                        <TextView
+                            style="@style/Shifted"
+                            android:id="@+id/accountOverviewLoan_principal_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/accountOverviewLoan_principal_label"
+                        />
+                        <TextView
+                            style="@style/Shifted"
+                            android:id="@+id/accountOverviewLoan_originalPrincipal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                        />
+                        <TextView
+                            style="@style/Shifted"
+                            android:id="@+id/accountOverviewLoan_principalPaid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                        />
+                        <TextView
+                            style="@style/Shifted"
+                            android:id="@+id/accountOverviewLoan_principalDue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                        />
+                    </TableRow>
+
+                <View
+                    android:layout_height="2dip"
+                    android:background="#FF909090" />
+
+                 <TableRow>
+                        <TextView
+                            style="@style/Shifted"
+                            android:id="@+id/accountOverviewLoan_interest_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/accountOverviewLoan_interest_label"
+                        />
+                        <TextView
+                            style="@style/Shifted"
+                            android:id="@+id/accountOverviewLoan_originalInterest"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                        />
+                        <TextView
+                            style="@style/Shifted"
+                            android:id="@+id/accountOverviewLoan_interestPaid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                        />
+                        <TextView
+                            style="@style/Shifted"
+                            android:id="@+id/accountOverviewLoan_interestDue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                        />
+                 </TableRow>
+
+                 <View
+                    android:layout_height="2dip"
+                    android:background="#FF909090" />
+
+                 <TableRow>
+                        <TextView
+                            style="@style/Shifted"
+                            android:id="@+id/accountOverviewLoan_fees_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/accountOverviewLoan_fees_label"
+                        />
+                        <TextView
+                            style="@style/Shifted"
+                            android:id="@+id/accountOverviewLoan_originalFees"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                        />
+                        <TextView
+                            style="@style/Shifted"
+                            android:id="@+id/accountOverviewLoan_feesPaid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                        />
+                        <TextView
+                            style="@style/Shifted"
+                            android:id="@+id/accountOverviewLoan_feesDue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                        />
+                </TableRow>
+                 <View
+                    android:layout_height="2dip"
+                    android:background="#FF909090" />
+
+                 <TableRow>
+                        <TextView
+                            style="@style/Shifted"
+                            android:id="@+id/accountOverviewLoan_penalty_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/accountOverviewLoan_penalty_label"
+                        />
+                        <TextView
+                            style="@style/Shifted"
+                            android:id="@+id/accountOverviewLoan_originalPenalty"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                        />
+                        <TextView
+                            style="@style/Shifted"
+                            android:id="@+id/accountOverviewLoan_penaltyPaid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                        />
+                        <TextView
+                            style="@style/Shifted"
+                            android:id="@+id/accountOverviewLoan_penaltyDue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                        />
+                </TableRow>
+                 <View
+                    android:layout_height="2dip"
+                    android:background="#FF909090" />
+
+                 <TableRow>
+                        <TextView
+                            style="@style/Shifted"
+                            android:id="@+id/accountOverviewLoan_total_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/accountOverviewLoan_total_label"
+                        />
+                        <TextView
+                            style="@style/Shifted"
+                            android:id="@+id/accountOverviewLoan_originalTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                        />
+                        <TextView
+                            style="@style/Shifted"
+                            android:id="@+id/accountOverviewLoan_totalPaid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                        />
+                        <TextView
+                            style="@style/Shifted"
+                            android:id="@+id/accountOverviewLoan_totalDue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                        />
+
+                 </TableRow>
+
+            </TableLayout>
+
+            <TextView
+                style="@style/Label"
+                android:id="@+id/accountOverviewLoan_recentActivity_label"
+                android:layout_below="@id/accountSummaryTable_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                />
+<!--
+   RECENT ACTIVITY TABLE
+-->
+
+        <HorizontalScrollView
+             android:layout_below="@id/accountOverviewLoan_recentActivity_label"
+             android:layout_width="fill_parent"
+             android:layout_height="fill_parent">
+
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@id/accountOverviewLoan_recentActivity_label"
+                android:stretchColumns="*"
+                android:id="@+id/tableLoan_recentActivity" >
+
+               <TableRow
+                    android:id="@+id/tableLoan_recentActivity_row"
+                    android:padding="20dp"
+                    >
+               </TableRow>
+
+            </TableLayout>
+
+        </HorizontalScrollView>
+
+    <!--
+            RECENT NOTES
+     -->
+            <LinearLayout
+                android:id="@+id/accountOverviewLoan_recentNotes"
+                android:orientation="vertical"
+                android:layout_below="@id/accountOverviewLoan_recentActivity_label"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp">
+            </LinearLayout>
+
+    </RelativeLayout>
+
+</ScrollView>
+
+
+
+
+            <!--
+             <TextView
+                style="@style/Shifted"
+                android:id=""
+                android:layout_below=""
+                android:layout_toRightOf=""
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+                 <TableRow>
+                        <TextView
+                            style="@style/Shifted"
+                            android:id=""
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                        />
+                        <TextView
+                            style="@style/Shifted"
+                            android:id=""
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                        />
+                        <TextView
+                            style="@style/Shifted"
+                            android:id=""
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                        />
+                 </TableRow>
+            -->

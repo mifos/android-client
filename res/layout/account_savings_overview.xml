@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+             <TextView
+                style="@style/Label"
+                android:id="@+id/accountOverviewSavings_accountName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                style="@style/Label"
+                android:id="@+id/accountOverviewSavings_accountNumber"
+                android:layout_below="@id/accountOverviewSavings_accountName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewSavings_accountStatus_label"
+                android:layout_below="@id/accountOverviewSavings_accountNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accountOverviewSavings_accountStatus_label"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewSavings_accountStatus"
+                android:layout_below="@id/accountOverviewSavings_accountNumber"
+                android:layout_toRightOf="@id/accountOverviewSavings_accountStatus_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewSavings_accountBalance_label"
+                android:layout_below="@id/accountOverviewSavings_accountStatus_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accountOverviewSavings_accountBalance_label"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewSavings_accountBalance"
+                android:layout_below="@id/accountOverviewSavings_accountStatus_label"
+                android:layout_toRightOf="@id/accountOverviewSavings_accountBalance_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewSavings_totalAmountDue_label"
+                android:layout_below="@id/accountOverviewSavings_accountBalance_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accountOverviewSavings_totalAmountDue_label"
+                />
+
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewSavings_totalAmountDue"
+                android:layout_below="@id/accountOverviewSavings_accountBalance_label"
+                android:layout_toRightOf="@id/accountOverviewSavings_totalAmountDue_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+           <TextView
+                style="@style/Label"
+                android:id="@+id/accountOverviewSavings_recentActivity_label"
+                android:layout_below="@id/accountOverviewSavings_totalAmountDue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accountOverviewSavings_recentActivity_label"
+                android:visibility="invisible"
+                />
+
+           <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@id/accountOverviewSavings_recentActivity_label"
+                android:stretchColumns="*"
+                android:id="@+id/tableSavings_recentActivity" >
+
+               <TableRow
+                    android:id="@+id/tableSavings_recentActivity_row"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+               </TableRow>
+
+            </TableLayout>
+
+            <LinearLayout
+                android:id="@+id/accountOverviewSavings_recentNotes"
+                android:orientation="vertical"
+                android:layout_below="@id/tableSavings_recentActivity"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp">
+            </LinearLayout>
+
+
+        </RelativeLayout>
+</ScrollView>
+        
+<!--
+ <TextView
+    style="@style/Shifted"
+    android:id=""
+    android:layout_below=""
+    android:layout_toRightOf=""
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    />
+
+     <TableRow>
+            <TextView
+                style="@style/Shifted"
+                android:id=""
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+            />
+            <TextView
+                style="@style/Shifted"
+                android:id=""
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+            />
+            <TextView
+                style="@style/Shifted"
+                android:id=""
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+            />
+     </TableRow>
+-->

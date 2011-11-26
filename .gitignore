@@ -5,6 +5,8 @@ local.properties
 *.iml
 *.ipr
 *.iws
+*.patch
+gen/org/mifos/androidclient/R.java
 out
 build.xml
 target

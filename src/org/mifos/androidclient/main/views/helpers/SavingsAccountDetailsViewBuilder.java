@@ -22,12 +22,22 @@ package org.mifos.androidclient.main.views.helpers;
 
 import android.content.Context;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.account.SavingsAccountDetails;
+import org.mifos.androidclient.entities.account.SavingsActivity;
+import org.mifos.androidclient.entities.customer.CustomerNote;
 import org.mifos.androidclient.templates.AccountDetailsViewBuilder;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class SavingsAccountDetailsViewBuilder implements AccountDetailsViewBuilder {
 
@@ -41,12 +51,32 @@ public class SavingsAccountDetailsViewBuilder implements AccountDetailsViewBuild
 
     @Override
     public View buildOverviewView() {
-        TextView view = new TextView(mContext);
-        view.setText(mContext.getString(R.string.not_implemented_yet_message));
-        view.setTextAppearance(mContext, R.style.Info);
-        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
-        view.setLayoutParams(params);
-        view.setGravity(Gravity.CENTER);
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.account_savings_overview, null);
+
+        prepareAccountInformation(view);
+
+
+        TableLayout savingsRecentActivityLayout = (TableLayout)view.findViewById(R.id.tableSavings_recentActivity);
+        TableLayout.LayoutParams params = new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT,TableLayout.LayoutParams.WRAP_CONTENT);
+        if(mDetails.getRecentActivity() !=null && mDetails.getRecentActivity().size() > 0){
+
+            prepareSavingsRecentAcvtivtyTable(view, savingsRecentActivityLayout, params);
+        }
+        /*
+        LinearLayout recentNotesLayout = (LinearLayout)view.findViewById(R.id.accountOverviewLoan_recentNotes);
+        if(mDetails.getRecentNoteDtos() !=null && mDetails.getRecentNoteDtos().size() > 0){
+            for(CustomerNote accNote: mDetails.getRecentNoteDtos()){
+
+                TextView v= new TextView(mContext);
+                v.setLayoutParams(params);
+                v.setText(accNote.getComment() +" "+ accNote.getCommentDate() + " " + accNote.getPersonnelName());
+                recentNotesLayout.addView(v);
+
+            }
+
+        }
+        */
         return view;
     }
 
@@ -59,6 +89,70 @@ public class SavingsAccountDetailsViewBuilder implements AccountDetailsViewBuild
         view.setLayoutParams(params);
         view.setGravity(Gravity.CENTER);
         return view;
+    }
+
+    private void prepareSavingsRecentAcvtivtyTable(View view, TableLayout savingsRecentActivityLayout, TableLayout.LayoutParams params) {
+        TextView textView;
+        textView = (TextView)view.findViewById(R.id.accountOverviewSavings_recentActivity_label);
+        textView.setVisibility(View.VISIBLE);
+
+        TableRow tableRow = new TableRow(mContext);
+        tableRow.setLayoutParams(params);
+        textView = new TextView(mContext);
+        textView.setGravity(Gravity.CENTER_HORIZONTAL);
+        textView.setText(R.string.tableSavings_recentActivity_date_label);
+        tableRow.addView(textView);
+        textView = new TextView(mContext);
+        textView.setGravity(Gravity.CENTER_HORIZONTAL);
+        textView.setText(R.string.tableSavings_recentActivity_description_label);
+        tableRow.addView(textView);
+        textView = new TextView(mContext);
+        textView.setGravity(Gravity.CENTER_HORIZONTAL);
+        textView.setText(R.string.tableSavings_recentActivity_amount_label);
+        tableRow.addView(textView);
+        savingsRecentActivityLayout.addView(tableRow);
+
+        for(SavingsActivity savingsActivity: mDetails.getRecentActivity()){
+            tableRow = new TableRow(mContext);
+            tableRow.setLayoutParams(params);
+            textView = new TextView(mContext);
+            textView.setGravity(Gravity.CENTER_HORIZONTAL);
+            long sDate = Long.parseLong(savingsActivity.getActionDate());
+            Date date = new Date(sDate);
+            DateFormat df = new SimpleDateFormat("dd/MM/yyy");
+            textView.setText(df.format(date).toString());
+            tableRow.addView(textView);
+
+            textView = new TextView(mContext);
+            textView.setGravity(Gravity.CENTER_HORIZONTAL);
+            textView.setText(savingsActivity.getActivity());
+            tableRow.addView(textView);
+
+            textView = new TextView(mContext);
+            textView.setGravity(Gravity.CENTER_HORIZONTAL);
+            textView.setText(savingsActivity.getAmount());
+            tableRow.addView(textView);
+            savingsRecentActivityLayout.addView(tableRow);
+        }
+    }
+
+    private void prepareAccountInformation(View view) {
+        TextView textView = (TextView)view.findViewById(R.id.accountOverviewSavings_accountName);
+        textView.setText(mDetails.getDepositTypeName());
+        textView = (TextView)view.findViewById(R.id.accountOverviewSavings_accountNumber);
+        textView.setText("#" + mDetails.getGlobalAccountNum());
+        textView = (TextView)view.findViewById(R.id.accountOverviewSavings_accountStatus);
+        textView.setText(mDetails.getAccountStateName());
+        textView = (TextView)view.findViewById(R.id.accountOverviewSavings_accountBalance);
+        textView.setText(mDetails.getDueDate() + ": " + mDetails.getAccountBalance().toString());
+        textView = (TextView)view.findViewById(R.id.accountOverviewSavings_totalAmountDue);
+        textView.setText(mDetails.getTotalAmountDue().toString());
+    }
+
+
+
+        private LayoutInflater getLayoutInflater() {
+        return (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
 }
