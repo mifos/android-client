@@ -157,6 +157,18 @@
     <!--
         String values for AccountTransactionHistoryActivity
     -->
+    <string name="transactionHistoryItemDetails_header">Transaction Details:</string>
     <string name="transactionHistory_label">Account\'s Transaction History</string>
+    <string name="transactionHistoryItemDetails_date_label">Date:&#160;</string>
+    <string name="transactionHistoryItemDetails_paymentId_label">Payment ID:&#160;</string>
+    <string name="transactionHistoryItemDetails_transactionId_label">Transaction ID:&#160;</string>
+    <string name="transactionHistoryItemDetails_type_label">Type:&#160;</string>
+    <string name="transactionHistoryItemDetails_glCode_label">GL Code:&#160;</string>
+    <string name="transactionHistoryItemDetails_debit_label">Debit:&#160;</string>
+    <string name="transactionHistoryItemDetails_credit_label">Credit:&#160;</string>
+    <string name="transactionHistoryItemDetails_clientName_label">Client Name:&#160;</string>
+    <string name="transactionHistoryItemDetails_datePosted_label">Date Posted:&#160;</string>
+    <string name="transactionHistoryItemDetails_postedBy_label">Posted By:&#160;</string>
+    <string name="transactionHistoryItemDetails_adjustmentNotes_label">Adjustment Notes:&#160;</string>
 
 </resources>

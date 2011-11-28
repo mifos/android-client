@@ -21,25 +21,35 @@
 package org.mifos.androidclient.main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.account.AbstractAccountDetails;
 import org.mifos.androidclient.entities.account.TransactionHistoryEntry;
 import org.mifos.androidclient.net.services.AccountService;
 import org.mifos.androidclient.templates.DownloaderActivity;
 import org.mifos.androidclient.templates.ServiceConnectivityTask;
+import org.mifos.androidclient.util.listadapters.SimpleListAdapter;
+import org.mifos.androidclient.util.listadapters.SimpleListItem;
 import org.springframework.web.client.RestClientException;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-public class AccountTransactionHistoryActivity extends DownloaderActivity {
+public class AccountTransactionHistoryActivity extends DownloaderActivity
+        implements AdapterView.OnItemClickListener{
 
     private String mAccountNumber;
     private AccountService mAccountService;
     private TransactionHistoryTask mTransactionHistoryTask;
     private List<TransactionHistoryEntry> mTransactionHistoryEntries;
+    private ListView mTransactionHistoryList;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -50,6 +60,7 @@ public class AccountTransactionHistoryActivity extends DownloaderActivity {
             mTransactionHistoryEntries = (List<TransactionHistoryEntry>)bundle.getSerializable(TransactionHistoryEntry.BUNDLE_KEY);
         }
 
+        mTransactionHistoryList = (ListView)findViewById(R.id.transactionHistory_list);
         mAccountNumber = getIntent().getStringExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY);
         mAccountService = new AccountService(this);
     }
@@ -73,7 +84,20 @@ public class AccountTransactionHistoryActivity extends DownloaderActivity {
     private void updateContent(List<TransactionHistoryEntry> entries) {
         if (entries != null) {
             mTransactionHistoryEntries = entries;
+            mTransactionHistoryList.setAdapter(new SimpleListAdapter(
+                    this,
+                    new ArrayList<SimpleListItem>(entries)
+            ));
+            mTransactionHistoryList.setOnItemClickListener(this);
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
+        TransactionHistoryEntry entry = (TransactionHistoryEntry)adapterView.getAdapter().getItem(pos);
+        Intent intent = new Intent().setClass(this, TransactionHistoryItemDetailsActivity.class);
+        intent.putExtra(TransactionHistoryEntry.BUNDLE_KEY, entry);
+        startActivity(intent);
     }
 
     private void runTransactionHistoryTask() {

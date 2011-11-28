@@ -22,15 +22,17 @@ package org.mifos.androidclient.entities.account;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.mifos.androidclient.util.listadapters.SimpleListItem;
+import org.mifos.androidclient.util.ui.DateUtils;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TransactionHistoryEntry implements SimpleListItem, Serializable {
 
     public static final String BUNDLE_KEY = TransactionHistoryEntry.class.getSimpleName();
 
-    private String transactionDate;
+    private Date transactionDate;
     private Integer paymentId;
     private Integer accountTrxnId;
     private String type;
@@ -39,7 +41,7 @@ public class TransactionHistoryEntry implements SimpleListItem, Serializable {
     private String credit;
     private String balance;
     private String clientName;
-    private String postedDate;
+    private Date postedDate;
     private String postedBy;
     private String notes;
     private String userPrefferedTransactionDate;
@@ -47,7 +49,7 @@ public class TransactionHistoryEntry implements SimpleListItem, Serializable {
 
     @Override
     public String getListLabel() {
-        return transactionDate + " - " + type;
+        return DateUtils.format(transactionDate) + " - " + type;
     }
 
     @Override
@@ -55,11 +57,15 @@ public class TransactionHistoryEntry implements SimpleListItem, Serializable {
         return 0;
     }
 
-    public String getTransactionDate() {
+    public Date getTransactionDate() {
         return transactionDate;
     }
 
-    public void setTransactionDate(String transactionDate) {
+    public String getFormattedTransactionDate() {
+        return DateUtils.format(transactionDate);
+    }
+
+    public void setTransactionDate(Date transactionDate) {
         this.transactionDate = transactionDate;
     }
 
@@ -127,11 +133,15 @@ public class TransactionHistoryEntry implements SimpleListItem, Serializable {
         this.clientName = clientName;
     }
 
-    public String getPostedDate() {
+    public Date getPostedDate() {
         return postedDate;
     }
 
-    public void setPostedDate(String postedDate) {
+    public String getFormattedPostedDate()  {
+        return DateUtils.format(postedDate);
+    }
+
+    public void setPostedDate(Date postedDate) {
         this.postedDate = postedDate;
     }
 
