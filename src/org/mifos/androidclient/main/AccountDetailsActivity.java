@@ -21,6 +21,7 @@
 package org.mifos.androidclient.main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -38,6 +39,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestClientException;
 
 public class AccountDetailsActivity extends DownloaderActivity {
+
+    public static final String SELECTED_TAB_BUNDLE_KEY = AccountDetailsActivity.class.getSimpleName() + "-selectedTab";
 
     private AccountBasicInformation mAccount;
     private AbstractAccountDetails mDetails;
@@ -60,8 +63,13 @@ public class AccountDetailsActivity extends DownloaderActivity {
         tabs.addTab(overviewSpec);
         tabs.addTab(additionalInfoSpec);
 
-        if (bundle != null && bundle.containsKey(AbstractAccountDetails.BUNDLE_KEY)) {
-            mDetails = (AbstractAccountDetails)bundle.getSerializable(AbstractAccountDetails.BUNDLE_KEY);
+        if (bundle != null) {
+            if (bundle.containsKey(AbstractAccountDetails.BUNDLE_KEY)) {
+                mDetails = (AbstractAccountDetails)bundle.getSerializable(AbstractAccountDetails.BUNDLE_KEY);
+            }
+            if (bundle.containsKey(SELECTED_TAB_BUNDLE_KEY)) {
+                tabs.setCurrentTab(bundle.getInt(SELECTED_TAB_BUNDLE_KEY));
+            }
         }
 
         mAccount = (AccountBasicInformation)getIntent().getSerializableExtra(AccountBasicInformation.BUNDLE_KEY);
@@ -73,16 +81,30 @@ public class AccountDetailsActivity extends DownloaderActivity {
         super.onSessionActive();
         if (mDetails == null) {
             runAccountDetailsTask();
+        } else {
+            updateContent(mDetails);
         }
     }
 
+    /**
+     * A handler of the button for account's transactions history browsing.
+     *
+     * @param view
+     */
     public void onTransactionsHistorySelected(View view) {
+        Intent intent = new Intent().setClass(this, AccountTransactionHistoryActivity.class);
+        intent.putExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY, mAccount.getGlobalAccountNum());
+        startActivity(intent);
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable(AbstractAccountDetails.BUNDLE_KEY, mDetails);
+        TabHost tabs = (TabHost)findViewById(R.id.accountDetails_tabHost);
+        if (tabs != null) {
+            outState.putSerializable(SELECTED_TAB_BUNDLE_KEY, tabs.getCurrentTab());
+        }
     }
 
     private void updateContent(AbstractAccountDetails details) {
