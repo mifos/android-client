@@ -90,7 +90,6 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
     }
 
     private void prepareRecentNotes(View view) {
-
         TextView textView;
         textView = (TextView)view.findViewById(R.id.accountOverviewLoan_recentNotes_label);
         textView.setVisibility(View.VISIBLE);
