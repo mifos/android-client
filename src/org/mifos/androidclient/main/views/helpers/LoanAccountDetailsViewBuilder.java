@@ -33,6 +33,7 @@ import org.mifos.androidclient.entities.account.LoanAccountDetails;
 import org.mifos.androidclient.entities.account.LoanActivity;
 import org.mifos.androidclient.entities.customer.CustomerNote;
 import org.mifos.androidclient.templates.AccountDetailsViewBuilder;
+import org.w3c.dom.Text;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -64,18 +65,13 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
 
             prepareLoanActivityTable(view, params, LoanRecentActivityLayout);
         }
-        /*
-        if(mDetails.get){
-        LinearLayout recentNotesLayout = (LinearLayout)view.findViewById(R.id.accountOverviewLoan_recentNotes);
-        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        for(CustomerNote accNote: mDetails.getRecentNoteDtos()) {
-                textView = new TextView(mContext);
-                textView.setLayoutParams(params);
-                textView.setText(accNote.getComment() +" "+ accNote.getCommentDate() + " " + accNote.getPersonnelName());
-                recentNotesLayout.addView(textView);
+
+        if(mDetails.getRecentNoteDtos() !=null && mDetails.getRecentNoteDtos().size() > 0){
+            prepareRecentNotes(view, params);
         }
-        }
-        */
+
+        preparePerformanceHistory(view);
+
         return view;
     }
 
@@ -89,6 +85,33 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
         view.setGravity(Gravity.CENTER);
         return view;
     }
+
+
+    private void preparePerformanceHistory(View view) {
+        TextView textView = (TextView)view.findViewById(R.id.accountOverviewLoan_noOfPayments);
+        textView.setText(mDetails.getPerformanceHistory().getNoOfPayments().toString());
+        textView = (TextView)view.findViewById(R.id.accountOverviewLoan_totalNoOfMissedPayments);
+        textView.setText(mDetails.getPerformanceHistory().getTotalNoOfMissedPayments().toString());
+        textView = (TextView)view.findViewById(R.id.accountOverviewLoan_daysInArrears);
+        textView.setText(mDetails.getPerformanceHistory().getDaysInArrears().toString());
+        textView = (TextView)view.findViewById(R.id.accountOverviewLoan_loanMaturityDate);
+        textView.setText(mDetails.getPerformanceHistory().getLoanMaturityDate());
+    }
+
+    private void prepareRecentNotes(View view, TableLayout.LayoutParams params) {
+        TextView textView;
+        textView = (TextView)view.findViewById(R.id.accountOverviewLoan_recentNotes_label);
+        textView.setVisibility(View.VISIBLE);
+        LinearLayout recentNotesLayout = (LinearLayout)view.findViewById(R.id.accountOverviewLoan_recentNotes);
+        for(CustomerNote accNote: mDetails.getRecentNoteDtos()) {
+                textView = new TextView(mContext);
+                textView.setLayoutParams(params);
+                textView.setText(accNote.getComment() +" "+ accNote.getCommentDate() + " " + accNote.getPersonnelName());
+                recentNotesLayout.addView(textView);
+        }
+    }
+
+
 
     private void prepareAccountInformation(View view) {
         TextView textView = (TextView)view.findViewById(R.id.accountOverviewLoan_accountName);

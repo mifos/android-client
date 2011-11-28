@@ -168,14 +168,15 @@
     <string name="accountOverviewLoan_fees_label">Fees</string>
     <string name="accountOverviewLoan_penalty_label">Penalty</string>
     <string name="accountOverviewLoan_total_label">Total</string>
-    <string name="accountOverviewLoan_recentActivity_label">Recent activate</string>
+    <string name="accountOverviewLoan_recentActivity_label">Recent activity</string>
     <string name="accountOverviewLoan_recentNotes_label">Recent notes</string>
-    <string name="accountOverviewLoan_performanceHistory_label">Performance history</string>
+
 
     <string name="accountOverviewSavings_accountStatus_label">Status:&#160;</string>
     <string name="accountOverviewSavings_accountBalance_label">Account Balance:&#160;</string>
     <string name="accountOverviewSavings_totalAmountDue_label">Total amount due on:&#160;</string>
-    <string name="accountOverviewSavings_recentActivity_label">Recent activate</string>
+    <string name="accountOverviewSavings_recentActivity_label">Recent activity</string>
+    <string name="accountOverviewSavings_recentNotes_label">Recent notes:&#160;</string>
 
     <string name="tableSavings_recentActivity_date_label">Date</string>
     <string name="tableSavings_recentActivity_description_label">Description</string>
@@ -192,6 +193,20 @@
     <string name="tableLoan_recentActivity_interestRunning">&#160;Interest balance&#160;</string>
     <string name="tableLoan_recentActivity_feesRunning">&#160;Fees balance&#160;</string>
     <string name="tableLoan_recentActivity_totalRunning">&#160;Total balance&#160;</string>
+
+    <string name="accountOverviewLoan_performanceHistory_label">Performance history</string>
+    <string name="accountOverviewLoan_noOfPayments_label"># of payments:&#160;</string>
+    <string name="accountOverviewLoan_totalNoOfMissedPayments_label"># of missed payments:&#160;</string>
+    <string name="accountOverviewLoan_daysInArrears_label">Days in arrears:&#160;</string>
+    <string name="accountOverviewLoan_loanMaturityDate_label">Loan maturity date:&#160;</string>
+
+    <string name="accountOverviewSavings_performanceHistory_label">Performance history</string>
+    <string name="accountOverviewSavings_openDate_label">Date account opened:&#160;</string>
+    <string name="accountOverviewSavings_totalDeposits_label">Total deposits:&#160;</string>
+    <string name="accountOverviewSavings_totalInterestEarned_label">Total interest earned:&#160;</string>
+    <string name="accountOverviewSavings_totalWithdrawals_label">Total withdrawals:&#160;</string>
+    <string name="accountOverviewSavings_missedDeposits_label">Missed Deposits:&#160;</string>
+
 
     <!--
         String values for AccountTransactionHistoryActivity

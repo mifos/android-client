@@ -56,29 +56,35 @@ public class SavingsAccountDetailsViewBuilder implements AccountDetailsViewBuild
 
         prepareAccountInformation(view);
 
-
         TableLayout savingsRecentActivityLayout = (TableLayout)view.findViewById(R.id.tableSavings_recentActivity);
         TableLayout.LayoutParams params = new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT,TableLayout.LayoutParams.WRAP_CONTENT);
         if(mDetails.getRecentActivity() !=null && mDetails.getRecentActivity().size() > 0){
 
-            prepareSavingsRecentAcvtivtyTable(view, savingsRecentActivityLayout, params);
+            prepareSavingsRecentActivityTable(view, savingsRecentActivityLayout, params);
         }
-        /*
-        LinearLayout recentNotesLayout = (LinearLayout)view.findViewById(R.id.accountOverviewLoan_recentNotes);
+
         if(mDetails.getRecentNoteDtos() !=null && mDetails.getRecentNoteDtos().size() > 0){
-            for(CustomerNote accNote: mDetails.getRecentNoteDtos()){
-
-                TextView v= new TextView(mContext);
-                v.setLayoutParams(params);
-                v.setText(accNote.getComment() +" "+ accNote.getCommentDate() + " " + accNote.getPersonnelName());
-                recentNotesLayout.addView(v);
-
-            }
-
+            prepareRecentNotes(view, params);
         }
-        */
+
+        preparePerformanceHistory(view);
+
         return view;
     }
+
+    private void preparePerformanceHistory(View view) {
+        TextView textView = (TextView)view.findViewById(R.id.accountOverviewSavings_openDate);
+        textView.setText(mDetails.getPerformanceHistory().getOpenedDate());
+        textView = (TextView)view.findViewById(R.id.accountOverviewSavings_totalDeposits);
+        textView.setText(mDetails.getPerformanceHistory().getTotalDeposits().toString());
+        textView = (TextView)view.findViewById(R.id.accountOverviewSavings_totalInterestEarned);
+        textView.setText(mDetails.getPerformanceHistory().getTotalInterestEarned().toString());
+        textView = (TextView)view.findViewById(R.id.accountOverviewSavings_totalWithdrawals);
+        textView.setText(mDetails.getPerformanceHistory().getTotalWithdrawals().toString());
+        textView = (TextView)view.findViewById(R.id.accountOverviewSavings_missedDeposits);
+        textView.setText(mDetails.getPerformanceHistory().getMissedDeposits());
+    }
+
 
     @Override
     public View buildDetailsView() {
@@ -91,7 +97,21 @@ public class SavingsAccountDetailsViewBuilder implements AccountDetailsViewBuild
         return view;
     }
 
-    private void prepareSavingsRecentAcvtivtyTable(View view, TableLayout savingsRecentActivityLayout, TableLayout.LayoutParams params) {
+    private void prepareRecentNotes(View view, TableLayout.LayoutParams params) {
+        TextView textView;
+        textView = (TextView)view.findViewById(R.id.accountOverviewSavings_recentNotes_label);
+        textView.setVisibility(View.VISIBLE);
+        LinearLayout recentNotesLayout = (LinearLayout)view.findViewById(R.id.accountOverviewSavings_recentNotes);
+        for(CustomerNote accNote: mDetails.getRecentNoteDtos()){
+            textView = new TextView(mContext);
+            textView.setLayoutParams(params);
+            textView.setText(accNote.getComment() + " " + accNote.getCommentDate() + " " + accNote.getPersonnelName());
+            recentNotesLayout.addView(textView);
+
+        }
+    }
+
+    private void prepareSavingsRecentActivityTable(View view, TableLayout savingsRecentActivityLayout, TableLayout.LayoutParams params) {
         TextView textView;
         textView = (TextView)view.findViewById(R.id.accountOverviewSavings_recentActivity_label);
         textView.setVisibility(View.VISIBLE);
@@ -138,7 +158,7 @@ public class SavingsAccountDetailsViewBuilder implements AccountDetailsViewBuild
 
     private void prepareAccountInformation(View view) {
         TextView textView = (TextView)view.findViewById(R.id.accountOverviewSavings_accountName);
-        textView.setText(mDetails.getDepositTypeName());
+        textView.setText(mDetails.getProductDetails().getProductDetails().getName());
         textView = (TextView)view.findViewById(R.id.accountOverviewSavings_accountNumber);
         textView.setText("#" + mDetails.getGlobalAccountNum());
         textView = (TextView)view.findViewById(R.id.accountOverviewSavings_accountStatus);

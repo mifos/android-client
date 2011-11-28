@@ -94,19 +94,118 @@
 
             </TableLayout>
 
-            <LinearLayout
+             <TextView
+                style="@style/Label"
+                android:id="@+id/accountOverviewSavings_recentNotes_label"
+                android:layout_below="@id/tableSavings_recentActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accountOverviewSavings_recentNotes_label"
+                android:visibility="invisible"
+                />
+              <LinearLayout
                 android:id="@+id/accountOverviewSavings_recentNotes"
                 android:orientation="vertical"
-                android:layout_below="@id/tableSavings_recentActivity"
+                android:layout_below="@id/accountOverviewSavings_recentNotes_label"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp">
             </LinearLayout>
-
+            <!--
+            PERFORMANCE HISTORY
+            -->
+            <TextView
+                style="@style/Label"
+                android:id="@+id/accountOverviewSavings_performanceHistory_label"
+                android:layout_below="@id/accountOverviewSavings_recentNotes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accountOverviewSavings_performanceHistory_label"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewSavings_openDate_label"
+                android:layout_below="@id/accountOverviewSavings_performanceHistory_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accountOverviewSavings_openDate_label"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewSavings_openDate"
+                android:layout_below="@id/accountOverviewSavings_performanceHistory_label"
+                android:layout_toRightOf="@id/accountOverviewSavings_openDate_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewSavings_totalDeposits_label"
+                android:layout_below="@id/accountOverviewSavings_openDate_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accountOverviewSavings_totalDeposits_label"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewSavings_totalDeposits"
+                android:layout_below="@id/accountOverviewSavings_openDate_label"
+                android:layout_toRightOf="@id/accountOverviewSavings_openDate_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewSavings_totalInterestEarned_label"
+                android:layout_below="@id/accountOverviewSavings_totalDeposits_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accountOverviewSavings_totalInterestEarned_label"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewSavings_totalInterestEarned"
+                android:layout_below="@id/accountOverviewSavings_totalDeposits_label"
+                android:layout_toRightOf="@id/accountOverviewSavings_totalInterestEarned_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewSavings_totalWithdrawals_label"
+                android:layout_below="@id/accountOverviewSavings_totalInterestEarned_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accountOverviewSavings_totalWithdrawals_label"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewSavings_totalWithdrawals"
+                android:layout_below="@id/accountOverviewSavings_totalInterestEarned_label"
+                android:layout_toRightOf="@id/accountOverviewSavings_totalWithdrawals_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewSavings_missedDeposits_label"
+                android:layout_below="@id/accountOverviewSavings_totalWithdrawals_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accountOverviewSavings_missedDeposits_label"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewSavings_missedDeposits"
+                android:layout_below="@id/accountOverviewSavings_totalWithdrawals_label"
+                android:layout_toRightOf="@id/accountOverviewSavings_missedDeposits_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
 
         </RelativeLayout>
 </ScrollView>
-        
+
 <!--
  <TextView
     style="@style/Shifted"

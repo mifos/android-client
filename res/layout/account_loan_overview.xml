@@ -325,22 +325,25 @@
 
             </TableLayout>
 
+            <!--
+                RECENT ACTIVITY TABLE
+            -->
             <TextView
                 style="@style/Label"
                 android:id="@+id/accountOverviewLoan_recentActivity_label"
                 android:layout_below="@id/accountSummaryTable_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/accountOverviewLoan_recentActivity_label"
                 android:visibility="invisible"
                 />
-<!--
-   RECENT ACTIVITY TABLE
--->
 
         <HorizontalScrollView
+             android:id="@+id/tableView"
              android:layout_below="@id/accountOverviewLoan_recentActivity_label"
              android:layout_width="fill_parent"
-             android:layout_height="fill_parent">
+             android:layout_height="fill_parent"
+             android:paddingBottom="3dp">
 
             <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
@@ -362,14 +365,101 @@
     <!--
             RECENT NOTES
      -->
+            <TextView
+                style="@style/Label"
+                android:id="@+id/accountOverviewLoan_recentNotes_label"
+                android:paddingTop="4dp"
+                android:layout_below="@id/tableView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accountOverviewLoan_recentNotes_label"
+                android:visibility="invisible"
+                />
             <LinearLayout
                 android:id="@+id/accountOverviewLoan_recentNotes"
                 android:orientation="vertical"
-                android:layout_below="@id/accountOverviewLoan_recentActivity_label"
+                android:layout_below="@id/accountOverviewLoan_recentNotes_label"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp">
             </LinearLayout>
+            <!--
+                PERFORMANCE HISTORY
+            -->
+            <TextView
+                style="@style/Label"
+                android:id="@+id/accountOverviewLoan_performanceHistory_label"
+                android:layout_below="@id/accountOverviewLoan_recentNotes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accountOverviewLoan_performanceHistory_label"
+                />
+             <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewLoan_noOfPayments_label"
+                android:layout_below="@id/accountOverviewLoan_performanceHistory_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accountOverviewLoan_noOfPayments_label"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewLoan_noOfPayments"
+                android:layout_below="@id/accountOverviewLoan_performanceHistory_label"
+                android:layout_toRightOf="@id/accountOverviewLoan_noOfPayments_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewLoan_totalNoOfMissedPayments_label"
+                android:layout_below="@id/accountOverviewLoan_noOfPayments_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accountOverviewLoan_totalNoOfMissedPayments_label"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewLoan_totalNoOfMissedPayments"
+                android:layout_below="@id/accountOverviewLoan_noOfPayments_label"
+                android:layout_toRightOf="@id/accountOverviewLoan_totalNoOfMissedPayments_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewLoan_daysInArrears_label"
+                android:layout_below="@id/accountOverviewLoan_totalNoOfMissedPayments_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accountOverviewLoan_daysInArrears_label"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewLoan_daysInArrears"
+                android:layout_below="@id/accountOverviewLoan_totalNoOfMissedPayments_label"
+                android:layout_toRightOf="@id/accountOverviewLoan_daysInArrears_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewLoan_loanMaturityDate_label"
+                android:layout_below="@id/accountOverviewLoan_daysInArrears_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accountOverviewLoan_loanMaturityDate_label"
+                />
+            <TextView
+                style="@style/Shifted"
+                android:id="@+id/accountOverviewLoan_loanMaturityDate"
+                android:layout_below="@id/accountOverviewLoan_daysInArrears_label"
+                android:layout_toRightOf="@id/accountOverviewLoan_loanMaturityDate_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+
 
     </RelativeLayout>
 
