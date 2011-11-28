@@ -23,6 +23,7 @@ package org.mifos.androidclient.main;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 import org.mifos.androidclient.R;
@@ -73,6 +74,9 @@ public class AccountDetailsActivity extends DownloaderActivity {
         if (mDetails == null) {
             runAccountDetailsTask();
         }
+    }
+
+    public void onTransactionsHistorySelected(View view) {
     }
 
     @Override

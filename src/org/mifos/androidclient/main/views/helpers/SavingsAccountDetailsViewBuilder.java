@@ -24,7 +24,6 @@ import android.content.Context;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -88,12 +87,8 @@ public class SavingsAccountDetailsViewBuilder implements AccountDetailsViewBuild
 
     @Override
     public View buildDetailsView() {
-        TextView view = new TextView(mContext);
-        view.setText(mContext.getString(R.string.not_implemented_yet_message));
-        view.setTextAppearance(mContext, R.style.Info);
-        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
-        view.setLayoutParams(params);
-        view.setGravity(Gravity.CENTER);
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.account_savings_details, null);
         return view;
     }
 

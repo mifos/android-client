@@ -21,25 +21,22 @@
 package org.mifos.androidclient.main.views.helpers;
 
 import android.content.Context;
-import android.provider.ContactsContract;
-import android.text.Layout;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.account.LoanAccountDetails;
 import org.mifos.androidclient.entities.account.LoanActivity;
 import org.mifos.androidclient.entities.customer.CustomerNote;
 import org.mifos.androidclient.templates.AccountDetailsViewBuilder;
-import org.w3c.dom.Text;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder {
 
@@ -77,12 +74,8 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
 
     @Override
     public View buildDetailsView() {
-        TextView view = new TextView(mContext);
-        view.setText(mContext.getString(R.string.not_implemented_yet_message));
-        view.setTextAppearance(mContext, R.style.Info);
-        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
-        view.setLayoutParams(params);
-        view.setGravity(Gravity.CENTER);
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.account_loan_details, null);
         return view;
     }
 

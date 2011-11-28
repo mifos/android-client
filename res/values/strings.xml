@@ -207,6 +207,8 @@
     <string name="accountOverviewSavings_totalWithdrawals_label">Total withdrawals:&#160;</string>
     <string name="accountOverviewSavings_missedDeposits_label">Missed Deposits:&#160;</string>
 
+    <string name="accountDetails_transactionsHistoryButton_label">View Transactions History</string>
+
 
     <!--
         String values for AccountTransactionHistoryActivity
