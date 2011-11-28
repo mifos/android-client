@@ -57,14 +57,14 @@ public class SavingsAccountDetailsViewBuilder implements AccountDetailsViewBuild
         prepareAccountInformation(view);
 
         TableLayout savingsRecentActivityLayout = (TableLayout)view.findViewById(R.id.tableSavings_recentActivity);
-        TableLayout.LayoutParams params = new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT,TableLayout.LayoutParams.WRAP_CONTENT);
+
         if(mDetails.getRecentActivity() !=null && mDetails.getRecentActivity().size() > 0){
 
-            prepareSavingsRecentActivityTable(view, savingsRecentActivityLayout, params);
+            prepareSavingsRecentActivityTable(view, savingsRecentActivityLayout);
         }
 
         if(mDetails.getRecentNoteDtos() !=null && mDetails.getRecentNoteDtos().size() > 0){
-            prepareRecentNotes(view, params);
+            prepareRecentNotes(view);
         }
 
         preparePerformanceHistory(view);
@@ -97,24 +97,25 @@ public class SavingsAccountDetailsViewBuilder implements AccountDetailsViewBuild
         return view;
     }
 
-    private void prepareRecentNotes(View view, TableLayout.LayoutParams params) {
+    private void prepareRecentNotes(View view) {
         TextView textView;
         textView = (TextView)view.findViewById(R.id.accountOverviewSavings_recentNotes_label);
         textView.setVisibility(View.VISIBLE);
         LinearLayout recentNotesLayout = (LinearLayout)view.findViewById(R.id.accountOverviewSavings_recentNotes);
         for(CustomerNote accNote: mDetails.getRecentNoteDtos()){
             textView = new TextView(mContext);
-            textView.setLayoutParams(params);
+            textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
             textView.setText(accNote.getComment() + " " + accNote.getCommentDate() + " " + accNote.getPersonnelName());
             recentNotesLayout.addView(textView);
 
         }
     }
 
-    private void prepareSavingsRecentActivityTable(View view, TableLayout savingsRecentActivityLayout, TableLayout.LayoutParams params) {
+    private void prepareSavingsRecentActivityTable(View view, TableLayout savingsRecentActivityLayout) {
         TextView textView;
         textView = (TextView)view.findViewById(R.id.accountOverviewSavings_recentActivity_label);
         textView.setVisibility(View.VISIBLE);
+        TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT,TableRow.LayoutParams.WRAP_CONTENT);
 
         TableRow tableRow = new TableRow(mContext);
         tableRow.setLayoutParams(params);

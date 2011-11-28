@@ -349,7 +349,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_below="@id/accountOverviewLoan_recentActivity_label"
-                android:stretchColumns="*"
+                android:stretchColumns="11"
                 android:id="@+id/tableLoan_recentActivity" >
 
                <TableRow

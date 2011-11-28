@@ -108,7 +108,7 @@ public final class R {
         public static final int centers_list=0x7f070068;
         public static final int centers_list_hint=0x7f070067;
         public static final int centers_list_label=0x7f070066;
-        public static final int changeServerAddress=0x7f0700c1;
+        public static final int changeServerAddress=0x7f0700d8;
         public static final int clientsList_hint=0x7f070090;
         public static final int clientslist_label=0x7f07008f;
         public static final int clientslist_list=0x7f070091;
@@ -187,7 +187,7 @@ public final class R {
         public static final int loanAccountListItem_status=0x7f0700a8;
         public static final int loanAccountListItem_status_label=0x7f0700a7;
         public static final int loanAccounts_amountDue=0x7f070089;
-        public static final int logOut=0x7f0700c2;
+        public static final int logOut=0x7f0700d9;
         public static final int login_button=0x7f0700b3;
         public static final int login_errors=0x7f0700b2;
         public static final int login_header=0x7f0700ad;
@@ -201,13 +201,36 @@ public final class R {
         public static final int savingsAccountListItem_status=0x7f0700b7;
         public static final int savingsAccountListItem_status_label=0x7f0700b6;
         public static final int simple_list_item_label=0x7f0700ba;
-        public static final int synchronize=0x7f0700c3;
+        public static final int synchronize=0x7f0700da;
         public static final int tableLoan_recentActivity=0x7f07002a;
         public static final int tableLoan_recentActivity_row=0x7f07002b;
         public static final int tableSavings_recentActivity=0x7f070040;
         public static final int tableSavings_recentActivity_row=0x7f070041;
         public static final int tableView=0x7f070029;
         public static final int textInputDialog=0x7f0700bc;
+        public static final int transactionHistoryItemDetails_adjustmentNotes=0x7f0700d7;
+        public static final int transactionHistoryItemDetails_adjustmentNotes_label=0x7f0700d6;
+        public static final int transactionHistoryItemDetails_clientName=0x7f0700d1;
+        public static final int transactionHistoryItemDetails_clientName_label=0x7f0700d0;
+        public static final int transactionHistoryItemDetails_credit=0x7f0700cf;
+        public static final int transactionHistoryItemDetails_credit_label=0x7f0700ce;
+        public static final int transactionHistoryItemDetails_date=0x7f0700c3;
+        public static final int transactionHistoryItemDetails_datePosted=0x7f0700d3;
+        public static final int transactionHistoryItemDetails_datePosted_label=0x7f0700d2;
+        public static final int transactionHistoryItemDetails_date_label=0x7f0700c2;
+        public static final int transactionHistoryItemDetails_debit=0x7f0700cd;
+        public static final int transactionHistoryItemDetails_debit_label=0x7f0700cc;
+        public static final int transactionHistoryItemDetails_glCode=0x7f0700cb;
+        public static final int transactionHistoryItemDetails_glCode_label=0x7f0700ca;
+        public static final int transactionHistoryItemDetails_header=0x7f0700c1;
+        public static final int transactionHistoryItemDetails_paymentId=0x7f0700c5;
+        public static final int transactionHistoryItemDetails_paymentId_label=0x7f0700c4;
+        public static final int transactionHistoryItemDetails_postedBy=0x7f0700d5;
+        public static final int transactionHistoryItemDetails_postedBy_label=0x7f0700d4;
+        public static final int transactionHistoryItemDetails_transactionId=0x7f0700c7;
+        public static final int transactionHistoryItemDetails_transactionId_label=0x7f0700c6;
+        public static final int transactionHistoryItemDetails_type=0x7f0700c9;
+        public static final int transactionHistoryItemDetails_type_label=0x7f0700c8;
         public static final int transactionHistory_label=0x7f0700bf;
         public static final int transactionHistory_list=0x7f0700c0;
         public static final int view_clients_button=0x7f0700b4;
@@ -239,6 +262,7 @@ public final class R {
         public static final int text_input_dialog=0x7f030017;
         public static final int transaction_history=0x7f030018;
         public static final int transaction_history_item=0x7f030019;
+        public static final int transaction_history_item_details=0x7f03001a;
     }
     public static final class menu {
         public static final int main_menu=0x7f060000;
@@ -417,11 +441,23 @@ public final class R {
     
          */
         public static final int toast_first_address_set=0x7f04000c;
+        public static final int transactionHistoryItemDetails_adjustmentNotes_label=0x7f040091;
+        public static final int transactionHistoryItemDetails_clientName_label=0x7f04008e;
+        public static final int transactionHistoryItemDetails_credit_label=0x7f04008d;
+        public static final int transactionHistoryItemDetails_datePosted_label=0x7f04008f;
+        public static final int transactionHistoryItemDetails_date_label=0x7f040087;
+        public static final int transactionHistoryItemDetails_debit_label=0x7f04008c;
+        public static final int transactionHistoryItemDetails_glCode_label=0x7f04008b;
         /** 
         String values for AccountTransactionHistoryActivity
     
          */
-        public static final int transactionHistory_label=0x7f040085;
+        public static final int transactionHistoryItemDetails_header=0x7f040085;
+        public static final int transactionHistoryItemDetails_paymentId_label=0x7f040088;
+        public static final int transactionHistoryItemDetails_postedBy_label=0x7f040090;
+        public static final int transactionHistoryItemDetails_transactionId_label=0x7f040089;
+        public static final int transactionHistoryItemDetails_type_label=0x7f04008a;
+        public static final int transactionHistory_label=0x7f040086;
     }
     public static final class style {
         public static final int Errors=0x7f050002;
