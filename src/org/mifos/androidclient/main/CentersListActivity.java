@@ -98,12 +98,14 @@ public class CentersListActivity extends DownloaderActivity
      * Refreshes contents of the centers list.
      */
     private void repopulateCustomersList(CustomersData data) {
-        mCentersList.setAdapter(new SimpleListAdapter(
-                this,
-                new ArrayList<SimpleListItem>(data.getCenters())
-        ));
-        mCentersList.setOnItemClickListener(this);
-        mCentersList.setOnItemLongClickListener(this);
+        if (data.getCenters() != null) {
+            mCentersList.setAdapter(new SimpleListAdapter(
+                    this,
+                    new ArrayList<SimpleListItem>(data.getCenters())
+            ));
+            mCentersList.setOnItemClickListener(this);
+            mCentersList.setOnItemLongClickListener(this);
+        }
     }
 
     /**
