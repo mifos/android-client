@@ -20,7 +20,9 @@
 
 package org.mifos.androidclient.entities.customer;
 
-public class CenterDisplay extends CustomerDisplay {
+import java.io.Serializable;
+
+public class CenterDisplay extends CustomerDisplay implements Serializable {
 
     private String mfiJoiningDate;
     private String createdDate;

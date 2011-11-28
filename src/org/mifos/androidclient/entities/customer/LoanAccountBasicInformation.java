@@ -20,7 +20,9 @@
 
 package org.mifos.androidclient.entities.customer;
 
-public class LoanAccountBasicInformation extends AccountBasicInformation {
+import java.io.Serializable;
+
+public class LoanAccountBasicInformation extends AccountBasicInformation implements Serializable {
 
     private String outstandingBalance;
     private String totalAmountDue;

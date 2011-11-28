@@ -22,8 +22,10 @@ package org.mifos.androidclient.entities.account;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
+import java.io.Serializable;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ProductDetails {
+public class ProductDetails implements Serializable {
 
     private String globalNumber;
     private String name;

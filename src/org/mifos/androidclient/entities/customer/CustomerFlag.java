@@ -22,7 +22,9 @@ package org.mifos.androidclient.entities.customer;
 
 import org.mifos.androidclient.entities.BaseEntity;
 
-public class CustomerFlag extends BaseEntity {
+import java.io.Serializable;
+
+public class CustomerFlag extends BaseEntity implements Serializable {
 
     private String statusFlagName;
 

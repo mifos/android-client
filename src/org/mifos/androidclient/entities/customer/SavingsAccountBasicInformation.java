@@ -22,7 +22,9 @@ package org.mifos.androidclient.entities.customer;
 
 import org.mifos.androidclient.entities.BaseEntity;
 
-public class SavingsAccountBasicInformation extends AccountBasicInformation {
+import java.io.Serializable;
+
+public class SavingsAccountBasicInformation extends AccountBasicInformation implements Serializable {
 
     private Integer prdOfferingId;
     private String savingsBalance;

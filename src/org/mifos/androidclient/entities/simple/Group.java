@@ -22,6 +22,7 @@ package org.mifos.androidclient.entities.simple;
 
 import org.mifos.androidclient.util.listadapters.SimpleListItem;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -29,7 +30,7 @@ import java.util.List;
  * Used on list - provides a display name and an identifier which can
  * be used to fetch more detailed data.
  */
-public class Group extends AbstractCustomer implements SimpleListItem {
+public class Group extends AbstractCustomer implements SimpleListItem, Serializable {
 
     public static final String BUNDLE_KEY = Group.class.getSimpleName();
 

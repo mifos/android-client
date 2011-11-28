@@ -22,8 +22,10 @@ package org.mifos.androidclient.entities.customer;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
+import java.io.Serializable;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CenterDetails extends CustomerDetailsEntity {
+public class CenterDetails extends CustomerDetailsEntity implements Serializable {
 
     private CenterDisplay centerDisplay;
     private CenterPerformanceHistory centerPerformanceHistory;

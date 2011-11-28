@@ -22,10 +22,11 @@ package org.mifos.androidclient.entities.customer;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
+import java.io.Serializable;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GroupDetails extends CustomerDetailsEntity {
+public class GroupDetails extends CustomerDetailsEntity implements Serializable {
 
     private List<LoanAccountBasicInformation> loanAccountsInUse;
     private List<CustomerFlag> customerFlags;

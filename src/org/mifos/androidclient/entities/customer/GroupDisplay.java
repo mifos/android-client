@@ -20,7 +20,9 @@
 
 package org.mifos.androidclient.entities.customer;
 
-public class GroupDisplay extends CustomerDisplay {
+import java.io.Serializable;
+
+public class GroupDisplay extends CustomerDisplay implements Serializable {
 
     private String parentCustomerDisplayName;
     private String customerFormedByDisplayName;

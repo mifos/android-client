@@ -20,10 +20,12 @@
 
 package org.mifos.androidclient.entities;
 
+import java.io.Serializable;
+
 /**
  * Represents the status returned by certain REST request,
  * e.g. when trying to log in to the Mifos system.
  */
-public class SessionStatus extends BaseEntity {
+public class SessionStatus extends BaseEntity implements Serializable {
 
 }

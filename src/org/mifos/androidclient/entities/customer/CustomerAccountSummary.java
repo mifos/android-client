@@ -22,7 +22,9 @@ package org.mifos.androidclient.entities.customer;
 
 import org.mifos.androidclient.entities.BaseEntity;
 
-public class CustomerAccountSummary extends BaseEntity {
+import java.io.Serializable;
+
+public class CustomerAccountSummary extends BaseEntity implements Serializable {
 
     private String globalAccountNum;
     private String nextDueAmount;

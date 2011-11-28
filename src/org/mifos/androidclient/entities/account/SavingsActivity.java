@@ -22,8 +22,10 @@ package org.mifos.androidclient.entities.account;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
+import java.io.Serializable;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SavingsActivity {
+public class SavingsActivity implements Serializable {
 
     private String actionDate;
     private String activity;

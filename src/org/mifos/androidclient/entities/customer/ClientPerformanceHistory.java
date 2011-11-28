@@ -22,9 +22,10 @@ package org.mifos.androidclient.entities.customer;
 
 import org.mifos.androidclient.entities.BaseEntity;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ClientPerformanceHistory extends BaseEntity {
+public class ClientPerformanceHistory extends BaseEntity implements Serializable {
 
     private Integer loanCycleNumber;
     private String lastLoanAmount;

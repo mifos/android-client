@@ -20,7 +20,9 @@
 
 package org.mifos.androidclient.entities.account;
 
-public class SavingsPerformanceHistory {
+import java.io.Serializable;
+
+public class SavingsPerformanceHistory implements Serializable {
 
     private String openedDate;
     private Double totalDeposits;

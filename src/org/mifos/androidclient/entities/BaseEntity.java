@@ -20,10 +20,12 @@
 
 package org.mifos.androidclient.entities;
 
+import java.io.Serializable;
+
 /**
  * A base class for entities downloaded from the Mifos server.
  */
-public abstract class BaseEntity {
+public abstract class BaseEntity implements Serializable {
 
     public final static String SUCCESS  = "Success";
     public final static String SESSION_EXPIRED = "session expired";

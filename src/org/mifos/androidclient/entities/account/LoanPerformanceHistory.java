@@ -20,7 +20,9 @@
 
 package org.mifos.androidclient.entities.account;
 
-public class LoanPerformanceHistory {
+import java.io.Serializable;
+
+public class LoanPerformanceHistory implements Serializable {
 
     private Integer noOfPayments;
     private Integer totalNoOfMissedPayments;

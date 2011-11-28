@@ -20,7 +20,9 @@
 
 package org.mifos.androidclient.entities.account;
 
-public class LoanSummary {
+import java.io.Serializable;
+
+public class LoanSummary implements Serializable {
 
     private String originalPrincipal;
     private String principalPaid;

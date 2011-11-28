@@ -22,7 +22,9 @@ package org.mifos.androidclient.entities.customer;
 
 import org.mifos.androidclient.entities.BaseEntity;
 
-public class CenterPerformanceHistory extends BaseEntity {
+import java.io.Serializable;
+
+public class CenterPerformanceHistory extends BaseEntity implements Serializable {
 
     private Integer numberOfGroups;
     private Integer numberOfClients;

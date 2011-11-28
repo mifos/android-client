@@ -21,6 +21,7 @@
 package org.mifos.androidclient.entities.account;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.mifos.androidclient.entities.customer.CustomerNote;
 
 import java.util.List;
 
@@ -64,6 +65,7 @@ public class LoanAccountDetails extends AbstractAccountDetails {
     private Boolean group;
     private List<LoanActivity> recentAccountActivities;
     private Boolean disbursed;
+    private List<CustomerNote> recentNoteDtos;
 
     public String getAccountStateName() {
         return accountStateName;
@@ -359,6 +361,14 @@ public class LoanAccountDetails extends AbstractAccountDetails {
 
     public void setDisbursed(Boolean disbursed) {
         this.disbursed = disbursed;
+    }
+
+    public List<CustomerNote> getRecentNoteDtos() {
+        return recentNoteDtos;
+    }
+
+    public void setRecentNoteDtos(List<CustomerNote> recentNoteDtos) {
+        this.recentNoteDtos = recentNoteDtos;
     }
 
 }

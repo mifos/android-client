@@ -22,7 +22,9 @@ package org.mifos.androidclient.entities.customer;
 
 import org.mifos.androidclient.entities.BaseEntity;
 
-public class CustomerSurvey extends BaseEntity {
+import java.io.Serializable;
+
+public class CustomerSurvey extends BaseEntity implements Serializable {
 
     private Integer instanceId;
     private String surveyName;

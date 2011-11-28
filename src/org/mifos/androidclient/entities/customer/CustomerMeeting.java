@@ -22,7 +22,9 @@ package org.mifos.androidclient.entities.customer;
 
 import org.mifos.androidclient.entities.BaseEntity;
 
-public class CustomerMeeting extends BaseEntity {
+import java.io.Serializable;
+
+public class CustomerMeeting extends BaseEntity implements Serializable {
 
     private String meetingSchedule;
     private String meetingPlace;

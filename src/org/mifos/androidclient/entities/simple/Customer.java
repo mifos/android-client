@@ -22,12 +22,14 @@ package org.mifos.androidclient.entities.simple;
 
 import org.mifos.androidclient.util.listadapters.SimpleListItem;
 
+import java.io.Serializable;
+
 /**
  * A simple bean class representing a Mifos customer in a basic form.
  * Used on list - provides a display name and an identifier which can
  * be used to fetch more detailed data.
  */
-public class Customer extends AbstractCustomer implements SimpleListItem {
+public class Customer extends AbstractCustomer implements SimpleListItem, Serializable {
 
     public static final String BUNDLE_KEY = Customer.class.getSimpleName();
 

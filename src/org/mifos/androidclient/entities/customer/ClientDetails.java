@@ -20,9 +20,10 @@
 
 package org.mifos.androidclient.entities.customer;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ClientDetails extends CustomerDetailsEntity {
+public class ClientDetails extends CustomerDetailsEntity implements Serializable {
 
     private List<CustomerFlag> customerFlags;
     private ClientPerformanceHistory clientPerformanceHistory;

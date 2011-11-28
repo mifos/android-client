@@ -20,9 +20,10 @@
 
 package org.mifos.androidclient.entities.customer;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ClientDisplay extends CustomerDisplay {
+public class ClientDisplay extends CustomerDisplay implements Serializable {
 
     private Integer age;
     private String maritalStatus;

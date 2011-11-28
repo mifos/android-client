@@ -23,10 +23,11 @@ package org.mifos.androidclient.entities.account;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.mifos.androidclient.entities.customer.CustomerNote;
 
+import java.io.Serializable;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SavingsAccountDetails extends AbstractAccountDetails {
+public class SavingsAccountDetails extends AbstractAccountDetails implements Serializable {
 
     private SavingsProduct productDetails;
     private String accountStateName;
