@@ -1,66 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent">
+    <RelativeLayout
+                  android:layout_width="fill_parent"
+                  android:layout_height="fill_parent">
 
-    <TextView
-        android:id="@+id/login_header"
-        style="@style/Header"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/login_header"
-        />
+        <TextView
+            android:id="@+id/login_header"
+            style="@style/Header"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login_header"
+            />
 
-    <TextView
-        style="@style/Label"
-        android:id="@+id/login_label"
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:layout_below="@id/login_header"
-        android:text="@string/login_login_label"
-        />
+        <TextView
+            style="@style/Label"
+            android:id="@+id/login_label"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_below="@id/login_header"
+            android:text="@string/login_login_label"
+            />
 
-    <EditText
-        android:id="@+id/login_login"
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:layout_below="@id/login_label"
-        />
+        <EditText
+            android:id="@+id/login_login"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_below="@id/login_label"
+            />
 
-    <TextView
-        style="@style/Label"
-        android:id="@+id/password_label"
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:layout_below="@id/login_login"
-        android:text="@string/login_password_label"
-        />
+        <TextView
+            style="@style/Label"
+            android:id="@+id/password_label"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_below="@id/login_login"
+            android:text="@string/login_password_label"
+            />
 
-    <EditText
-        android:id="@+id/login_password"
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:layout_below="@id/password_label"
-        android:inputType="textPassword"
-        />
+        <EditText
+            android:id="@+id/login_password"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_below="@id/password_label"
+            android:inputType="textPassword"
+            />
 
-    <TextView
-        style="@style/Errors"
-        android:id="@+id/login_errors"
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:layout_below="@id/login_password"
-        android:visibility="invisible"
-        android:text="@string/login_errors"
-        />
+        <TextView
+            style="@style/Errors"
+            android:id="@+id/login_errors"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_below="@id/login_password"
+            android:visibility="invisible"
+            android:text="@string/login_errors"
+            />
 
-    <Button
-        android:id="@+id/login_button"
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:layout_below="@id/login_errors"
-        android:text="@string/login_button"
-        android:onClick="onLoginClicked"
-        />
+        <Button
+            android:id="@+id/login_button"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_below="@id/login_errors"
+            android:text="@string/login_button"
+            android:onClick="onLoginClicked"
+            />
 
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>
