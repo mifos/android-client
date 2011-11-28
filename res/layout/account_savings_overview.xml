@@ -94,8 +94,7 @@
 
             </TableLayout>
 
-
-             <TextView
+           <TextView
                 style="@style/Label"
                 android:id="@+id/accountOverviewSavings_recentNotes_label"
                 android:layout_below="@id/tableSavings_recentActivity"
@@ -172,6 +171,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
+
             <TextView
                 style="@style/Shifted"
                 android:id="@+id/accountOverviewSavings_totalWithdrawals_label"

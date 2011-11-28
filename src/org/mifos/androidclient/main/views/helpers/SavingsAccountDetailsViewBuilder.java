@@ -57,7 +57,6 @@ public class SavingsAccountDetailsViewBuilder implements AccountDetailsViewBuild
 
         TableLayout savingsRecentActivityLayout = (TableLayout)view.findViewById(R.id.tableSavings_recentActivity);
         if(mDetails.getRecentActivity() !=null && mDetails.getRecentActivity().size() > 0){
-
             prepareSavingsRecentActivityTable(view, savingsRecentActivityLayout);
         }
 

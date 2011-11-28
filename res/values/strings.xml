@@ -173,6 +173,7 @@
     <string name="accountOverviewLoan_penalty_label">Penalty</string>
     <string name="accountOverviewLoan_total_label">Total</string>
 
+
     <string name="accountOverviewLoan_recentActivity_label">Recent activity</string>
     <string name="accountOverviewLoan_recentNotes_label">Recent notes</string>
     <string name="accountOverviewSavings_accountStatus_label">Status:&#160;</string>
@@ -214,7 +215,9 @@
 
     <string name="accountDetails_transactionsHistoryButton_label">View Transactions History</string>
     <string name="accountDetails_installmentDetailsButton_label">View Installment Details</string>
-   <!--
+
+    <!--
+    MIFOSAC-14 Loan and Savings account overview added
         String values for AccountTransactionHistoryActivity
     -->
     <string name="transactionHistoryItemDetails_header">Transaction Details:</string>

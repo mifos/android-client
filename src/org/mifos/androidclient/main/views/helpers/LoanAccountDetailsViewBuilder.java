@@ -33,6 +33,7 @@ import org.mifos.androidclient.entities.account.LoanAccountDetails;
 import org.mifos.androidclient.entities.account.LoanActivity;
 import org.mifos.androidclient.entities.customer.CustomerNote;
 import org.mifos.androidclient.templates.AccountDetailsViewBuilder;
+import org.w3c.dom.Text;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -66,6 +67,7 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
         }
 
         preparePerformanceHistory(view);
+
         return view;
     }
 
@@ -88,6 +90,7 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
     }
 
     private void prepareRecentNotes(View view) {
+
         TextView textView;
         textView = (TextView)view.findViewById(R.id.accountOverviewLoan_recentNotes_label);
         textView.setVisibility(View.VISIBLE);
