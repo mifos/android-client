@@ -44,6 +44,8 @@ import org.springframework.web.client.RestClientException;
 public class CustomerDetailsActivity extends DownloaderActivity
         implements ExpandableListView.OnChildClickListener {
 
+    public static final String SELECTED_TAB_BUNDLE_KEY = CustomerDetailsActivity.class.getSimpleName() + "-selectedTab";
+
     private AbstractCustomer mCustomer;
     private CustomerDetailsTask mCustomerDetailsTask;
     private CustomerService mCustomerService;
@@ -69,9 +71,15 @@ public class CustomerDetailsActivity extends DownloaderActivity
         tabs.addTab(accountsSpec);
         tabs.addTab(additionalSpec);
 
-        if (bundle != null && bundle.containsKey(CustomerDetailsEntity.BUNDLE_KEY)) {
-            mDetails = (CustomerDetailsEntity)bundle.getSerializable(CustomerDetailsEntity.BUNDLE_KEY);
+        if (bundle != null) {
+            if (bundle.containsKey(CustomerDetailsEntity.BUNDLE_KEY)) {
+                mDetails = (CustomerDetailsEntity)bundle.getSerializable(CustomerDetailsEntity.BUNDLE_KEY);
+            }
+            if (bundle.containsKey(SELECTED_TAB_BUNDLE_KEY)) {
+                tabs.setCurrentTab(bundle.getInt(SELECTED_TAB_BUNDLE_KEY));
+            }
         }
+
         mCustomer = (AbstractCustomer)getIntent().getSerializableExtra(AbstractCustomer.BUNDLE_KEY);
         mCustomerService = new CustomerService(this);
     }
@@ -88,7 +96,12 @@ public class CustomerDetailsActivity extends DownloaderActivity
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
         outState.putSerializable(CustomerDetailsEntity.BUNDLE_KEY, mDetails);
+        TabHost tabs = (TabHost)findViewById(R.id.customerDetails_tabhost);
+        if (tabs != null) {
+            outState.putSerializable(SELECTED_TAB_BUNDLE_KEY, tabs.getCurrentTab());
+        }
     }
 
     @Override

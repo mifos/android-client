@@ -59,6 +59,10 @@ public class AccountDetailsActivity extends DownloaderActivity {
         tabs.addTab(overviewSpec);
         tabs.addTab(additionalInfoSpec);
 
+        if (bundle != null && bundle.containsKey(AbstractAccountDetails.BUNDLE_KEY)) {
+            mDetails = (AbstractAccountDetails)bundle.getSerializable(AbstractAccountDetails.BUNDLE_KEY);
+        }
+
         mAccount = (AccountBasicInformation)getIntent().getSerializableExtra(AccountBasicInformation.BUNDLE_KEY);
         mAccountService = new AccountService(this);
     }
@@ -69,6 +73,12 @@ public class AccountDetailsActivity extends DownloaderActivity {
         if (mDetails == null) {
             runAccountDetailsTask();
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(AbstractAccountDetails.BUNDLE_KEY, mDetails);
     }
 
     private void updateContent(AbstractAccountDetails details) {

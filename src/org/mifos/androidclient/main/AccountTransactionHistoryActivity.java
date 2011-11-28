@@ -31,6 +31,7 @@ import org.mifos.androidclient.templates.DownloaderActivity;
 import org.mifos.androidclient.templates.ServiceConnectivityTask;
 import org.springframework.web.client.RestClientException;
 
+import java.io.Serializable;
 import java.util.*;
 
 public class AccountTransactionHistoryActivity extends DownloaderActivity {
@@ -45,6 +46,10 @@ public class AccountTransactionHistoryActivity extends DownloaderActivity {
         super.onCreate(bundle);
         setContentView(R.layout.transaction_history);
 
+        if (bundle != null && bundle.containsKey(TransactionHistoryEntry.BUNDLE_KEY)) {
+            mTransactionHistoryEntries = (List<TransactionHistoryEntry>)bundle.getSerializable(TransactionHistoryEntry.BUNDLE_KEY);
+        }
+
         mAccountNumber = getIntent().getStringExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY);
         mAccountService = new AccountService(this);
     }
@@ -57,6 +62,12 @@ public class AccountTransactionHistoryActivity extends DownloaderActivity {
         } else {
             updateContent(mTransactionHistoryEntries);
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(TransactionHistoryEntry.BUNDLE_KEY, (Serializable)mTransactionHistoryEntries);
     }
 
     private void updateContent(List<TransactionHistoryEntry> entries) {

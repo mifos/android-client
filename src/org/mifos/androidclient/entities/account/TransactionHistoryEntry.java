@@ -23,8 +23,12 @@ package org.mifos.androidclient.entities.account;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.mifos.androidclient.util.listadapters.SimpleListItem;
 
+import java.io.Serializable;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class TransactionHistoryEntry implements SimpleListItem {
+public class TransactionHistoryEntry implements SimpleListItem, Serializable {
+
+    public static final String BUNDLE_KEY = TransactionHistoryEntry.class.getSimpleName();
 
     private String transactionDate;
     private Integer paymentId;

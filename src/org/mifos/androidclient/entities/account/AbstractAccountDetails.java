@@ -22,8 +22,11 @@ package org.mifos.androidclient.entities.account;
 
 import org.mifos.androidclient.entities.BaseEntity;
 
-public abstract class AbstractAccountDetails extends BaseEntity {
+import java.io.Serializable;
 
+public abstract class AbstractAccountDetails extends BaseEntity implements Serializable {
+
+    public static final String BUNDLE_KEY = AbstractAccountDetails.class.getSimpleName();
     public static final String ACCOUNT_NUMBER_BUNDLE_KEY = AbstractAccountDetails.class.getSimpleName() + "-accountNumber";
 
     private String globalAccountNum;
