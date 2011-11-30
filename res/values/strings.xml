@@ -246,4 +246,20 @@
     <string name="loanInstallmentDetails_subTotal_columnLabel">subTotal</string>
     <string name="loanInstallmentDetails_totalAmountDue_columnLabel">Total amount due on&#160;</string>
 
+    <!--
+        String values for CustomerChargesDetailsActivity
+    -->
+    <string name="customerChargesDetails_accountSummary_label">Account summary</string>
+    <string name="customerChargesDetails_upcomingCharges_label">Upcoming charges&#160;</string>
+    <string name="customerChargesDetails_recentAccountActivity_label">Recent Account Activity</string>
+    <string name="customerChargesDetails_recurringAccountFees_label">Recurring Account Fees</string>
+    <string name="customerChargesDetails_amountDue_label">Amount Due:&#160;</string>
+    <string name="customerChargesDetails_amountOverdue_label">Amount Overdue:&#160;</string>
+    <string name="customerChargesDetails_total_label">Total:&#160;</string>
+    <string name="customerChargesDetails_feeType_label">Fee Type:</string>
+    <string name="customerChargesDetails_amount_label">Amount</string>
+    <string name="customerChargesDetails_date_label">Date</string>
+    <string name="customerChargesDetails_description_label">Description</string>
+    <string name="customerChargesDetails_postedBy_label">Posted By</string>
+
 </resources>

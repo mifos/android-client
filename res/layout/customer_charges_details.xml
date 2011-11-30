@@ -1,8 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
+        <TextView
+            style="@style/Header"
+            android:id="@+id/customerChargesDetails_accountSummary_label"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/customerChargesDetails_accountSummary_label"
+            />
 
-</RelativeLayout>
+        <TextView
+            style="@style/Label"
+            android:id="@+id/customerChargesDetails_amountDue_label"
+            android:layout_below="@id/customerChargesDetails_accountSummary_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/customerChargesDetails_amountDue_label"
+            />
+
+        <TextView
+            style="@style/Shifted"
+            android:id="@+id/customerChargesDetails_amountDue"
+            android:layout_below="@id/customerChargesDetails_amountDue_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/not_available"
+            />
+
+        <TextView
+            style="@style/Label"
+            android:id="@+id/customerChargesDetails_amountOverdue_label"
+            android:layout_below="@id/customerChargesDetails_amountDue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/customerChargesDetails_amountOverdue_label"
+            />
+
+        <TextView
+            style="@style/Shifted"
+            android:id="@+id/customerChargesDetails_amountOverdue"
+            android:layout_below="@id/customerChargesDetails_amountOverdue_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/not_available"
+            />
+
+        <TextView
+            style="@style/Label"
+            android:id="@+id/customerChargesDetails_total_label"
+            android:layout_below="@id/customerChargesDetails_amountOverdue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/customerChargesDetails_total_label"
+            />
+
+        <TextView
+            style="@style/Shifted"
+            android:id="@+id/customerChargesDetails_total"
+            android:layout_below="@id/customerChargesDetails_total_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/not_available"
+            />
+
+        <TextView
+            style="@style/Header"
+            android:visibility="gone"
+            android:id="@+id/customerChargesDetails_upcomingCharges_label"
+            android:layout_below="@id/customerChargesDetails_total"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/customerChargesDetails_upcomingCharges_label"
+            />
+
+        <HorizontalScrollView
+            android:visibility="gone"
+            android:id="@+id/customerChargesDetails_upcomingCharges_scrollView"
+            android:layout_below="@id/customerChargesDetails_upcomingCharges_label"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TableLayout
+                android:id="@+id/customerChargesDetails_upcomingCharges_table"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow>
+                    <TextView
+                        style="@style/TableColumnHeader"
+                        android:layout_column="1"
+                        android:text="@string/customerChargesDetails_feeType_label"
+                        />
+                    <TextView
+                        style="@style/TableColumnHeader"
+                        android:layout_column="2"
+                        android:text="@string/customerChargesDetails_amount_label"
+                        />
+                </TableRow>
+
+            </TableLayout>
+
+        </HorizontalScrollView>
+
+        <TextView
+            style="@style/Header"
+            android:visibility="gone"
+            android:id="@+id/customerChargesDetails_recentAccountActivity_label"
+            android:layout_below="@id/customerChargesDetails_upcomingCharges_scrollView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/customerChargesDetails_recentAccountActivity_label"
+            />
+
+        <HorizontalScrollView
+            android:id="@+id/customerChargesDetails_recentAccountActivity_scrollView"
+            android:visibility="gone"
+            android:layout_below="@id/customerChargesDetails_recentAccountActivity_label"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TableLayout
+                android:id="@+id/customerChargesDetails_recentAccountActivity_table"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow>
+                    <TextView
+                        style="@style/TableColumnHeader"
+                        android:layout_column="1"
+                        android:text="@string/customerChargesDetails_date_label"
+                        />
+                    <TextView
+                        style="@style/TableColumnHeader"
+                        android:layout_column="2"
+                        android:text="@string/customerChargesDetails_description_label"
+                        />
+                    <TextView
+                        style="@style/TableColumnHeader"
+                        android:layout_column="3"
+                        android:text="@string/customerChargesDetails_amount_label"
+                        />
+                    <TextView
+                        style="@style/TableColumnHeader"
+                        android:layout_column="4"
+                        android:text="@string/customerChargesDetails_postedBy_label"
+                        />
+                </TableRow>
+
+            </TableLayout>
+
+        </HorizontalScrollView>
+
+        <TextView
+            style="@style/Header"
+            android:visibility="gone"
+            android:id="@+id/customerChargesDetails_recurringAccountFees_label"
+            android:layout_below="@id/customerChargesDetails_recentAccountActivity_scrollView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/customerChargesDetails_recurringAccountFees_label"
+            />
+
+    </RelativeLayout>
+
+</ScrollView>

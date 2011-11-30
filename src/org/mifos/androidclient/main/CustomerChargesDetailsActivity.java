@@ -23,6 +23,7 @@ package org.mifos.androidclient.main;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.widget.TextView;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.customer.CustomerChargesDetails;
 import org.mifos.androidclient.entities.simple.AbstractCustomer;
@@ -77,6 +78,14 @@ public class CustomerChargesDetailsActivity extends DownloaderActivity {
 
     private void updateContent(CustomerChargesDetails details) {
         mDetails = details;
+        TextView textView;
+
+        textView = (TextView)findViewById(R.id.customerChargesDetails_amountDue);
+        textView.setText(details.getNextDueAmount().toString());
+        textView = (TextView)findViewById(R.id.customerChargesDetails_amountOverdue);
+        textView.setText(details.getTotalAmountInArrears().toString());
+        textView = (TextView)findViewById(R.id.customerChargesDetails_total);
+        textView.setText(details.getTotalAmountDue().toString());
     }
 
     private void runCustomerChargesTask() {
