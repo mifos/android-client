@@ -105,6 +105,15 @@ public class CustomerDetailsActivity extends DownloaderActivity
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mCustomerDetailsTask != null) {
+            mCustomerDetailsTask.terminate();
+            mCustomerDetailsTask = null;
+        }
+    }
+
+    @Override
     public boolean onChildClick(ExpandableListView expandableListView, View view, int groupPos, int childPos, long id) {
         AccountsExpandableListAdapter adapter = (AccountsExpandableListAdapter)expandableListView.getExpandableListAdapter();
         AccountBasicInformation account = (AccountBasicInformation)adapter.getChild(groupPos, childPos);

@@ -81,6 +81,15 @@ public class AccountTransactionHistoryActivity extends DownloaderActivity
         outState.putSerializable(TransactionHistoryEntry.BUNDLE_KEY, (Serializable)mTransactionHistoryEntries);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mTransactionHistoryTask != null) {
+            mTransactionHistoryTask.terminate();
+            mTransactionHistoryTask = null;
+        }
+    }
+
     private void updateContent(List<TransactionHistoryEntry> entries) {
         if (entries != null) {
             mTransactionHistoryEntries = entries;

@@ -41,6 +41,7 @@ public abstract class ServiceConnectivityTask<Params, Progress, Result> extends 
     private final Object mLock;
     private String mProgressTitle;
     private String mProgressMessage;
+    private boolean mTerminated;
 
     public ServiceConnectivityTask(Context context, String progressTitle, String progressMessage) {
         mContext = context;
@@ -51,6 +52,24 @@ public abstract class ServiceConnectivityTask<Params, Progress, Result> extends 
         mCauses[1] = mContext.getString(R.string.toast_address_invalid);
         mProgressTitle = progressTitle;
         mProgressMessage = progressMessage;
+        mTerminated = false;
+    }
+
+    public void terminate() {
+        setTerminated(true);
+        mUIUtils.cancelProgressDialog();
+    }
+
+    public boolean isTerminated() {
+        synchronized (mLock) {
+            return mTerminated;
+        }
+    }
+
+    public void setTerminated(boolean mTerminated) {
+        synchronized (mLock) {
+            this.mTerminated = mTerminated;
+        }
     }
 
     protected abstract Result doInBackgroundBody(Params... params) throws RestClientException, IllegalArgumentException;
@@ -60,20 +79,24 @@ public abstract class ServiceConnectivityTask<Params, Progress, Result> extends 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        mUIUtils.displayProgressDialog(mProgressTitle, mProgressMessage, true);
+        if (!isTerminated()) {
+            mUIUtils.displayProgressDialog(mProgressTitle, mProgressMessage, true);
+        }
     }
 
     @Override
     protected Result doInBackground(Params... params) {
-        Result result;
-        try {
-            result = doInBackgroundBody(params);
-        } catch (RestClientException e) {
-            setErrorCause(mCauses[0]);
-            return null;
-        } catch (IllegalArgumentException e) {
-            setErrorCause(mCauses[1]);
-            return null;
+        Result result = null;
+        if (!isTerminated()) {
+            try {
+                result = doInBackgroundBody(params);
+            } catch (RestClientException e) {
+                setErrorCause(mCauses[0]);
+                return null;
+            } catch (IllegalArgumentException e) {
+                setErrorCause(mCauses[1]);
+                return null;
+            }
         }
         return result;
     }
@@ -81,11 +104,13 @@ public abstract class ServiceConnectivityTask<Params, Progress, Result> extends 
     @Override
     protected void onPostExecute(Result result) {
         super.onPostExecute(result);
-        mUIUtils.cancelProgressDialog();
-        if (result != null) {
-            onPostExecuteBody(result);
-        } else {
-            mUIUtils.displayLongMessage(getErrorCause());
+        if (!isTerminated()) {
+            mUIUtils.cancelProgressDialog();
+            if (result != null) {
+                onPostExecuteBody(result);
+            } else {
+                mUIUtils.displayLongMessage(getErrorCause());
+            }
         }
     }
 

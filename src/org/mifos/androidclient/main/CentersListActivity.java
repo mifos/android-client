@@ -78,6 +78,15 @@ public class CentersListActivity extends DownloaderActivity
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mCustomersListTask != null) {
+            mCustomersListTask.terminate();
+            mCustomersListTask = null;
+        }
+    }
+
+    @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long rowId) {
         Center center = (Center)adapterView.getAdapter().getItem(position);
         Intent intent = new Intent().setClass(this, CustomersListActivity.class);

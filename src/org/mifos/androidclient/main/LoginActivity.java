@@ -57,6 +57,15 @@ public class LoginActivity extends MifosActivity {
         mLoginService = new LoginService(this);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mLoginTask != null) {
+            mLoginTask.terminate();
+            mLoginTask = null;
+        }
+    }
+
     /**
      * Executed when the login button is pressed by the user.<br />
      * Configured in the layout file of this activity.

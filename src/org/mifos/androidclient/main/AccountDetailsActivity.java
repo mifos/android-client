@@ -86,6 +86,15 @@ public class AccountDetailsActivity extends DownloaderActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mAccountDetailsTask != null) {
+            mAccountDetailsTask.terminate();
+            mAccountDetailsTask = null;
+        }
+    }
+
     /**
      * A handler of the button for account's transactions history browsing.
      *

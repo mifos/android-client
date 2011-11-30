@@ -62,6 +62,15 @@ public abstract class DownloaderActivity extends MifosActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mSessionStatusCheckTask != null) {
+            mSessionStatusCheckTask.terminate();
+            mSessionStatusCheckTask = null;
+        }
+    }
+
     private void runSessionStatusCheckTask() {
         if (mSessionStatusCheckTask == null || mSessionStatusCheckTask.getStatus() != AsyncTask.Status.RUNNING) {
             mSessionStatusCheckTask = new SessionStatusCheckTask(this, getString(R.string.dialog_checking_session), getString(R.string.dialog_loading_message));
