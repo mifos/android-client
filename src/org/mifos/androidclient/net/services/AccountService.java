@@ -25,17 +25,17 @@ import org.mifos.androidclient.entities.account.AbstractAccountDetails;
 import org.mifos.androidclient.entities.account.LoanAccountDetails;
 import org.mifos.androidclient.entities.account.SavingsAccountDetails;
 import org.mifos.androidclient.entities.account.TransactionHistoryEntry;
+import org.mifos.androidclient.entities.account.loan.LoanInstallmentDetails;
 import org.mifos.androidclient.entities.customer.AccountBasicInformation;
 import org.mifos.androidclient.entities.customer.LoanAccountBasicInformation;
 import org.mifos.androidclient.entities.customer.SavingsAccountBasicInformation;
-
-import java.util.List;
 
 public class AccountService extends RestNetworkService {
 
     private static final String LOAN_ACCOUNT_DETAILS_PATH_PREFIX = "/account/loan/num-";
     private static final String SAVINGS_ACCOUNT_DETAILS_PATH_PREFIX = "/account/savings/num-";
     private static final String TRANSACTION_HISTORY_PATH_PREFIX = "/account/trxnhistory/num-";
+    private static final String LOAN_INSTALLMENT_DETAILS_PATH_PREFIX = "/account/loan/installment/num-";
 
     public AccountService(Context context) {
         super(context);
@@ -64,6 +64,11 @@ public class AccountService extends RestNetworkService {
     public TransactionHistoryEntry[] getAccountTransactionHistory(String globalAccountNumber) {
         String url = getServerUrl() + TRANSACTION_HISTORY_PATH_PREFIX + globalAccountNumber + PATH_SUFFIX;
         return mRestConnector.getForObject(url, TransactionHistoryEntry[].class);
+    }
+
+    public LoanInstallmentDetails getLoanInstallmentDetails(String globalAccountNumber) {
+        String url = getServerUrl() + LOAN_INSTALLMENT_DETAILS_PATH_PREFIX + globalAccountNumber + PATH_SUFFIX;
+        return mRestConnector.getForObject(url, LoanInstallmentDetails.class);
     }
 
 }

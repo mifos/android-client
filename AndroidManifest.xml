@@ -26,6 +26,7 @@
         <activity android:name=".main.AccountDetailsActivity" />
         <activity android:name=".main.AccountTransactionHistoryActivity" />
         <activity android:name=".main.TransactionHistoryItemDetailsActivity" />
+        <activity android:name=".main.LoanInstallmentDetailsActivity" />
     </application>
 
 </manifest> 

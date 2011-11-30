@@ -12,4 +12,13 @@
         android:onClick="onTransactionsHistorySelected"
         />
 
+    <Button
+        android:id="@+id/view_installmentDetails_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_transactionsHistory_button"
+        android:text="@string/accountDetails_installmentDetailsButton_label"
+        android:onClick="onInstallmentDetailsSelected"
+        />
+
 </RelativeLayout>
