@@ -24,6 +24,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -99,6 +100,9 @@ public class ClientDetailsViewBuilder implements CustomerDetailsViewBuilder {
 
         TextView chargesAmountDue = (TextView)view.findViewById(R.id.loanAccounts_amountDue);
         chargesAmountDue.setText(mDetails.getCustomerAccountSummary().getNextDueAmount());
+
+        Button viewChargesDetailsButton = (Button)view.findViewById(R.id.view_chargesDetails_button);
+        viewChargesDetailsButton.setVisibility(View.VISIBLE);
 
         Map<String, List<AccountBasicInformation>> items = new HashMap<String, List<AccountBasicInformation>>();
         if (mDetails.getLoanAccountsInUse()!= null && mDetails.getLoanAccountsInUse().size() > 0) {

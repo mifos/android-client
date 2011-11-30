@@ -21,10 +21,7 @@
 package org.mifos.androidclient.net.services;
 
 import android.content.Context;
-import org.mifos.androidclient.entities.customer.CenterDetails;
-import org.mifos.androidclient.entities.customer.ClientDetails;
-import org.mifos.androidclient.entities.customer.CustomerDetailsEntity;
-import org.mifos.androidclient.entities.customer.GroupDetails;
+import org.mifos.androidclient.entities.customer.*;
 import org.mifos.androidclient.entities.simple.*;
 
 public class CustomerService extends RestNetworkService {
@@ -34,6 +31,8 @@ public class CustomerService extends RestNetworkService {
     private final static String CLIENT_DETAILS_PATH_PREFIX = "/client/num-";
     private final static String GROUP_DETAILS_PATH_PREFIX = "/group/num-";
     private final static String CENTER_DETAILS_PATH_PREFIX = "/center/num-";
+
+    private final static String CLIENT_CHARGES_DETAILS_PATH_PREFIX = "/client/charges/num-";
 
     public CustomerService(Context context) {
         super(context);
@@ -67,6 +66,16 @@ public class CustomerService extends RestNetworkService {
             details = getGroupDetails(customer.getGlobalCustNum());
         } else if (customer.getClass() == Center.class) {
             details = getCenterDetails(customer.getGlobalCustNum());
+        }
+        return details;
+    }
+
+    public CustomerChargesDetails getChargesForEntity(AbstractCustomer entity) {
+        CustomerChargesDetails details = null;
+        String url;
+        if (entity.getClass() == Customer.class) {
+            url = getServerUrl() + CLIENT_CHARGES_DETAILS_PATH_PREFIX + entity.getGlobalCustNum() + PATH_SUFFIX;
+            details = mRestConnector.getForObject(url, CustomerChargesDetails.class);
         }
         return details;
     }

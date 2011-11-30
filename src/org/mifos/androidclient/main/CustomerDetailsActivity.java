@@ -123,6 +123,17 @@ public class CustomerDetailsActivity extends DownloaderActivity
         return true;
     }
 
+    /**
+     * A handler for charges details viewing button.
+     *
+     * @param view the view which contains the pressed button.
+     */
+    public void onChargesDetailsSelected(View view) {
+        Intent intent = new Intent().setClass(this, CustomerChargesDetailsActivity.class);
+        intent.putExtra(AbstractCustomer.BUNDLE_KEY, mCustomer);
+        startActivity(intent);
+    }
+
     private void updateContent(CustomerDetailsEntity details) {
         if (details != null) {
             mDetails = details;

@@ -27,6 +27,7 @@
     <string name="dialog_getting_account_data">Getting account data</string>
     <string name="dialog_getting_transaction_history">Getting transaction history</string>
     <string name="dialog_getting_installment_details">Getting installment details</string>
+    <string name="dialog_getting_customer_charges">Getting customer charges</string>
 
     <!--
         Text values for toast messages:
@@ -105,6 +106,8 @@
     <string name="customerOverview_loanCyclePerProduct_label">Loan Cycle per Product:&#160;</string>
     <string name="customerOverview_name_label">Client name:&#160;</string>
 
+    <string name="accountDetails_chargesDetailsButton_label">View Charges Details</string>
+
     <string name="savingsAccountListItem_balance_label">Balance:&#160;</string>
     <string name="savingsAccountListItem_status_label">Status:&#160;</string>
 
@@ -127,8 +130,6 @@
     <string name="groupOverview_loanCyclePerProduct_label">Loan Cycle per Product:&#160;</string>
     <string name="groupAdditional_approvalDate_label">Group approval date:&#160;</string>
     <string name="groupAdditional_recruitedBy_label">Recruited By:&#160;</string>
-
-
 
     <string name="centerOverview_noOfActiveClients_label"># of active Clients:&#160;</string>
     <string name="centerOverview_noOfActiveGroups_label"># of active Groups:&#160;</string>
