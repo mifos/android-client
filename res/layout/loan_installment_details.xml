@@ -1,7 +1,265 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent">
 
-</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            style="@style/Header"
+            android:id="@+id/loanInstallmentDetails_header"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/loanInstallmentDetails_header"
+            />
+
+        <HorizontalScrollView
+            android:layout_below="@id/loanInstallmentDetails_header"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TableLayout
+                android:id="@+id/loanInstallmentDetails_table"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:stretchColumns="1"
+                android:padding="3dp">
+
+                <TableRow>
+                    <TextView
+                        style="@style/TableColumnHeader"
+                        android:layout_column="1"
+                        android:text="@string/loanInstallmentDetails_currentInstallment_columnLabel"
+                        />
+                    <TextView
+                        style="@style/TableColumnHeader"
+                        android:layout_column="2"
+                        android:text="@string/loanInstallmentDetails_amount_columnLabel"
+                        />
+                </TableRow>
+
+                <View
+                    style="@style/BigTableSeparator"
+                    />
+
+                <TableRow>
+                    <TextView
+                        style="@style/TableItem"
+                        android:layout_column="1"
+                        android:text="@string/loanInstallmentDetails_principal_columnLabel"
+                        />
+                    <TextView
+                        style="@style/TableItem"
+                        android:id="@+id/loanInstallmentDetails_currentPrincipal"
+                        android:layout_column="2"
+                        android:text="@string/not_available"
+                        />
+                </TableRow>
+
+                <View
+                    style="@style/SmallTableSeparator"
+                    />
+
+                <TableRow>
+                    <TextView
+                        style="@style/TableItem"
+                        android:layout_column="1"
+                        android:text="@string/loanInstallmentDetails_interest_columnLabel"
+                        />
+                    <TextView
+                        style="@style/TableItem"
+                        android:id="@+id/loanInstallmentDetails_currentInterest"
+                        android:layout_column="2"
+                        android:text="@string/not_available"
+                        />
+                </TableRow>
+
+                <View
+                    style="@style/SmallTableSeparator"
+                    />
+
+                <TableRow>
+                    <TextView
+                        style="@style/TableItem"
+                        android:layout_column="1"
+                        android:text="@string/loanInstallmentDetails_fees_columnLabel"
+                        />
+                    <TextView
+                        style="@style/TableItem"
+                        android:id="@+id/loanInstallmentDetails_currentFees"
+                        android:layout_column="2"
+                        android:text="@string/not_available"
+                        />
+                </TableRow>
+
+                <View
+                    style="@style/SmallTableSeparator"
+                    />
+
+                <TableRow>
+                    <TextView
+                        style="@style/TableItem"
+                        android:layout_column="1"
+                        android:text="@string/loanInstallmentDetails_penalty_columnLabel"
+                        />
+                    <TextView
+                        style="@style/TableItem"
+                        android:id="@+id/loanInstallmentDetails_currentPenalty"
+                        android:layout_column="2"
+                        android:text="@string/not_available"
+                        />
+                </TableRow>
+
+                <View
+                    style="@style/SmallTableSeparator"
+                    />
+
+                <TableRow>
+                    <TextView
+                        style="@style/ItalicizedTableItem"
+                        android:layout_column="1"
+                        android:text="@string/loanInstallmentDetails_subTotal_columnLabel"
+                        />
+                    <TextView
+                        style="@style/ItalicizedTableItem"
+                        android:id="@+id/loanInstallmentDetails_currentSubTotal"
+                        android:layout_column="2"
+                        android:text="@string/not_available"
+                        />
+                </TableRow>
+
+                <View
+                    style="@style/BigTableSeparator"
+                    />
+
+                <TableRow>
+                    <TextView
+                        style="@style/TableColumnHeader"
+                        android:layout_column="1"
+                        android:text="@string/loanInstallmentDetails_overdueAmount_columnLabel"
+                        />
+                    <TextView
+                        style="@style/TableColumnHeader"
+                        android:layout_column="2"
+                        android:text="@string/loanInstallmentDetails_amount_columnLabel"
+                        />
+                </TableRow>
+
+                <View
+                    style="@style/BigTableSeparator"
+                    />
+
+                <TableRow>
+                    <TextView
+                        style="@style/TableItem"
+                        android:layout_column="1"
+                        android:text="@string/loanInstallmentDetails_principal_columnLabel"
+                        />
+                    <TextView
+                        style="@style/TableItem"
+                        android:id="@+id/loanInstallmentDetails_overduePrincipal"
+                        android:layout_column="2"
+                        android:text="@string/not_available"
+                        />
+                </TableRow>
+
+                <View
+                    style="@style/SmallTableSeparator"
+                    />
+
+                <TableRow>
+                    <TextView
+                        style="@style/TableItem"
+                        android:layout_column="1"
+                        android:text="@string/loanInstallmentDetails_interest_columnLabel"
+                        />
+                    <TextView
+                        style="@style/TableItem"
+                        android:id="@+id/loanInstallmentDetails_overdueInterest"
+                        android:layout_column="2"
+                        android:text="@string/not_available"
+                        />
+                </TableRow>
+
+                <View
+                    style="@style/SmallTableSeparator"
+                    />
+
+                <TableRow>
+                    <TextView
+                        style="@style/TableItem"
+                        android:layout_column="1"
+                        android:text="@string/loanInstallmentDetails_fees_columnLabel"
+                        />
+                    <TextView
+                        style="@style/TableItem"
+                        android:id="@+id/loanInstallmentDetails_overdueFees"
+                        android:layout_column="2"
+                        android:text="@string/not_available"
+                        />
+                </TableRow>
+
+                <View
+                    style="@style/SmallTableSeparator"
+                    />
+
+                <TableRow>
+                    <TextView
+                        style="@style/TableItem"
+                        android:layout_column="1"
+                        android:text="@string/loanInstallmentDetails_penalty_columnLabel"
+                        />
+                    <TextView
+                        style="@style/TableItem"
+                        android:id="@+id/loanInstallmentDetails_overduePenalty"
+                        android:layout_column="2"
+                        android:text="@string/not_available"
+                        />
+                </TableRow>
+
+                <View
+                    style="@style/SmallTableSeparator"
+                    />
+
+                <TableRow>
+                    <TextView
+                        style="@style/ItalicizedTableItem"
+                        android:layout_column="1"
+                        android:text="@string/loanInstallmentDetails_subTotal_columnLabel"
+                        />
+                    <TextView
+                        style="@style/ItalicizedTableItem"
+                        android:id="@+id/loanInstallmentDetails_overdueSubTotal"
+                        android:layout_column="2"
+                        android:text="@string/not_available"
+                        />
+                </TableRow>
+
+                <View
+                    style="@style/BigTableSeparator"
+                    />
+
+                <TableRow>
+                    <TextView
+                        style="@style/BoldItalicizedTableItem"
+                        android:id="@+id/loanInstallmentDetails_totalAmountDue_columnLabel"
+                        android:layout_column="1"
+                        android:text="@string/loanInstallmentDetails_totalAmountDue_columnLabel"
+                        />
+                    <TextView
+                        style="@style/BoldItalicizedTableItem"
+                        android:id="@+id/loanInstallmentDetails_totalAmountDue"
+                        android:layout_column="2"
+                        android:text="@string/not_available"
+                        />
+                </TableRow>
+
+            </TableLayout>
+
+        </HorizontalScrollView>
+
+    </RelativeLayout>
+
+</ScrollView>

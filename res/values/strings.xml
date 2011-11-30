@@ -10,6 +10,8 @@
 
     <string name="not_implemented_yet_message">To be implemented soon!</string>
 
+    <string name="not_available">N/A</string>
+
     <!--
         Text values relates to user dialogs:
     -->
@@ -228,5 +230,19 @@
     <string name="transactionHistoryItemDetails_datePosted_label">Date Posted:&#160;</string>
     <string name="transactionHistoryItemDetails_postedBy_label">Posted By:&#160;</string>
     <string name="transactionHistoryItemDetails_adjustmentNotes_label">Adjustment Notes:&#160;</string>
+
+    <!--
+        String values for LoanInstallmentDetailsActivity
+    -->
+    <string name="loanInstallmentDetails_header">Loan Installment Details</string>
+    <string name="loanInstallmentDetails_currentInstallment_columnLabel">Current installment</string>
+    <string name="loanInstallmentDetails_overdueAmount_columnLabel">Overdue amount</string>
+    <string name="loanInstallmentDetails_amount_columnLabel">Amount</string>
+    <string name="loanInstallmentDetails_principal_columnLabel">Principal</string>
+    <string name="loanInstallmentDetails_interest_columnLabel">Interest</string>
+    <string name="loanInstallmentDetails_fees_columnLabel">Fees</string>
+    <string name="loanInstallmentDetails_penalty_columnLabel">Penalty</string>
+    <string name="loanInstallmentDetails_subTotal_columnLabel">subTotal</string>
+    <string name="loanInstallmentDetails_totalAmountDue_columnLabel">Total amount due on&#160;</string>
 
 </resources>

@@ -23,12 +23,14 @@ package org.mifos.androidclient.main;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.widget.TextView;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.account.AbstractAccountDetails;
 import org.mifos.androidclient.entities.account.loan.LoanInstallmentDetails;
 import org.mifos.androidclient.net.services.AccountService;
 import org.mifos.androidclient.templates.DownloaderActivity;
 import org.mifos.androidclient.templates.ServiceConnectivityTask;
+import org.mifos.androidclient.util.ui.DateUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestClientException;
 
@@ -93,7 +95,34 @@ public class LoanInstallmentDetailsActivity extends DownloaderActivity {
 
     private void updateContent(LoanInstallmentDetails details) {
         mDetails = details;
-        // fill in UI fields
+        TextView field;
+
+        field = (TextView)findViewById(R.id.loanInstallmentDetails_currentPrincipal);
+        field.setText(details.getUpcomingInstallmentDetails().getPrincipal().toString());
+        field = (TextView)findViewById(R.id.loanInstallmentDetails_currentInterest);
+        field.setText(details.getUpcomingInstallmentDetails().getInterest().toString());
+        field = (TextView)findViewById(R.id.loanInstallmentDetails_currentFees);
+        field.setText(details.getUpcomingInstallmentDetails().getFees().toString());
+        field = (TextView)findViewById(R.id.loanInstallmentDetails_currentPenalty);
+        field.setText(details.getUpcomingInstallmentDetails().getPenalty().toString());
+        field = (TextView)findViewById(R.id.loanInstallmentDetails_currentSubTotal);
+        field.setText(details.getUpcomingInstallmentDetails().getSubTotal().toString());
+
+        field = (TextView)findViewById(R.id.loanInstallmentDetails_overduePrincipal);
+        field.setText(details.getOverDueInstallmentDetails().getPrincipal().toString());
+        field = (TextView)findViewById(R.id.loanInstallmentDetails_overdueInterest);
+        field.setText(details.getOverDueInstallmentDetails().getInterest().toString());
+        field = (TextView)findViewById(R.id.loanInstallmentDetails_overdueFees);
+        field.setText(details.getOverDueInstallmentDetails().getFees().toString());
+        field = (TextView)findViewById(R.id.loanInstallmentDetails_overduePenalty);
+        field.setText(details.getOverDueInstallmentDetails().getPenalty().toString());
+        field = (TextView)findViewById(R.id.loanInstallmentDetails_overdueSubTotal);
+        field.setText(details.getOverDueInstallmentDetails().getSubTotal().toString());
+
+        field = (TextView)findViewById(R.id.loanInstallmentDetails_totalAmountDue_columnLabel);
+        field.setText(getText(R.string.loanInstallmentDetails_totalAmountDue_columnLabel) + DateUtils.format(details.getNextMeetingDate()));
+        field = (TextView)findViewById(R.id.loanInstallmentDetails_totalAmountDue);
+        field.setText(details.getTotalAmountDue().toString());
     }
 
     private class LoanInstallmentDetailsTask extends ServiceConnectivityTask<String, Void, LoanInstallmentDetails> {

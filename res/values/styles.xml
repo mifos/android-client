@@ -26,4 +26,36 @@
         <item name="android:paddingLeft">14dp</item>
     </style>
 
+    <style name="BigTableSeparator">
+        <item name="android:layout_height">2dp</item>
+        <item name="android:background">@color/tableSeparator</item>
+    </style>
+
+    <style name="SmallTableSeparator">
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/tableSeparator</item>
+    </style>
+
+    <style name="TableColumnHeader" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">1dp</item>
+    </style>
+
+    <style name="ItalicizedText">
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="BoldItalicizedTableItem" parent="TableItem">
+        <item name="android:textStyle">bold|italic</item>
+    </style>
+
+    <style name="ItalicizedTableItem" parent="TableItem">
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="TableItem">
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+    </style>
+
 </resources>
