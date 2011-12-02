@@ -1,26 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent">
 
-    <Button
-        android:id="@+id/view_transactionsHistory_button"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/accountDetails_transactionsHistoryButton_label"
-        android:onClick="onTransactionsHistorySelected"
-        />
+        <Button
+            android:id="@+id/view_transactionsHistory_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/accountDetails_transactionsHistoryButton_label"
+            android:onClick="onTransactionsHistorySelected"
+            />
 
-    <Button
-        android:id="@+id/view_installmentDetails_button"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/view_transactionsHistory_button"
-        android:text="@string/accountDetails_installmentDetailsButton_label"
-        android:onClick="onInstallmentDetailsSelected"
-        />
+        <Button
+            android:id="@+id/view_installmentDetails_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view_transactionsHistory_button"
+            android:text="@string/accountDetails_installmentDetailsButton_label"
+            android:onClick="onInstallmentDetailsSelected"
+            />
 
-</RelativeLayout>
 
+          <TextView
+            style="@style/Shifted"
+            android:id="@+id/accountDetailsLoan_CollateralNotes_label"
+            android:layout_below="@id/accountDetailsLoan_CollateralType_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/accountDetailsLoan_CollateralNotes_label"
+            />
+          <TextView
+            style="@style/Shifted"
+            android:id="@+id/accountDetailsLoan_CollateralNotes"
+            android:layout_below="@id/accountDetailsLoan_CollateralType_label"
+            android:layout_toRightOf="@id/accountDetailsLoan_CollateralNotes_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+
+          <TextView
+            style="@style/Label"
+            android:id="@+id/accountDetailsLoan_ExternalID_label"
+            android:layout_below="@id/accountDetailsLoan_CollateralNotes_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/accountDetailsLoan_ExternalID_label"
+            />
+          <TextView
+            style="@style/Shifted"
+            android:id="@+id/accountDetailsLoan_ExternalID"
+            android:layout_below="@id/accountDetailsLoan_CollateralNotes_label"
+            android:layout_toRightOf="@id/accountDetailsLoan_ExternalID_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+          <TextView
+            style="@style/Label"
+            android:id="@+id/accountDetailsLoan_RecurringAccountFees_label"
+            android:layout_below="@id/accountDetailsLoan_ExternalID_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/accountDetailsLoan_RecurringAccountFees_label"
+            />
+
+          <LinearLayout
+            android:id="@+id/accountDetailsLoan_accountFee"
+            android:orientation="vertical"
+            android:layout_below="@id/accountDetailsLoan_RecurringAccountFees_label"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp">
+        </LinearLayout>
+
+          <Button
+            android:id="@+id/view_transactionsHistory_button"
+            android:layout_below="@id/accountDetailsLoan_accountFee"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/accountDetails_transactionsHistoryButton_label"
+            android:onClick="onTransactionsHistorySelected"
+            />
+
+    </RelativeLayout>
+</ScrollView>

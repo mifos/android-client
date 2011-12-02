@@ -75,7 +75,62 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
     public View buildDetailsView() {
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.account_loan_details, null);
+
+        prepareAccountDetails(view);
+
         return view;
+    }
+
+    private void prepareAccountDetails(View view) {
+        String string,substring;
+        TextView textView;
+        textView = (TextView)view.findViewById(R.id.accountDetailsLoan_interestRateType);
+        string = mDetails.getInterestTypeName();
+        substring = string.substring(14);
+        textView.setText(substring);
+        textView = (TextView)view.findViewById(R.id.accountDetailsLoan_interestRate);
+        textView.setText(mDetails.getInterestRate().toString());
+        textView = (TextView)view.findViewById(R.id.accountDetailsLoan_interestDeductedAtDisbursement);
+        if(mDetails.getInterestDeductedAtDisbursement() == false){
+            textView.setText("No");
+        }
+        else textView.setText("Yes");
+        textView = (TextView)view.findViewById(R.id.accountDetailsLoan_frequencyOfInstallments);
+        if(mDetails.getRecurrenceId() == 1){
+        textView.setText(mDetails.getRecurAfter().toString() +" Week(s)");
+        }
+        else textView.setText(mDetails.getRecurAfter().toString() +" Month(s)");
+        textView = (TextView)view.findViewById(R.id.accountDetailsLoan_PrincipalDueOnLastInstallment);
+        if(mDetails.getPrinDueLastInst() == false){
+            textView.setText("No");
+        }
+        else textView.setText("Yes");
+        string = mDetails.getGracePeriodTypeName();
+        substring = string.substring(17);
+        textView =(TextView)view.findViewById(R.id.accountDetailsLoan_GracePeriodType);
+        textView.setText(substring);
+        textView = (TextView)view.findViewById(R.id.accountDetailsLoan_NoOfInstallments);
+        textView.setText(mDetails.getNoOfInstallments().toString());
+        textView = (TextView)view.findViewById(R.id.accountDetailsLoan_GracePeriodForRepayments);
+        textView.setText(mDetails.getGracePeriodDuration().toString());
+        textView = (TextView)view.findViewById(R.id.accountDetailsLoan_SourceOfFund);
+        textView.setText(mDetails.getFundName());
+        textView = (TextView)view.findViewById(R.id.accountDetailsLoan_CollateralType);
+        textView.setText(mDetails.getCollateralTypeName());
+        textView = (TextView)view.findViewById(R.id.accountDetailsLoan_CollateralNotes);
+        textView.setText(mDetails.getCollateralNote());
+        textView = (TextView)view.findViewById(R.id.accountDetailsLoan_ExternalID);
+        textView.setText(mDetails.getExternalId());
+
+
+        LinearLayout accountFeeLayout = (LinearLayout)view.findViewById(R.id.accountDetailsLoan_accountFee);
+        for(AccountFee fee: mDetails.getAccountFees()){
+            textView = new TextView(mContext);
+            textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
+            textView.setText(fee.getFeeName() + ": " + fee.getAccountFeeAmount().toString() + " ( Recur every" + fee.getMeetingRecurrence() + ")");
+            accountFeeLayout.addView(textView);
+        }
+
     }
 
     private void preparePerformanceHistory(View view) {
