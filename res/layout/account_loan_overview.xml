@@ -326,7 +326,6 @@
             </TableLayout>
 
            <TextView
-
                 style="@style/Label"
                 android:id="@+id/accountOverviewLoan_recentActivity_label"
                 android:layout_below="@id/accountSummaryTable_label"
@@ -365,6 +364,7 @@
             android:textStyle="bold"
             android:layout_below="@id/tableView"
             android:text="&#160;←&#160;→&#160;"
+            android:visibility="invisible"
             />
     <!--
             RECENT NOTES

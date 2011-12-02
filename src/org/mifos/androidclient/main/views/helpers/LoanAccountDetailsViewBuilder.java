@@ -219,6 +219,8 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
         long sDate;Date date;DateFormat df;
         textView = (TextView)view.findViewById(R.id.accountOverviewLoan_recentActivity_label);
         textView.setVisibility(View.VISIBLE);
+        textView = (TextView)view.findViewById(R.id.arrows);
+        textView.setVisibility(View.VISIBLE);
 
         TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT,TableRow.LayoutParams.WRAP_CONTENT);
         TableRow tableRow = new TableRow(mContext);
