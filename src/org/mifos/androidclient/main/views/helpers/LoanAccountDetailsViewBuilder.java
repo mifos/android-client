@@ -159,12 +159,15 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
     }
 
     private void prepareAccountInformation(View view) {
+        String string,substring;
         TextView textView = (TextView)view.findViewById(R.id.accountOverviewLoan_accountName);
         textView.setText(mDetails.getPrdOfferingName());
         textView = (TextView)view.findViewById(R.id.accountOverviewLoan_accountNumber);
         textView.setText("#" + mDetails.getGlobalAccountNum());
         textView = (TextView)view.findViewById(R.id.accountOverviewLoan_status);
-        textView.setText(mDetails.getAccountStateName());
+        string = mDetails.getAccountStateName();
+        substring = string.substring(13);
+        textView.setText(substring);
         textView =(TextView)view.findViewById(R.id.accountOverviewLoan_disbursalDate);
         long sDate = Long.parseLong(mDetails.getDisbursementDate());
         Date date = new Date(sDate);

@@ -340,8 +340,7 @@
              android:id="@+id/tableView"
              android:layout_below="@id/accountOverviewLoan_recentActivity_label"
              android:layout_width="fill_parent"
-             android:layout_height="fill_parent"
-             android:paddingBottom="3dp">
+             android:layout_height="fill_parent">
          <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
@@ -351,24 +350,30 @@
 
                <TableRow
                     android:id="@+id/tableLoan_recentActivity_row"
-                    android:padding="20dp"
                     >
                </TableRow>
 
             </TableLayout>
 
         </HorizontalScrollView>
-
+        <TextView
+            style="@style/Label"
+            android:id="@+id/arrows"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="120dp"
+            android:textStyle="bold"
+            android:layout_below="@id/tableView"
+            android:text="&#160;←&#160;→&#160;"
+            />
     <!--
             RECENT NOTES
      -->
 
-
             <TextView
                 style="@style/Label"
                 android:id="@+id/accountOverviewLoan_recentNotes_label"
-                android:paddingTop="4dp"
-                android:layout_below="@id/tableView"
+                android:layout_below="@id/arrows"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/accountOverviewLoan_recentNotes_label"
