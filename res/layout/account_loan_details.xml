@@ -7,9 +7,27 @@
           android:layout_width="fill_parent"
           android:layout_height="fill_parent">
 
+        <Button
+            android:id="@+id/view_transactionsHistory_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/accountDetails_transactionsHistoryButton_label"
+            android:onClick="onTransactionsHistorySelected"
+            />
+
+        <Button
+            android:id="@+id/view_installmentDetails_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view_transactionsHistory_button"
+            android:text="@string/accountDetails_installmentDetailsButton_label"
+            android:onClick="onInstallmentDetailsSelected"
+            />
+
           <TextView
             style="@style/Label"
             android:id="@+id/accountDetailsLoan_interestRules_label"
+            android:layout_below="@id/view_installmentDetails_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/accountDetailsLoan_interestRules_label"
@@ -270,15 +288,6 @@
             android:layout_height="wrap_content"
             android:paddingLeft="10dp">
         </LinearLayout>
-
-          <Button
-            android:id="@+id/view_transactionsHistory_button"
-            android:layout_below="@id/accountDetailsLoan_accountFee"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/accountDetails_transactionsHistoryButton_label"
-            android:onClick="onTransactionsHistorySelected"
-            />
 
     </RelativeLayout>
 </ScrollView>
