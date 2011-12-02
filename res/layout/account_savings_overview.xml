@@ -88,8 +88,7 @@
                <TableRow
                     android:id="@+id/tableSavings_recentActivity_row"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp">
+                    android:layout_height="wrap_content">
                </TableRow>
 
             </TableLayout>

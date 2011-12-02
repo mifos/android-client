@@ -29,6 +29,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import org.mifos.androidclient.R;
+import org.mifos.androidclient.entities.account.AccountFee;
 import org.mifos.androidclient.entities.account.LoanAccountDetails;
 import org.mifos.androidclient.entities.account.LoanActivity;
 import org.mifos.androidclient.entities.customer.CustomerNote;

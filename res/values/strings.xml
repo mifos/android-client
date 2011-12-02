@@ -172,20 +172,19 @@
     <string name="accountOverviewLoan_fees_label">Fees</string>
     <string name="accountOverviewLoan_penalty_label">Penalty</string>
     <string name="accountOverviewLoan_total_label">Total</string>
-
-
     <string name="accountOverviewLoan_recentActivity_label">Recent activity</string>
     <string name="accountOverviewLoan_recentNotes_label">Recent notes</string>
+
+
     <string name="accountOverviewSavings_accountStatus_label">Status:&#160;</string>
     <string name="accountOverviewSavings_accountBalance_label">Account Balance:&#160;</string>
     <string name="accountOverviewSavings_totalAmountDue_label">Total amount due on:&#160;</string>
-
     <string name="accountOverviewSavings_recentActivity_label">Recent activity</string>
     <string name="accountOverviewSavings_recentNotes_label">Recent notes:&#160;</string>
 
-    <string name="tableSavings_recentActivity_date_label">Date</string>
-    <string name="tableSavings_recentActivity_description_label">Description</string>
-    <string name="tableSavings_recentActivity_amount_label">Amount</string>
+    <string name="tableSavings_recentActivity_date_label">&#160;Date&#160;</string>
+    <string name="tableSavings_recentActivity_description_label">&#160;Description&#160;</string>
+    <string name="tableSavings_recentActivity_amount_label">&#160;Amount&#160;</string>
 
     <string name="tableLoan_recentActivity_actionDate">&#160;Date&#160;</string>
     <string name="tableLoan_recentActivity_activity">&#160;Activity&#160;</string>
@@ -198,7 +197,6 @@
     <string name="tableLoan_recentActivity_interestRunning">&#160;Interest balance&#160;</string>
     <string name="tableLoan_recentActivity_feesRunning">&#160;Fees balance&#160;</string>
     <string name="tableLoan_recentActivity_totalRunning">&#160;Total balance&#160;</string>
-
 
     <string name="accountOverviewLoan_performanceHistory_label">Performance history</string>
     <string name="accountOverviewLoan_noOfPayments_label"># of payments:&#160;</string>
@@ -213,11 +211,41 @@
     <string name="accountOverviewSavings_totalWithdrawals_label">Total withdrawals:&#160;</string>
     <string name="accountOverviewSavings_missedDeposits_label">Missed Deposits:&#160;</string>
 
+    <string name="accountDetailsSavings_recommendedOrMandatoryAmount_label">Mandatory amount for deposit:&#160;</string>
+    <string name="accountDetailsSavings_depositTypeName_label">Type of deposits:&#160;</string>
+    <string name="accountDetailsSavings_maxWithdrawal_label">Max amount per withdrawal:&#160;</string>
+    <string name="accountDetailsSavings_interestRate_label">Interest rate:&#160;</string>
+
+    <string name="accountDetailsLoan_interestRules_label">Interest rules</string>
+    <string name="accountDetailsLoan_interestRateType_label">Interest Rate Type:&#160;</string>
+    <string name="accountDetailsLoan_interestRate_label">Interest rate:&#160;</string>
+    <string name="accountDetailsLoan_interestDeductedAtDisbursement_label">Interest deducted at disbursement:&#160;</string>
+    <string name="accountDetailsLoan_repaymentRules_label">Repayment rules:&#160;</string>
+    <string name="accountDetailsLoan_frequencyOfInstallments_label">Frequency of Installments:&#160;</string>
+    <string name="accountDetailsLoan_PrincipalDueOnLastInstallment_label">Principal due on last installment:&#160;</string>
+    <string name="accountDetailsLoan_GracePeriodType_label">Grace Period Type:&#160;</string>
+    <string name="accountDetailsLoan_NoOfInstallments_label">No. of installments:&#160;</string>
+    <string name="accountDetailsLoan_GracePeriodForRepayments_label">Grace period for repayments:&#160;</string>
+    <string name="accountDetailsLoan_SourceOfFund_label">Source of fund:&#160;</string>
+    <string name="accountDetailsLoan_CollateralDetails_label">Collateral details:&#160;</string>
+    <string name="accountDetailsLoan_CollateralType_label">Collateral type:&#160;</string>
+    <string name="accountDetailsLoan_CollateralNotes_label">Collateral Notes:&#160;</string>
+    <string name="accountDetailsLoan_ExternalID_label">External ID:&#160;</string>
+    <string name="accountDetailsLoan_RecurringAccountFees_label">Recurring account fees:&#160;</string>
+    <string name="accountDetailsLoan_loanBiWeekly_label">loan bi weekly:&#160;</string>
+    <string name="accountDetailsLoan_OneTimeAccountFees_label">One time account fees:&#160;</string>
+    <string name="accountDetailsLoan_UpfrontLoanFee_label">Upfront Loan Fee:&#160;</string>
+
+
+
+
+
     <string name="accountDetails_transactionsHistoryButton_label">View Transactions History</string>
     <string name="accountDetails_installmentDetailsButton_label">View Installment Details</string>
 
+
+
     <!--
-    MIFOSAC-14 Loan and Savings account overview added
         String values for AccountTransactionHistoryActivity
     -->
     <string name="transactionHistoryItemDetails_header">Transaction Details:</string>

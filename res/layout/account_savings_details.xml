@@ -5,20 +5,9 @@
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
-
-            <Button
-                android:id="@+id/view_transactionsHistory_button"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/accountDetails_transactionsHistoryButton_label"
-                android:onClick="onTransactionsHistorySelected"
-                />
-
-
-
-       <!--     
+   
              <TextView
-                style="@style/Label"
+                style="@style/Shifted"
                 android:id="@+id/accountDetailsSavings_recommendedOrMandatoryAmount_label"
                 android:text="@string/accountDetailsSavings_recommendedOrMandatoryAmount_label"
                 android:layout_width="wrap_content"
@@ -32,7 +21,7 @@
                 android:layout_height="wrap_content"
                 />
             <TextView
-                style="@style/Label"
+                style="@style/Shifted"
                 android:id="@+id/accountDetailsSavings_depositTypeName_label"
                 android:layout_below="@id/accountDetailsSavings_recommendedOrMandatoryAmount_label"
                 android:text="@string/accountDetailsSavings_depositTypeName_label"
@@ -48,7 +37,7 @@
                 android:layout_height="wrap_content"
                 />
             <TextView
-                style="@style/Label"
+                style="@style/Shifted"
                 android:id="@+id/accountDetailsSavings_maxWithdrawal_label"
                 android:layout_below="@id/accountDetailsSavings_depositTypeName_label"
                 android:text="@string/accountDetailsSavings_maxWithdrawal_label"
@@ -73,13 +62,21 @@
                 />
             <TextView
                 style="@style/Shifted"
-                android:id="@+id/accountDetailsSavings_interestRate_label"
+                android:id="@+id/accountDetailsSavings_interestRate"
                 android:layout_below="@id/accountDetailsSavings_maxWithdrawal_label"
                 android:layout_toRightOf="@id/accountDetailsSavings_interestRate_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
-      -->      
+
+            <Button
+                android:id="@+id/view_transactionsHistory_button"
+                android:layout_below="@id/accountDetailsSavings_interestRate_label"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/accountDetails_transactionsHistoryButton_label"
+                android:onClick="onTransactionsHistorySelected"
+                />
             
         </RelativeLayout>
 </ScrollView>
