@@ -129,8 +129,13 @@ public class GroupDetailsViewBuilder implements CustomerDetailsViewBuilder {
 
         TextView textView = (TextView)view.findViewById(R.id.groupAdditional_approvalDate);
         textView.setText(mDetails.getGroupDisplay().getCustomerActivationDate());
+        textView = (TextView)view.findViewById(R.id.groupAdditional_ExternalID);
+        textView.setText(mDetails.getGroupDisplay().getExternalId().toString());
         textView = (TextView)view.findViewById(R.id.groupAdditional_recruitedBy);
         textView.setText(mDetails.getGroupDisplay().getCustomerFormedByDisplayName());
+        textView = (TextView)view.findViewById(R.id.groupAdditional_Address);
+        textView.setText(mDetails.getAddress().getDisplayAddress());
+
 
         if(mDetails.getRecentCustomerNotes() != null && mDetails.getRecentCustomerNotes().size() > 0 ) {
             textView = (TextView)view.findViewById(R.id.groupAdditional_recentNotes_label);

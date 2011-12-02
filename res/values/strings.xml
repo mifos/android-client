@@ -128,16 +128,24 @@
     <string name="groupOverview_portfolioAtRisk_label">Portfolio at risk:&#160;</string>
     <string name="groupOverview_totalSavings_label">Total Savings:&#160;</string>
     <string name="groupOverview_loanCyclePerProduct_label">Loan Cycle per Product:&#160;</string>
+
     <string name="groupAdditional_approvalDate_label">Group approval date:&#160;</string>
     <string name="groupAdditional_recruitedBy_label">Recruited By:&#160;</string>
+    <string name="groupAdditional_recentNotes_label">Recent Notes:&#160;</string>
+    <string name="groupAdditional_GroupInformation_label">Group information </string>
+    <string name="groupAdditional_ExternalID_label">External ID:&#160;</string>
+    <string name="groupAdditional_Address_label">Address</string>
 
     <string name="centerOverview_noOfActiveClients_label"># of active Clients:&#160;</string>
     <string name="centerOverview_noOfActiveGroups_label"># of active Groups:&#160;</string>
     <string name="centerOverview_totalLoanPortfolio_label">Total Loan portfolio:&#160;</string>
     <string name="centerOverview_totalSavings">Total Savings:&#160;</string>
+
+    <string name="centerAdditional_centerInformation_label">Center information</string>
     <string name="centerAdditional_mfiJoining_label">MFI joining date:&#160;</string>
     <string name="centerAdditional_centerStart_label">Center start date:&#160;</string>
     <string name="centerAdditional_loanOfficer_name_label">Loan Officer:&#160;</string>
+    <string name="centerAdditional_recentNotes_label">Recent Notes:&#160;</string>
 
     <string name="customerAdditional_mfiInformation_label">MFI Information:&#160;</string>
     <string name="customerAdditional_personalInformation_label">Personal Information:&#160;</string>
@@ -147,11 +155,7 @@
     <string name="customerAdditional_ethinicity_label">Ethnicity:&#160;</string>
     <string name="customerAdditional_educationLevel_label">Education Level:&#160;</string>
     <string name="customerAdditional_citizenship_label">Citizenship:&#160;</string>
-
     <string name="customerAdditional_recentNotes_label">Recent Notes:&#160;</string>
-    <string name="centerAdditional_recentNotes_label">Recent Notes:&#160;</string>
-    <string name="groupAdditional_recentNotes_label">Recent Notes:&#160;</string>
-
     <!--
         String values for AccountDetailsActivity:
     -->

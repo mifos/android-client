@@ -7,9 +7,17 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
-        <TextView
+         <TextView
             style="@style/Label"
+            android:id="@+id/groupAdditional_GroupInformation_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/groupAdditional_GroupInformation_label"
+            />
+        <TextView
+            style="@style/Shifted"
             android:id="@+id/groupAdditional_approvalDate_label"
+            android:layout_below="@id/groupAdditional_GroupInformation_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/groupAdditional_approvalDate_label"
@@ -17,15 +25,39 @@
         <TextView
             style="@style/Shifted"
             android:id="@+id/groupAdditional_approvalDate"
-            android:layout_below="@id/groupAdditional_approvalDate_label"
+            android:layout_below="@id/groupAdditional_GroupInformation_label"
+            android:layout_toRightOf="@id/groupAdditional_approvalDate_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
-
+         <TextView
+            style="@style/Shifted"
+            android:id="@+id/groupAdditional_ExternalID_label"
+            android:layout_below="@id/groupAdditional_approvalDate_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/groupAdditional_ExternalID_label"
+            />
         <TextView
-            style="@style/Label"
+            style="@style/Shifted"
+            android:id="@+id/groupAdditional_ExternalID"
+            android:layout_below="@id/groupAdditional_approvalDate_label"
+            android:layout_toRightOf="@id/groupAdditional_ExternalID_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+                 <TextView
+            style="@style/Shifted"
+            android:id="@+id/groupAdditional_ExternalID"
+            android:layout_below="@id/groupAdditional_approvalDate_label"
+            android:layout_toRightOf="@id/groupAdditional_ExternalID_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            style="@style/Shifted"
             android:id="@+id/groupAdditional_recruitedBy_label"
-            android:layout_below="@id/groupAdditional_approvalDate"
+            android:layout_below="@id/groupAdditional_ExternalID_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/groupAdditional_recruitedBy_label"
@@ -33,7 +65,24 @@
         <TextView
             style="@style/Shifted"
             android:id="@+id/groupAdditional_recruitedBy"
+            android:layout_below="@id/groupAdditional_ExternalID_label"
+            android:layout_toRightOf="@id/groupAdditional_recruitedBy_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            style="@style/Shifted"
+            android:id="@+id/groupAdditional_Address_label"
             android:layout_below="@id/groupAdditional_recruitedBy_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="@string/groupAdditional_Address_label"
+            />
+        <TextView
+            style="@style/Shifted"
+            android:id="@+id/groupAdditional_Address"
+            android:layout_below="@id/groupAdditional_Address_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
@@ -41,7 +90,7 @@
             <TextView
                 style="@style/Label"
                 android:id="@+id/groupAdditional_recentNotes_label"
-                android:layout_below="@id/groupAdditional_recruitedBy"
+                android:layout_below="@id/groupAdditional_Address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/groupAdditional_recentNotes_label"

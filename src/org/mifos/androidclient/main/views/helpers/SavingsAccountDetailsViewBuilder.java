@@ -125,7 +125,6 @@ public class SavingsAccountDetailsViewBuilder implements AccountDetailsViewBuild
         textView.setText(mDetails.getPerformanceHistory().getTotalInterestEarned().toString());
         textView = (TextView)view.findViewById(R.id.accountOverviewSavings_totalWithdrawals);
         textView.setText(mDetails.getPerformanceHistory().getTotalWithdrawals().toString());
-        textView = (TextView)view.findViewById(R.id.accountOverviewSavings_missedDeposits);
         textView.setText(mDetails.getPerformanceHistory().getMissedDeposits());
     }
 

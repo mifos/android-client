@@ -8,22 +8,31 @@
 
         <TextView
             style="@style/Label"
+            android:id="@+id/centerAdditional_centerInformation_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/centerAdditional_centerInformation_label"
+            />
+        <TextView
+            style="@style/Shifted"
             android:id="@+id/centerAdditional_mfiJoining_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/centerAdditional_centerInformation_label"
             android:text="@string/centerAdditional_mfiJoining_label"
             />
         <TextView
             style="@style/Shifted"
             android:id="@+id/centerAdditional_mfiJoining"
-            android:layout_below="@id/centerAdditional_mfiJoining_label"
+            android:layout_toRightOf="@id/centerAdditional_mfiJoining_label"
+            android:layout_below="@id/centerAdditional_centerInformation_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
         <TextView
-            style="@style/Label"
-            android:id="@+id/centerAdditional_ceneterStart_label"
-            android:layout_below="@id/centerAdditional_mfiJoining"
+            style="@style/Shifted"
+            android:id="@+id/centerAdditional_centerStart_label"
+            android:layout_below="@id/centerAdditional_mfiJoining_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/centerAdditional_centerStart_label"
@@ -31,14 +40,15 @@
         <TextView
             style="@style/Shifted"
             android:id="@+id/centerAdditional_centerStart"
-            android:layout_below="@id/centerAdditional_ceneterStart_label"
+            android:layout_below="@id/centerAdditional_mfiJoining_label"
+            android:layout_toRightOf="@id/centerAdditional_centerStart_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
         <TextView
-            style="@style/Label"
+            style="@style/Shifted"
             android:id="@+id/centerAdditional_loanOfficer_name_label"
-            android:layout_below="@id/centerAdditional_centerStart"
+            android:layout_below="@id/centerAdditional_centerStart_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/centerAdditional_loanOfficer_name_label"
@@ -46,7 +56,8 @@
         <TextView
             style="@style/Shifted"
             android:id="@+id/centerAdditional_loanOfficer_name"
-            android:layout_below="@id/centerAdditional_loanOfficer_name_label"
+            android:layout_below="@id/centerAdditional_centerStart_label"
+            android:layout_toRightOf="@id/centerAdditional_loanOfficer_name_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
