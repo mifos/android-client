@@ -21,6 +21,7 @@
 package org.mifos.androidclient.main.views.helpers;
 
 import android.content.Context;
+import android.database.DatabaseUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,10 +35,8 @@ import org.mifos.androidclient.entities.account.LoanAccountDetails;
 import org.mifos.androidclient.entities.account.LoanActivity;
 import org.mifos.androidclient.entities.customer.CustomerNote;
 import org.mifos.androidclient.templates.AccountDetailsViewBuilder;
+import org.mifos.androidclient.util.ui.DateUtils;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder {
 
@@ -76,15 +75,7 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
     public View buildDetailsView() {
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.account_loan_details, null);
-
         prepareAccountDetails(view);
-
-
-
-
-
-
-
         return view;
     }
 
@@ -99,19 +90,19 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
         textView.setText(mDetails.getInterestRate().toString());
         textView = (TextView)view.findViewById(R.id.accountDetailsLoan_interestDeductedAtDisbursement);
         if(mDetails.getInterestDeductedAtDisbursement() == false){
-            textView.setText("No");
+            textView.setText(mContext.getString(R.string.no));
         }
-        else textView.setText("Yes");
+        else textView.setText(mContext.getString(R.string.yes));
         textView = (TextView)view.findViewById(R.id.accountDetailsLoan_frequencyOfInstallments);
         if(mDetails.getRecurrenceId() == 1){
-        textView.setText(mDetails.getRecurAfter().toString() +" Week(s)");
+        textView.setText(mDetails.getRecurAfter().toString() + mContext.getString(R.string.weeks));
         }
-        else textView.setText(mDetails.getRecurAfter().toString() +" Month(s)");
+        else textView.setText(mDetails.getRecurAfter().toString() + mContext.getString(R.string.months));
         textView = (TextView)view.findViewById(R.id.accountDetailsLoan_PrincipalDueOnLastInstallment);
         if(mDetails.getPrinDueLastInst() == false){
-            textView.setText("No");
+            textView.setText(mContext.getString(R.string.no));
         }
-        else textView.setText("Yes");
+        else textView.setText(mContext.getString(R.string.yes));
         string = mDetails.getGracePeriodTypeName();
         substring = string.substring(17);
         textView =(TextView)view.findViewById(R.id.accountDetailsLoan_GracePeriodType);
@@ -141,7 +132,7 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
                     }
             textView = new TextView(mContext);
             textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
-            textView.setText(fee.getFeeName() + ": " + fee.getAccountFeeAmount().toString() + " ( Recur every " + fee.getMeetingRecurrence() + ")");
+            textView.setText(fee.getFeeName() + ": " + fee.getAccountFeeAmount().toString() + " (  " + mContext.getString(R.string.recurEvery) + fee.getMeetingRecurrence() + ")");
             recurringAccountFeesLayout.addView(textView);
             }
         }
@@ -196,9 +187,7 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
         textView.setText(substring);
         textView =(TextView)view.findViewById(R.id.accountOverviewLoan_disbursalDate);
         long sDate = Long.parseLong(mDetails.getDisbursementDate());
-        Date date = new Date(sDate);
-        DateFormat df = new SimpleDateFormat("dd/MM/yyy");
-        textView.setText(df.format(date).toString());
+        textView.setText(DateUtils.format(sDate));
     }
 
     private void prepareAccountSummary(View view) {
@@ -257,7 +246,7 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
 
     private void prepareLoanActivityTable(View view, TableLayout loanRecentActivityLayout) {
         TextView textView;
-        long sDate;Date date;DateFormat df;
+        long sDate;
         textView = (TextView)view.findViewById(R.id.accountOverviewLoan_recentActivity_label);
         textView.setVisibility(View.VISIBLE);
         textView = (TextView)view.findViewById(R.id.arrows);
@@ -318,9 +307,7 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
             textView = new TextView(mContext);
             textView.setGravity(Gravity.RIGHT);
             sDate = Long.parseLong(loanActivity.getActionDate());
-            date = new Date(sDate);
-            df = new SimpleDateFormat("dd/MM/yyy");
-            textView.setText(df.format(date).toString());
+            textView.setText(DateUtils.format(sDate));
             tableRow.addView(textView);
             textView = new TextView(mContext);
             textView.setGravity(Gravity.CENTER_HORIZONTAL);

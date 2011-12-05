@@ -33,6 +33,7 @@ import org.mifos.androidclient.entities.account.SavingsAccountDetails;
 import org.mifos.androidclient.entities.account.SavingsActivity;
 import org.mifos.androidclient.entities.customer.CustomerNote;
 import org.mifos.androidclient.templates.AccountDetailsViewBuilder;
+import org.mifos.androidclient.util.ui.DateUtils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -115,9 +116,7 @@ public class SavingsAccountDetailsViewBuilder implements AccountDetailsViewBuild
         long sDate;
         if(mDetails.getPerformanceHistory().getOpenedDate() != null){
         sDate = Long.parseLong(mDetails.getPerformanceHistory().getOpenedDate());
-        Date date = new Date(sDate);
-        DateFormat df = new SimpleDateFormat("dd/MM/yyy");
-        textView.setText(df.format(date).toString());
+        textView.setText(DateUtils.format(sDate));
         }
         textView = (TextView)view.findViewById(R.id.accountOverviewSavings_totalDeposits);
         textView.setText(mDetails.getPerformanceHistory().getTotalDeposits().toString());
@@ -157,7 +156,7 @@ public class SavingsAccountDetailsViewBuilder implements AccountDetailsViewBuild
             textView.setGravity(Gravity.CENTER_HORIZONTAL);
             long sDate = Long.parseLong(savingsActivity.getActionDate());
             Date date = new Date(sDate);
-            DateFormat df = new SimpleDateFormat("dd/MM/yyy");
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             textView.setText(df.format(date).toString());
             tableRow.addView(textView);
 
@@ -185,9 +184,9 @@ public class SavingsAccountDetailsViewBuilder implements AccountDetailsViewBuild
         substring = string.substring(8);
         textView.setText(substring);
         textView = (TextView)view.findViewById(R.id.accountOverviewSavings_accountBalance);
-        textView.setText(mDetails.getDueDate() + ": " + mDetails.getAccountBalance().toString());
+        textView.setText(mDetails.getAccountBalance().toString());
         textView = (TextView)view.findViewById(R.id.accountOverviewSavings_totalAmountDue);
-        textView.setText(mDetails.getTotalAmountDue().toString());
+        textView.setText(mDetails.getDueDate() + ":  " + mDetails.getTotalAmountDue().toString());
     }
 
 
