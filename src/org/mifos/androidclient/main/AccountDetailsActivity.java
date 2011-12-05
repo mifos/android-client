@@ -25,10 +25,12 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.account.AbstractAccountDetails;
+import org.mifos.androidclient.entities.account.SavingsAccountDetails;
 import org.mifos.androidclient.entities.customer.AccountBasicInformation;
 import org.mifos.androidclient.net.services.AccountService;
 import org.mifos.androidclient.templates.AccountDetailsViewBuilder;
@@ -107,6 +109,15 @@ public class AccountDetailsActivity extends DownloaderActivity {
     }
 
     /**
+     * A handler of the button for savings account's deposit due details browsing.
+     *
+     * @param view the view on which the button resides
+     */
+    public void onDepositDueDetailsSelected(View view) {
+
+    }
+
+    /**
      * A handler of the button for loan account's installment details browsing.
      *
      * @param view the view on in which the pressed button resides
@@ -144,6 +155,13 @@ public class AccountDetailsActivity extends DownloaderActivity {
                 tabContent.removeAllViews();
             }
             tabContent.addView(builder.buildDetailsView());
+
+            if (details.getClass() == SavingsAccountDetails.class) {
+                if (((SavingsAccountDetails)details).getDepositTypeName().equals(SavingsAccountDetails.MANDATORY_DEPOSIT)) {
+                    Button depositDueButton = (Button)findViewById(R.id.view_depositDueDetails_button);
+                    depositDueButton.setVisibility(View.VISIBLE);
+                }
+            }
         }
     }
 

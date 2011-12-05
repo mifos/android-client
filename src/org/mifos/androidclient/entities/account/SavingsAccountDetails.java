@@ -29,6 +29,9 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SavingsAccountDetails extends AbstractAccountDetails implements Serializable {
 
+    public static final String MANDATORY_DEPOSIT = "MANDATORY";
+    public static final String VOLUNTARY_DEPOSIT = "VOLUNTARY";
+
     private SavingsProduct productDetails;
     private String accountStateName;
     private Double accountBalance;

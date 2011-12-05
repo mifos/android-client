@@ -6,17 +6,9 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 
-            <Button
-                android:id="@+id/view_transactionsHistory_button"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/accountDetails_transactionsHistoryButton_label"
-                android:onClick="onTransactionsHistorySelected"
-                />
-             <TextView
+            <TextView
                 style="@style/Shifted"
                 android:id="@+id/accountDetailsSavings_recommendedOrMandatoryAmount_label"
-                android:layout_below="@id/view_transactionsHistory_button"
                 android:text="@string/accountDetailsSavings_recommendedOrMandatoryAmount_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -24,7 +16,6 @@
             <TextView
                 style="@style/Shifted"
                 android:id="@+id/accountDetailsSavings_recommendedOrMandatoryAmount"
-                android:layout_below="@id/view_transactionsHistory_button"
                 android:layout_toRightOf="@id/accountDetailsSavings_recommendedOrMandatoryAmount_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -77,7 +68,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
-
+            <Button
+                android:id="@+id/view_transactionsHistory_button"
+                android:layout_below="@id/accountDetailsSavings_interestRate"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/accountDetails_transactionsHistoryButton_label"
+                android:onClick="onTransactionsHistorySelected"
+                />
+            <Button
+                android:id="@+id/view_depositDueDetails_button"
+                android:visibility="gone"
+                android:layout_below="@id/view_transactionsHistory_button"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/accountDetails_depositDueDetails_buttonLabel"
+                android:onClick="onDepositDueDetailsSelected"
+                />
             
         </RelativeLayout>
 </ScrollView>

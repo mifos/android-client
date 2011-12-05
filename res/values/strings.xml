@@ -243,7 +243,7 @@
     <string name="accountDetails_transactionsHistoryButton_label">View Transactions History</string>
     <string name="accountDetails_installmentDetailsButton_label">View Installment Details</string>
     <string name="accountDetails_repaymentScheduleButton_label">View Repayment Schedule</string>
-
+    <string name="accountDetails_depositDueDetails_buttonLabel">View Deposit Due Details</string>
 
     <!--
         String values for AccountTransactionHistoryActivity
