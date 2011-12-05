@@ -26,6 +26,7 @@ import org.mifos.androidclient.entities.account.LoanAccountDetails;
 import org.mifos.androidclient.entities.account.SavingsAccountDetails;
 import org.mifos.androidclient.entities.account.TransactionHistoryEntry;
 import org.mifos.androidclient.entities.account.loan.LoanInstallmentDetails;
+import org.mifos.androidclient.entities.account.savings.SavingsAccountDepositDue;
 import org.mifos.androidclient.entities.customer.AccountBasicInformation;
 import org.mifos.androidclient.entities.customer.LoanAccountBasicInformation;
 import org.mifos.androidclient.entities.customer.SavingsAccountBasicInformation;
@@ -36,6 +37,7 @@ public class AccountService extends RestNetworkService {
     private static final String SAVINGS_ACCOUNT_DETAILS_PATH_PREFIX = "/account/savings/num-";
     private static final String TRANSACTION_HISTORY_PATH_PREFIX = "/account/trxnhistory/num-";
     private static final String LOAN_INSTALLMENT_DETAILS_PATH_PREFIX = "/account/loan/installment/num-";
+    private static final String SAVINGS_DEPOSIT_DUE_DETAILS_PATH_PREFIX = "/account/savings/due/num-";
 
     public AccountService(Context context) {
         super(context);
@@ -69,6 +71,11 @@ public class AccountService extends RestNetworkService {
     public LoanInstallmentDetails getLoanInstallmentDetails(String globalAccountNumber) {
         String url = getServerUrl() + LOAN_INSTALLMENT_DETAILS_PATH_PREFIX + globalAccountNumber + PATH_SUFFIX;
         return mRestConnector.getForObject(url, LoanInstallmentDetails.class);
+    }
+
+    public SavingsAccountDepositDue getSavingsDepositDueDetails(String globalAccountNumber) {
+        String url = getServerUrl() + SAVINGS_DEPOSIT_DUE_DETAILS_PATH_PREFIX + globalAccountNumber + PATH_SUFFIX;
+        return mRestConnector.getForObject(url, SavingsAccountDepositDue.class);
     }
 
 }

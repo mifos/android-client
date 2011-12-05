@@ -114,7 +114,9 @@ public class AccountDetailsActivity extends DownloaderActivity {
      * @param view the view on which the button resides
      */
     public void onDepositDueDetailsSelected(View view) {
-
+        Intent intent = new Intent().setClass(this, DepositDueDetailsActivity.class);
+        intent.putExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY, mAccount.getGlobalAccountNum());
+        startActivity(intent);
     }
 
     /**
