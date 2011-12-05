@@ -38,6 +38,7 @@ import org.mifos.androidclient.templates.DownloaderActivity;
 import org.mifos.androidclient.templates.ServiceConnectivityTask;
 import org.mifos.androidclient.util.ValueUtils;
 import org.mifos.androidclient.util.ui.DateUtils;
+import org.mifos.androidclient.util.ui.TableLayoutHelper;
 import org.springframework.web.client.RestClientException;
 
 import java.util.ArrayList;
@@ -96,6 +97,7 @@ public class CustomerChargesDetailsActivity extends DownloaderActivity {
         TableLayout table;
         TableRow row;
         View disabledView;
+        TableLayoutHelper helper = new TableLayoutHelper(this);
 
         textView = (TextView)findViewById(R.id.customerChargesDetails_amountDue);
         textView.setText(details.getNextDueAmount().toString());
@@ -116,34 +118,34 @@ public class CustomerChargesDetailsActivity extends DownloaderActivity {
             table = (TableLayout)findViewById(R.id.customerChargesDetails_upcomingCharges_table);
 
             if (ValueUtils.hasValue(details.getUpcomingInstallment().getMiscFee())) {
-                row = createTableRow();
-                textView = createTableCell(getString(R.string.customerChargesDetails_miscFee_label), 1);
+                row = helper.createTableRow();
+                textView = helper.createTableCell(getString(R.string.customerChargesDetails_miscFee_label), 1);
                 row.addView(textView);
-                textView = createTableCell(details.getUpcomingInstallment().getMiscFee().toString(), 2);
+                textView = helper.createTableCell(details.getUpcomingInstallment().getMiscFee().toString(), 2);
                 row.addView(textView);
                 table.addView(row);
-                table.addView(createRowSeparator());
+                table.addView(helper.createRowSeparator());
             }
 
             if (ValueUtils.hasValue(details.getUpcomingInstallment().getMiscPenalty())) {
-                row = createTableRow();
-                textView = createTableCell(getString(R.string.customerChargesDetails_miscPenalty_label), 1);
+                row = helper.createTableRow();
+                textView = helper.createTableCell(getString(R.string.customerChargesDetails_miscPenalty_label), 1);
                 row.addView(textView);
-                textView = createTableCell(details.getUpcomingInstallment().getMiscPenalty().toString(), 2);
+                textView = helper.createTableCell(details.getUpcomingInstallment().getMiscPenalty().toString(), 2);
                 row.addView(textView);
                 table.addView(row);
-                table.addView(createRowSeparator());
+                table.addView(helper.createRowSeparator());
             }
 
             if (ValueUtils.hasElements(details.getUpcomingInstallment().getFeesActionDetails())) {
                 for (AccountFeeSchedule fee : details.getUpcomingInstallment().getFeesActionDetails()) {
-                    row = createTableRow();
-                    textView = createTableCell(fee.getFeeName(), 1);
+                    row = helper.createTableRow();
+                    textView = helper.createTableCell(fee.getFeeName(), 1);
                     row.addView(textView);
-                    textView = createTableCell(fee.getFeeAmount().toString(), 2);
+                    textView = helper.createTableCell(fee.getFeeAmount().toString(), 2);
                     row.addView(textView);
                     table.addView(row);
-                    table.addView(createRowSeparator());
+                    table.addView(helper.createRowSeparator());
                 }
             }
         }
@@ -157,17 +159,17 @@ public class CustomerChargesDetailsActivity extends DownloaderActivity {
             table = (TableLayout)findViewById(R.id.customerChargesDetails_recentAccountActivity_table);
 
             for (CustomerRecentActivity activity : details.getRecentActivities()) {
-                row = createTableRow();
-                textView = createTableCell(DateUtils.format(activity.getActivityDate()), 1);
+                row = helper.createTableRow();
+                textView = helper.createTableCell(DateUtils.format(activity.getActivityDate()), 1);
                 row.addView(textView);
-                textView = createTableCell(activity.getDescription(), 2);
+                textView = helper.createTableCell(activity.getDescription(), 2);
                 row.addView(textView);
-                textView = createTableCell(activity.getAmount(), 3);
+                textView = helper.createTableCell(activity.getAmount(), 3);
                 row.addView(textView);
-                textView = createTableCell(activity.getPostedBy(), 4);
+                textView = helper.createTableCell(activity.getPostedBy(), 4);
                 row.addView(textView);
                 table.addView(row);
-                table.addView(createRowSeparator());
+                table.addView(helper.createRowSeparator());
             }
         }
 
@@ -189,40 +191,19 @@ public class CustomerChargesDetailsActivity extends DownloaderActivity {
                 table = (TableLayout)findViewById(R.id.customerChargesDetails_recurringAccountFees_table);
 
                 for (AccountFee fee : recurringFees) {
-                    row = createTableRow();
-                    textView = createTableCell(fee.getFeeName(), 1);
+                    row = helper.createTableRow();
+                    textView = helper.createTableCell(fee.getFeeName(), 1);
                     row.addView(textView);
-                    textView = createTableCell(fee.getAccountFeeAmount().toString(), 2);
+                    textView = helper.createTableCell(fee.getAccountFeeAmount().toString(), 2);
                     row.addView(textView);
-                    textView = createTableCell(fee.getMeetingRecurrence(), 2);
+                    textView = helper.createTableCell(fee.getMeetingRecurrence(), 2);
                     row.addView(textView);
                     table.addView(row);
-                    table.addView(createRowSeparator());
+                    table.addView(helper.createRowSeparator());
                 }
             }
         }
 
-    }
-
-    private TextView createTableCell(String text, int column) {
-        TextView textView = new TextView(this);
-        textView.setText(text);
-        textView.setLayoutParams(new TableRow.LayoutParams(column));
-        textView.setPadding(TABLE_CELL_PADDING, 0, TABLE_CELL_PADDING, 0);
-        return textView;
-    }
-
-    private TableRow createTableRow() {
-        TableRow row = new TableRow(this);
-        row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT,TableRow.LayoutParams.WRAP_CONTENT));
-        return row;
-    }
-
-    private View createRowSeparator() {
-        View separator = new View(this);
-        separator.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TABLE_ROW_SEPARATOR_WIDTH));
-        separator.setBackgroundResource(R.color.tableSeparator);
-        return separator;
     }
 
     private void runCustomerChargesTask() {
