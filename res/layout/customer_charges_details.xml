@@ -84,13 +84,16 @@
             android:visibility="gone"
             android:id="@+id/customerChargesDetails_upcomingCharges_scrollView"
             android:layout_below="@id/customerChargesDetails_upcomingCharges_label"
+            android:fillViewport="true"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
             <TableLayout
                 android:id="@+id/customerChargesDetails_upcomingCharges_table"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="fill_parent"
+                android:stretchColumns="1"
+                android:padding="3dp">
 
                 <TableRow>
                     <TextView
@@ -104,6 +107,10 @@
                         android:text="@string/customerChargesDetails_amount_label"
                         />
                 </TableRow>
+
+                <View
+                    style="@style/BigTableSeparator"
+                    />
 
             </TableLayout>
 
@@ -122,6 +129,7 @@
         <HorizontalScrollView
             android:id="@+id/customerChargesDetails_recentAccountActivity_scrollView"
             android:visibility="gone"
+            android:fillViewport="true"
             android:layout_below="@id/customerChargesDetails_recentAccountActivity_label"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
@@ -129,7 +137,9 @@
             <TableLayout
                 android:id="@+id/customerChargesDetails_recentAccountActivity_table"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="fill_parent"
+                android:stretchColumns="2"
+                android:padding="3dp">
 
                 <TableRow>
                     <TextView
@@ -167,6 +177,45 @@
             android:layout_height="wrap_content"
             android:text="@string/customerChargesDetails_recurringAccountFees_label"
             />
+
+        <HorizontalScrollView
+            android:id="@+id/customerChargesDetails_recurringAccountFees_scrollView"
+            android:visibility="gone"
+            android:fillViewport="true"
+            android:layout_below="@id/customerChargesDetails_recurringAccountFees_label"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TableLayout
+                android:id="@+id/customerChargesDetails_recurringAccountFees_table"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:stretchColumns="2"
+                android:padding="3dp">
+
+                <TableRow>
+                    <TextView
+                        style="@style/TableColumnHeader"
+                        android:layout_column="1"
+                        android:text="@string/customerChargesDetails_recurringAccountFees_feeName_label"
+                        />
+                    <TextView
+                        style="@style/TableColumnHeader"
+                        android:layout_column="2"
+                        android:text="@string/customerChargesDetails_recurringAccountFees_amount_label"
+                        />
+                    <TextView
+                        style="@style/TableColumnHeader"
+                        android:layout_column="3"
+                        android:text="@string/customerChargesDetails_recurringAccountFees_recurrence_label"
+                        />
+                </TableRow>
+
+            </TableLayout>
+
+        </HorizontalScrollView>
+
+
 
     </RelativeLayout>
 

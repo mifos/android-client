@@ -27,41 +27,41 @@ import java.util.List;
 
 public class CustomerSchedule implements Serializable {
 
-    private String miscFee;
-    private String miscFeePaid;
-    private String miscPenalty;
-    private String miscPenaltyPaid;
+    private Double miscFee;
+    private Double miscFeePaid;
+    private Double miscPenalty;
+    private Double miscPenaltyPaid;
     private List<AccountFeeSchedule> feesActionDetails;
 
-    public String getMiscFee() {
+    public Double getMiscFee() {
         return miscFee;
     }
 
-    public void setMiscFee(String miscFee) {
+    public void setMiscFee(Double miscFee) {
         this.miscFee = miscFee;
     }
 
-    public String getMiscFeePaid() {
+    public Double getMiscFeePaid() {
         return miscFeePaid;
     }
 
-    public void setMiscFeePaid(String miscFeePaid) {
+    public void setMiscFeePaid(Double miscFeePaid) {
         this.miscFeePaid = miscFeePaid;
     }
 
-    public String getMiscPenalty() {
+    public Double getMiscPenalty() {
         return miscPenalty;
     }
 
-    public void setMiscPenalty(String miscPenalty) {
+    public void setMiscPenalty(Double miscPenalty) {
         this.miscPenalty = miscPenalty;
     }
 
-    public String getMiscPenaltyPaid() {
+    public Double getMiscPenaltyPaid() {
         return miscPenaltyPaid;
     }
 
-    public void setMiscPenaltyPaid(String miscPenaltyPaid) {
+    public void setMiscPenaltyPaid(Double miscPenaltyPaid) {
         this.miscPenaltyPaid = miscPenaltyPaid;
     }
 

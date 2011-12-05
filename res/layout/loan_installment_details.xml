@@ -17,6 +17,7 @@
 
         <HorizontalScrollView
             android:layout_below="@id/loanInstallmentDetails_header"
+            android:fillViewport="true"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 

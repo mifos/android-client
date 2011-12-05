@@ -292,4 +292,11 @@
     <string name="customerChargesDetails_description_label">Description</string>
     <string name="customerChargesDetails_postedBy_label">Posted By</string>
 
+    <string name="customerChargesDetails_miscFee_label">Misc Fee</string>
+    <string name="customerChargesDetails_miscPenalty_label">Misc Penalty</string>
+
+    <string name="customerChargesDetails_recurringAccountFees_feeName_label">Fee Name</string>
+    <string name="customerChargesDetails_recurringAccountFees_amount_label">Amount</string>
+    <string name="customerChargesDetails_recurringAccountFees_recurrence_label">Recur Every</string>
+
 </resources>

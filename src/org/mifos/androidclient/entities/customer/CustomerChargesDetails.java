@@ -30,35 +30,35 @@ public class CustomerChargesDetails implements Serializable {
 
     public static final String BUNDLE_KEY = CustomerChargesDetails.class.getSimpleName();
 
-    private String nextDueAmount;
-    private String totalAmountInArrears;
-    private String totalAmountDue;
+    private Double nextDueAmount;
+    private Double totalAmountInArrears;
+    private Double totalAmountDue;
     private Date upcomingChargesDate;
     private CustomerSchedule upcomingInstallment;
     private List<CustomerRecentActivity> recentActivities;
     private List<AccountFee> accountFees;
 
-    public String getNextDueAmount() {
+    public Double getNextDueAmount() {
         return nextDueAmount;
     }
 
-    public void setNextDueAmount(String nextDueAmount) {
+    public void setNextDueAmount(Double nextDueAmount) {
         this.nextDueAmount = nextDueAmount;
     }
 
-    public String getTotalAmountInArrears() {
+    public Double getTotalAmountInArrears() {
         return totalAmountInArrears;
     }
 
-    public void setTotalAmountInArrears(String totalAmountInArrears) {
+    public void setTotalAmountInArrears(Double totalAmountInArrears) {
         this.totalAmountInArrears = totalAmountInArrears;
     }
 
-    public String getTotalAmountDue() {
+    public Double getTotalAmountDue() {
         return totalAmountDue;
     }
 
-    public void setTotalAmountDue(String totalAmountDue) {
+    public void setTotalAmountDue(Double totalAmountDue) {
         this.totalAmountDue = totalAmountDue;
     }
 

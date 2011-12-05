@@ -25,9 +25,9 @@ import java.io.Serializable;
 public class AccountFeeSchedule implements Serializable {
 
     private String feeName;
-    private String feeAmount;
-    private String feeAmountPaid;
-    private String feeAllocated;
+    private Double feeAmount;
+    private Double feeAmountPaid;
+    private Double feeAllocated;
 
     public String getFeeName() {
         return feeName;
@@ -37,27 +37,27 @@ public class AccountFeeSchedule implements Serializable {
         this.feeName = feeName;
     }
 
-    public String getFeeAmount() {
+    public Double getFeeAmount() {
         return feeAmount;
     }
 
-    public void setFeeAmount(String feeAmount) {
+    public void setFeeAmount(Double feeAmount) {
         this.feeAmount = feeAmount;
     }
 
-    public String getFeeAmountPaid() {
+    public Double getFeeAmountPaid() {
         return feeAmountPaid;
     }
 
-    public void setFeeAmountPaid(String feeAmountPaid) {
+    public void setFeeAmountPaid(Double feeAmountPaid) {
         this.feeAmountPaid = feeAmountPaid;
     }
 
-    public String getFeeAllocated() {
+    public Double getFeeAllocated() {
         return feeAllocated;
     }
 
-    public void setFeeAllocated(String feeAllocated) {
+    public void setFeeAllocated(Double feeAllocated) {
         this.feeAllocated = feeAllocated;
     }
 

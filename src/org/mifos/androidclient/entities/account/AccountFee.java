@@ -30,7 +30,7 @@ public class AccountFee implements Serializable {
     private String feeFrequencyTypeName;
     private String feeStatusName;
     private String feeName;
-    private String accountFeeAmount;
+    private Double accountFeeAmount;
     private String meetingRecurrence;
 
     public String getFeeFrequencyTypeName() {
@@ -57,11 +57,11 @@ public class AccountFee implements Serializable {
         this.feeName = feeName;
     }
 
-    public String getAccountFeeAmount() {
+    public Double getAccountFeeAmount() {
         return accountFeeAmount;
     }
 
-    public void setAccountFeeAmount(String accountFeeAmount) {
+    public void setAccountFeeAmount(Double accountFeeAmount) {
         this.accountFeeAmount = accountFeeAmount;
     }
 
