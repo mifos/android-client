@@ -240,13 +240,9 @@
     <string name="accountDetailsLoan_OneTimeAccountFees_label">One time account fees:&#160;</string>
     <string name="accountDetailsLoan_UpfrontLoanFee_label">Upfront Loan Fee:&#160;</string>
 
-
-
-
-
     <string name="accountDetails_transactionsHistoryButton_label">View Transactions History</string>
     <string name="accountDetails_installmentDetailsButton_label">View Installment Details</string>
-
+    <string name="accountDetails_repaymentScheduleButton_label">View Repayment Schedule</string>
 
 
     <!--

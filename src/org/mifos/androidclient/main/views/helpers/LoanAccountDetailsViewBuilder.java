@@ -79,6 +79,12 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
 
         prepareAccountDetails(view);
 
+
+
+
+
+
+
         return view;
     }
 
@@ -124,12 +130,32 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
         textView.setText(mDetails.getExternalId());
 
 
-        LinearLayout accountFeeLayout = (LinearLayout)view.findViewById(R.id.accountDetailsLoan_accountFee);
+        LinearLayout recurringAccountFeesLayout = (LinearLayout)view.findViewById(R.id.accountDetailsLoan_RecurringAccountFees);
+        LinearLayout oneTimeAccountFeesLayout = (LinearLayout)view.findViewById(R.id.accountDetailsLoan_OneTimeAccountFees);
+
         for(AccountFee fee: mDetails.getAccountFees()){
+            if(fee.getMeetingRecurrence() != null){
+                    textView = (TextView)view.findViewById(R.id.accountDetailsLoan_RecurringAccountFees_label);
+                    if(textView.getVisibility() == View.INVISIBLE){
+                    textView.setVisibility(View.VISIBLE);
+                    }
             textView = new TextView(mContext);
             textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
-            textView.setText(fee.getFeeName() + ": " + fee.getAccountFeeAmount().toString() + " ( Recur every" + fee.getMeetingRecurrence() + ")");
-            accountFeeLayout.addView(textView);
+            textView.setText(fee.getFeeName() + ": " + fee.getAccountFeeAmount().toString() + " ( Recur every " + fee.getMeetingRecurrence() + ")");
+            recurringAccountFeesLayout.addView(textView);
+            }
+        }
+        for(AccountFee fee: mDetails.getAccountFees()){
+            if(fee.getMeetingRecurrence() == null){
+                    textView = (TextView)view.findViewById(R.id.accountDetailsLoan_OneTimeAccountFees_label);
+                    if(textView.getVisibility() == View.INVISIBLE){
+                    textView.setVisibility(View.VISIBLE);
+                    }
+            textView = new TextView(mContext);
+            textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
+            textView.setText(fee.getFeeName() + ": " + fee.getAccountFeeAmount().toString());
+            oneTimeAccountFeesLayout.addView(textView);
+            }
         }
 
     }
