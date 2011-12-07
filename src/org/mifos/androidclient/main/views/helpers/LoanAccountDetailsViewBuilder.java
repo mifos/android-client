@@ -203,10 +203,23 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
 
     private void prepareAccountSummary(View view) {
         TextView textView;
-        textView = (TextView)view.findViewById(R.id.accountOverviewLoan_totalAmountDueOn);
-        textView.setText(mDetails.getNextMeetingDate() + ": " + mDetails.getTotalAmountDue());
-        textView = (TextView)view.findViewById(R.id.accountOverviewLoan_amountInArrears);
-        textView.setText(mDetails.getTotalAmountInArrears());
+
+        if (mDetails.getAccountStateId() == LoanAccountDetails.ACC_STATE_APPLICATION_APPROVED ||
+            mDetails.getAccountStateId() == LoanAccountDetails.ACC_STATE_APPLICATION_PENDING_APPROVAL) {
+            textView = (TextView)view.findViewById(R.id.accountOverviewLoan_totalAmountDueOn_label);
+            textView.setVisibility(View.GONE);
+            textView = (TextView)view.findViewById(R.id.accountOverviewLoan_totalAmountDueOn);
+            textView.setVisibility(View.GONE);
+            textView = (TextView)view.findViewById(R.id.accountOverviewLoan_amountInArrears_label);
+            textView.setVisibility(View.GONE);
+            textView = (TextView)view.findViewById(R.id.accountOverviewLoan_amountInArrears);
+            textView.setVisibility(View.GONE);
+        } else {
+            textView = (TextView)view.findViewById(R.id.accountOverviewLoan_totalAmountDueOn);
+            textView.setText(mDetails.getNextMeetingDate() + ": " + mDetails.getTotalAmountDue());
+            textView = (TextView)view.findViewById(R.id.accountOverviewLoan_amountInArrears);
+            textView.setText(mDetails.getTotalAmountInArrears());
+        }
         textView = (TextView)view.findViewById(R.id.accountOverviewLoan_originalPrincipal);
         textView.setText(mDetails.getLoanSummary().getOriginalPrincipal());
         textView = (TextView)view.findViewById(R.id.accountOverviewLoan_principalPaid);

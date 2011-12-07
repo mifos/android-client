@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 import org.mifos.androidclient.R;
+import org.mifos.androidclient.entities.account.LoanAccountDetails;
 import org.mifos.androidclient.entities.customer.AccountBasicInformation;
 import org.mifos.androidclient.entities.customer.LoanAccountBasicInformation;
 import org.mifos.androidclient.entities.customer.SavingsAccountBasicInformation;
@@ -132,8 +133,16 @@ public class AccountsExpandableListAdapter extends BaseExpandableListAdapter {
                 text.setText(item.getAccountStateName());
                 text = (TextView)row.findViewById(R.id.loanAccountListItem_outstandingBalance);
                 text.setText(((LoanAccountBasicInformation)item).getOutstandingBalance());
-                text = (TextView)row.findViewById(R.id.loanAccountListItem_amountDue);
-                text.setText(((LoanAccountBasicInformation)item).getTotalAmountDue());
+                if (item.getAccountStateId() == LoanAccountDetails.ACC_STATE_APPLICATION_APPROVED ||
+                    item.getAccountStateId() == LoanAccountDetails.ACC_STATE_APPLICATION_PENDING_APPROVAL) {
+                    text = (TextView)row.findViewById(R.id.loanAccountListItem_amountDue_label);
+                    text.setVisibility(View.GONE);
+                    text = (TextView)row.findViewById(R.id.loanAccountListItem_amountDue);
+                    text.setVisibility(View.GONE);
+                } else {
+                    text = (TextView)row.findViewById(R.id.loanAccountListItem_amountDue);
+                    text.setText(((LoanAccountBasicInformation)item).getTotalAmountDue());
+                }
             }
         }
         return row;

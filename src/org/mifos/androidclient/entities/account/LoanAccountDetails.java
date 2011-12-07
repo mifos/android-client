@@ -29,7 +29,11 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LoanAccountDetails extends AbstractAccountDetails {
 
+    public static final int ACC_STATE_APPLICATION_PENDING_APPROVAL = 2;
+    public static final int ACC_STATE_APPLICATION_APPROVED = 3;
+
     private String accountStateName;
+    private Integer accountStateId;
     private String customerName;
     private String globalCustNum;
     private String prdOfferingName;
@@ -67,6 +71,14 @@ public class LoanAccountDetails extends AbstractAccountDetails {
     private List<LoanActivity> recentAccountActivity;
     private Boolean disbursed;
     private List<CustomerNote> recentNoteDtos;
+
+    public Integer getAccountStateId() {
+        return accountStateId;
+    }
+
+    public void setAccountStateId(Integer accountStateId) {
+        this.accountStateId = accountStateId;
+    }
 
     public List<LoanActivity> getRecentAccountActivity() {
         return recentAccountActivity;
