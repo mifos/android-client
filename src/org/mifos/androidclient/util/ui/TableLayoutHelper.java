@@ -37,23 +37,25 @@ public class TableLayoutHelper {
 
     private Context mContext;
     private int mTableRowSeparatorHeight;
-    private int mTableCellPadding;
+    private int mTableCellPaddingLeft;
+    private int mTableCellPaddingRight;
 
     public TableLayoutHelper(Context context) {
-        this(context, DEFAULT_TABLE_ROW_SEPARATOR_HEIGHT, DEFAULT_TABLE_CELL_PADDING);
+        this(context, DEFAULT_TABLE_ROW_SEPARATOR_HEIGHT, DEFAULT_TABLE_CELL_PADDING, DEFAULT_TABLE_CELL_PADDING);
     }
 
-    public TableLayoutHelper(Context context, int tableRowSeparatorHeight, int tableCellPadding) {
+    public TableLayoutHelper(Context context, int tableRowSeparatorHeight, int tableCellPaddingLeft, int tableCellPaddingRight) {
         mContext = context;
         mTableRowSeparatorHeight = tableRowSeparatorHeight;
-        mTableCellPadding = tableCellPadding;
+        mTableCellPaddingLeft = tableCellPaddingLeft;
+        mTableCellPaddingRight = tableCellPaddingRight;
     }
 
     public TextView createTableCell(String text, int column) {
         TextView textView = new TextView(mContext);
         textView.setText(text);
         textView.setLayoutParams(new TableRow.LayoutParams(column));
-        textView.setPadding(mTableCellPadding, 0, mTableCellPadding, 0);
+        textView.setPadding(mTableCellPaddingLeft, 0, mTableCellPaddingRight, 0);
         return textView;
     }
 

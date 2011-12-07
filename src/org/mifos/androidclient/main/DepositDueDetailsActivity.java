@@ -23,12 +23,20 @@ package org.mifos.androidclient.main;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.account.AbstractAccountDetails;
+import org.mifos.androidclient.entities.account.savings.DueOnDate;
 import org.mifos.androidclient.entities.account.savings.SavingsAccountDepositDue;
 import org.mifos.androidclient.net.services.AccountService;
 import org.mifos.androidclient.templates.DownloaderActivity;
 import org.mifos.androidclient.templates.ServiceConnectivityTask;
+import org.mifos.androidclient.util.ValueUtils;
+import org.mifos.androidclient.util.ui.DateUtils;
+import org.mifos.androidclient.util.ui.TableLayoutHelper;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestClientException;
 
@@ -92,7 +100,44 @@ public class DepositDueDetailsActivity extends DownloaderActivity {
 
     private void updateContent(SavingsAccountDepositDue details) {
         mDetails = details;
+        TextView cell;
+        Double nextDeposit, pastDepositAmount, pastDepositsSum = 0.0;
 
+        cell = (TextView)findViewById(R.id.depositDueDetails_nextDeposit);
+        nextDeposit = details.getNextDueDetail().getDueAmount();
+        cell.setText(nextDeposit.toString());
+        //details.
+
+        if (ValueUtils.hasElements(details.getPreviousDueDetails())) {
+            TableLayout table = (TableLayout)findViewById(R.id.depositDueDetails_table);
+            View view = findViewById(R.id.depositDueDetails_rowInsertPoint);
+            int index = table.indexOfChild(view) + 1;
+            view = findViewById(R.id.depositDueDetails_subTotal_label);
+            TableLayoutHelper helper = new TableLayoutHelper(this, TableLayoutHelper.DEFAULT_TABLE_ROW_SEPARATOR_HEIGHT, view.getPaddingLeft(), view.getPaddingRight());
+
+            for (DueOnDate pastDeposit : details.getPreviousDueDetails()) {
+                if (pastDeposit.getDueDate().before(details.getNextDueDetail().getDueDate())) {
+                    TableRow row = helper.createTableRow();
+                    cell = helper.createTableCell(DateUtils.format(pastDeposit.getDueDate()), 1);
+                    row.addView(cell);
+                    pastDepositAmount = pastDeposit.getDueAmount();
+                    cell = helper.createTableCell(pastDepositAmount.toString(), 2);
+                    row.addView(cell);
+                    table.addView(row, index);
+                    index++;
+                    table.addView(helper.createRowSeparator(), index);
+                    index++;
+                    pastDepositsSum += pastDepositAmount;
+                }
+            }
+        }
+
+        cell = (TextView)findViewById(R.id.depositDueDetails_subTotal);
+        cell.setText(pastDepositsSum.toString());
+        cell = (TextView)findViewById(R.id.depositDueDetails_totalAmountDue_label);
+        cell.setText(cell.getText() + DateUtils.format(details.getNextDueDetail().getDueDate()));
+        cell = (TextView)findViewById(R.id.depositDueDetails_totalAmountDue);
+        cell.setText(Double.toString(pastDepositsSum + nextDeposit));
     }
 
     private class DepositDueDetailsTask extends ServiceConnectivityTask<String, Void, SavingsAccountDepositDue> {

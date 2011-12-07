@@ -21,17 +21,18 @@
 package org.mifos.androidclient.entities.account.savings;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class DueOnDate implements Serializable {
 
-    private String[] dueDate;
+    private Date dueDate;
     private Double dueAmount;
 
-    public String[] getDueDate() {
+    public Date getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(String[] dueDate) {
+    public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
     }
 

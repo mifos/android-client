@@ -304,5 +304,10 @@
         String values for DepositDueDetailsActivity
     -->
     <string name="depositDueDetails_header">Deposit Due:</string>
+    <string name="depositDueDetails_amount_label">Amount</string>
+    <string name="depositDueDetails_nextDeposit_label">Next deposit</string>
+    <string name="depositDueDetails_pastDeposits_label">Past deposit(s) due</string>
+    <string name="depositDueDetails_subTotal_label">Sub total</string>
+    <string name="depositDueDetails_totalAmountDue_label">Total amount due on&#160;</string>
 
 </resources>

@@ -15,6 +15,110 @@
             android:text="@string/depositDueDetails_header"
             />
 
+        <HorizontalScrollView
+            android:id="@+id/depositDueDetails_tableScrollView"
+            android:layout_below="@id/depositDueDetails_header"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
+
+            <TableLayout
+                android:id="@+id/depositDueDetails_table"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:stretchColumns="1"
+                android:padding="3dp">
+
+                <TableRow>
+                    <TextView
+                        android:layout_column="1"
+                        style="@style/TableItem"
+                        />
+                    <TextView
+                        android:layout_column="2"
+                        style="@style/TableColumnHeader"
+                        android:text="@string/depositDueDetails_amount_label"
+                        />
+                </TableRow>
+
+                <View
+                    style="@style/BigTableSeparator"
+                    />
+
+                <TableRow>
+                    <TextView
+                        android:layout_column="1"
+                        style="@style/TableItem"
+                        android:text="@string/depositDueDetails_nextDeposit_label"
+                        />
+                    <TextView
+                        android:id="@+id/depositDueDetails_nextDeposit"
+                        android:layout_column="2"
+                        style="@style/ShiftedTableItem"
+                        android:text="@string/not_available"
+                        />
+                </TableRow>
+
+                <View
+                    style="@style/BigTableSeparator"
+                    />
+
+                <TableRow>
+                    <TextView
+                        android:layout_column="1"
+                        style="@style/TableItem"
+                        android:text="@string/depositDueDetails_pastDeposits_label"
+                        />
+                    <TextView
+                        android:layout_column="2"
+                        style="@style/TableItem"
+                        android:text=""
+                        />
+                </TableRow>
+
+                <View
+                    android:id="@+id/depositDueDetails_rowInsertPoint"
+                    style="@style/BigTableSeparator"
+                    />
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/depositDueDetails_subTotal_label"
+                        android:layout_column="1"
+                        style="@style/ItalicizedShiftedTableItem"
+                        android:text="@string/depositDueDetails_subTotal_label"
+                        />
+                    <TextView
+                        android:id="@+id/depositDueDetails_subTotal"
+                        android:layout_column="2"
+                        style="@style/ShiftedTableItem"
+                        android:text="@string/not_available"
+                        />
+                </TableRow>
+
+                <View
+                    style="@style/BigTableSeparator"
+                    />
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/depositDueDetails_totalAmountDue_label"
+                        android:layout_column="1"
+                        style="@style/BoldTableItem"
+                        android:text="@string/depositDueDetails_totalAmountDue_label"
+                        />
+                    <TextView
+                        android:id="@+id/depositDueDetails_totalAmountDue"
+                        android:layout_column="2"
+                        style="@style/ShiftedTableItem"
+                        android:text="@string/not_available"
+                        />
+                </TableRow>
+
+            </TableLayout>
+
+        </HorizontalScrollView>
+
     </RelativeLayout>
 
 </ScrollView>
