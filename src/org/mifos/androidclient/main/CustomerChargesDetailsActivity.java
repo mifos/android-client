@@ -106,9 +106,10 @@ public class CustomerChargesDetailsActivity extends DownloaderActivity {
         textView = (TextView)findViewById(R.id.customerChargesDetails_total);
         textView.setText(details.getTotalAmountDue().toString());
 
-        if (ValueUtils.hasValue(details.getUpcomingInstallment().getMiscFee()) ||
-            ValueUtils.hasValue(details.getUpcomingInstallment().getMiscPenalty()) ||
-            ValueUtils.hasElements(details.getUpcomingInstallment().getFeesActionDetails())) {
+        if (details.getUpcomingInstallment() != null &&
+            (ValueUtils.hasValue(details.getUpcomingInstallment().getMiscFee()) ||
+             ValueUtils.hasValue(details.getUpcomingInstallment().getMiscPenalty()) ||
+             ValueUtils.hasElements(details.getUpcomingInstallment().getFeesActionDetails()))) {
 
             disabledView = findViewById(R.id.customerChargesDetails_upcomingCharges_label);
             disabledView.setVisibility(View.VISIBLE);

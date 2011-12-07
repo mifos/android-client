@@ -106,7 +106,6 @@ public class DepositDueDetailsActivity extends DownloaderActivity {
         cell = (TextView)findViewById(R.id.depositDueDetails_nextDeposit);
         nextDeposit = details.getNextDueDetail().getDueAmount();
         cell.setText(nextDeposit.toString());
-        //details.
 
         if (ValueUtils.hasElements(details.getPreviousDueDetails())) {
             TableLayout table = (TableLayout)findViewById(R.id.depositDueDetails_table);
