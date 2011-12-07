@@ -29,6 +29,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LoanAccountDetails extends AbstractAccountDetails {
 
+    public static final int ACC_STATE_PARTIAL_APPLICATION = 1;
     public static final int ACC_STATE_APPLICATION_PENDING_APPROVAL = 2;
     public static final int ACC_STATE_APPLICATION_APPROVED = 3;
 

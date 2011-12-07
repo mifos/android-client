@@ -204,8 +204,10 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
     private void prepareAccountSummary(View view) {
         TextView textView;
 
-        if (mDetails.getAccountStateId() == LoanAccountDetails.ACC_STATE_APPLICATION_APPROVED ||
+        if (mDetails.getAccountStateId() == LoanAccountDetails.ACC_STATE_PARTIAL_APPLICATION ||
+            mDetails.getAccountStateId() == LoanAccountDetails.ACC_STATE_APPLICATION_APPROVED ||
             mDetails.getAccountStateId() == LoanAccountDetails.ACC_STATE_APPLICATION_PENDING_APPROVAL) {
+
             textView = (TextView)view.findViewById(R.id.accountOverviewLoan_totalAmountDueOn_label);
             textView.setVisibility(View.GONE);
             textView = (TextView)view.findViewById(R.id.accountOverviewLoan_totalAmountDueOn);

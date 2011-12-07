@@ -133,8 +133,10 @@ public class AccountsExpandableListAdapter extends BaseExpandableListAdapter {
                 text.setText(item.getAccountStateName());
                 text = (TextView)row.findViewById(R.id.loanAccountListItem_outstandingBalance);
                 text.setText(((LoanAccountBasicInformation)item).getOutstandingBalance());
-                if (item.getAccountStateId() == LoanAccountDetails.ACC_STATE_APPLICATION_APPROVED ||
+                if (item.getAccountStateId() == LoanAccountDetails.ACC_STATE_PARTIAL_APPLICATION ||
+                    item.getAccountStateId() == LoanAccountDetails.ACC_STATE_APPLICATION_APPROVED ||
                     item.getAccountStateId() == LoanAccountDetails.ACC_STATE_APPLICATION_PENDING_APPROVAL) {
+
                     text = (TextView)row.findViewById(R.id.loanAccountListItem_amountDue_label);
                     text.setVisibility(View.GONE);
                     text = (TextView)row.findViewById(R.id.loanAccountListItem_amountDue);
