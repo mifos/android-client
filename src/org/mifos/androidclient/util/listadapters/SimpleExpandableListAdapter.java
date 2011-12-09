@@ -24,10 +24,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseExpandableListAdapter;
-import android.widget.Filter;
-import android.widget.Filterable;
-import android.widget.TextView;
+import android.widget.*;
 import org.mifos.androidclient.R;
 import org.springframework.util.StringUtils;
 
@@ -47,11 +44,13 @@ public class SimpleExpandableListAdapter extends BaseExpandableListAdapter imple
     private Map<Integer, SimpleListItem> mKeys;
     private Map<Integer, List<SimpleListItem>> mValues;
     private SimpleExpandableListFilter mFilter;
+    private Boolean mExpandGroups;
 
     public SimpleExpandableListAdapter(Context context, Map<SimpleListItem, List<SimpleListItem>> items) {
         mContext = context;
         mItems = new HashMap<SimpleListItem, List<SimpleListItem>>();
         mItems.putAll(items);
+        mExpandGroups = false;
         splitItems(items);
     }
 
@@ -115,6 +114,12 @@ public class SimpleExpandableListAdapter extends BaseExpandableListAdapter imple
         if (item != null) {
             TextView label = (TextView)row.findViewById(R.id.simple_list_item_label);
             label.setText(item.getListLabel());
+        }
+        synchronized (mExpandGroups) {
+            if (mExpandGroups == true) {
+                ExpandableListView list = (ExpandableListView)parent;
+                list.expandGroup(groupPos);
+            }
         }
         return row;
     }
@@ -187,12 +192,19 @@ public class SimpleExpandableListAdapter extends BaseExpandableListAdapter imple
                     }
                 }
 
+                synchronized (mExpandGroups) {
+                    mExpandGroups = true;
+                }
+
                 results.values = filteredItems;
                 results.count = filteredItems.size();
             } else {
                 synchronized (mItems) {
                     results.values = mItems;
                     results.count = mItems.size();
+                }
+                synchronized (mExpandGroups) {
+                    mExpandGroups = false;
                 }
             }
 
