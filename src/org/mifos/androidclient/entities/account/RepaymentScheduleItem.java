@@ -5,10 +5,11 @@ import org.mifos.androidclient.util.listadapters.SimpleListItem;
 import org.mifos.androidclient.util.ui.DateUtils;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 
-import static java.lang.Math.rint;
+import static java.lang.Math.round;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -20,16 +21,16 @@ public class RepaymentScheduleItem implements SimpleListItem, Serializable{
     private Date dueDate;
     private Short paymentStatus;
     private Date paymentDate;
-    private String principal;
-    private String principalPaid;
-    private String interest;
-    private String interestPaid;
+    private Double principal;
+    private Double principalPaid;
+    private Double interest;
+    private Double interestPaid;
     private String penalty;
     private String penaltyPaid;
     private String extraInterest;
     private String extraInterestPaid;
-    private String miscFee;
-    private String miscFeePaid;
+    private Double miscFee;
+    private Double miscFeePaid;
     private String miscPenalty;
     private String miscPenaltyPaid;
     private List<AccountFeeSchedule> feesActionDetails;
@@ -58,11 +59,11 @@ public class RepaymentScheduleItem implements SimpleListItem, Serializable{
         this.paymentStatus = paymentStatus;
     }
 
-    public String getPrincipal() {
+    public Double getPrincipal() {
         return principal;
     }
 
-    public void setPrincipal(String principal) {
+    public void setPrincipal(Double principal) {
         this.principal = principal;
     }
 
@@ -74,27 +75,27 @@ public class RepaymentScheduleItem implements SimpleListItem, Serializable{
         this.paymentDate = paymentDate;
     }
 
-    public String getPrincipalPaid() {
+    public Double getPrincipalPaid() {
         return principalPaid;
     }
 
-    public void setPrincipalPaid(String principalPaid) {
+    public void setPrincipalPaid(Double principalPaid) {
         this.principalPaid = principalPaid;
     }
 
-    public String getInterestPaid() {
+    public Double getInterestPaid() {
         return interestPaid;
     }
 
-    public void setInterestPaid(String interestPaid) {
+    public void setInterestPaid(Double interestPaid) {
         this.interestPaid = interestPaid;
     }
 
-    public String getInterest() {
+    public Double getInterest() {
         return interest;
     }
 
-    public void setInterest(String interest) {
+    public void setInterest(Double interest) {
         this.interest = interest;
     }
 
@@ -122,11 +123,11 @@ public class RepaymentScheduleItem implements SimpleListItem, Serializable{
         this.extraInterest = extraInterest;
     }
 
-    public String getMiscFee() {
+    public Double getMiscFee() {
         return miscFee;
     }
 
-    public void setMiscFee(String miscFee) {
+    public void setMiscFee(Double miscFee) {
         this.miscFee = miscFee;
     }
 
@@ -138,11 +139,11 @@ public class RepaymentScheduleItem implements SimpleListItem, Serializable{
         this.extraInterestPaid = extraInterestPaid;
     }
 
-    public String getMiscFeePaid() {
+    public Double getMiscFeePaid() {
         return miscFeePaid;
     }
 
-    public void setMiscFeePaid(String miscFeePaid) {
+    public void setMiscFeePaid(Double miscFeePaid) {
         this.miscFeePaid = miscFeePaid;
     }
 
@@ -173,6 +174,7 @@ public class RepaymentScheduleItem implements SimpleListItem, Serializable{
     @Override
     public String getListLabel() {
         double feeAmount = 0;
+        DecimalFormat df= new DecimalFormat("#.##");
         double feePaid = 0;
         double total = 0;
         for(int i= 0; i < feesActionDetails.size(); i++){
@@ -180,14 +182,14 @@ public class RepaymentScheduleItem implements SimpleListItem, Serializable{
             feePaid += feesActionDetails.get(i).getFeeAmountPaid();
         }
         if(paymentStatus == 1){
-        total = feePaid + Double.parseDouble(principalPaid) +  Double.parseDouble(interestPaid);
+        total = feePaid + miscFeePaid + principalPaid + interestPaid;
         }
-        else total = feeAmount - feePaid  + Double.parseDouble(principal) - Double.parseDouble(principalPaid) + Double.parseDouble(interest) - Double.parseDouble(interestPaid);
+        else total = feeAmount + miscFee - feePaid - miscFeePaid  + principal - principalPaid + interest - interestPaid;
 
         if (paymentDate != null && paymentStatus == 1){
             return DateUtils.format(dueDate) + "   " + DateUtils.format(paymentDate) + "     " + total;
         }else if(paymentDate != null && paymentStatus != 1){
-            return DateUtils.format(dueDate) + "  Partially paid     " + rint(total);
+            return DateUtils.format(dueDate) + "  Partially paid     " + df.format(total);
         }
         else return DateUtils.format(dueDate) + "   Not paid yet     " + total;
     }
