@@ -169,12 +169,13 @@ public class AccountDetailsActivity extends DownloaderActivity {
             }
             tabContent.addView(builder.buildDetailsView());
 
+            /* Deposit due functionality will be hidden until the test server is updated.
             if (details.getClass() == SavingsAccountDetails.class) {
                 if (((SavingsAccountDetails)details).getDepositTypeName().equals(SavingsAccountDetails.MANDATORY_DEPOSIT)) {
                     Button depositDueButton = (Button)findViewById(R.id.view_depositDueDetails_button);
                     depositDueButton.setVisibility(View.VISIBLE);
                 }
-            }
+            }*/
         }
     }
 
