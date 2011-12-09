@@ -12,6 +12,8 @@
 
     <string name="not_available">N/A</string>
 
+    <string name="type_to_filter">Type to filter the list</string>
+
     <!--
         Text values relates to user dialogs:
     -->

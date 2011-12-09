@@ -24,8 +24,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.simple.AbstractCustomer;
@@ -45,6 +48,8 @@ import java.util.ArrayList;
 public class CentersListActivity extends DownloaderActivity
         implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
+    private EditText mFilterBox;
+    private CentersListTextWatcher mTextWatcher;
     private ListView mCentersList;
     private CustomersListTask mCustomersListTask;
     private CustomersData mCustomersData;
@@ -58,6 +63,8 @@ public class CentersListActivity extends DownloaderActivity
         if (bundle != null && bundle.containsKey(CustomersData.BUNDLE_KEY)) {
             mCustomersData = (CustomersData)bundle.getSerializable(CustomersData.BUNDLE_KEY);
         }
+
+        mFilterBox = (EditText)findViewById(R.id.centers_list_filter_box);
         mCentersList = (ListView)findViewById(R.id.centers_list);
         mCustomerService = new CustomerService(this);
     }
@@ -84,6 +91,7 @@ public class CentersListActivity extends DownloaderActivity
             mCustomersListTask.terminate();
             mCustomersListTask = null;
         }
+        mFilterBox.removeTextChangedListener(mTextWatcher);
     }
 
     @Override
@@ -108,10 +116,16 @@ public class CentersListActivity extends DownloaderActivity
      */
     private void repopulateCustomersList(CustomersData data) {
         if (data.getCenters() != null) {
-            mCentersList.setAdapter(new SimpleListAdapter(
+            SimpleListAdapter adapter = new SimpleListAdapter(
                     this,
                     new ArrayList<SimpleListItem>(data.getCenters())
-            ));
+            );
+            mCentersList.setAdapter(adapter);
+            if (mTextWatcher == null) {
+                mTextWatcher = new CentersListTextWatcher();
+            }
+            mTextWatcher.setAdapter(adapter);
+            mFilterBox.addTextChangedListener(mTextWatcher);
             mCentersList.setOnItemClickListener(this);
             mCentersList.setOnItemLongClickListener(this);
         }
@@ -130,6 +144,33 @@ public class CentersListActivity extends DownloaderActivity
             );
             mCustomersListTask.execute((Void[])null);
         }
+    }
+
+    private class CentersListTextWatcher implements TextWatcher {
+
+        private SimpleListAdapter mAdapter;
+
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            if (mAdapter != null) {
+                mAdapter.getFilter().filter(charSequence);
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+
+        private void setAdapter(SimpleListAdapter adapter) {
+            mAdapter = adapter;
+        }
+
     }
 
     /**

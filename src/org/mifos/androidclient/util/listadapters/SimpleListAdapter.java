@@ -25,9 +25,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
 import android.widget.TextView;
 import org.mifos.androidclient.R;
+import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,8 +39,15 @@ import java.util.List;
  */
 public class SimpleListAdapter extends ArrayAdapter<SimpleListItem> {
 
+    private final List<SimpleListItem> mItems;
+    private List<SimpleListItem> mFilteredItems;
+    private SimpleListFilter mFilter;
+
     public SimpleListAdapter(Context context, List<SimpleListItem> objects) {
         super(context, R.layout.simple_list_child, objects);
+        mItems = new ArrayList<SimpleListItem>();
+        mItems.addAll(objects);
+        mFilteredItems = objects;
     }
 
     @Override
@@ -55,6 +65,60 @@ public class SimpleListAdapter extends ArrayAdapter<SimpleListItem> {
             label.setText(item.getListLabel());
         }
         return row;
+    }
+
+    @Override
+    public Filter getFilter() {
+        if (mFilter == null) {
+            mFilter = new SimpleListFilter();
+        }
+        return mFilter;
+    }
+
+    private class SimpleListFilter extends Filter {
+
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            FilterResults results = new FilterResults();
+            String constraint = charSequence.toString().toLowerCase();
+
+            if (StringUtils.hasLength(constraint)) {
+                List<SimpleListItem> allItems = new ArrayList<SimpleListItem>();
+                List<SimpleListItem> filteredItems = new ArrayList<SimpleListItem>();
+
+                synchronized (mItems) {
+                    allItems.addAll(mItems);
+                }
+
+                for (SimpleListItem item : allItems) {
+                    if (item.getListLabel().toLowerCase().contains(constraint)) {
+                        filteredItems.add(item);
+                    }
+                }
+
+                results.values = filteredItems;
+                results.count = filteredItems.size();
+            } else {
+                synchronized (mItems) {
+                    results.values = mItems;
+                    results.count = mItems.size();
+                }
+            }
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            notifyDataSetInvalidated();
+            mFilteredItems = (List<SimpleListItem>)filterResults.values;
+            clear();
+            for (SimpleListItem item : mFilteredItems) {
+                add(item);
+            }
+            notifyDataSetChanged();
+        }
+
     }
 
 }
