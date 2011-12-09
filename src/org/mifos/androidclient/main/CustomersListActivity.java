@@ -22,8 +22,11 @@ package org.mifos.androidclient.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.simple.AbstractCustomer;
@@ -40,6 +43,8 @@ import java.util.Map;
 public class CustomersListActivity extends MifosActivity
         implements ExpandableListView.OnChildClickListener, AdapterView.OnItemLongClickListener {
 
+    private EditText mFilterBox;
+    private CustomersListTextWatcher mTextWatcher;
     private ExpandableListView mCustomersList;
 
     @Override
@@ -48,6 +53,7 @@ public class CustomersListActivity extends MifosActivity
         setContentView(R.layout.customers_list);
 
         mCustomersList = (ExpandableListView)findViewById(R.id.clientslist_list);
+        mFilterBox = (EditText)findViewById(R.id.clientsList_filter_box);
 
         List<Group> groups = (List<Group>)getIntent().getSerializableExtra(Group.BUNDLE_KEY);
         Map<SimpleListItem, List<SimpleListItem>> items = new HashMap<SimpleListItem, List<SimpleListItem>>();
@@ -56,9 +62,21 @@ public class CustomersListActivity extends MifosActivity
                 items.put(group, new ArrayList<SimpleListItem>(group.getClients()));
             }
         }
-        mCustomersList.setAdapter(new SimpleExpandableListAdapter(this, items));
+        SimpleExpandableListAdapter adapter = new SimpleExpandableListAdapter(this, items);
+        mCustomersList.setAdapter(adapter);
+        if (mTextWatcher == null) {
+            mTextWatcher = new CustomersListTextWatcher();
+        }
+        mTextWatcher.setAdapter(adapter);
+        mFilterBox.addTextChangedListener(mTextWatcher);
         mCustomersList.setOnChildClickListener(this);
         mCustomersList.setOnItemLongClickListener(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mFilterBox.removeTextChangedListener(mTextWatcher);
     }
 
     @Override
@@ -80,6 +98,33 @@ public class CustomersListActivity extends MifosActivity
             return true;
         }
         return false;
+    }
+
+    private class CustomersListTextWatcher implements TextWatcher {
+
+        private SimpleExpandableListAdapter mAdapter;
+
+        public void setAdapter(SimpleExpandableListAdapter adapter) {
+            mAdapter = adapter;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            if (mAdapter != null) {
+                mAdapter.getFilter().filter(charSequence);
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+
     }
 
 }

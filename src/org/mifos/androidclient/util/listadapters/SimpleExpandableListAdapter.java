@@ -25,9 +25,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 import org.mifos.androidclient.R;
+import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,14 +40,18 @@ import java.util.Map;
  * Represents an adapter which can be used with expandable lists.<br />
  * Is designed to work with entities which implement the {@link SimpleListItem}.
  */
-public class SimpleExpandableListAdapter extends BaseExpandableListAdapter {
+public class SimpleExpandableListAdapter extends BaseExpandableListAdapter implements Filterable {
 
     private Context mContext;
+    private final Map<SimpleListItem, List<SimpleListItem>> mItems;
     private Map<Integer, SimpleListItem> mKeys;
     private Map<Integer, List<SimpleListItem>> mValues;
+    private SimpleExpandableListFilter mFilter;
 
     public SimpleExpandableListAdapter(Context context, Map<SimpleListItem, List<SimpleListItem>> items) {
         mContext = context;
+        mItems = new HashMap<SimpleListItem, List<SimpleListItem>>();
+        mItems.putAll(items);
         splitItems(items);
     }
 
@@ -142,6 +150,62 @@ public class SimpleExpandableListAdapter extends BaseExpandableListAdapter {
             mValues.put(i, item.getValue());
             i++;
         }
+    }
+
+    @Override
+    public Filter getFilter() {
+        if (mFilter == null) {
+            mFilter = new SimpleExpandableListFilter();
+        }
+        return mFilter;
+    }
+
+    private class SimpleExpandableListFilter extends Filter {
+
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            FilterResults results = new FilterResults();
+            String constraint = charSequence.toString().toLowerCase();
+
+            if (StringUtils.hasLength(constraint)) {
+                Map<SimpleListItem, List<SimpleListItem>> allItems = new HashMap<SimpleListItem, List<SimpleListItem>>();
+                Map<SimpleListItem, List<SimpleListItem>> filteredItems = new HashMap<SimpleListItem, List<SimpleListItem>>();
+
+                synchronized (mItems) {
+                    allItems.putAll(mItems);
+                }
+
+                for (SimpleListItem group : allItems.keySet()) {
+                    List<SimpleListItem> clients = new ArrayList<SimpleListItem>();
+                    for (SimpleListItem client : allItems.get(group)) {
+                        if (client.getListLabel().toLowerCase().contains(constraint)) {
+                            clients.add(client);
+                        }
+                    }
+                    if (group.getListLabel().toLowerCase().contains(constraint) || clients.size() > 0) {
+                        filteredItems.put(group, clients);
+                    }
+                }
+
+                results.values = filteredItems;
+                results.count = filteredItems.size();
+            } else {
+                synchronized (mItems) {
+                    results.values = mItems;
+                    results.count = mItems.size();
+                }
+            }
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            notifyDataSetInvalidated();
+            splitItems((Map<SimpleListItem, List<SimpleListItem>>)filterResults.values);
+            notifyDataSetChanged();
+        }
+
     }
 
 }
