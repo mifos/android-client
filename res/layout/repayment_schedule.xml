@@ -12,7 +12,7 @@
         android:id="@+id/repaymentSchedule_label"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/repaymentSchedule_label"
+        android:text="@string/repaymentScheduleItem_schedule_header"
         />
 
     <TextView
@@ -34,19 +34,20 @@
         />
     <TextView
         style="@style/Shifted"
-        android:id="@+id/principal_label"
+        android:id="@+id/total_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/repaymentSchedule_label"
         android:layout_toRightOf="@id/paymentDate_label"
-        android:text="@string/repaymentScheduleItem_principal_label"
+        android:paddingLeft="30dp"
+        android:text="@string/repaymentScheduleItem_total_label"
         />
 
     <ListView
         android:id="@+id/repaymentSchedule_list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/principal_label"
+        android:layout_below="@id/total_label"
         />
 
 </RelativeLayout>

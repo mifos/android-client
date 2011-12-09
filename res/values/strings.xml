@@ -254,6 +254,7 @@
     <string name="weeks"> Week(s)</string>
     <string name="months"> Months(s)</string>
     <string name="recurEvery">Recur every&#160;</string>
+    <string name="partiallyPaid">Partially paid</string>
 
     <!--
         String values for AccountTransactionHistoryActivity
@@ -266,7 +267,16 @@
     <string name="repaymentScheduleItem_interest_label">Interest:&#160;</string>
     <string name="repaymentScheduleItem_fees_label">Fees:&#160;</string>
     <string name="repaymentScheduleItem_total_label">Total:&#160;</string>
-    <string name="repaymentSchedule_label">Account\'s Repayments Schedule</string>
+    <string name="repaymentScheduleItem_schedule_header">Repayment Schedule:&#160;</string>
+    <string name="repaymentScheduleItem_installment_header">Installment Details:&#160;</string>
+    <string name="partiallyPaidTable_paid">&#160;Paid:&#160;</string>
+    <string name="partiallyPaidTable_due">&#160;Due:&#160;</string>
+    <string name="partiallyPaidTable_principal_label">Principal</string>
+    <string name="partiallyPaidTable_interest_label">Interest</string>
+    <string name="partiallyPaidTable_fees_label">Fees</string>
+    <string name="partiallyPaidTable_total_label">Total</string>
+    <string name="partiallyPaidTable_date_label">Date</string>
+
 
     <!--
         String values for AccountTransactionHistoryActivity

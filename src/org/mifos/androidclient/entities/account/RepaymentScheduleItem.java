@@ -8,6 +8,9 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import static java.lang.Math.rint;
+
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RepaymentScheduleItem implements SimpleListItem, Serializable{
 
@@ -169,9 +172,24 @@ public class RepaymentScheduleItem implements SimpleListItem, Serializable{
 
     @Override
     public String getListLabel() {
-        if (paymentDate != null){
-            return DateUtils.format(dueDate) + "   " + DateUtils.format(paymentDate) + "     " + principal;
-        } else return DateUtils.format(dueDate) + "   Not paid yet     " + principal;
+        double feeAmount = 0;
+        double feePaid = 0;
+        double total = 0;
+        for(int i= 0; i < feesActionDetails.size(); i++){
+            feeAmount += feesActionDetails.get(i).getFeeAmount();
+            feePaid += feesActionDetails.get(i).getFeeAmountPaid();
+        }
+        if(paymentStatus == 1){
+        total = feePaid + Double.parseDouble(principalPaid) +  Double.parseDouble(interestPaid);
+        }
+        else total = feeAmount - feePaid  + Double.parseDouble(principal) - Double.parseDouble(principalPaid) + Double.parseDouble(interest) - Double.parseDouble(interestPaid);
+
+        if (paymentDate != null && paymentStatus == 1){
+            return DateUtils.format(dueDate) + "   " + DateUtils.format(paymentDate) + "     " + total;
+        }else if(paymentDate != null && paymentStatus != 1){
+            return DateUtils.format(dueDate) + "  Partially paid     " + rint(total);
+        }
+        else return DateUtils.format(dueDate) + "   Not paid yet     " + total;
     }
 
     @Override
