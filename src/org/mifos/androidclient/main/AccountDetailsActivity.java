@@ -130,6 +130,17 @@ public class AccountDetailsActivity extends DownloaderActivity {
         startActivity(intent);
     }
 
+    /**
+     * A handler of the button for loan account's repayment schedule browsing.
+     *
+     * @param view the view on in which the pressed button resides
+     */
+    public void onRepaymentScheduleSelected(View view) {
+        Intent intent = new Intent().setClass(this, AccountRepaymentScheduleActivity.class);
+        intent.putExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY, mAccount.getGlobalAccountNum());
+        startActivity(intent);
+    }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);

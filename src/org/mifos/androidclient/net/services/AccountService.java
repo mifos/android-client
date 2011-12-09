@@ -21,10 +21,7 @@
 package org.mifos.androidclient.net.services;
 
 import android.content.Context;
-import org.mifos.androidclient.entities.account.AbstractAccountDetails;
-import org.mifos.androidclient.entities.account.LoanAccountDetails;
-import org.mifos.androidclient.entities.account.SavingsAccountDetails;
-import org.mifos.androidclient.entities.account.TransactionHistoryEntry;
+import org.mifos.androidclient.entities.account.*;
 import org.mifos.androidclient.entities.account.loan.LoanInstallmentDetails;
 import org.mifos.androidclient.entities.account.savings.SavingsAccountDepositDue;
 import org.mifos.androidclient.entities.customer.AccountBasicInformation;
@@ -38,6 +35,7 @@ public class AccountService extends RestNetworkService {
     private static final String TRANSACTION_HISTORY_PATH_PREFIX = "/account/trxnhistory/num-";
     private static final String LOAN_INSTALLMENT_DETAILS_PATH_PREFIX = "/account/loan/installment/num-";
     private static final String SAVINGS_DEPOSIT_DUE_DETAILS_PATH_PREFIX = "/account/savings/due/num-";
+    private static final String REPAYMENT_SCHEDULE_PATH_PREFIX = "/account/loan/schedule/num-";
 
     public AccountService(Context context) {
         super(context);
@@ -66,6 +64,11 @@ public class AccountService extends RestNetworkService {
     public TransactionHistoryEntry[] getAccountTransactionHistory(String globalAccountNumber) {
         String url = getServerUrl() + TRANSACTION_HISTORY_PATH_PREFIX + globalAccountNumber + PATH_SUFFIX;
         return mRestConnector.getForObject(url, TransactionHistoryEntry[].class);
+    }
+
+    public RepaymentScheduleItem[] getAccountRepaymentSchedule(String globalAccountNumber) {
+        String url = getServerUrl() + REPAYMENT_SCHEDULE_PATH_PREFIX + globalAccountNumber + PATH_SUFFIX;
+        return mRestConnector.getForObject(url,RepaymentScheduleItem[].class);
     }
 
     public LoanInstallmentDetails getLoanInstallmentDetails(String globalAccountNumber) {

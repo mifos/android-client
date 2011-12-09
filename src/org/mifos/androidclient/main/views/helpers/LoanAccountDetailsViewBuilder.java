@@ -21,7 +21,6 @@
 package org.mifos.androidclient.main.views.helpers;
 
 import android.content.Context;
-import android.database.DatabaseUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +35,6 @@ import org.mifos.androidclient.entities.account.LoanActivity;
 import org.mifos.androidclient.entities.customer.CustomerNote;
 import org.mifos.androidclient.templates.AccountDetailsViewBuilder;
 import org.mifos.androidclient.util.ui.DateUtils;
-
 
 public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder {
 
@@ -89,7 +87,7 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
         textView = (TextView)view.findViewById(R.id.accountDetailsLoan_interestRate);
         textView.setText(mDetails.getInterestRate().toString());
         textView = (TextView)view.findViewById(R.id.accountDetailsLoan_interestDeductedAtDisbursement);
-        if(mDetails.getInterestDeductedAtDisbursement() == false){
+        if(!mDetails.getInterestDeductedAtDisbursement()){
             textView.setText(mContext.getString(R.string.no));
         }
         else textView.setText(mContext.getString(R.string.yes));
@@ -99,7 +97,7 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
         }
         else textView.setText(mDetails.getRecurAfter().toString() + mContext.getString(R.string.months));
         textView = (TextView)view.findViewById(R.id.accountDetailsLoan_PrincipalDueOnLastInstallment);
-        if(mDetails.getPrinDueLastInst() == false){
+        if(!mDetails.getPrinDueLastInst()){
             textView.setText(mContext.getString(R.string.no));
         }
         else textView.setText(mContext.getString(R.string.yes));

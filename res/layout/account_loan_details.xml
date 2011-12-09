@@ -23,7 +23,7 @@
             android:text="@string/accountDetails_installmentDetailsButton_label"
             android:onClick="onInstallmentDetailsSelected"
             />
-       <!--
+
         <Button
             android:id="@+id/view_repaymentSchedule_button"
             android:layout_width="fill_parent"
@@ -32,11 +32,11 @@
             android:text="@string/accountDetails_repaymentScheduleButton_label"
             android:onClick="onRepaymentScheduleSelected"
             />
-         -->
+
           <TextView
             style="@style/Label"
             android:id="@+id/accountDetailsLoan_interestRules_label"
-            android:layout_below="@id/view_installmentDetails_button"
+            android:layout_below="@id/view_repaymentSchedule_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/accountDetailsLoan_interestRules_label"
@@ -274,6 +274,7 @@
           <TextView
             style="@style/Shifted"
             android:id="@+id/accountDetailsLoan_ExternalID"
+            android:paddingTop="4dp"
             android:layout_below="@id/accountDetailsLoan_CollateralNotes_label"
             android:layout_toRightOf="@id/accountDetailsLoan_ExternalID_label"
             android:layout_width="wrap_content"

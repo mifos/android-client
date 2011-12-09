@@ -29,6 +29,8 @@
     <string name="dialog_getting_installment_details">Getting installment details</string>
     <string name="dialog_getting_customer_charges">Getting customer charges</string>
     <string name="dialog_getting_deposit_due_details">Getting deposit due details</string>
+    <string name="dialog_getting_repayment_schedule">Getting repayment schedule</string>
+
 
     <!--
         Text values for toast messages:
@@ -248,9 +250,23 @@
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="notPaidYet">Not paid yet</string>
     <string name="weeks"> Week(s)</string>
     <string name="months"> Months(s)</string>
     <string name="recurEvery">Recur every&#160;</string>
+
+    <!--
+        String values for AccountTransactionHistoryActivity
+    -->
+    <string name="repaymentScheduleItem_header">Repayments Schedule</string>
+    <string name="repaymentScheduleItem_installmentNumber_label">No:&#160;</string>
+    <string name="repaymentScheduleItem_dueDate_label">Due date:&#160;</string>
+    <string name="repaymentScheduleItem_paymentDate_label">Date paid:&#160;</string>
+    <string name="repaymentScheduleItem_principal_label">Principal:&#160;</string>
+    <string name="repaymentScheduleItem_interest_label">Interest:&#160;</string>
+    <string name="repaymentScheduleItem_fees_label">Fees:&#160;</string>
+    <string name="repaymentScheduleItem_total_label">Total:&#160;</string>
+    <string name="repaymentSchedule_label">Account\'s Repayments Schedule</string>
 
     <!--
         String values for AccountTransactionHistoryActivity
