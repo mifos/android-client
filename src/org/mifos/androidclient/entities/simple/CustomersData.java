@@ -23,6 +23,8 @@ package org.mifos.androidclient.entities.simple;
 import org.mifos.androidclient.entities.BaseEntity;
 
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -36,6 +38,17 @@ public class CustomersData extends BaseEntity implements Serializable {
     private List<Center> centers;
     private List<Group> groups;
     private List<Customer> clients;
+
+    public void sort() {
+        if (centers != null) {
+            Collections.sort(centers, new Comparator<Center>() {
+                @Override
+                public int compare(Center center1, Center center2) {
+                    return center1.getDisplayName().compareToIgnoreCase(center2.getDisplayName());
+                }
+            });
+        }
+    }
 
     public List<Center> getCenters() {
         return centers;

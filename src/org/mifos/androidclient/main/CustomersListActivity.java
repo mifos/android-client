@@ -32,10 +32,7 @@ import org.mifos.androidclient.templates.MifosActivity;
 import org.mifos.androidclient.util.listadapters.SimpleExpandableListAdapter;
 import org.mifos.androidclient.util.listadapters.SimpleListItem;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CustomersListActivity extends MifosActivity
         implements ExpandableListView.OnChildClickListener, AdapterView.OnItemLongClickListener {
@@ -50,7 +47,12 @@ public class CustomersListActivity extends MifosActivity
         mCustomersList = (ExpandableListView)findViewById(R.id.clientslist_list);
 
         List<Group> groups = (List<Group>)getIntent().getSerializableExtra(Group.BUNDLE_KEY);
-        Map<SimpleListItem, List<SimpleListItem>> items = new HashMap<SimpleListItem, List<SimpleListItem>>();
+        Map<SimpleListItem, List<SimpleListItem>> items = new TreeMap<SimpleListItem, List<SimpleListItem>>(new Comparator<SimpleListItem>() {
+            @Override
+            public int compare(SimpleListItem simpleListItem1, SimpleListItem simpleListItem2) {
+                return simpleListItem1.getListLabel().compareToIgnoreCase(simpleListItem2.getListLabel());
+            }
+        });
         if (groups != null) {
             for (Group group : groups) {
                 items.put(group, new ArrayList<SimpleListItem>(group.getClients()));

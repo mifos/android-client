@@ -147,6 +147,9 @@ public class CentersListActivity extends DownloaderActivity
             CustomersData result = null;
             if (mCustomerService != null) {
                 result =  mCustomerService.getLoanOfficersCustomers();
+                if (result != null) {
+                    result.sort();
+                }
             }
             return result;
         }
