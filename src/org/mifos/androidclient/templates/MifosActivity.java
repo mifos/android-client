@@ -50,6 +50,14 @@ public abstract class MifosActivity extends Activity {
         return true;
     }
 
+    protected void logOut() {
+        resetUserCredentials();
+        RestConnector.resetConnection();
+        Intent intent = new Intent().setClass(this, ClientMainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
     protected boolean hasUserCredentials() {
         SharedPreferences settings = getSharedPreferences(ApplicationConstants.MIFOS_APPLICATION_PREFERENCES, MODE_PRIVATE);
         return settings.contains(ApplicationConstants.USER_LOGIN) && settings.contains(ApplicationConstants.USER_PASSWORD);
@@ -100,6 +108,7 @@ public abstract class MifosActivity extends Activity {
                         editor.putString(ApplicationConstants.MIFOS_SERVER_ADDRESS_KEY, (String) inputData);
                         editor.commit();
                         mUIUtils.displayLongMessage(getString(R.string.toast_address_set));
+                        logOut();
                     }
 
                     @Override
@@ -108,9 +117,7 @@ public abstract class MifosActivity extends Activity {
                 });
                 break;
             case R.id.logOut:
-                resetUserCredentials();
-                RestConnector.resetConnection();
-                startActivity(new Intent().setClass(this, ClientMainActivity.class));
+                logOut();
                 break;
             case R.id.synchronize:
                 break;
