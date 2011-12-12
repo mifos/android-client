@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:id="@+id/operationForm_header"
+            style="@style/Header"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id="@+id/operationForm_status_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/operationForm_header"
+            />
+
+        <TextView
+            android:id="@+id/operationForm_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/operationForm_header"
+            android:layout_toRightOf="@id/operationForm_status_label"
+            />
+
+        <TableLayout
+            android:id="@+id/operationForm_operationSummary"
+            android:visibility="gone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/operationForm_status_label">
+
+        </TableLayout>
+
+        <LinearLayout
+            android:id="@+id/operationForm_formFields"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/operationForm_operationSummary">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/operationForm_buttons"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/operationForm_formFields">
+
+            <Button
+                android:id="@+id/operationForm_submitButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/operationForm_submitButton_label"
+                android:onClick="onSubmitPressed"
+                />
+
+            <Button
+                android:id="@+id/operationForm_goBackButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/operationForm_goBackButton_label"
+                android:onClick="onGoBackPressed"
+                />
+
+            <Button
+                android:id="@+id/operationForm_okButton"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/operationForm_okButton_label"
+                android:onClick="onOkPressed"
+                />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

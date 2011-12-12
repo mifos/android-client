@@ -346,4 +346,11 @@
     <string name="depositDueDetails_subTotal_label">Sub total</string>
     <string name="depositDueDetails_totalAmountDue_label">Total amount due on&#160;</string>
 
+    <!--
+        String values for OperationFormActivity
+    -->
+    <string name="operationForm_submitButton_label">Submit</string>
+    <string name="operationForm_goBackButton_label">Go Back</string>
+    <string name="operationForm_okButton_label">OK</string>
+
 </resources>
