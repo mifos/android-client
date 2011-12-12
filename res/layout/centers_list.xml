@@ -13,29 +13,44 @@
         />
 
     <TextView
-        style="@style/Info"
-        android:id="@+id/centers_list_hint"
+        style="@style/InfoBig"
+        android:visibility="gone"
+        android:id="@+id/centersList_noDataMessage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/centers_list_label"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/centersList_hint"
         />
 
-    <EditText
-        android:id="@+id/centers_list_filter_box"
+    <LinearLayout
+        android:id="@+id/centersList_content"
+        android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/centers_list_hint"
-        android:hint="@string/type_to_filter"
-        android:inputType="text"
-        android:maxLines="1"
-        />
+        android:layout_below="@id/centersList_noDataMessage">
 
-    <ListView
-        android:id="@+id/centers_list"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/centers_list_filter_box"
-        />
+        <TextView
+            style="@style/Info"
+            android:id="@+id/centers_list_hint"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/centersList_hint"
+            />
+
+        <EditText
+            android:id="@+id/centers_list_filter_box"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/type_to_filter"
+            android:inputType="text"
+            android:maxLines="1"
+            />
+
+        <ListView
+            android:id="@+id/centers_list"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
 
 </RelativeLayout>

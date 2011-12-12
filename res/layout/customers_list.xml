@@ -13,30 +13,45 @@
         />
 
     <TextView
-        style="@style/Info"
-        android:id="@+id/clientsList_hint"
+        style="@style/InfoBig"
+        android:visibility="gone"
+        android:id="@+id/clientsList_noDataMessage"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/clientslist_label"
-        android:text="@string/clientsList_hint"
         />
 
-    <EditText
-        android:id="@+id/clientsList_filter_box"
+    <LinearLayout
+        android:id="@+id/clientsList_content"
+        android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/clientsList_hint"
-        android:hint="@string/type_to_filter"
-        android:inputType="text"
-        android:maxLines="1"
-        />
+        android:layout_below="@id/clientsList_noDataMessage">
 
-    <ExpandableListView
-        android:id="@+id/clientslist_list"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/clientsList_filter_box"
-        android:groupIndicator="@null"
-        />
+        <TextView
+            style="@style/Info"
+            android:id="@+id/clientsList_hint"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/clientsList_hint"
+            />
+
+        <EditText
+            android:id="@+id/clientsList_filter_box"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/type_to_filter"
+            android:inputType="text"
+            android:maxLines="1"
+            />
+
+        <ExpandableListView
+            android:id="@+id/clientslist_list"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:groupIndicator="@null"
+            />
+
+    </LinearLayout>
 
 </RelativeLayout>

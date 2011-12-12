@@ -27,9 +27,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.*;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.simple.AbstractCustomer;
 import org.mifos.androidclient.entities.simple.Center;
@@ -51,6 +49,8 @@ public class CentersListActivity extends DownloaderActivity
     private EditText mFilterBox;
     private CentersListTextWatcher mTextWatcher;
     private ListView mCentersList;
+    private LinearLayout mContent;
+    private TextView mMessage;
     private CustomersListTask mCustomersListTask;
     private CustomersData mCustomersData;
     private CustomerService mCustomerService;
@@ -66,6 +66,8 @@ public class CentersListActivity extends DownloaderActivity
 
         mFilterBox = (EditText)findViewById(R.id.centers_list_filter_box);
         mCentersList = (ListView)findViewById(R.id.centers_list);
+        mContent = (LinearLayout)findViewById(R.id.centersList_content);
+        mMessage = (TextView)findViewById(R.id.centersList_noDataMessage);
         mCustomerService = new CustomerService(this);
     }
 
@@ -115,7 +117,7 @@ public class CentersListActivity extends DownloaderActivity
      * Refreshes contents of the centers list.
      */
     private void repopulateCustomersList(CustomersData data) {
-        if (data.getCenters() != null) {
+        if (data.getCenters() != null && data.getCenters().size() > 0) {
             SimpleListAdapter adapter = new SimpleListAdapter(
                     this,
                     new ArrayList<SimpleListItem>(data.getCenters())
@@ -128,6 +130,12 @@ public class CentersListActivity extends DownloaderActivity
             mFilterBox.addTextChangedListener(mTextWatcher);
             mCentersList.setOnItemClickListener(this);
             mCentersList.setOnItemLongClickListener(this);
+            mMessage.setVisibility(View.GONE);
+            mContent.setVisibility(View.VISIBLE);
+        } else {
+            mMessage.setText(getString(R.string.centersList_no_centers_available, getUserLogin()));
+            mMessage.setVisibility(View.VISIBLE);
+            mContent.setVisibility(View.GONE);
         }
     }
 

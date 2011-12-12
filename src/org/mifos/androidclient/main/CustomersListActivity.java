@@ -25,9 +25,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.ExpandableListView;
+import android.widget.*;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.simple.AbstractCustomer;
 import org.mifos.androidclient.entities.simple.Group;
@@ -53,26 +51,32 @@ public class CustomersListActivity extends MifosActivity
         mFilterBox = (EditText)findViewById(R.id.clientsList_filter_box);
 
         List<Group> groups = (List<Group>)getIntent().getSerializableExtra(Group.BUNDLE_KEY);
-        Map<SimpleListItem, List<SimpleListItem>> items = new TreeMap<SimpleListItem, List<SimpleListItem>>(new Comparator<SimpleListItem>() {
-            @Override
-            public int compare(SimpleListItem simpleListItem1, SimpleListItem simpleListItem2) {
-                return simpleListItem1.getListLabel().compareToIgnoreCase(simpleListItem2.getListLabel());
-            }
-        });
-        if (groups != null) {
+        if (groups != null && groups.size() > 0) {
+            Map<SimpleListItem, List<SimpleListItem>> items = new TreeMap<SimpleListItem, List<SimpleListItem>>(new Comparator<SimpleListItem>() {
+                @Override
+                public int compare(SimpleListItem simpleListItem1, SimpleListItem simpleListItem2) {
+                    return simpleListItem1.getListLabel().compareToIgnoreCase(simpleListItem2.getListLabel());
+                }
+            });
             for (Group group : groups) {
                 items.put(group, new ArrayList<SimpleListItem>(group.getClients()));
             }
+            SimpleExpandableListAdapter adapter = new SimpleExpandableListAdapter(this, items);
+            mCustomersList.setAdapter(adapter);
+            if (mTextWatcher == null) {
+                mTextWatcher = new CustomersListTextWatcher();
+            }
+            mTextWatcher.setAdapter(adapter);
+            mFilterBox.addTextChangedListener(mTextWatcher);
+            mCustomersList.setOnChildClickListener(this);
+            mCustomersList.setOnItemLongClickListener(this);
+        } else {
+            LinearLayout content = (LinearLayout)findViewById(R.id.clientsList_content);
+            content.setVisibility(View.GONE);
+            TextView message = (TextView)findViewById(R.id.clientsList_noDataMessage);
+            message.setText(getString(R.string.clientsList_no_customers_available, getUserLogin()));
+            message.setVisibility(View.VISIBLE);
         }
-        SimpleExpandableListAdapter adapter = new SimpleExpandableListAdapter(this, items);
-        mCustomersList.setAdapter(adapter);
-        if (mTextWatcher == null) {
-            mTextWatcher = new CustomersListTextWatcher();
-        }
-        mTextWatcher.setAdapter(adapter);
-        mFilterBox.addTextChangedListener(mTextWatcher);
-        mCustomersList.setOnChildClickListener(this);
-        mCustomersList.setOnItemLongClickListener(this);
     }
 
     @Override
