@@ -103,9 +103,17 @@ public abstract class MifosActivity extends Activity {
 
                     @Override
                     public void onCommit(Object inputData) {
+                        String newAddress = (String)inputData;
+                        newAddress = newAddress.trim();
                         SharedPreferences settings = getSharedPreferences(ApplicationConstants.MIFOS_APPLICATION_PREFERENCES, MODE_PRIVATE);
+                        if (settings.contains(ApplicationConstants.MIFOS_SERVER_ADDRESS_KEY)) {
+                            String oldAddress = settings.getString(ApplicationConstants.MIFOS_SERVER_ADDRESS_KEY, "");
+                            if (oldAddress.equals(newAddress)) {
+                                return;
+                            }
+                        }
                         SharedPreferences.Editor editor = settings.edit();
-                        editor.putString(ApplicationConstants.MIFOS_SERVER_ADDRESS_KEY, (String) inputData);
+                        editor.putString(ApplicationConstants.MIFOS_SERVER_ADDRESS_KEY, newAddress);
                         editor.commit();
                         mUIUtils.displayLongMessage(getString(R.string.toast_address_set));
                         logOut();
