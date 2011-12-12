@@ -21,11 +21,21 @@
         android:text="@string/centersList_hint"
         />
 
+    <EditText
+        android:id="@+id/centers_list_filter_box"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/centers_list_hint"
+        android:hint="@string/type_to_filter"
+        android:inputType="text"
+        android:maxLines="1"
+        />
+
     <ListView
         android:id="@+id/centers_list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/centers_list_hint"
+        android:layout_below="@id/centers_list_filter_box"
         />
 
 </RelativeLayout>
