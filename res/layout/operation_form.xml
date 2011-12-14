@@ -15,14 +15,26 @@
             />
 
         <TextView
-            android:id="@+id/operationForm_status_label"
-            android:layout_width="wrap_content"
+            android:id="@+id/operationForm_additionalInformation"
+            style="@style/Info"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/operationForm_header"
+            android:visibility="gone"
+            />
+
+        <TextView
+            android:id="@+id/operationForm_status_label"
+            style="@style/Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/operationForm_additionalInformation"
+            android:text="@string/operationForm_status_label"
             />
 
         <TextView
             android:id="@+id/operationForm_status"
+            style="@style/Label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/operationForm_header"
