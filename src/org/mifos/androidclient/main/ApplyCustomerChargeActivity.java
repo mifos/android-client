@@ -32,6 +32,8 @@ import java.util.Map;
 
 public class ApplyCustomerChargeActivity extends OperationFormActivity {
 
+    public static final int REQUEST_CODE = 2;
+
     private static final String PARAM_FEE_ID = "feeId";
     private static final String PARAM_AMOUNT = "amount";
 
