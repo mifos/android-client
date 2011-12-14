@@ -165,6 +165,7 @@ public abstract class OperationFormActivity extends MifosActivity {
     }
 
     public void onOkPressed(View view) {
+        setResult(Activity.RESULT_OK);
         finish();
     }
 
@@ -173,6 +174,7 @@ public abstract class OperationFormActivity extends MifosActivity {
     }
 
     public void onGoBackPressed(View view) {
+        setResult(Activity.RESULT_CANCELED);
         finish();
     }
 

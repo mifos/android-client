@@ -20,6 +20,7 @@
 
 package org.mifos.androidclient.main;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -142,7 +143,27 @@ public class CustomerDetailsActivity extends DownloaderActivity
     public void onApplyChargeSelected(View view) {
         Intent intent = new Intent().setClass(this, ApplyCustomerChargeActivity.class);
         intent.putExtra(AbstractCustomer.CUSTOMER_NUMBER_BUNDLE_KEY, mCustomer.getGlobalCustNum());
-        startActivity(intent);
+        startActivityForResult(intent, ApplyCustomerChargeActivity.REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case ApplyCustomerChargeActivity.REQUEST_CODE:
+                switch (resultCode) {
+                    case Activity.RESULT_OK:
+                        runCustomerDetailsTask();
+                        break;
+                    case Activity.RESULT_CANCELED:
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     private void updateContent(CustomerDetailsEntity details) {
