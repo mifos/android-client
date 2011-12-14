@@ -23,7 +23,12 @@ package org.mifos.androidclient.net.services;
 import android.content.Context;
 import org.mifos.androidclient.entities.customer.*;
 import org.mifos.androidclient.entities.simple.*;
+import org.springframework.http.converter.FormHttpMessageConverter;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class CustomerService extends RestNetworkService {
@@ -86,7 +91,8 @@ public class CustomerService extends RestNetworkService {
 
     public Map<String, String> applyCharge(String globalCustomerNumber, Map<String, String> params) {
         String url = getServerUrl() + CUSTOMER_APPLY_CHARGE_PATH_PREFIX + globalCustomerNumber + PATH_SUFFIX;
-        return mRestConnector.postForObject(url, params, Map.class, params);
+        url += prepareQueryString(params);
+        return mRestConnector.postForObject(url, null, Map.class);
     }
 
 }
