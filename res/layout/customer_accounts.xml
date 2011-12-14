@@ -32,14 +32,30 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/view_chargesDetails_button"
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/accountDetails_chargesDetailsButton_label"
-        android:visibility="gone"
-        android:onClick="onChargesDetailsSelected"
-        />
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/view_chargesDetails_button"
+            android:visibility="gone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/accountDetails_chargesDetailsButton_label"
+            android:onClick="onChargesDetailsSelected"
+            />
+
+        <Button
+            android:id="@+id/view_applyCharge_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/accountDetails_applyChargeButton_label"
+            android:onClick="onApplyChargeSelected"
+            />
+
+    </LinearLayout>
 
     <ExpandableListView
         android:id="@+id/customerAccounts_list"

@@ -115,6 +115,7 @@
     <string name="customerOverview_name_label">Client name:&#160;</string>
 
     <string name="accountDetails_chargesDetailsButton_label">View Charges Details</string>
+    <string name="accountDetails_applyChargeButton_label">Apply Charge</string>
 
     <string name="savingsAccountListItem_balance_label">Balance:&#160;</string>
     <string name="savingsAccountListItem_status_label">Status:&#160;</string>
@@ -356,5 +357,12 @@
     <string name="operationForm_status_label">Status:&#160;</string>
     <string name="operationForm_status_success">Success</string>
     <string name="operationForm_status_error">Error</string>
+
+    <!--
+        String values for ApplyCustomerChargeActivity
+    -->
+    <string name="applyCustomerCharge_header">Apply Charge</string>
+    <string name="applyCustomerCharge_feeId_fieldLabel">Fee ID:</string>
+    <string name="applyCustomerCharge_amount_fieldLabel">Amount:</string>
 
 </resources>

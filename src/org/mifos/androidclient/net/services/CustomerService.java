@@ -24,6 +24,8 @@ import android.content.Context;
 import org.mifos.androidclient.entities.customer.*;
 import org.mifos.androidclient.entities.simple.*;
 
+import java.util.Map;
+
 public class CustomerService extends RestNetworkService {
 
     private final static String LOAN_OFFICER_CUSTOMERS_PATH = "/personnel/clients/id-current.json";
@@ -33,6 +35,8 @@ public class CustomerService extends RestNetworkService {
     private final static String CENTER_DETAILS_PATH_PREFIX = "/center/num-";
 
     private final static String CLIENT_CHARGES_DETAILS_PATH_PREFIX = "/client/charges/num-";
+
+    private final static String CUSTOMER_APPLY_CHARGE_PATH_PREFIX = "/customer/charge/num-";
 
     public CustomerService(Context context) {
         super(context);
@@ -78,6 +82,11 @@ public class CustomerService extends RestNetworkService {
             details = mRestConnector.getForObject(url, CustomerChargesDetails.class);
         }
         return details;
+    }
+
+    public Map<String, String> applyCharge(String globalCustomerNumber, Map<String, String> params) {
+        String url = getServerUrl() + CUSTOMER_APPLY_CHARGE_PATH_PREFIX + globalCustomerNumber + PATH_SUFFIX;
+        return mRestConnector.postForObject(url, params, Map.class, params);
     }
 
 }

@@ -31,6 +31,7 @@
         <activity android:name=".main.DepositDueDetailsActivity" />
         <activity android:name=".main.RepaymentScheduleActivity"/>
         <activity android:name=".main.AccountRepaymentScheduleActivity"/>
+        <activity android:name=".main.ApplyCustomerChargeActivity" />
     </application>
 
 </manifest> 

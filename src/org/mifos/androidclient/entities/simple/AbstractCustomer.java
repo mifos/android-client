@@ -27,6 +27,7 @@ import java.io.Serializable;
 public abstract class AbstractCustomer extends BaseEntity implements Serializable {
 
     public static final String BUNDLE_KEY = AbstractCustomer.class.getSimpleName();
+    public static final String CUSTOMER_NUMBER_BUNDLE_KEY = AbstractCustomer.class.getSimpleName() + "-globalCustomerNumber";
 
     private Integer id;
     private String displayName;
