@@ -116,6 +116,7 @@
     <string name="customerOverview_name_label">Client name:&#160;</string>
 
     <string name="accountDetails_chargesDetailsButton_label">View Charges Details</string>
+    <string name="accountDetails_applyChargeButton_label">Apply Charge</string>
 
     <string name="savingsAccountListItem_balance_label">Balance:&#160;</string>
     <string name="savingsAccountListItem_status_label">Status:&#160;</string>
@@ -359,11 +360,18 @@
     <string name="operationForm_status_error">Error</string>
 
     <!--
+
         String values for CustomerMeetingScheduleActivity
     -->
     <string name="customerMeetingSchedule_header">Meetings Schedule</string>
     <string name="customerMeetingSchedule_meetings_label">Upcoming meetings:</string>
     <string name="no_meetings">There is no meetings on&#160;</string>
-
+    <!--
+        String values for ApplyCustomerChargeActivity
+    -->
+    <string name="applyCustomerCharge_header">Apply Charge</string>
+    <string name="applyCustomerCharge_feeId_fieldLabel">Fee ID:</string>
+    <string name="applyCustomerCharge_amount_fieldLabel">Amount:</string>
+>>>>>>> MIFOSAC-38: Extended the operation form, added initial customer charge applying.
 
 </resources>

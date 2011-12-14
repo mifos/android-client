@@ -25,13 +25,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.*;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.SessionStatus;
 import org.mifos.androidclient.main.LoginActivity;
 import org.mifos.androidclient.net.services.LoginService;
 import org.mifos.androidclient.net.services.SessionStatusService;
+import org.mifos.androidclient.util.ui.TableLayoutHelper;
 import org.springframework.web.client.RestClientException;
 
 import java.util.Map;
@@ -42,14 +45,24 @@ import java.util.Map;
  */
 public abstract class OperationFormActivity extends MifosActivity {
 
+    protected final static String STATUS_KEY = "status";
+    protected final static String STATUS_SUCCESS = "success";
+    protected final static String STATUS_ERROR = "error";
+
+    private LinearLayout mFormFields;
+
     private LoginService mLoginService;
     private SessionStatusService mSessionStatusService;
+
     private FormSubmissionTask mFormSubmissionTask;
+
     private boolean mLoginRequired;
 
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
+        setContentView(R.layout.operation_form);
+        mFormFields = (LinearLayout)findViewById(R.id.operationForm_formFields);
         mLoginService = new LoginService(this);
         mSessionStatusService = new SessionStatusService(this);
     }
@@ -76,15 +89,37 @@ public abstract class OperationFormActivity extends MifosActivity {
     }
 
     public void setOperationSummaryContent(Map<String,String> operationResults) {
-
+        TableLayout operationSummary = (TableLayout)findViewById(R.id.operationForm_operationSummary);
+        TableLayoutHelper helper = new TableLayoutHelper(this);
+        operationSummary.removeAllViews();
+        for (Map.Entry<String, String> entry : operationResults.entrySet()) {
+            if (!entry.getKey().equals(STATUS_KEY)) {
+                TableRow row = helper.createTableRow();
+                TextView cell = helper.createTableCell(entry.getKey(), 1);
+                row.addView(cell);
+                cell = helper.createTableCell(entry.getValue(), 2);
+                row.addView(cell);
+                operationSummary.addView(row);
+            }
+        }
     }
 
-    public EditText addTextFormField() {
-        return null;
+    public EditText addTextFormField(String fieldLabel) {
+        return addFormField(fieldLabel, InputType.TYPE_CLASS_TEXT);
     }
 
-    public EditText addDecimalNumberFormField() {
-        return null;
+    public EditText addDecimalNumberFormField(String fieldLabel) {
+        return addFormField(fieldLabel, InputType.TYPE_NUMBER_FLAG_DECIMAL);
+    }
+
+    private EditText addFormField(String fieldLabel, int inputType) {
+        LinearLayout field = (LinearLayout)getLayoutInflater().inflate(R.layout.edit_text_form_field, null);
+        TextView label = (TextView)field.findViewById(R.id.editTextFormField_label);
+        label.setText(fieldLabel);
+        EditText input = (EditText)field.findViewById(R.id.editTextFormField_input);
+        input.setInputType(inputType);
+        mFormFields.addView(field, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        return input;
     }
 
     public void setSubmissionButtonSet() {
@@ -105,6 +140,13 @@ public abstract class OperationFormActivity extends MifosActivity {
         setViewVisible(button, false);
         button = (Button)findViewById(R.id.operationForm_okButton);
         setViewVisible(button, true);
+    }
+
+    public void setStatusVisible(boolean visible) {
+        TextView view = (TextView)findViewById(R.id.operationForm_status_label);
+        setViewVisible(view, visible);
+        view = (TextView)findViewById(R.id.operationForm_status);
+        setViewVisible(view, visible);
     }
 
     public void setAdditionalInformationVisible(boolean visible) {
@@ -179,7 +221,24 @@ public abstract class OperationFormActivity extends MifosActivity {
     protected abstract Map<String, String> onFormSubmission(Map<String,String> parameters);
 
     protected void onSubmissionResult(Map<String, String> result) {
-
+        if (result.containsKey(STATUS_KEY)) {
+            if (result.get(STATUS_KEY).equals(STATUS_SUCCESS)) {
+                setStatus(true);
+                setStatusVisible(true);
+                setSuccessButtonSet();
+                setFormFieldsVisible(false);
+            } else if (result.get(STATUS_KEY).equals(STATUS_ERROR)) {
+                setStatus(false);
+                setStatusVisible(true);
+                setSubmissionButtonSet();
+                setFormFieldsVisible(true);
+            } else {
+                setStatusVisible(false);
+                setSubmissionButtonSet();
+            }
+            setOperationSummaryContent(result);
+            setOperationSummaryVisible(true);
+        }
     }
 
     protected void runFormSubmissionTask(Map<String,String> parameters) {

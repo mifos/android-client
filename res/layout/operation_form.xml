@@ -17,6 +17,8 @@
         <TextView
             android:id="@+id/operationForm_additionalInformation"
             style="@style/Info"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/operationForm_header"
@@ -26,6 +28,8 @@
         <TextView
             android:id="@+id/operationForm_status_label"
             style="@style/Label"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/operationForm_additionalInformation"
@@ -35,6 +39,8 @@
         <TextView
             android:id="@+id/operationForm_status"
             style="@style/Label"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/operationForm_header"
@@ -43,6 +49,8 @@
 
         <TableLayout
             android:id="@+id/operationForm_operationSummary"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:visibility="gone"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -52,6 +60,9 @@
 
         <LinearLayout
             android:id="@+id/operationForm_formFields"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/operationForm_operationSummary">
@@ -60,6 +71,8 @@
 
         <LinearLayout
             android:id="@+id/operationForm_buttons"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/operationForm_formFields">
