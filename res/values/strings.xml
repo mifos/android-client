@@ -32,6 +32,7 @@
     <string name="dialog_getting_customer_charges">Getting customer charges</string>
     <string name="dialog_getting_deposit_due_details">Getting deposit due details</string>
     <string name="dialog_getting_repayment_schedule">Getting repayment schedule</string>
+    <string name="dialog_submitting_data">Submitting</string>
 
 
     <!--
@@ -353,6 +354,9 @@
     <string name="operationForm_submitButton_label">Submit</string>
     <string name="operationForm_goBackButton_label">Go Back</string>
     <string name="operationForm_okButton_label">OK</string>
+    <string name="operationForm_status_label">Status:&#160;</string>
+    <string name="operationForm_status_success">Success</string>
+    <string name="operationForm_status_error">Error</string>
 
     <!--
         String values for CustomerMeetingScheduleActivity
