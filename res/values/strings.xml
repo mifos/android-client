@@ -359,6 +359,9 @@
     <string name="operationForm_status_success">Success</string>
     <string name="operationForm_status_error">Error</string>
 
+    <string name="operationForm_unknownProblem_label">Unknown error:&#160;</string>
+    <string name="operationForm_unknownProblem_desc">An unknown problem occurred.</string>
+
     <!--
 
         String values for CustomerMeetingScheduleActivity
@@ -373,5 +376,11 @@
     <string name="applyCustomerCharge_feeId_fieldLabel">Fee ID:</string>
     <string name="applyCustomerCharge_amount_fieldLabel">Amount:</string>
 >>>>>>> MIFOSAC-38: Extended the operation form, added initial customer charge applying.
+
+    <!--
+        Translations for messages received from the mifos server
+    -->
+    <string name="message_feeId">Fee ID:&#160;</string>
+    <string name="message_amount">Amount:&#160;</string>
 
 </resources>
