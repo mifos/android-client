@@ -375,8 +375,6 @@
     <string name="applyCustomerCharge_header">Apply Charge</string>
     <string name="applyCustomerCharge_feeId_fieldLabel">Fee ID:</string>
     <string name="applyCustomerCharge_amount_fieldLabel">Amount:</string>
->>>>>>> MIFOSAC-38: Extended the operation form, added initial customer charge applying.
-
     <!--
         Translations for messages received from the mifos server
     -->
