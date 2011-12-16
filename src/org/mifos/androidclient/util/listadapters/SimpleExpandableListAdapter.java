@@ -28,10 +28,7 @@ import android.widget.*;
 import org.mifos.androidclient.R;
 import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Represents an adapter which can be used with expandable lists.<br />
@@ -48,7 +45,12 @@ public class SimpleExpandableListAdapter extends BaseExpandableListAdapter imple
 
     public SimpleExpandableListAdapter(Context context, Map<SimpleListItem, List<SimpleListItem>> items) {
         mContext = context;
-        mItems = new HashMap<SimpleListItem, List<SimpleListItem>>();
+        mItems = new TreeMap<SimpleListItem, List<SimpleListItem>>(new Comparator<SimpleListItem>() {
+            @Override
+            public int compare(SimpleListItem simpleListItem1, SimpleListItem simpleListItem2) {
+                return simpleListItem1.getListLabel().compareToIgnoreCase(simpleListItem2.getListLabel());
+            }
+        });
         mItems.putAll(items);
         mExpandGroups = false;
         splitItems(items);
