@@ -34,9 +34,11 @@ import org.mifos.androidclient.entities.SessionStatus;
 import org.mifos.androidclient.main.LoginActivity;
 import org.mifos.androidclient.net.services.LoginService;
 import org.mifos.androidclient.net.services.SessionStatusService;
+import org.mifos.androidclient.util.ServerMessageTranslator;
 import org.mifos.androidclient.util.ui.TableLayoutHelper;
 import org.springframework.web.client.RestClientException;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -56,6 +58,8 @@ public abstract class OperationFormActivity extends MifosActivity {
 
     private FormSubmissionTask mFormSubmissionTask;
 
+    private ServerMessageTranslator mTranslator;
+
     private boolean mLoginRequired;
 
     @Override
@@ -65,6 +69,7 @@ public abstract class OperationFormActivity extends MifosActivity {
         mFormFields = (LinearLayout)findViewById(R.id.operationForm_formFields);
         mLoginService = new LoginService(this);
         mSessionStatusService = new SessionStatusService(this);
+        mTranslator = new ServerMessageTranslator(this);
     }
 
     public void setFormHeader(String value) {
@@ -95,7 +100,7 @@ public abstract class OperationFormActivity extends MifosActivity {
         for (Map.Entry<String, String> entry : operationResults.entrySet()) {
             if (!entry.getKey().equals(STATUS_KEY)) {
                 TableRow row = helper.createTableRow();
-                TextView cell = helper.createTableCell(entry.getKey(), 1);
+                TextView cell = helper.createTableCell(mTranslator.translate(entry.getKey(), entry.getKey()), 1);
                 row.addView(cell);
                 cell = helper.createTableCell(entry.getValue(), 2);
                 row.addView(cell);
@@ -225,22 +230,44 @@ public abstract class OperationFormActivity extends MifosActivity {
     protected void onSubmissionResult(Map<String, String> result) {
         if (result.containsKey(STATUS_KEY)) {
             if (result.get(STATUS_KEY).equals(STATUS_SUCCESS)) {
-                setStatus(true);
-                setStatusVisible(true);
-                setSuccessButtonSet();
-                setFormFieldsVisible(false);
+                setSuccessView(result);
             } else if (result.get(STATUS_KEY).equals(STATUS_ERROR)) {
-                setStatus(false);
-                setStatusVisible(true);
-                setSubmissionButtonSet();
-                setFormFieldsVisible(true);
+                setErrorView(result);
             } else {
-                setStatusVisible(false);
-                setSubmissionButtonSet();
+                setUnknownProblemView();
             }
-            setOperationSummaryContent(result);
-            setOperationSummaryVisible(true);
+        } else {
+            setUnknownProblemView();
         }
+    }
+
+    protected void setSuccessView(Map<String, String> summary) {
+        setStatus(true);
+        setStatusVisible(true);
+        setSuccessButtonSet();
+        setFormFieldsVisible(false);
+        setOperationSummaryContent(summary);
+        setOperationSummaryVisible(true);
+    }
+
+    protected void setErrorView(Map<String, String> summary) {
+        setStatus(false);
+        setStatusVisible(true);
+        setSubmissionButtonSet();
+        setFormFieldsVisible(true);
+        setOperationSummaryContent(summary);
+        setOperationSummaryVisible(true);
+    }
+
+    protected void setUnknownProblemView() {
+        setStatus(false);
+        setStatusVisible(true);
+        setSubmissionButtonSet();
+        setFormFieldsVisible(true);
+        Map<String, String> unknownProblemSummary = new HashMap<String, String>();
+        unknownProblemSummary.put(getString(R.string.operationForm_unknownProblem_label), getString(R.string.operationForm_unknownProblem_desc));
+        setOperationSummaryVisible(true);
+        setOperationSummaryContent(unknownProblemSummary);
     }
 
     protected void runFormSubmissionTask(Map<String,String> parameters) {
