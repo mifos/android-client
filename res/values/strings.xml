@@ -66,6 +66,7 @@
         String values for ClientMainActivity:
     -->
     <string name="client_main_button_client_list">Browse customers</string>
+    <string name="client_main_button_meetings_list">Upcoming meetings</string>
     <string name="client_main_label">Welcome to Mifos\nAndroid client!</string>
 
     <!--
@@ -256,7 +257,7 @@
     <string name="no">No</string>
     <string name="notPaidYet">Not paid yet</string>
     <string name="weeks"> Week(s)</string>
-    <string name="months"> Months(s)</string>
+    <string name="months"> Month(s)</string>
     <string name="recurEvery">Recur every&#160;</string>
     <string name="partiallyPaid">Partially paid</string>
 
@@ -352,5 +353,13 @@
     <string name="operationForm_submitButton_label">Submit</string>
     <string name="operationForm_goBackButton_label">Go Back</string>
     <string name="operationForm_okButton_label">OK</string>
+
+    <!--
+        String values for CustomerMeetingScheduleActivity
+    -->
+    <string name="customerMeetingSchedule_header">Meetings Schedule</string>
+    <string name="customerMeetingSchedule_meetings_label">Upcoming meetings:</string>
+    <string name="no_meetings">There is no meetings today</string>
+
 
 </resources>

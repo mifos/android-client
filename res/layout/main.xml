@@ -19,6 +19,13 @@
         android:text="@string/client_main_button_client_list"
         android:onClick="onClientListSelected"
         />
+    <Button
+        android:id="@+id/view_clients_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/client_main_button_meetings_list"
+        android:onClick="onMeetingSelected"
+        />
 
 </LinearLayout>
 

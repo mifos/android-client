@@ -1,5 +1,6 @@
 package org.mifos.androidclient.entities.account;
 
+import android.content.Context;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.mifos.androidclient.util.listadapters.SimpleListItem;
 import org.mifos.androidclient.util.ui.DateUtils;
@@ -184,14 +185,14 @@ public class RepaymentScheduleItem implements SimpleListItem, Serializable{
         if(paymentStatus == 1){
         total = feePaid + miscFeePaid + principalPaid + interestPaid;
         }
-        else total = feeAmount + miscFee - feePaid - miscFeePaid  + principal - principalPaid + interest - interestPaid;
+        else total = (feeAmount - feePaid) + (miscFee - miscFeePaid)  + (principal - principalPaid) + (interest - interestPaid);
 
         if (paymentDate != null && paymentStatus == 1){
-            return DateUtils.format(dueDate) + "   " + DateUtils.format(paymentDate) + "     " + total;
+            return DateUtils.format(dueDate) + "   " + DateUtils.format(paymentDate) + "     " + Double.valueOf(df.format(round(total)));
         }else if(paymentDate != null && paymentStatus != 1){
-            return DateUtils.format(dueDate) + "  Partially paid     " + df.format(total);
+            return DateUtils.format(dueDate) + "  Partially paid     " + Double.valueOf(df.format(round(total)));
         }
-        else return DateUtils.format(dueDate) + "   Not paid yet     " + total;
+        else return DateUtils.format(dueDate) + "   Not paid yet     " + Double.valueOf(df.format(round(total)));
     }
 
     @Override

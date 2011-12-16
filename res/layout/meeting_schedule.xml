@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent">
+
+    <TextView
+        style="@style/Header"
+        android:id="@+id/meeting_schedule_header"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/customerMeetingSchedule_header"
+        />
+
+    <TextView
+        style="@style/Label"
+        android:id="@+id/meeting_schedule_meetings_label"
+        android:layout_below="@id/meeting_schedule_header"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/customerMeetingSchedule_meetings_label"
+        />
+    <Spinner
+        android:id="@+id/date_spinner"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/meeting_schedule_meetings_label"
+        android:layout_height="wrap_content"
+        />
+
+    <ListView
+        android:id="@+id/meeting_center_list"
+        android:layout_below="@id/date_spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="25dp"
+        android:visibility="gone"
+        />
+
+    <TextView
+        style="@style/Label"
+        android:id="@+id/no_meetings"
+        android:layout_below="@id/meeting_center_list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:paddingTop="25dp"
+        android:gravity="center_horizontal"
+        />
+
+</RelativeLayout>

@@ -54,6 +54,11 @@ public class ClientMainActivity extends MifosActivity {
         startActivity(intent);
     }
 
+    public void onMeetingSelected(View view){
+        Intent intent= new Intent().setClass(this, MeetingListActivity.class);
+        startActivity(intent);
+    }
+
     /**
      * Checks whether the Mifos server address has been specified or not and
      * displays a dialog prompting for it in the latter case.

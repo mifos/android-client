@@ -93,7 +93,7 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
         else textView.setText(mContext.getString(R.string.yes));
         textView = (TextView)view.findViewById(R.id.accountDetailsLoan_frequencyOfInstallments);
         if(mDetails.getRecurrenceId() == 1){
-        textView.setText(mDetails.getRecurAfter().toString() + mContext.getString(R.string.weeks));
+        textView.setText(mDetails.getRecurAfter().toString() + " " +mContext.getString(R.string.weeks));
         }
         else textView.setText(mDetails.getRecurAfter().toString() + mContext.getString(R.string.months));
         textView = (TextView)view.findViewById(R.id.accountDetailsLoan_PrincipalDueOnLastInstallment);
