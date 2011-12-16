@@ -28,6 +28,7 @@
         <TextView
             android:id="@+id/operationForm_status_label"
             style="@style/Label"
+            android:visibility="gone"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             android:layout_width="wrap_content"
@@ -39,6 +40,7 @@
         <TextView
             android:id="@+id/operationForm_status"
             style="@style/Label"
+            android:visibility="gone"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             android:layout_width="wrap_content"
@@ -58,6 +60,16 @@
 
         </TableLayout>
 
+        <!-- This view's purpose is to prevent the edit text below from gaining focus on activity start -->
+        <LinearLayout
+            android:id="@+id/operationForm_dummyFocusGetter"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="0px"
+            android:layout_height="0px"
+            android:layout_below="@id/operationForm_operationSummary"
+            />
+
         <LinearLayout
             android:id="@+id/operationForm_formFields"
             android:paddingTop="5dp"
@@ -65,7 +77,7 @@
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/operationForm_operationSummary">
+            android:layout_below="@id/operationForm_dummyFocusGetter">
 
         </LinearLayout>
 
