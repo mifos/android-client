@@ -130,6 +130,7 @@ public class CentersListActivity extends DownloaderActivity
             mFilterBox.addTextChangedListener(mTextWatcher);
             mCentersList.setOnItemClickListener(this);
             mCentersList.setOnItemLongClickListener(this);
+            mTextWatcher.filter(mFilterBox.getText());
             mMessage.setVisibility(View.GONE);
             mContent.setVisibility(View.VISIBLE);
         } else {
@@ -165,9 +166,7 @@ public class CentersListActivity extends DownloaderActivity
 
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            if (mAdapter != null) {
-                mAdapter.getFilter().filter(charSequence);
-            }
+            filter(charSequence);
         }
 
         @Override
@@ -177,6 +176,12 @@ public class CentersListActivity extends DownloaderActivity
 
         private void setAdapter(SimpleListAdapter adapter) {
             mAdapter = adapter;
+        }
+
+        public void filter(CharSequence constraint) {
+            if (mAdapter != null) {
+                mAdapter.getFilter().filter(constraint);
+            }
         }
 
     }
