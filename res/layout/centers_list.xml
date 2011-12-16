@@ -36,6 +36,14 @@
             android:text="@string/centersList_hint"
             />
 
+        <!-- This view's purpose is to prevent the edit text below from gaining focus on activity start -->
+        <LinearLayout
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="0px"
+            android:layout_height="0px"
+            />
+
         <EditText
             android:id="@+id/centers_list_filter_box"
             android:layout_width="fill_parent"
