@@ -38,6 +38,8 @@ import org.mifos.androidclient.util.ServerMessageTranslator;
 import org.mifos.androidclient.util.ui.TableLayoutHelper;
 import org.springframework.web.client.RestClientException;
 
+import java.io.Serializable;
+import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,6 +48,8 @@ import java.util.Map;
  * and accounts.
  */
 public abstract class OperationFormActivity extends MifosActivity {
+
+    private static final String PREVIOUS_STATE_BUNDLE_KEY = OperationFormActivity.class.getSimpleName() + "-previousState";
 
     protected final static String STATUS_KEY = "status";
     protected final static String STATUS_SUCCESS = "success";
@@ -60,16 +64,29 @@ public abstract class OperationFormActivity extends MifosActivity {
 
     private ServerMessageTranslator mTranslator;
 
+    private Map<String, String> mPreviousResult;
     private boolean mLoginRequired;
 
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.operation_form);
+
         mFormFields = (LinearLayout)findViewById(R.id.operationForm_formFields);
         mLoginService = new LoginService(this);
         mSessionStatusService = new SessionStatusService(this);
         mTranslator = new ServerMessageTranslator(this);
+
+        if (bundle != null && bundle.containsKey(PREVIOUS_STATE_BUNDLE_KEY)) {
+            mPreviousResult = (Map<String, String>)bundle.get(PREVIOUS_STATE_BUNDLE_KEY);
+            updateViewForResponse(mPreviousResult);
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(PREVIOUS_STATE_BUNDLE_KEY, (Serializable)mPreviousResult);
     }
 
     public void setFormHeader(String value) {
@@ -228,7 +245,12 @@ public abstract class OperationFormActivity extends MifosActivity {
     protected abstract Map<String, String> onFormSubmission(Map<String,String> parameters);
 
     protected void onSubmissionResult(Map<String, String> result) {
-        if (result.containsKey(STATUS_KEY)) {
+        mPreviousResult = result;
+        updateViewForResponse(result);
+    }
+
+    protected void updateViewForResponse(Map<String, String> result) {
+        if (result != null && result.containsKey(STATUS_KEY)) {
             if (result.get(STATUS_KEY).equals(STATUS_SUCCESS)) {
                 setSuccessView(result);
             } else if (result.get(STATUS_KEY).equals(STATUS_ERROR)) {
