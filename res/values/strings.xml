@@ -84,14 +84,14 @@
     <string name="centerslist_label">Choose a center:</string>
     <string name="centerslist_no_center">Customers without a center</string>
     <string name="centersList_hint">Click on a center to go to its groups. Do a long click on a center to view its details.</string>
-    <string name="centersList_no_centers_available">You logged in as \'%s\', but it appears You have no customers assigned. </string>
+    <string name="centersList_no_centers_available">You are logged in as \'%s\', but it appears You have no customers assigned. </string>
 
     <!--
         String values for CustomersListActivity:
     -->
     <string name="clientslist_label">Select a customer to view his details:</string>
     <string name="clientsList_hint">Click on a group to view its clients (if any). Do a long click on a group to view its details.</string>
-    <string name="clientsList_no_customers_available">You logged in as \'%s\', but it appears that You have no groups or clients assigned.</string>
+    <string name="clientsList_no_customers_available">You are logged in as \'%s\', but it appears that You have no groups or clients assigned.</string>
 
     <!--
         String values for CustomerDetailsActivity:
