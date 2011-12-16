@@ -35,7 +35,7 @@ public class MeetingListActivity extends DownloaderActivity
     private ListView mCenterList;
     private CustomerMeetingTask mCustomerMeetingTask;
     private Spinner spinner;
-
+    private String selectedDate;
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
@@ -61,7 +61,7 @@ public class MeetingListActivity extends DownloaderActivity
         {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int position, long rowId) {
-            String selectedDate =  spinner.getSelectedItem().toString();
+            selectedDate =  spinner.getSelectedItem().toString();
             runCustomerMeetingTask(selectedDate);
 
         }
@@ -165,7 +165,9 @@ public class MeetingListActivity extends DownloaderActivity
                         reCustomerMeetingList(result);
                 }
                 else {
-                    tv.setText(getString(R.string.no_meetings));
+                    tv.setText(getString(R.string.no_meetings) + selectedDate);
+                    mCenterList = (ListView)findViewById(R.id.meeting_center_list);
+                    mCenterList.setVisibility(View.GONE);
                     tv.setVisibility(View.VISIBLE);
                 }
             }

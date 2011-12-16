@@ -359,7 +359,7 @@
     -->
     <string name="customerMeetingSchedule_header">Meetings Schedule</string>
     <string name="customerMeetingSchedule_meetings_label">Upcoming meetings:</string>
-    <string name="no_meetings">There is no meetings today</string>
+    <string name="no_meetings">There is no meetings on&#160;</string>
 
 
 </resources>
