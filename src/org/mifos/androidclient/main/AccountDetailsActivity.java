@@ -62,7 +62,11 @@ public class AccountDetailsActivity extends DownloaderActivity {
         TabHost.TabSpec additionalInfoSpec = tabs.newTabSpec(getString(R.string.accountDetails_tab_additionalInfo));
         additionalInfoSpec.setIndicator(getString(R.string.accountDetails_tab_additionalInfo));
         additionalInfoSpec.setContent(R.id.account_details);
+        TabHost.TabSpec transactionSpec = tabs.newTabSpec(getString(R.string.accountDetails_tab_transaction));
+        transactionSpec.setIndicator(getString(R.string.accountDetails_tab_transaction));
+        transactionSpec.setContent(R.id.account_transaction);
         tabs.addTab(overviewSpec);
+        tabs.addTab(transactionSpec);
         tabs.addTab(additionalInfoSpec);
 
         if (bundle != null) {
@@ -141,6 +145,12 @@ public class AccountDetailsActivity extends DownloaderActivity {
         startActivity(intent);
     }
 
+    public void onApplyChargeSelected(View view) {
+        Intent intent = new Intent().setClass(this, ApplyLoanAccountChargeActivity.class);
+        intent.putExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY, mAccount.getGlobalAccountNum());
+        startActivity(intent);
+    }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -162,6 +172,12 @@ public class AccountDetailsActivity extends DownloaderActivity {
                 tabContent.removeAllViews();
             }
             tabContent.addView(builder.buildOverviewView());
+
+            tabContent = (LinearLayout)findViewById(R.id.account_transaction);
+            if (tabContent.getChildCount() > 0) {
+                tabContent.removeAllViews();
+            }
+            tabContent.addView(builder.buildTransactionView());
 
             tabContent = (LinearLayout)findViewById(R.id.account_details);
             if (tabContent.getChildCount() > 0) {

@@ -332,7 +332,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/accountOverviewLoan_recentActivity_label"
-                android:visibility="invisible"
+                android:visibility="gone"
                 />
 
         <HorizontalScrollView
@@ -364,7 +364,7 @@
             android:textStyle="bold"
             android:layout_below="@id/tableView"
             android:text="&#160;←&#160;→&#160;"
-            android:visibility="invisible"
+            android:visibility="gone"
             />
     <!--
             RECENT NOTES
@@ -377,7 +377,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/accountOverviewLoan_recentNotes_label"
-                android:visibility="invisible"
+                android:visibility="gone"
                 />
             <LinearLayout
                 android:id="@+id/accountOverviewLoan_recentNotes"

@@ -70,6 +70,14 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
     }
 
     @Override
+    public View buildTransactionView() {
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.account_loan_transaction, null);
+        return view;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+
+    @Override
     public View buildDetailsView() {
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.account_loan_details, null);
@@ -95,7 +103,7 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
         if(mDetails.getRecurrenceId() == 1){
         textView.setText(mDetails.getRecurAfter().toString() + " " +mContext.getString(R.string.weeks));
         }
-        else textView.setText(mDetails.getRecurAfter().toString() + mContext.getString(R.string.months));
+        else textView.setText(mDetails.getRecurAfter().toString() + " " + mContext.getString(R.string.months));
         textView = (TextView)view.findViewById(R.id.accountDetailsLoan_PrincipalDueOnLastInstallment);
         if(!mDetails.getPrinDueLastInst()){
             textView.setText(mContext.getString(R.string.no));

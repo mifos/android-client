@@ -26,6 +26,8 @@ public interface AccountDetailsViewBuilder {
 
     public View buildOverviewView();
 
+    public View buildTransactionView();
+
     public View buildDetailsView();
 
 }

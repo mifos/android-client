@@ -28,6 +28,8 @@ import org.mifos.androidclient.entities.customer.AccountBasicInformation;
 import org.mifos.androidclient.entities.customer.LoanAccountBasicInformation;
 import org.mifos.androidclient.entities.customer.SavingsAccountBasicInformation;
 
+import java.util.Map;
+
 public class AccountService extends RestNetworkService {
 
     private static final String LOAN_ACCOUNT_DETAILS_PATH_PREFIX = "/account/loan/num-";
@@ -36,6 +38,7 @@ public class AccountService extends RestNetworkService {
     private static final String LOAN_INSTALLMENT_DETAILS_PATH_PREFIX = "/account/loan/installment/num-";
     private static final String SAVINGS_DEPOSIT_DUE_DETAILS_PATH_PREFIX = "/account/savings/due/num-";
     private static final String REPAYMENT_SCHEDULE_PATH_PREFIX = "/account/loan/schedule/num-";
+    private static final String LOAN_ACCOUNT_APPLY_CHARGE_PATH_PREFIX = "/customer/charge/num-";
 
     public AccountService(Context context) {
         super(context);
@@ -81,4 +84,9 @@ public class AccountService extends RestNetworkService {
         return mRestConnector.getForObject(url, SavingsAccountDepositDue.class);
     }
 
+    public Map<String, String> applyLoanCharge(String accountNumber, Map<String, String> params) {
+        String url = getServerUrl() + LOAN_ACCOUNT_APPLY_CHARGE_PATH_PREFIX + accountNumber + PATH_SUFFIX;
+        url += prepareQueryString(params);
+        return mRestConnector.postForObject(url, null, Map.class);
+    }
 }

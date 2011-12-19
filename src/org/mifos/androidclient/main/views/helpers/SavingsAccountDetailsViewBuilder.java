@@ -72,7 +72,12 @@ public class SavingsAccountDetailsViewBuilder implements AccountDetailsViewBuild
         return view;
     }
 
-
+    @Override
+    public View buildTransactionView() {
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.account_savings_transaction, null);
+        return view;  //To change body of implemented methods use File | Settings | File Templates.
+   }
 
 
     @Override

@@ -171,6 +171,7 @@
     -->
     <string name="accountDetails_tab_overview">Account Overview</string>
     <string name="accountDetails_tab_additionalInfo">Account Details</string>
+    <string name="accountDetails_tab_transaction">Account Transaction</string>
 
     <string name="accountOverviewLoan_accountSummary_label">Account Summary</string>
     <string name="accountOverviewLoan_status_label">Status:&#160;</string>
@@ -380,5 +381,15 @@
     -->
     <string name="message_feeId">Fee ID:&#160;</string>
     <string name="message_amount">Amount:&#160;</string>
+
+    <!--
+        String values for ApplyLoanAccountChargeActivity
+    -->
+    <string name="applyLoanAccountCharge_header">Apply Charge</string>
+    <string name="applyLoanAccountCharge_feeId_fieldLabel">Fee ID:</string>
+    <string name="applyLoanAccountCharge_amount_fieldLabel">Amount:</string>
+
+    <string name="accountTransaction_applyChargesButton_label">Apply charges</string>
+    <string name="accountTransaction_repayLoanButton_label">Repay Loan</string>
 
 </resources>

@@ -43,6 +43,7 @@ public class CustomerService extends RestNetworkService {
 
     private final static String CUSTOMER_APPLY_CHARGE_PATH_PREFIX = "/customer/charge/num-";
 
+
     public CustomerService(Context context) {
         super(context);
     }
