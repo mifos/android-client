@@ -73,6 +73,10 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
     public View buildTransactionView() {
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.account_loan_transaction, null);
+        if (!mDetails.getDisbursed()) {
+            View disburseButton = view.findViewById(R.id.accountLoan_disburseLoan);
+            disburseButton.setVisibility(View.VISIBLE);
+        }
         return view;  //To change body of implemented methods use File | Settings | File Templates.
     }
 

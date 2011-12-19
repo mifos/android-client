@@ -21,6 +21,7 @@
 package org.mifos.androidclient.main;
 
 import android.os.Bundle;
+import android.widget.TextView;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.account.AbstractAccountDetails;
 import org.mifos.androidclient.entities.account.LoanSummary;
@@ -36,6 +37,10 @@ public class DisburseLoanActivity extends OperationFormActivity {
     private String mGlobalAccountNumber;
     private Double mOriginalPrincipal;
 
+    private TextView mDisbursalDateInput;
+    private TextView mReceiptIdInput;
+    private TextView mReceiptDateInput;
+
     private AccountService mAccountService;
 
     @Override
@@ -50,6 +55,10 @@ public class DisburseLoanActivity extends OperationFormActivity {
         }
 
         mAccountService = new AccountService(this);
+
+        mDisbursalDateInput = addDateFormField(getString(R.string.disburseLoan_disbursalDate_fieldLabel));
+        mReceiptIdInput = addTextFormField(getString(R.string.disburseLoan_receiptId_fieldLabel));
+        mReceiptDateInput = addDateFormField(getString(R.string.disburseLoan_receiptDate_fieldLabel));
 
         setFormHeader(getString(R.string.disburseLoan_header));
         setFormAdditionalInformation(getString(R.string.disburseLoan_additionalInformation, mOriginalPrincipal));

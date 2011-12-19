@@ -253,8 +253,10 @@ public abstract class OperationFormActivity extends MifosActivity
     }
 
     @Override
-    public void onFocusChange(View view, boolean b) {
-        dateFieldEdit(view);
+    public void onFocusChange(View view, boolean hasFocus) {
+        if (hasFocus) {
+            dateFieldEdit(view);
+        }
     }
 
     public void dateFieldEdit(View view) {

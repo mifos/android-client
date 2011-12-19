@@ -402,5 +402,8 @@
     -->
     <string name="disburseLoan_header">Disburse Loan</string>
     <string name="disburseLoan_additionalInformation">Disburse %.2f from this account.</string>
+    <string name="disburseLoan_disbursalDate_fieldLabel">Disbursal Date:</string>
+    <string name="disburseLoan_receiptId_fieldLabel">Receipt ID:</string>
+    <string name="disburseLoan_receiptDate_fieldLabel">Receipt Date:</string>
 
 </resources>
