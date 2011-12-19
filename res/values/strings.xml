@@ -375,6 +375,7 @@
     -->
     <string name="applyCustomerCharge_header">Apply Charge</string>
     <string name="applyCustomerCharge_feeId_fieldLabel">Fee ID:</string>
+    <string name="applyCustomerCharge_feeType_fieldLabel">Fee Type:</string>
     <string name="applyCustomerCharge_amount_fieldLabel">Amount:</string>
     <!--
         Translations for messages received from the mifos server

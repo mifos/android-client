@@ -33,6 +33,7 @@ import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.customer.AccountBasicInformation;
 import org.mifos.androidclient.entities.customer.CustomerDetailsEntity;
 import org.mifos.androidclient.entities.simple.AbstractCustomer;
+import org.mifos.androidclient.entities.simple.Fee;
 import org.mifos.androidclient.main.views.adapters.AccountsExpandableListAdapter;
 import org.mifos.androidclient.net.services.CustomerService;
 import org.mifos.androidclient.templates.CustomerDetailsViewBuilder;
@@ -41,6 +42,9 @@ import org.mifos.androidclient.templates.ServiceConnectivityTask;
 import org.mifos.androidclient.templates.ViewBuilderFactory;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestClientException;
+
+import java.io.Serializable;
+import java.util.Map;
 
 public class CustomerDetailsActivity extends DownloaderActivity
         implements ExpandableListView.OnChildClickListener {
@@ -51,6 +55,7 @@ public class CustomerDetailsActivity extends DownloaderActivity
     private CustomerDetailsTask mCustomerDetailsTask;
     private CustomerService mCustomerService;
     private CustomerDetailsEntity mDetails;
+    private Map<String, String> mApplicableFees;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -76,6 +81,9 @@ public class CustomerDetailsActivity extends DownloaderActivity
             if (bundle.containsKey(CustomerDetailsEntity.BUNDLE_KEY)) {
                 mDetails = (CustomerDetailsEntity)bundle.getSerializable(CustomerDetailsEntity.BUNDLE_KEY);
             }
+            if (bundle.containsKey(Fee.BUNDLE_KEY)) {
+                mApplicableFees = (Map<String, String>)bundle.getSerializable(Fee.BUNDLE_KEY);
+            }
             if (bundle.containsKey(SELECTED_TAB_BUNDLE_KEY)) {
                 tabs.setCurrentTab(bundle.getInt(SELECTED_TAB_BUNDLE_KEY));
             }
@@ -88,7 +96,7 @@ public class CustomerDetailsActivity extends DownloaderActivity
     @Override
     protected void onSessionActive() {
         super.onSessionActive();
-        if (mDetails == null) {
+        if (mDetails == null || mApplicableFees == null) {
             runCustomerDetailsTask();
         } else {
             updateContent(mDetails);
@@ -99,6 +107,7 @@ public class CustomerDetailsActivity extends DownloaderActivity
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable(CustomerDetailsEntity.BUNDLE_KEY, mDetails);
+        outState.putSerializable(Fee.BUNDLE_KEY, (Serializable)mApplicableFees);
         TabHost tabs = (TabHost)findViewById(R.id.customerDetails_tabhost);
         if (tabs != null) {
             outState.putSerializable(SELECTED_TAB_BUNDLE_KEY, tabs.getCurrentTab());
@@ -143,6 +152,7 @@ public class CustomerDetailsActivity extends DownloaderActivity
     public void onApplyChargeSelected(View view) {
         Intent intent = new Intent().setClass(this, ApplyCustomerChargeActivity.class);
         intent.putExtra(AbstractCustomer.CUSTOMER_NUMBER_BUNDLE_KEY, mCustomer.getGlobalCustNum());
+        intent.putExtra(Fee.BUNDLE_KEY, (Serializable)mApplicableFees);
         startActivityForResult(intent, ApplyCustomerChargeActivity.REQUEST_CODE);
     }
 
@@ -230,6 +240,7 @@ public class CustomerDetailsActivity extends DownloaderActivity
         protected CustomerDetailsEntity doInBackgroundBody(AbstractCustomer... params) throws RestClientException, IllegalArgumentException {
             CustomerDetailsEntity result = null;
             if (mCustomerService != null) {
+                mApplicableFees = mCustomerService.getApplicableFees(params[0].getGlobalCustNum());
                 result = mCustomerService.getDetailsForEntity(params[0]);
             }
             return result;

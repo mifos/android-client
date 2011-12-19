@@ -3,4 +3,5 @@
     <color name="tableSeparator">#FF909090</color>
     <color name="errorRed">#FF2400</color>
     <color name="successGreen">#228B22</color>
+    <color name="black">#000000</color>
 </resources>

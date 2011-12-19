@@ -39,8 +39,8 @@ import org.mifos.androidclient.util.ui.TableLayoutHelper;
 import org.springframework.web.client.RestClientException;
 
 import java.io.Serializable;
-import java.io.StringWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -54,6 +54,7 @@ public abstract class OperationFormActivity extends MifosActivity {
     protected final static String STATUS_KEY = "status";
     protected final static String STATUS_SUCCESS = "success";
     protected final static String STATUS_ERROR = "error";
+    protected final static String CAUSE_KEY = "cause";
 
     private LinearLayout mFormFields;
 
@@ -124,6 +125,17 @@ public abstract class OperationFormActivity extends MifosActivity {
                 operationSummary.addView(row);
             }
         }
+    }
+
+    public Spinner addComboBoxFormField(String fieldLabel, List<String> elements) {
+        LinearLayout field = (LinearLayout)getLayoutInflater().inflate(R.layout.combo_box_form_field, null);
+        TextView label = (TextView)field.findViewById(R.id.comboBoxFormField_label);
+        label.setText(fieldLabel);
+        Spinner input = (Spinner)field.findViewById(R.id.comboBoxFormField_input);
+        input.setPrompt(fieldLabel);
+        input.setAdapter(new ArrayAdapter(this, R.layout.combo_box_item, elements));
+        mFormFields.addView(field, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        return input;
     }
 
     public EditText addTextFormField(String fieldLabel) {
@@ -277,7 +289,9 @@ public abstract class OperationFormActivity extends MifosActivity {
         setStatusVisible(true);
         setSubmissionButtonSet();
         setFormFieldsVisible(true);
-        setOperationSummaryContent(summary);
+        Map<String, String> errorCause = new HashMap<String, String>();
+        errorCause.put(CAUSE_KEY, summary.get(CAUSE_KEY));
+        setOperationSummaryContent(errorCause);
         setOperationSummaryVisible(true);
     }
 

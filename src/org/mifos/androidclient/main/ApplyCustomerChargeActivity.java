@@ -22,11 +22,14 @@ package org.mifos.androidclient.main;
 
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.Spinner;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.simple.AbstractCustomer;
+import org.mifos.androidclient.entities.simple.Fee;
 import org.mifos.androidclient.net.services.CustomerService;
 import org.mifos.androidclient.templates.OperationFormActivity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,8 +41,9 @@ public class ApplyCustomerChargeActivity extends OperationFormActivity {
     private static final String PARAM_AMOUNT = "amount";
 
     private String mGlobalCustomerNumber;
+    private Map<String, String> mApplicableFees;
     private CustomerService mCustomerService;
-    private EditText mFeeIdInput;
+    private Spinner mFeeType;
     private EditText mAmountInput;
 
     @Override
@@ -47,11 +51,13 @@ public class ApplyCustomerChargeActivity extends OperationFormActivity {
         super.onCreate(bundle);
 
         mGlobalCustomerNumber = getIntent().getStringExtra(AbstractCustomer.CUSTOMER_NUMBER_BUNDLE_KEY);
+        mApplicableFees = (Map<String, String>)getIntent().getSerializableExtra(Fee.BUNDLE_KEY);
+
         mCustomerService = new CustomerService(this);
 
         setFormHeader(getString(R.string.applyCustomerCharge_header));
         setStatusVisible(false);
-        mFeeIdInput = addTextFormField(getString(R.string.applyCustomerCharge_feeId_fieldLabel));
+        mFeeType = addComboBoxFormField(getString(R.string.applyCustomerCharge_feeType_fieldLabel), new ArrayList<String>(mApplicableFees.keySet()));
         mAmountInput = addDecimalNumberFormField(getString(R.string.applyCustomerCharge_amount_fieldLabel));
         setFormFieldsVisible(true);
     }
@@ -59,7 +65,7 @@ public class ApplyCustomerChargeActivity extends OperationFormActivity {
     @Override
     protected Map<String, String> onPrepareParameters() {
         Map<String, String> params = new HashMap<String, String>();
-        params.put(PARAM_FEE_ID, mFeeIdInput.getText().toString());
+        params.put(PARAM_FEE_ID, mApplicableFees.get(mFeeType.getSelectedItem()));
         params.put(PARAM_AMOUNT, mAmountInput.getText().toString());
         return params;
     }
@@ -74,5 +80,7 @@ public class ApplyCustomerChargeActivity extends OperationFormActivity {
         super.onSubmissionResult(result);
 
     }
+
+
 
 }
