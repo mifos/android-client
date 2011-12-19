@@ -33,6 +33,8 @@
         <activity android:name=".main.AccountRepaymentScheduleActivity"/>
         <activity android:name=".main.MeetingListActivity"/>
         <activity android:name=".main.ApplyCustomerChargeActivity" />
+        <activity android:name=".main.ApplyLoanAccountRepayLoanActivity"/>
+        <activity android:name=".main.ApplyLoanAccountChargeActivity"/>
 
     </application>
 

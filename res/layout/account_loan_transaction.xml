@@ -11,7 +11,7 @@
             android:id="@+id/accountLoan_applyCharge"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/accountTransaction_applyChargesButton_label"
+            android:text="@string/accountTransaction_applyChargesButton_header"
             android:onClick="onApplyChargeSelected"
             android:visibility="gone"
             />
@@ -21,7 +21,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/accountLoan_applyCharge"
-            android:text="@string/accountTransaction_repayLoanButton_label"
+            android:text="@string/accountTransaction_repayLoanButton_header"
+            android:onClick="onApplyLoanRepaySelected"
             />
         </RelativeLayout>
 </ScrollView>

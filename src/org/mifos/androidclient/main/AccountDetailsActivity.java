@@ -20,6 +20,7 @@
 
 package org.mifos.androidclient.main;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -148,7 +149,33 @@ public class AccountDetailsActivity extends DownloaderActivity {
     public void onApplyChargeSelected(View view) {
         Intent intent = new Intent().setClass(this, ApplyLoanAccountChargeActivity.class);
         intent.putExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY, mAccount.getGlobalAccountNum());
-        startActivity(intent);
+        startActivityForResult(intent, ApplyLoanAccountChargeActivity.REQUEST_CODE);
+    }
+
+    public void onApplyLoanRepaySelected(View view) {
+        Intent intent = new Intent().setClass(this, ApplyLoanAccountRepayLoanActivity.class);
+        intent.putExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY, mAccount.getGlobalAccountNum());
+        startActivityForResult(intent, ApplyLoanAccountRepayLoanActivity.REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case ApplyCustomerChargeActivity.REQUEST_CODE:
+                switch (resultCode) {
+                    case Activity.RESULT_OK:
+                        runAccountDetailsTask();
+                        break;
+                    case Activity.RESULT_CANCELED:
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     @Override

@@ -39,6 +39,7 @@ public class AccountService extends RestNetworkService {
     private static final String SAVINGS_DEPOSIT_DUE_DETAILS_PATH_PREFIX = "/account/savings/due/num-";
     private static final String REPAYMENT_SCHEDULE_PATH_PREFIX = "/account/loan/schedule/num-";
     private static final String LOAN_ACCOUNT_APPLY_CHARGE_PATH_PREFIX = "/customer/charge/num-";
+    private static final String LOAN_ACCOUNT_REPAY_LOAN_PATH_PREFIX = "/account/loan/fullrepay/num-";
 
     public AccountService(Context context) {
         super(context);
@@ -87,6 +88,12 @@ public class AccountService extends RestNetworkService {
     public Map<String, String> applyLoanCharge(String accountNumber, Map<String, String> params) {
         String url = getServerUrl() + LOAN_ACCOUNT_APPLY_CHARGE_PATH_PREFIX + accountNumber + PATH_SUFFIX;
         url += prepareQueryString(params);
+        return mRestConnector.postForObject(url, null, Map.class);
+    }
+
+    public Map<String, String> repayLoan(String accountNumber, Map<String, String> params) {
+        String url = getServerUrl() + LOAN_ACCOUNT_REPAY_LOAN_PATH_PREFIX + accountNumber + PATH_SUFFIX;
+        url +=prepareQueryString(params);
         return mRestConnector.postForObject(url, null, Map.class);
     }
 }
