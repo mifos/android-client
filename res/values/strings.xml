@@ -387,7 +387,7 @@
         String values for ApplyLoanAccountChargeActivity
     -->
     <string name="applyLoanAccountCharge_header">Apply Charge</string>
-    <string name="applyLoanAccountCharge_feeId_fieldLabel">Fee ID:</string>
+    <string name="applyLoanAccountCharge_feeType_fieldLabel">Fee Type:</string>
     <string name="applyLoanAccountCharge_amount_fieldLabel">Amount:</string>
 
     <string name="accountTransaction_applyChargesButton_header">Apply charges</string>

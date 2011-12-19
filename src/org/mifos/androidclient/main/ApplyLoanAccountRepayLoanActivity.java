@@ -43,4 +43,9 @@ public class ApplyLoanAccountRepayLoanActivity extends OperationFormActivity {
     protected Map<String, String> onFormSubmission(Map<String, String> parameters) {
         return mAccountService.repayLoan(mAccountNumber, parameters);
     }
+
+    @Override
+    protected void onSubmissionResult(Map<String, String> result) {
+        super.onSubmissionResult(result);
+    }
 }

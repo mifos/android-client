@@ -33,6 +33,7 @@ import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.account.AbstractAccountDetails;
 import org.mifos.androidclient.entities.account.SavingsAccountDetails;
 import org.mifos.androidclient.entities.customer.AccountBasicInformation;
+import org.mifos.androidclient.entities.simple.Fee;
 import org.mifos.androidclient.net.services.AccountService;
 import org.mifos.androidclient.templates.AccountDetailsViewBuilder;
 import org.mifos.androidclient.templates.DownloaderActivity;
@@ -40,6 +41,9 @@ import org.mifos.androidclient.templates.ServiceConnectivityTask;
 import org.mifos.androidclient.templates.ViewBuilderFactory;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestClientException;
+
+import java.io.Serializable;
+import java.util.Map;
 
 public class AccountDetailsActivity extends DownloaderActivity {
 
@@ -49,6 +53,7 @@ public class AccountDetailsActivity extends DownloaderActivity {
     private AbstractAccountDetails mDetails;
     private AccountService mAccountService;
     private AccountDetailsTask mAccountDetailsTask;
+    private Map<String, String> mApplicableFees;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -74,9 +79,13 @@ public class AccountDetailsActivity extends DownloaderActivity {
             if (bundle.containsKey(AbstractAccountDetails.BUNDLE_KEY)) {
                 mDetails = (AbstractAccountDetails)bundle.getSerializable(AbstractAccountDetails.BUNDLE_KEY);
             }
+            if (bundle.containsKey(Fee.BUNDLE_KEY)) {
+                mApplicableFees = (Map<String, String>)bundle.getSerializable(Fee.BUNDLE_KEY);
+            }
             if (bundle.containsKey(SELECTED_TAB_BUNDLE_KEY)) {
                 tabs.setCurrentTab(bundle.getInt(SELECTED_TAB_BUNDLE_KEY));
             }
+
         }
 
         mAccount = (AccountBasicInformation)getIntent().getSerializableExtra(AccountBasicInformation.BUNDLE_KEY);
@@ -86,7 +95,7 @@ public class AccountDetailsActivity extends DownloaderActivity {
     @Override
     protected void onSessionActive() {
         super.onSessionActive();
-        if (mDetails == null) {
+            if (mDetails == null || mApplicableFees == null) {
             runAccountDetailsTask();
         } else {
             updateContent(mDetails);
@@ -146,9 +155,10 @@ public class AccountDetailsActivity extends DownloaderActivity {
         startActivity(intent);
     }
 
-    public void onApplyChargeSelected(View view) {
+    public void onLoanApplyChargeSelected(View view) {
         Intent intent = new Intent().setClass(this, ApplyLoanAccountChargeActivity.class);
         intent.putExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY, mAccount.getGlobalAccountNum());
+        intent.putExtra(Fee.BUNDLE_KEY, (Serializable)mApplicableFees);
         startActivityForResult(intent, ApplyLoanAccountChargeActivity.REQUEST_CODE);
     }
 
@@ -182,6 +192,7 @@ public class AccountDetailsActivity extends DownloaderActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable(AbstractAccountDetails.BUNDLE_KEY, mDetails);
+        outState.putSerializable(Fee.BUNDLE_KEY, (Serializable)mApplicableFees);
         TabHost tabs = (TabHost)findViewById(R.id.accountDetails_tabHost);
         if (tabs != null) {
             outState.putSerializable(SELECTED_TAB_BUNDLE_KEY, tabs.getCurrentTab());
@@ -246,6 +257,7 @@ public class AccountDetailsActivity extends DownloaderActivity {
         protected AbstractAccountDetails doInBackgroundBody(AccountBasicInformation... params) throws RestClientException, IllegalArgumentException {
             AbstractAccountDetails details = null;
             if (mAccountService != null) {
+                mApplicableFees = mAccountService.getApplicableFees(params[0].getGlobalAccountNum());
                 details = mAccountService.getAccountDetailsForEntity(params[0]);
             }
             return details;
