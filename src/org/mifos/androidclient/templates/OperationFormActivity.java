@@ -21,6 +21,8 @@
 package org.mifos.androidclient.templates;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -39,6 +41,7 @@ import org.mifos.androidclient.util.ui.TableLayoutHelper;
 import org.springframework.web.client.RestClientException;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,9 +50,11 @@ import java.util.Map;
  * A base class for forms used to perform operations on Mifos customers
  * and accounts.
  */
-public abstract class OperationFormActivity extends MifosActivity {
+public abstract class OperationFormActivity extends MifosActivity
+        implements DatePickerDialog.OnDateSetListener, View.OnFocusChangeListener {
 
     private static final String PREVIOUS_STATE_BUNDLE_KEY = OperationFormActivity.class.getSimpleName() + "-previousState";
+    private static final int DATE_DIALOG_ID = 0;
 
     protected final static String STATUS_KEY = "status";
     protected final static String STATUS_SUCCESS = "success";
@@ -57,6 +62,7 @@ public abstract class OperationFormActivity extends MifosActivity {
     protected final static String CAUSE_KEY = "cause";
 
     private LinearLayout mFormFields;
+    private TextView mCurrentlySetTextView;
 
     private LoginService mLoginService;
     private SessionStatusService mSessionStatusService;
@@ -127,6 +133,17 @@ public abstract class OperationFormActivity extends MifosActivity {
         }
     }
 
+    public TextView addDateFormField(String fieldLabel) {
+        LinearLayout field = (LinearLayout)getLayoutInflater().inflate(R.layout.date_form_field, null);
+        TextView label = (TextView)field.findViewById(R.id.dateFormField_label);
+        label.setText(fieldLabel);
+        EditText input = (EditText)field.findViewById(R.id.dateFormField_input);
+        input.setInputType(InputType.TYPE_NULL);
+        input.setOnFocusChangeListener(this);
+        mFormFields.addView(field, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        return input;
+    }
+
     public Spinner addComboBoxFormField(String fieldLabel, List<String> elements) {
         LinearLayout field = (LinearLayout)getLayoutInflater().inflate(R.layout.combo_box_form_field, null);
         TextView label = (TextView)field.findViewById(R.id.comboBoxFormField_label);
@@ -154,6 +171,34 @@ public abstract class OperationFormActivity extends MifosActivity {
         input.setInputType(inputType);
         mFormFields.addView(field, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         return input;
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        Dialog dialog;
+        switch (id) {
+            case DATE_DIALOG_ID:
+                Calendar today = Calendar.getInstance();
+                return new DatePickerDialog(
+                        this,
+                        this,
+                        today.get(Calendar.YEAR),
+                        today.get(Calendar.MONTH),
+                        today.get(Calendar.DAY_OF_MONTH)
+                );
+            default:
+                dialog = null;
+        }
+        return dialog;
+    }
+
+    @Override
+    public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
+        StringBuilder builder = new StringBuilder()
+                .append(String.format("%02d", dayOfMonth)).append("-")
+                .append(String.format("%02d", monthOfYear + 1)).append("-")
+                .append(year);
+        mCurrentlySetTextView.setText(builder.toString());
     }
 
     public void setSubmissionButtonSet() {
@@ -196,6 +241,25 @@ public abstract class OperationFormActivity extends MifosActivity {
     public void setFormFieldsVisible(boolean visible) {
         LinearLayout formFields = (LinearLayout)findViewById(R.id.operationForm_formFields);
         setViewVisible(formFields, visible);
+    }
+
+    /**
+     * Called when a date form field is clicked.
+     *
+     * @param view the form input which has been clicked
+     */
+    public void onDateFieldClicked(View view) {
+        dateFieldEdit(view);
+    }
+
+    @Override
+    public void onFocusChange(View view, boolean b) {
+        dateFieldEdit(view);
+    }
+
+    public void dateFieldEdit(View view) {
+        mCurrentlySetTextView = (TextView)view;
+        showDialog(DATE_DIALOG_ID);
     }
 
     public void onOkPressed(View view) {
