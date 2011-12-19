@@ -139,6 +139,17 @@ public class AccountDetailsActivity extends DownloaderActivity {
                         break;
                 }
                 break;
+            case ApplySavingsAdjustmentActivity.REQUEST_CODE:
+                switch (resultCode) {
+                    case Activity.RESULT_OK:
+                        runAccountDetailsTask();
+                        break;
+                    case Activity.RESULT_CANCELED:
+                        break;
+                    default:
+                        break;
+                }
+                break;
             default:
                 break;
         }
@@ -212,6 +223,17 @@ public class AccountDetailsActivity extends DownloaderActivity {
         Intent intent = new Intent().setClass(this, ApplyLoanAccountRepayLoanActivity.class);
         intent.putExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY, mAccount.getGlobalAccountNum());
         startActivityForResult(intent, ApplyLoanAccountRepayLoanActivity.REQUEST_CODE);
+    }
+
+    /**
+     * A handler for the button for applying a savings account adjustment.
+     *
+     * @param view the button which has been pressed.
+     */
+    public void onApplySavingsAdjustmentSelected(View view) {
+        Intent intent = new Intent().setClass(this, ApplySavingsAdjustmentActivity.class);
+        intent.putExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY, mAccount.getGlobalAccountNum());
+        startActivityForResult(intent, ApplySavingsAdjustmentActivity.REQUEST_CODE);
     }
 
     @Override

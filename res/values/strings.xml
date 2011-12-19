@@ -266,6 +266,7 @@
     <string name="partiallyPaid">Partially paid</string>
 
     <string name="accountTransaction_disburseLoan_label">Disburse Loan</string>
+    <string name="accountTransaction_applySavingsAdjustment_label">Apply Adjustment</string>
 
     <!--
         String values for AccountTransactionHistoryActivity
@@ -405,5 +406,12 @@
     <string name="disburseLoan_disbursalDate_fieldLabel">Disbursal Date:</string>
     <string name="disburseLoan_receiptId_fieldLabel">Receipt ID:</string>
     <string name="disburseLoan_receiptDate_fieldLabel">Receipt Date:</string>
+
+    <!--
+        String values for ApplySavingsAdjustmentActivity
+    -->
+    <string name="applySavingsAdjustment_header">Apply Adjustment</string>
+    <string name="applySavingsAdjustment_amount_fieldLabel">Amount:</string>
+    <string name="applySavingsAdjustment_note_fieldLabel">Note:</string>
 
 </resources>
