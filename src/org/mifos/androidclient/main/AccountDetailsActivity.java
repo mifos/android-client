@@ -31,6 +31,8 @@ import android.widget.LinearLayout;
 import android.widget.TabHost;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.account.AbstractAccountDetails;
+import org.mifos.androidclient.entities.account.LoanAccountDetails;
+import org.mifos.androidclient.entities.account.LoanSummary;
 import org.mifos.androidclient.entities.account.SavingsAccountDetails;
 import org.mifos.androidclient.entities.customer.AccountBasicInformation;
 import org.mifos.androidclient.entities.simple.Fee;
@@ -111,6 +113,37 @@ public class AccountDetailsActivity extends DownloaderActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case DisburseLoanActivity.REQUEST_CODE:
+                switch (resultCode) {
+                    case Activity.RESULT_OK:
+                        runAccountDetailsTask();
+                        break;
+                    case Activity.RESULT_CANCELED:
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case ApplyLoanAccountChargeActivity.REQUEST_CODE:
+                switch (resultCode) {
+                    case Activity.RESULT_OK:
+                        runAccountDetailsTask();
+                        break;
+                    case Activity.RESULT_CANCELED:
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
     /**
      * A handler of the button for account's transactions history browsing.
      *
@@ -136,7 +169,7 @@ public class AccountDetailsActivity extends DownloaderActivity {
     /**
      * A handler of the button for loan account's installment details browsing.
      *
-     * @param view the view on in which the pressed button resides
+     * @param view the view on which the pressed button resides
      */
     public void onInstallmentDetailsSelected(View view) {
         Intent intent = new Intent().setClass(this, LoanInstallmentDetailsActivity.class);
@@ -147,12 +180,25 @@ public class AccountDetailsActivity extends DownloaderActivity {
     /**
      * A handler of the button for loan account's repayment schedule browsing.
      *
-     * @param view the view on in which the pressed button resides
+     * @param view the view on which the pressed button resides
      */
     public void onRepaymentScheduleSelected(View view) {
         Intent intent = new Intent().setClass(this, AccountRepaymentScheduleActivity.class);
         intent.putExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY, mAccount.getGlobalAccountNum());
         startActivity(intent);
+    }
+
+    /**
+     * A handler of the button for disbursing a loan account.
+     *
+     * @param view the view on which the pressed button resides
+     */
+    public void onDisburseLoanSelected(View view) {
+        Intent intent = new Intent().setClass(this, DisburseLoanActivity.class);
+        intent.putExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY, mDetails.getGlobalAccountNum());
+        String originalPrincipal = ((LoanAccountDetails)mDetails).getLoanSummary().getOriginalPrincipal();
+        intent.putExtra(LoanSummary.ORIGINAL_PRINCIPAL_BUNDLE_KEY, originalPrincipal);
+        startActivityForResult(intent, DisburseLoanActivity.REQUEST_CODE);
     }
 
     public void onLoanApplyChargeSelected(View view) {
@@ -166,26 +212,6 @@ public class AccountDetailsActivity extends DownloaderActivity {
         Intent intent = new Intent().setClass(this, ApplyLoanAccountRepayLoanActivity.class);
         intent.putExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY, mAccount.getGlobalAccountNum());
         startActivityForResult(intent, ApplyLoanAccountRepayLoanActivity.REQUEST_CODE);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case ApplyCustomerChargeActivity.REQUEST_CODE:
-                switch (resultCode) {
-                    case Activity.RESULT_OK:
-                        runAccountDetailsTask();
-                        break;
-                    case Activity.RESULT_CANCELED:
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            default:
-                break;
-        }
     }
 
     @Override

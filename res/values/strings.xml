@@ -166,6 +166,7 @@
     <string name="customerAdditional_educationLevel_label">Education Level:&#160;</string>
     <string name="customerAdditional_citizenship_label">Citizenship:&#160;</string>
     <string name="customerAdditional_recentNotes_label">Recent Notes:&#160;</string>
+
     <!--
         String values for AccountDetailsActivity:
     -->
@@ -263,6 +264,8 @@
     <string name="months"> Month(s)</string>
     <string name="recurEvery">Recur every&#160;</string>
     <string name="partiallyPaid">Partially paid</string>
+
+    <string name="accountTransaction_disburseLoan_label">Disburse Loan</string>
 
     <!--
         String values for AccountTransactionHistoryActivity
@@ -393,5 +396,11 @@
     <string name="accountTransaction_applyChargesButton_header">Apply charges</string>
     <string name="accountTransaction_repayLoanButton_header">Repay Loan</string>
 
+
+    <!--
+        String values for DisburseLoanActivity
+    -->
+    <string name="disburseLoan_header">Disburse Loan</string>
+    <string name="disburseLoan_additionalInformation">Disburse %.2f from this account.</string>
 
 </resources>

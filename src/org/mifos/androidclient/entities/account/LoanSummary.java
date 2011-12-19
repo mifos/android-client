@@ -24,6 +24,8 @@ import java.io.Serializable;
 
 public class LoanSummary implements Serializable {
 
+    public static final String ORIGINAL_PRINCIPAL_BUNDLE_KEY = LoanSummary.class.getSimpleName() + "-originalPrincipal";
+
     private String originalPrincipal;
     private String principalPaid;
     private String principalDue;

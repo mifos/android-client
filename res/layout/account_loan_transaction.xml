@@ -23,5 +23,15 @@
             android:text="@string/accountTransaction_repayLoanButton_header"
             android:onClick="onApplyLoanRepaySelected"
             />
+
+        <Button
+            android:id="@+id/accountLoan_disburseLoan"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/accountLoan_repayLoan"
+            android:text="@string/accountTransaction_disburseLoan_label"
+            android:onClick="onDisburseLoanSelected"
+            />
+
         </RelativeLayout>
 </ScrollView>
