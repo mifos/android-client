@@ -15,5 +15,14 @@
             android:onClick="onApplySavingsAdjustmentSelected"
             />
 
+        <Button
+            android:id="@+id/accountSavings_savingsTransaction"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/accountSavings_applyAdjustment"
+            android:text="@string/accountTransaction_savingsTransaction_label"
+            android:onClick="onSavingsTransactionSelected"
+            />
+
         </RelativeLayout>
 </ScrollView>

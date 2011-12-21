@@ -34,6 +34,7 @@ import org.mifos.androidclient.entities.account.*;
 import org.mifos.androidclient.entities.customer.AccountBasicInformation;
 import org.mifos.androidclient.entities.simple.Fee;
 import org.mifos.androidclient.net.services.AccountService;
+import org.mifos.androidclient.net.services.SystemSettingsService;
 import org.mifos.androidclient.templates.AccountDetailsViewBuilder;
 import org.mifos.androidclient.templates.DownloaderActivity;
 import org.mifos.androidclient.templates.ServiceConnectivityTask;
@@ -50,9 +51,14 @@ public class AccountDetailsActivity extends DownloaderActivity {
 
     private AccountBasicInformation mAccount;
     private AbstractAccountDetails mDetails;
+
     private AccountService mAccountService;
+    private SystemSettingsService mSystemSettingsService;
+
     private AccountDetailsTask mAccountDetailsTask;
+
     private Map<String, String> mApplicableFees;
+    private AcceptedPaymentTypes mAcceptedPaymentTypes;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -89,6 +95,7 @@ public class AccountDetailsActivity extends DownloaderActivity {
 
         mAccount = (AccountBasicInformation)getIntent().getSerializableExtra(AccountBasicInformation.BUNDLE_KEY);
         mAccountService = new AccountService(this);
+        mSystemSettingsService = new SystemSettingsService(this);
     }
 
     @Override
@@ -206,6 +213,19 @@ public class AccountDetailsActivity extends DownloaderActivity {
     }
 
     /**
+     * A handler for the button for making a savings account transaction.
+     *
+     * @param view the button which has been pressed.
+     */
+    public void onSavingsTransactionSelected(View view) {
+        Intent intent = new Intent().setClass(this, SavingsTransactionActivity.class);
+        intent.putExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY, mAccount.getGlobalAccountNum());
+        intent.putExtra(AcceptedPaymentTypes.ACCEPTED_DEPOSIT_PAYMENT_TYPES_BUNDLE_KEY, (Serializable)mAcceptedPaymentTypes.asMap(mAcceptedPaymentTypes.getOutDepositList()));
+        intent.putExtra(AcceptedPaymentTypes.ACCEPTED_WITHDRAWAL_PAYMENT_TYPES_BUNDLE_KEY, (Serializable)mAcceptedPaymentTypes.asMap(mAcceptedPaymentTypes.getOutWithdrawalList()));
+        startActivityForResult(intent, SavingsTransactionActivity.REQUEST_CODE);
+    }
+
+    /**
      * A handler for the button for applying a loan account adjustment.
      *
      * @param view the button which has been pressed.
@@ -287,6 +307,7 @@ public class AccountDetailsActivity extends DownloaderActivity {
             TransactionHistoryEntry[] transactionHistoryEntries;
             if (mAccountService != null) {
                 mApplicableFees = mAccountService.getApplicableFees(params[0].getGlobalAccountNum());
+                mAcceptedPaymentTypes = mSystemSettingsService.getAcceptedPaymentTypes();
                 details = mAccountService.getAccountDetailsForEntity(params[0]);
             }
             return details;

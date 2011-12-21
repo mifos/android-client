@@ -132,7 +132,7 @@ public abstract class OperationFormActivity extends MifosActivity
         }
     }
 
-    public TextView addDateFormField(String fieldLabel) {
+    public EditText addDateFormField(String fieldLabel) {
         LinearLayout field = (LinearLayout)getLayoutInflater().inflate(R.layout.date_form_field, null);
         TextView label = (TextView)field.findViewById(R.id.dateFormField_label);
         label.setText(fieldLabel);
@@ -152,6 +152,10 @@ public abstract class OperationFormActivity extends MifosActivity
         input.setAdapter(new ArrayAdapter(this, R.layout.combo_box_item, elements));
         mFormFields.addView(field, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         return input;
+    }
+
+    public void replaceComboBoxItems(Spinner comboBox, List<String> items) {
+        comboBox.setAdapter(new ArrayAdapter(this, R.layout.combo_box_item, items));
     }
 
     public EditText addTextFormField(String fieldLabel) {
