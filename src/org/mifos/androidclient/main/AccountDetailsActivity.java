@@ -306,7 +306,7 @@ public class AccountDetailsActivity extends DownloaderActivity {
                 Arrays.sort(transactionHistoryEntries, new Comparator<TransactionHistoryEntry>() {
                     @Override
                     public int compare(TransactionHistoryEntry a, TransactionHistoryEntry b) {
-                        return a.getAccountTrxnId().compareTo(b.getAccountTrxnId());
+                        return b.getAccountTrxnId().compareTo(a.getAccountTrxnId());
                     }
                 });
                 mTransactionHistoryEntries = Arrays.asList(transactionHistoryEntries);
