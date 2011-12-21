@@ -46,6 +46,7 @@ public class AccountService extends RestNetworkService {
     private static final String DISBURSE_LOAN_PATH = "/account/loan/disburse/num-";
 
     private static final String APPLY_SAVINGS_ADJUSTMENT_PATH = "/account/savings/adjustment/num-";
+    private static final String APPLY_LOAN_ADJUSTMENT_PATH_PREFIX = "/account/loan/adjustment/num-";
 
 
     public AccountService(Context context) {
@@ -116,6 +117,12 @@ public class AccountService extends RestNetworkService {
 
     public Map<String, String> applySavingsAccountAdjustment(String accountNumber, Map<String, String> params) {
         String url = getServerUrl() + APPLY_SAVINGS_ADJUSTMENT_PATH + accountNumber + PATH_SUFFIX;
+        url += prepareQueryString(params);
+        return mRestConnector.postForObject(url, null, Map.class);
+    }
+
+    public Map<String, String> applyLoanAccountAdjustment(String accountNumber, Map<String, String> params) {
+        String url = getServerUrl() + APPLY_LOAN_ADJUSTMENT_PATH_PREFIX + accountNumber + PATH_SUFFIX;
         url += prepareQueryString(params);
         return mRestConnector.postForObject(url, null, Map.class);
     }

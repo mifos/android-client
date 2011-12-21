@@ -267,6 +267,7 @@
 
     <string name="accountTransaction_disburseLoan_label">Disburse Loan</string>
     <string name="accountTransaction_applySavingsAdjustment_label">Apply Adjustment</string>
+    <string name="accountTransaction_applyLoanAdjustment_label">Apply Adjustment</string>
 
     <!--
         String values for AccountTransactionHistoryActivity
@@ -410,8 +411,16 @@
     <!--
         String values for ApplySavingsAdjustmentActivity
     -->
-    <string name="applySavingsAdjustment_header">Apply Adjustment</string>
+    <string name="applySavingsAdjustment_header">Apply Savings Account Adjustment</string>
     <string name="applySavingsAdjustment_amount_fieldLabel">Amount:</string>
     <string name="applySavingsAdjustment_note_fieldLabel">Note:</string>
+
+    <!--
+        String values for ApplyLoanAdjustmentActivity
+    -->
+    <string name="applyLoanAdjustment_header">Apply Loan Account Adjustment</string>
+    <string name="applyLoanAdjustment_note_fieldLabel">Note:</string>
+    <string name="applyLoanAdjustment_additionalInformation_detailed">Revert previous transaction - %1$s (%2$.2f).</string>
+    <string name="applyLoanAdjustment_additionalInformation">Revert previous transaction.</string>
 
 </resources>

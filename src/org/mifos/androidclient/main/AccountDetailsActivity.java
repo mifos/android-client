@@ -30,10 +30,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 import org.mifos.androidclient.R;
-import org.mifos.androidclient.entities.account.AbstractAccountDetails;
-import org.mifos.androidclient.entities.account.LoanAccountDetails;
-import org.mifos.androidclient.entities.account.LoanSummary;
-import org.mifos.androidclient.entities.account.SavingsAccountDetails;
+import org.mifos.androidclient.entities.account.*;
 import org.mifos.androidclient.entities.customer.AccountBasicInformation;
 import org.mifos.androidclient.entities.simple.Fee;
 import org.mifos.androidclient.net.services.AccountService;
@@ -41,11 +38,13 @@ import org.mifos.androidclient.templates.AccountDetailsViewBuilder;
 import org.mifos.androidclient.templates.DownloaderActivity;
 import org.mifos.androidclient.templates.ServiceConnectivityTask;
 import org.mifos.androidclient.templates.ViewBuilderFactory;
+import org.mifos.androidclient.util.ApplicationConstants;
+import org.mifos.androidclient.util.ValueUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestClientException;
 
 import java.io.Serializable;
-import java.util.Map;
+import java.util.*;
 
 public class AccountDetailsActivity extends DownloaderActivity {
 
@@ -56,6 +55,7 @@ public class AccountDetailsActivity extends DownloaderActivity {
     private AccountService mAccountService;
     private AccountDetailsTask mAccountDetailsTask;
     private Map<String, String> mApplicableFees;
+    private List<TransactionHistoryEntry> mTransactionHistoryEntries;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -116,39 +116,11 @@ public class AccountDetailsActivity extends DownloaderActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case DisburseLoanActivity.REQUEST_CODE:
-                switch (resultCode) {
-                    case Activity.RESULT_OK:
-                        runAccountDetailsTask();
-                        break;
-                    case Activity.RESULT_CANCELED:
-                        break;
-                    default:
-                        break;
-                }
+        switch (resultCode) {
+            case Activity.RESULT_OK:
+                runAccountDetailsTask();
                 break;
-            case ApplyLoanAccountChargeActivity.REQUEST_CODE:
-                switch (resultCode) {
-                    case Activity.RESULT_OK:
-                        runAccountDetailsTask();
-                        break;
-                    case Activity.RESULT_CANCELED:
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            case ApplySavingsAdjustmentActivity.REQUEST_CODE:
-                switch (resultCode) {
-                    case Activity.RESULT_OK:
-                        runAccountDetailsTask();
-                        break;
-                    case Activity.RESULT_CANCELED:
-                        break;
-                    default:
-                        break;
-                }
+            case Activity.RESULT_CANCELED:
                 break;
             default:
                 break;
@@ -236,6 +208,29 @@ public class AccountDetailsActivity extends DownloaderActivity {
         startActivityForResult(intent, ApplySavingsAdjustmentActivity.REQUEST_CODE);
     }
 
+    /**
+     * A handler for the button for applying a loan account adjustment.
+     *
+     * @param view the button which has been pressed.
+     */
+    public void onApplyLoanAdjustmentSelected(View view) {
+        Intent intent = new Intent().setClass(this, ApplyLoanAdjustmentActivity.class);
+        intent.putExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY, mAccount.getGlobalAccountNum());
+        if (ValueUtils.hasElements(mTransactionHistoryEntries)) {
+            TransactionHistoryEntry entry = mTransactionHistoryEntries.get(0);
+            String lastTransactionType = entry.getType();
+            Double lastTransactionAmount;
+            if (entry.getCredit().equals(ApplicationConstants.EMPTY_CELL)) {
+                lastTransactionAmount = Double.parseDouble(entry.getDebit());
+            } else {
+                lastTransactionAmount = Double.parseDouble(entry.getCredit());
+            }
+            intent.putExtra(TransactionHistoryEntry.PREVIOUS_TRXN_TYPE_BUNDLE_KEY, lastTransactionType);
+            intent.putExtra(TransactionHistoryEntry.PREVIOUS_TRXN_AMOUNT_BUNDLE_KEY, lastTransactionAmount);
+        }
+        startActivityForResult(intent, ApplyLoanAdjustmentActivity.REQUEST_CODE);
+    }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -304,8 +299,17 @@ public class AccountDetailsActivity extends DownloaderActivity {
         @Override
         protected AbstractAccountDetails doInBackgroundBody(AccountBasicInformation... params) throws RestClientException, IllegalArgumentException {
             AbstractAccountDetails details = null;
+            TransactionHistoryEntry[] transactionHistoryEntries;
             if (mAccountService != null) {
                 mApplicableFees = mAccountService.getApplicableFees(params[0].getGlobalAccountNum());
+                transactionHistoryEntries = mAccountService.getAccountTransactionHistory(params[0].getGlobalAccountNum());
+                Arrays.sort(transactionHistoryEntries, new Comparator<TransactionHistoryEntry>() {
+                    @Override
+                    public int compare(TransactionHistoryEntry a, TransactionHistoryEntry b) {
+                        return a.getAccountTrxnId().compareTo(b.getAccountTrxnId());
+                    }
+                });
+                mTransactionHistoryEntries = Arrays.asList(transactionHistoryEntries);
                 details = mAccountService.getAccountDetailsForEntity(params[0]);
             }
             return details;

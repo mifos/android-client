@@ -31,6 +31,8 @@ import java.util.Date;
 public class TransactionHistoryEntry implements SimpleListItem, Serializable {
 
     public static final String BUNDLE_KEY = TransactionHistoryEntry.class.getSimpleName();
+    public static final String PREVIOUS_TRXN_TYPE_BUNDLE_KEY = TransactionHistoryEntry.class.getSimpleName() + "-previousTrxnType";
+    public static final String PREVIOUS_TRXN_AMOUNT_BUNDLE_KEY = TransactionHistoryEntry.class.getSimpleName() + "-previousTrxnAmount";
 
     private Date transactionDate;
     private Integer paymentId;
