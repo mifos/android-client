@@ -115,7 +115,11 @@ public class SimpleExpandableListAdapter extends BaseExpandableListAdapter imple
         SimpleListItem item = (SimpleListItem)getGroup(groupPos);
         if (item != null) {
             TextView label = (TextView)row.findViewById(R.id.simple_list_item_label);
-            label.setText(item.getListLabel());
+            if (getChildrenCount(groupPos) > 0) {
+                label.setText(mContext.getString(R.string.clientsList_listGroupLabel_withChildren, item.getListLabel(), getChildrenCount(groupPos)));
+            } else {
+                label.setText(item.getListLabel());
+            }
         }
         synchronized (mExpandGroups) {
             if (mExpandGroups == true) {

@@ -38,13 +38,7 @@ public class Group extends AbstractCustomer implements SimpleListItem, Serializa
 
     @Override
     public String getListLabel() {
-        String listLabel;
-        if (clients != null && clients.size() > 0) {
-            listLabel = getDisplayName() + " (" + clients.size() + ")";
-        } else {
-            listLabel = getDisplayName();
-        }
-        return listLabel;
+        return getDisplayName();
     }
 
     @Override
