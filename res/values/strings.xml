@@ -15,6 +15,15 @@
     <string name="type_to_filter">Type to filter the list</string>
 
     <!--
+        Translations for messages received from the mifos server
+    -->
+    <string name="feeId">Fee ID:&#160;</string>
+    <string name="amount">Amount:&#160;</string>
+    <string name="cause">Error cause:&#160;</string>
+    <string name="exception.accounts.ApplicationException.CannotAdjust">The amount cannot be adjusted either because the status is not yet active or because a payment was received at the time of disbursement.</string>
+    <string name="error.activity.not.allowed">Activity not allowed.</string>
+
+    <!--
         Text values relates to user dialogs:
     -->
     <string name="dialog_ok">Ok</string>
@@ -375,6 +384,7 @@
     <string name="customerMeetingSchedule_header">Meetings Schedule</string>
     <string name="customerMeetingSchedule_meetings_label">Upcoming meetings:</string>
     <string name="no_meetings">There is no meetings on&#160;</string>
+
     <!--
         String values for ApplyCustomerChargeActivity
     -->
@@ -382,12 +392,6 @@
     <string name="applyCustomerCharge_feeId_fieldLabel">Fee ID:</string>
     <string name="applyCustomerCharge_feeType_fieldLabel">Fee Type:</string>
     <string name="applyCustomerCharge_amount_fieldLabel">Amount:</string>
-    <!--
-        Translations for messages received from the mifos server
-    -->
-    <string name="message_feeId">Fee ID:&#160;</string>
-    <string name="message_amount">Amount:&#160;</string>
-    <string name="message_cause">Error cause:&#160;</string>
 
     <!--
         String values for ApplyLoanAccountChargeActivity
@@ -398,7 +402,6 @@
 
     <string name="accountTransaction_applyChargesButton_header">Apply charges</string>
     <string name="accountTransaction_repayLoanButton_header">Repay Loan</string>
-
 
     <!--
         String values for DisburseLoanActivity

@@ -82,7 +82,6 @@ public abstract class OperationFormActivity extends MifosActivity
         mFormFields = (LinearLayout)findViewById(R.id.operationForm_formFields);
         mLoginService = new LoginService(this);
         mSessionStatusService = new SessionStatusService(this);
-        mTranslator = new ServerMessageTranslator(this);
 
         if (bundle != null && bundle.containsKey(PREVIOUS_STATE_BUNDLE_KEY)) {
             mPreviousResult = (Map<String, String>)bundle.get(PREVIOUS_STATE_BUNDLE_KEY);
@@ -124,9 +123,9 @@ public abstract class OperationFormActivity extends MifosActivity
         for (Map.Entry<String, String> entry : operationResults.entrySet()) {
             if (!entry.getKey().equals(STATUS_KEY)) {
                 TableRow row = helper.createTableRow();
-                TextView cell = helper.createTableCell(mTranslator.translate(entry.getKey(), entry.getKey()), 1);
+                TextView cell = helper.createTableCell(ServerMessageTranslator.translate(this, entry.getKey(), entry.getKey()), 1);
                 row.addView(cell);
-                cell = helper.createTableCell(entry.getValue(), 2);
+                cell = helper.createTableCell(ServerMessageTranslator.translate(this, entry.getValue(), entry.getValue()), 2);
                 row.addView(cell);
                 operationSummary.addView(row);
             }

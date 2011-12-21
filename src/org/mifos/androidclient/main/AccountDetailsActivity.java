@@ -38,13 +38,11 @@ import org.mifos.androidclient.templates.AccountDetailsViewBuilder;
 import org.mifos.androidclient.templates.DownloaderActivity;
 import org.mifos.androidclient.templates.ServiceConnectivityTask;
 import org.mifos.androidclient.templates.ViewBuilderFactory;
-import org.mifos.androidclient.util.ApplicationConstants;
-import org.mifos.androidclient.util.ValueUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestClientException;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.Map;
 
 public class AccountDetailsActivity extends DownloaderActivity {
 
@@ -55,7 +53,6 @@ public class AccountDetailsActivity extends DownloaderActivity {
     private AccountService mAccountService;
     private AccountDetailsTask mAccountDetailsTask;
     private Map<String, String> mApplicableFees;
-    private List<TransactionHistoryEntry> mTransactionHistoryEntries;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -216,18 +213,6 @@ public class AccountDetailsActivity extends DownloaderActivity {
     public void onApplyLoanAdjustmentSelected(View view) {
         Intent intent = new Intent().setClass(this, ApplyLoanAdjustmentActivity.class);
         intent.putExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY, mAccount.getGlobalAccountNum());
-        if (ValueUtils.hasElements(mTransactionHistoryEntries)) {
-            TransactionHistoryEntry entry = mTransactionHistoryEntries.get(0);
-            String lastTransactionType = entry.getType();
-            Double lastTransactionAmount;
-            if (entry.getCredit().equals(ApplicationConstants.EMPTY_CELL)) {
-                lastTransactionAmount = Double.parseDouble(entry.getDebit());
-            } else {
-                lastTransactionAmount = Double.parseDouble(entry.getCredit());
-            }
-            intent.putExtra(TransactionHistoryEntry.PREVIOUS_TRXN_TYPE_BUNDLE_KEY, lastTransactionType);
-            intent.putExtra(TransactionHistoryEntry.PREVIOUS_TRXN_AMOUNT_BUNDLE_KEY, lastTransactionAmount);
-        }
         startActivityForResult(intent, ApplyLoanAdjustmentActivity.REQUEST_CODE);
     }
 
@@ -302,14 +287,6 @@ public class AccountDetailsActivity extends DownloaderActivity {
             TransactionHistoryEntry[] transactionHistoryEntries;
             if (mAccountService != null) {
                 mApplicableFees = mAccountService.getApplicableFees(params[0].getGlobalAccountNum());
-                transactionHistoryEntries = mAccountService.getAccountTransactionHistory(params[0].getGlobalAccountNum());
-                Arrays.sort(transactionHistoryEntries, new Comparator<TransactionHistoryEntry>() {
-                    @Override
-                    public int compare(TransactionHistoryEntry a, TransactionHistoryEntry b) {
-                        return b.getAccountTrxnId().compareTo(a.getAccountTrxnId());
-                    }
-                });
-                mTransactionHistoryEntries = Arrays.asList(transactionHistoryEntries);
                 details = mAccountService.getAccountDetailsForEntity(params[0]);
             }
             return details;

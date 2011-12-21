@@ -28,21 +28,15 @@ import java.util.Map;
 
 public class ServerMessageTranslator {
 
-    private Map<String, String> mMappings;
+    private static final String RESOURCE_TYPE = "string";
 
-    public ServerMessageTranslator(Context context) {
-        mMappings = new HashMap<String, String>();
-        mMappings.put("feeId", context.getString(R.string.message_feeId));
-        mMappings.put("amount", context.getString(R.string.message_amount));
-        mMappings.put("cause", context.getString(R.string.message_cause));
-    }
-
-    public String translate(String messageKey, String defaultValue) {
-        if (mMappings.containsKey(messageKey)) {
-            return mMappings.get(messageKey);
-        } else {
-            return defaultValue;
+    public static String translate(Context context, String messageKey, String defaultValue) {
+        String translation = defaultValue;
+        int resourceId = context.getResources().getIdentifier(messageKey, RESOURCE_TYPE, context.getPackageName());
+        if (resourceId > 0) {
+            translation = context.getString(resourceId);
         }
+        return translation;
     }
 
 }
