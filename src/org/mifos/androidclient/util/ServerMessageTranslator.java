@@ -34,6 +34,7 @@ public class ServerMessageTranslator {
         mMappings = new HashMap<String, String>();
         mMappings.put("feeId", context.getString(R.string.message_feeId));
         mMappings.put("amount", context.getString(R.string.message_amount));
+        mMappings.put("cause", context.getString(R.string.message_cause));
     }
 
     public String translate(String messageKey, String defaultValue) {

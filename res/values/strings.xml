@@ -387,6 +387,7 @@
     -->
     <string name="message_feeId">Fee ID:&#160;</string>
     <string name="message_amount">Amount:&#160;</string>
+    <string name="message_cause">Error cause:&#160;</string>
 
     <!--
         String values for ApplyLoanAccountChargeActivity
