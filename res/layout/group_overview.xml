@@ -9,15 +9,15 @@
 
         <TextView
             style="@style/Label"
-            android:id="@+id/customerOverview_name_label"
+            android:id="@+id/groupOverview_name_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/customerOverview_name_label"
+            android:text="@string/groupOverview_name_label"
             />
         <TextView
             style="@style/Shifted"
-            android:id="@+id/customerOverview_name"
-            android:layout_below="@id/customerOverview_name_label"
+            android:id="@+id/groupOverview_name"
+            android:layout_below="@id/groupOverview_name_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
@@ -25,7 +25,7 @@
         <TextView
             style="@style/Label"
             android:id="@+id/customerOverview_status_label"
-            android:layout_below="@id/customerOverview_name"
+            android:layout_below="@id/groupOverview_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/customerOverview_status_label"

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/centerCharges_label"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        style="@style/Label"
+        android:text="@string/centerCharges_label"
+        />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:paddingLeft="14dp"
+        android:paddingBottom="7dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/loanAccounts_amountDue_label"
+            />
+
+        <TextView
+            android:id="@+id/loanAccounts_amountDue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/view_chargesDetails_button"
+            android:visibility="gone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/accountDetails_chargesDetailsButton_label"
+            android:onClick="onChargesDetailsSelected"
+            />
+
+        <Button
+            android:id="@+id/view_applyCharge_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/accountDetails_applyChargeButton_label"
+            android:onClick="onApplyChargeSelected"
+            />
+
+    </LinearLayout>
+
+    <ExpandableListView
+        android:id="@+id/customerAccounts_list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:groupIndicator="@null"
+        />
+
+</LinearLayout>

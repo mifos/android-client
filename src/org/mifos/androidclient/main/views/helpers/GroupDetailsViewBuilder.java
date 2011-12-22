@@ -52,7 +52,7 @@ public class GroupDetailsViewBuilder implements CustomerDetailsViewBuilder {
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.group_overview, null);
 
-        TextView textView = (TextView)view.findViewById(R.id.customerOverview_name);
+        TextView textView = (TextView)view.findViewById(R.id.groupOverview_name);
         textView.setText(mDetails.getGroupDisplay().getDisplayName());
         textView = (TextView)view.findViewById(R.id.customerOverview_systemId);
         textView.setText(mDetails.getGroupDisplay().getGlobalCustNum());
@@ -92,7 +92,7 @@ public class GroupDetailsViewBuilder implements CustomerDetailsViewBuilder {
     @Override
     public View buildAccountsView() {
         LayoutInflater inflater = getLayoutInflater();
-        View view = inflater.inflate(R.layout.customer_accounts, null);
+        View view = inflater.inflate(R.layout.group_accounts, null);
         ExpandableListView list = (ExpandableListView)view.findViewById(R.id.customerAccounts_list);
 
         TextView chargesAmountDue = (TextView)view.findViewById(R.id.loanAccounts_amountDue);

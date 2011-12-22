@@ -195,10 +195,26 @@ public class AccountDetailsActivity extends DownloaderActivity {
         startActivityForResult(intent, ApplyLoanAccountChargeActivity.REQUEST_CODE);
     }
 
+     /**
+     * A handler for the button for applying a loan account full repayment.
+     *
+     * @param view the button which has been pressed.
+     */
     public void onApplyFullLoanRepaySelected(View view) {
         Intent intent = new Intent().setClass(this, ApplyLoanAccountFullRepayLoanActivity.class);
         intent.putExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY, mAccount.getGlobalAccountNum());
         startActivityForResult(intent, ApplyLoanAccountFullRepayLoanActivity.REQUEST_CODE);
+    }
+
+    /**
+     * A handler for the button for applying a loan account repayment.
+     *
+     * @param view the button which has been pressed.
+     */
+    public void onApplyLoanRepaySelected(View view) {
+        Intent intent = new Intent().setClass(this, ApplyLoanAccountRepayLoanActivity.class);
+        intent.putExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY, mAccount.getGlobalAccountNum());
+        startActivityForResult(intent, ApplyLoanAccountRepayLoanActivity.REQUEST_CODE);
     }
 
     /**

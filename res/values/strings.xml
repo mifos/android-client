@@ -142,6 +142,7 @@
 
     <string name="loanAccounts_amountDue_label">Amount due:&#160;</string>
 
+    <string name="groupOverview_name_label">Group name:</string>
     <string name="groupOverview_noOfActiveClients_label"># of active Clients:&#160;</string>
     <string name="groupOverview_amountOfLastGroupLoan_label">Amount of last Group Loan:&#160;</string>
     <string name="groupOverview_averageIndividualLoanSize_label">Avg individual Loan size:&#160;</string>
@@ -150,6 +151,9 @@
     <string name="groupOverview_totalSavings_label">Total Savings:&#160;</string>
     <string name="groupOverview_loanCyclePerProduct_label">Loan Cycle per Product:&#160;</string>
 
+    <string name="groupCharges_label">Group charges:</string>
+    <string name="centerCharges_label">Center charges:</string>
+
     <string name="groupAdditional_approvalDate_label">Group approval date:&#160;</string>
     <string name="groupAdditional_recruitedBy_label">Recruited By:&#160;</string>
     <string name="groupAdditional_recentNotes_label">Recent Notes:&#160;</string>
@@ -157,6 +161,7 @@
     <string name="groupAdditional_ExternalID_label">External ID:&#160;</string>
     <string name="groupAdditional_Address_label">Address</string>
 
+    <string name="centerOverview_name_label">Center name:</string>
     <string name="centerOverview_noOfActiveClients_label"># of active Clients:&#160;</string>
     <string name="centerOverview_noOfActiveGroups_label"># of active Groups:&#160;</string>
     <string name="centerOverview_totalLoanPortfolio_label">Total Loan portfolio:&#160;</string>
@@ -403,8 +408,17 @@
     <string name="applyLoanAccountCharge_feeType_fieldLabel">Fee Type:</string>
     <string name="applyLoanAccountCharge_amount_fieldLabel">Amount:</string>
 
+    <!--
+        String values for ApplyLoanAccountRepayLoanActivity
+    -->
+    <string name="applyLoanAccountRepayLoan_amount_label">Amount:</string>
+
+    <!--
+        String values for LoanAccountTransactionView
+    -->
     <string name="accountTransaction_applyChargesButton_header">Apply charges</string>
     <string name="accountTransaction_fullRepayLoanButton_header">Full Loan Repay</string>
+    <string name="accountTransaction_repayLoanButton_header">Loan Repay</string>
 
     <!--
         String values for DisburseLoanActivity
@@ -443,5 +457,6 @@
 
     <string name="savingsTransaction_transactionType_deposit">Deposit</string>
     <string name="savingsTransaction_transactionType_withdrawal">Withdrawal</string>
+
 
 </resources>
