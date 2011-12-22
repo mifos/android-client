@@ -27,6 +27,23 @@ import java.io.Serializable;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AccountFee implements Serializable {
 
+    public static final String BUNDLE_KEY = AccountFee.class.getSimpleName();
+
+    public class FeeFrequency {
+
+        public static final short PERIODIC = 1;
+        public static final short ONE_TIME = 2;
+
+    }
+
+    public class FeePayment {
+
+        public static final short UPFRONT = 1;
+        public static final short TIME_OF_DISBURSEMENT = 2;
+        public static final short TIME_OF_FIRST_LOAN_REPAYMENT = 3;
+
+    }
+
     private Short feeId;
     private Short feeFrequencyTypeId;
     private Short feePaymentTypeId;

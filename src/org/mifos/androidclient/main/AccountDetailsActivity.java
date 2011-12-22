@@ -43,6 +43,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestClientException;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class AccountDetailsActivity extends DownloaderActivity {
@@ -185,6 +187,15 @@ public class AccountDetailsActivity extends DownloaderActivity {
         intent.putExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY, mDetails.getGlobalAccountNum());
         String originalPrincipal = ((LoanAccountDetails)mDetails).getLoanSummary().getOriginalPrincipal();
         intent.putExtra(LoanSummary.ORIGINAL_PRINCIPAL_BUNDLE_KEY, originalPrincipal);
+        List<AccountFee> onDisbursementFees = new ArrayList<AccountFee>();
+        for (AccountFee fee : ((LoanAccountDetails)mDetails).getAccountFees()) {
+            if (fee.getFeeFrequencyTypeId().equals(AccountFee.FeeFrequency.ONE_TIME) && fee.getFeePaymentTypeId().equals(AccountFee.FeePayment.TIME_OF_DISBURSEMENT)) {
+                onDisbursementFees.add(fee);
+            }
+        }
+        intent.putExtra(AccountFee.BUNDLE_KEY, (Serializable)onDisbursementFees);
+        intent.putExtra(AcceptedPaymentTypes.ACCEPTED_DISBURSEMENT_PAYMENT_TYPES_BUNDLE_KEY, (Serializable)mAcceptedPaymentTypes.asMap(mAcceptedPaymentTypes.getOutDisbursementList()));
+        intent.putExtra(AcceptedPaymentTypes.ACCEPTED_FEE_PAYMENT_TYPES_BUNDLE_KEY, (Serializable)mAcceptedPaymentTypes.asMap(mAcceptedPaymentTypes.getOutFeeList()));
         startActivityForResult(intent, DisburseLoanActivity.REQUEST_CODE);
     }
 

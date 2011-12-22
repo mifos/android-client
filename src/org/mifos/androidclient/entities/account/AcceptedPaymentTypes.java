@@ -29,6 +29,8 @@ public class AcceptedPaymentTypes implements Serializable {
 
     public static final String ACCEPTED_DEPOSIT_PAYMENT_TYPES_BUNDLE_KEY = AcceptedPaymentTypes.class.getSimpleName() + "-deposit";
     public static final String ACCEPTED_WITHDRAWAL_PAYMENT_TYPES_BUNDLE_KEY = AcceptedPaymentTypes.class.getSimpleName() + "-withdrawal";
+    public static final String ACCEPTED_DISBURSEMENT_PAYMENT_TYPES_BUNDLE_KEY = AcceptedPaymentTypes.class.getSimpleName() + "-disbursement";
+    public static final String ACCEPTED_FEE_PAYMENT_TYPES_BUNDLE_KEY = AcceptedPaymentTypes.class.getSimpleName() + "-fee";
 
     private List<PaymentType> inFeeList;
     private List<PaymentType> outFeeList;

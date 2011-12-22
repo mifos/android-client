@@ -428,6 +428,10 @@
     <string name="disburseLoan_disbursalDate_fieldLabel">Disbursal Date:</string>
     <string name="disburseLoan_receiptId_fieldLabel">Receipt ID:</string>
     <string name="disburseLoan_receiptDate_fieldLabel">Receipt Date:</string>
+    <string name="disburseLoan_loanAmount_fieldLabel">Loan Amount:</string>
+    <string name="disburseLoan_loanPaymentMode_fieldLabel">Loan Payment Mode:</string>
+    <string name="disburseLoan_feeAmount_fieldLabel">Fee Amount:</string>
+    <string name="disburseLoan_feePaymentMode_fieldLabel">Fee Payment Mode:</string>
 
     <!--
         String values for ApplySavingsAdjustmentActivity

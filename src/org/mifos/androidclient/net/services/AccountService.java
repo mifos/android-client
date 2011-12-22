@@ -109,9 +109,9 @@ public class AccountService extends RestNetworkService {
         return mRestConnector.getForObject(url, Map.class);
     }
 
-
-    public Map<String, String> disburseLoan(String accountNumber) {
+    public Map<String, String> disburseLoan(String accountNumber, Map<String, String> params) {
         String url = getServerUrl() + DISBURSE_LOAN_PATH + accountNumber + PATH_SUFFIX;
+        url += prepareQueryString(params);
         return mRestConnector.postForObject(url, null, Map.class);
     }
 

@@ -158,6 +158,10 @@ public abstract class OperationFormActivity extends MifosActivity
         comboBox.setAdapter(new ArrayAdapter(this, R.layout.combo_box_item, items));
     }
 
+    public void setInputEnabled(EditText input, boolean editable) {
+        input.setEnabled(editable);
+    }
+
     public EditText addTextFormField(String fieldLabel) {
         return addFormField(fieldLabel, InputType.TYPE_CLASS_TEXT);
     }
