@@ -41,9 +41,9 @@ public class SavingsTransactionActivity extends OperationFormActivity
 
     public static final int REQUEST_CODE = 7;
 
-    private static final String PARAM_TRANSACTION_DATE = "transactionDate";
+    private static final String PARAM_TRANSACTION_DATE = "trxnDate";
     private static final String PARAM_AMOUNT = "amount";
-    private static final String PARAM_PAYMENT_MODE = "paymentMode";
+    private static final String PARAM_PAYMENT_MODE = "paymentTypeId";
     private static final String PARAM_RECEIPT_ID = "receiptId";
     private static final String PARAM_RECEIPT_DATE = "receiptDate";
 
