@@ -404,7 +404,7 @@
     <string name="applyLoanAccountCharge_amount_fieldLabel">Amount:</string>
 
     <string name="accountTransaction_applyChargesButton_header">Apply charges</string>
-    <string name="accountTransaction_repayLoanButton_header">Repay Loan</string>
+    <string name="accountTransaction_fullRepayLoanButton_header">Full Loan Repay</string>
 
     <!--
         String values for DisburseLoanActivity

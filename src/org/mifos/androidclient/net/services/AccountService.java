@@ -40,7 +40,8 @@ public class AccountService extends RestNetworkService {
     private static final String REPAYMENT_SCHEDULE_PATH_PREFIX = "/account/loan/schedule/num-";
 
     private static final String LOAN_ACCOUNT_APPLY_CHARGE_PATH_PREFIX = "/account/loan/charge/num-";
-    private static final String LOAN_ACCOUNT_REPAY_LOAN_PATH_PREFIX = "/account/loan/fullrepay/num-";
+    private static final String LOAN_ACCOUNT_FULL_REPAY_LOAN_PATH_PREFIX = "/account/loan/fullrepay/num-";
+    private static final String LOAN_ACCOUNT_INTEREST_WAIVABLE = "/account/loan/num-";
     private static final String LOAN_ACCOUNT_APPLICABLE_FEES_PATH_PREFIX = "/account/loan/fees/num-";
 
     private static final String DISBURSE_LOAN_PATH = "/account/loan/disburse/num-";
@@ -99,16 +100,11 @@ public class AccountService extends RestNetworkService {
         return mRestConnector.postForObject(url, null, Map.class);
     }
 
-    public Map<String, String> repayLoan(String accountNumber, Map<String, String> params) {
-        String url = getServerUrl() + LOAN_ACCOUNT_REPAY_LOAN_PATH_PREFIX + accountNumber + PATH_SUFFIX;
-        url +=prepareQueryString(params);
-        return mRestConnector.postForObject(url, null, Map.class);
-    }
-
     public Map<String, String> getApplicableFees(String globalAccountNumber) {
         String url = getServerUrl() + LOAN_ACCOUNT_APPLICABLE_FEES_PATH_PREFIX + globalAccountNumber + PATH_SUFFIX;
         return mRestConnector.getForObject(url, Map.class);
     }
+
 
     public Map<String, String> disburseLoan(String accountNumber) {
         String url = getServerUrl() + DISBURSE_LOAN_PATH + accountNumber + PATH_SUFFIX;
@@ -126,5 +122,18 @@ public class AccountService extends RestNetworkService {
         url += prepareQueryString(params);
         return mRestConnector.postForObject(url, null, Map.class);
     }
+
+    public Map<String, String> isLoanInterestWaivable(String globalAccountNumber) {
+        String url = getServerUrl() + LOAN_ACCOUNT_INTEREST_WAIVABLE + globalAccountNumber + PATH_SUFFIX;
+        return mRestConnector.getForObject(url, Map.class);
+
+    }
+
+    public Map<String, String> fullRepayLoan(String accountNumber, Map<String, String> params) {
+        String url = getServerUrl() + LOAN_ACCOUNT_FULL_REPAY_LOAN_PATH_PREFIX + accountNumber + PATH_SUFFIX;
+        url +=prepareQueryString(params);
+        return mRestConnector.postForObject(url, null, Map.class);
+     }
+
 
 }

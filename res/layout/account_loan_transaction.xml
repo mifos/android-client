@@ -20,8 +20,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/accountLoan_applyCharge"
-            android:text="@string/accountTransaction_repayLoanButton_header"
-            android:onClick="onApplyLoanRepaySelected"
+            android:text="@string/accountTransaction_fullRepayLoanButton_header"
+            android:onClick="onApplyFullLoanRepaySelected"
             />
 
         <Button

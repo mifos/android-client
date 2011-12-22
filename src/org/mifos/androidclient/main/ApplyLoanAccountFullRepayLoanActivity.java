@@ -10,7 +10,7 @@ import org.mifos.androidclient.templates.OperationFormActivity;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ApplyLoanAccountRepayLoanActivity extends OperationFormActivity {
+public class ApplyLoanAccountFullRepayLoanActivity extends OperationFormActivity {
 
     public static final int REQUEST_CODE = 2;
 
@@ -18,6 +18,7 @@ public class ApplyLoanAccountRepayLoanActivity extends OperationFormActivity {
 
     private String mAccountNumber;
     private AccountService mAccountService;
+    private Map<String, String> waiveInterest;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -25,8 +26,9 @@ public class ApplyLoanAccountRepayLoanActivity extends OperationFormActivity {
 
         mAccountNumber = getIntent().getStringExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY);
         mAccountService = new AccountService(this);
+        waiveInterest = mAccountService.isLoanInterestWaivable(mAccountNumber);
 
-        setFormHeader(getString(R.string.accountTransaction_repayLoanButton_header));
+        setFormHeader(getString(R.string.accountTransaction_fullRepayLoanButton_header));
         setStatusVisible(false);
         setFormFieldsVisible(true);
 
@@ -35,13 +37,17 @@ public class ApplyLoanAccountRepayLoanActivity extends OperationFormActivity {
     @Override
     protected Map<String, String> onPrepareParameters() {
         Map<String, String> params = new HashMap<String, String>();
+        if (waiveInterest.containsValue("true")) {
+        params.put(PARAM_WAIVE_INTEREST, "true");
+        } else {
         params.put(PARAM_WAIVE_INTEREST, "false");
+        }
         return params;
     }
 
     @Override
     protected Map<String, String> onFormSubmission(Map<String, String> parameters) {
-        return mAccountService.repayLoan(mAccountNumber, parameters);
+        return mAccountService.fullRepayLoan(mAccountNumber, parameters);
     }
 
     @Override

@@ -195,10 +195,10 @@ public class AccountDetailsActivity extends DownloaderActivity {
         startActivityForResult(intent, ApplyLoanAccountChargeActivity.REQUEST_CODE);
     }
 
-    public void onApplyLoanRepaySelected(View view) {
-        Intent intent = new Intent().setClass(this, ApplyLoanAccountRepayLoanActivity.class);
+    public void onApplyFullLoanRepaySelected(View view) {
+        Intent intent = new Intent().setClass(this, ApplyLoanAccountFullRepayLoanActivity.class);
         intent.putExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY, mAccount.getGlobalAccountNum());
-        startActivityForResult(intent, ApplyLoanAccountRepayLoanActivity.REQUEST_CODE);
+        startActivityForResult(intent, ApplyLoanAccountFullRepayLoanActivity.REQUEST_CODE);
     }
 
     /**
