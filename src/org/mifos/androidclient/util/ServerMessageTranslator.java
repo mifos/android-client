@@ -31,10 +31,12 @@ public class ServerMessageTranslator {
     private static final String RESOURCE_TYPE = "string";
 
     public static String translate(Context context, String messageKey, String defaultValue) {
-        String translation = defaultValue;
-        int resourceId = context.getResources().getIdentifier(messageKey, RESOURCE_TYPE, context.getPackageName());
-        if (resourceId > 0) {
-            translation = context.getString(resourceId);
+        String translation = defaultValue == null ? ApplicationConstants.ERROR_MESSAGE_NOT_PROVIDED : defaultValue;
+        if (messageKey != null) {
+            int resourceId = context.getResources().getIdentifier(messageKey, RESOURCE_TYPE, context.getPackageName());
+            if (resourceId > 0) {
+                translation = context.getString(resourceId);
+            }
         }
         return translation;
     }

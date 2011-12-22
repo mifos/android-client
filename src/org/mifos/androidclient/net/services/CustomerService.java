@@ -33,16 +33,16 @@ import java.util.Map;
 
 public class CustomerService extends RestNetworkService {
 
-    private final static String LOAN_OFFICER_CUSTOMERS_PATH = "/personnel/clients/id-current.json";
+    private final static String LOAN_OFFICER_CUSTOMERS_PATH = "/personnel/id-current/clients.json";
     private final static String MEETINGS_LIST_PATH_PREFIX = "/personnel/id-current/meetings-";
     private final static String CLIENT_DETAILS_PATH_PREFIX = "/client/num-";
     private final static String GROUP_DETAILS_PATH_PREFIX = "/group/num-";
     private final static String CENTER_DETAILS_PATH_PREFIX = "/center/num-";
-    private final static String CUSTOMER_APPLICABLE_FEES_PATH_PREFIX = "/customer/fees/num-";
+    private final static String CUSTOMER_APPLICABLE_FEES_PATH = "/customer/num-%s/fees.json";
 
-    private final static String CLIENT_CHARGES_DETAILS_PATH_PREFIX = "/client/charges/num-";
+    private final static String CLIENT_CHARGES_DETAILS_PATH = "/client/num-%s/charges.json";
 
-    private final static String CUSTOMER_APPLY_CHARGE_PATH_PREFIX = "/customer/charge/num-";
+    private final static String CUSTOMER_APPLY_CHARGE_PATH = "/customer/num-%s/charge.json";
 
 
     public CustomerService(Context context) {
@@ -90,19 +90,19 @@ public class CustomerService extends RestNetworkService {
         CustomerChargesDetails details = null;
         String url;
         if (entity.getClass() == Customer.class) {
-            url = getServerUrl() + CLIENT_CHARGES_DETAILS_PATH_PREFIX + entity.getGlobalCustNum() + PATH_SUFFIX;
+            url = getServerUrl() + String.format(CLIENT_CHARGES_DETAILS_PATH, entity.getGlobalCustNum());
             details = mRestConnector.getForObject(url, CustomerChargesDetails.class);
         }
         return details;
     }
 
     public Map<String, String> getApplicableFees(String globalCustomerNumber) {
-        String url = getServerUrl() + CUSTOMER_APPLICABLE_FEES_PATH_PREFIX + globalCustomerNumber + PATH_SUFFIX;
+        String url = getServerUrl() + String.format(CUSTOMER_APPLICABLE_FEES_PATH, globalCustomerNumber);
         return mRestConnector.getForObject(url, Map.class);
     }
 
     public Map<String, String> applyCharge(String globalCustomerNumber, Map<String, String> params) {
-        String url = getServerUrl() + CUSTOMER_APPLY_CHARGE_PATH_PREFIX + globalCustomerNumber + PATH_SUFFIX;
+        String url = getServerUrl() + String.format(CUSTOMER_APPLY_CHARGE_PATH, globalCustomerNumber);
         url += prepareQueryString(params);
         return mRestConnector.postForObject(url, null, Map.class);
     }

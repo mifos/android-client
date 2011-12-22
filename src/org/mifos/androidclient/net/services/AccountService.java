@@ -34,24 +34,24 @@ public class AccountService extends RestNetworkService {
 
     private static final String LOAN_ACCOUNT_DETAILS_PATH_PREFIX = "/account/loan/num-";
     private static final String SAVINGS_ACCOUNT_DETAILS_PATH_PREFIX = "/account/savings/num-";
-    private static final String TRANSACTION_HISTORY_PATH_PREFIX = "/account/trxnhistory/num-";
-    private static final String LOAN_INSTALLMENT_DETAILS_PATH_PREFIX = "/account/loan/installment/num-";
-    private static final String SAVINGS_DEPOSIT_DUE_DETAILS_PATH_PREFIX = "/account/savings/due/num-";
-    private static final String REPAYMENT_SCHEDULE_PATH_PREFIX = "/account/loan/schedule/num-";
+    private static final String TRANSACTION_HISTORY_PATH = "/account/num-%s/trxnhistory.json";
+    private static final String LOAN_INSTALLMENT_DETAILS_PATH = "/account/loan/num-%s/installment.json";
+    private static final String SAVINGS_DEPOSIT_DUE_DETAILS_PATH = "/account/savings/num-%s/due.json";
+    private static final String REPAYMENT_SCHEDULE_PATH = "/account/loan/num-%s/schedule.json";
 
-    private static final String LOAN_ACCOUNT_APPLY_CHARGE_PATH_PREFIX = "/account/loan/charge/num-";
-    private static final String LOAN_ACCOUNT_FULL_REPAY_LOAN_PATH_PREFIX = "/account/loan/fullrepay/num-";
-    private static final String LOAN_ACCOUNT_REPAY_LOAN_PATH_PREFIX = "/account/loan/repay/num-";
-    private static final String LOAN_ACCOUNT_INTEREST_WAIVABLE = "/account/loan/num-";
-    private static final String LOAN_ACCOUNT_APPLICABLE_FEES_PATH_PREFIX = "/account/loan/fees/num-";
+    private static final String LOAN_ACCOUNT_APPLY_CHARGE_PATH = "/account/loan/num-%s/charge.json";
+    private static final String LOAN_ACCOUNT_FULL_REPAY_LOAN_PATH = "/account/loan/num-%s/fullrepay.json";
+    private static final String LOAN_ACCOUNT_REPAY_LOAN_PATH = "/account/loan/num-%s/repay.json";
+    private static final String LOAN_ACCOUNT_INTEREST_WAIVABLE_PATH = "/account/loan/num-%s/interestWaivable.json";
+    private static final String LOAN_ACCOUNT_APPLICABLE_FEES_PATH = "/account/loan/num-%s/fees.json";
 
-    private static final String DISBURSE_LOAN_PATH = "/account/loan/disburse/num-";
+    private static final String DISBURSE_LOAN_PATH = "/account/loan/num-%s/disburse.json";
 
-    private static final String APPLY_SAVINGS_ADJUSTMENT_PATH = "/account/savings/adjustment/num-";
-    private static final String APPLY_LOAN_ADJUSTMENT_PATH_PREFIX = "/account/loan/adjustment/num-";
+    private static final String APPLY_SAVINGS_ADJUSTMENT_PATH = "/account/savings/num-%s/adjustment.json";
+    private static final String APPLY_LOAN_ADJUSTMENT_PATH = "/account/loan/num-%s/adjustment.json";
 
-    private static final String MAKE_SAVINGS_DEPOSIT_PATH_PREFIX = "/account/savings/deposit/num-";
-    private static final String MAKE_SAVINGS_WITHDRAWAL_PATH_PREFIX = "/account/savings/withdraw/num-";
+    private static final String MAKE_SAVINGS_DEPOSIT_PATH = "/account/savings/num-%s/deposit.json";
+    private static final String MAKE_SAVINGS_WITHDRAWAL_PATH = "/account/savings/num-%s/withdraw.json";
 
 
     public AccountService(Context context) {
@@ -79,80 +79,80 @@ public class AccountService extends RestNetworkService {
     }
 
     public TransactionHistoryEntry[] getAccountTransactionHistory(String globalAccountNumber) {
-        String url = getServerUrl() + TRANSACTION_HISTORY_PATH_PREFIX + globalAccountNumber + PATH_SUFFIX;
+        String url = getServerUrl() + String.format(TRANSACTION_HISTORY_PATH, globalAccountNumber);
         return mRestConnector.getForObject(url, TransactionHistoryEntry[].class);
     }
 
     public RepaymentScheduleItem[] getAccountRepaymentSchedule(String globalAccountNumber) {
-        String url = getServerUrl() + REPAYMENT_SCHEDULE_PATH_PREFIX + globalAccountNumber + PATH_SUFFIX;
+        String url = getServerUrl() + String.format(REPAYMENT_SCHEDULE_PATH, globalAccountNumber);
         return mRestConnector.getForObject(url,RepaymentScheduleItem[].class);
     }
 
     public LoanInstallmentDetails getLoanInstallmentDetails(String globalAccountNumber) {
-        String url = getServerUrl() + LOAN_INSTALLMENT_DETAILS_PATH_PREFIX + globalAccountNumber + PATH_SUFFIX;
+        String url = getServerUrl() + String.format(LOAN_INSTALLMENT_DETAILS_PATH, globalAccountNumber);
         return mRestConnector.getForObject(url, LoanInstallmentDetails.class);
     }
 
     public SavingsAccountDepositDue getSavingsDepositDueDetails(String globalAccountNumber) {
-        String url = getServerUrl() + SAVINGS_DEPOSIT_DUE_DETAILS_PATH_PREFIX + globalAccountNumber + PATH_SUFFIX;
+        String url = getServerUrl() + String.format(SAVINGS_DEPOSIT_DUE_DETAILS_PATH, globalAccountNumber);
         return mRestConnector.getForObject(url, SavingsAccountDepositDue.class);
     }
 
     public Map<String, String> applyLoanCharge(String accountNumber, Map<String, String> params) {
-        String url = getServerUrl() + LOAN_ACCOUNT_APPLY_CHARGE_PATH_PREFIX + accountNumber + PATH_SUFFIX;
+        String url = getServerUrl() + String.format(LOAN_ACCOUNT_APPLY_CHARGE_PATH, accountNumber);
         url += prepareQueryString(params);
         return mRestConnector.postForObject(url, null, Map.class);
     }
 
     public Map<String, String> getApplicableFees(String globalAccountNumber) {
-        String url = getServerUrl() + LOAN_ACCOUNT_APPLICABLE_FEES_PATH_PREFIX + globalAccountNumber + PATH_SUFFIX;
+        String url = getServerUrl() + String.format(LOAN_ACCOUNT_APPLICABLE_FEES_PATH, globalAccountNumber);
         return mRestConnector.getForObject(url, Map.class);
     }
 
     public Map<String, String> disburseLoan(String accountNumber, Map<String, String> params) {
-        String url = getServerUrl() + DISBURSE_LOAN_PATH + accountNumber + PATH_SUFFIX;
+        String url = getServerUrl() + String.format(DISBURSE_LOAN_PATH, accountNumber);
         url += prepareQueryString(params);
         return mRestConnector.postForObject(url, null, Map.class);
     }
 
     public Map<String, String> applySavingsAccountAdjustment(String accountNumber, Map<String, String> params) {
-        String url = getServerUrl() + APPLY_SAVINGS_ADJUSTMENT_PATH + accountNumber + PATH_SUFFIX;
+        String url = getServerUrl() + String.format(APPLY_SAVINGS_ADJUSTMENT_PATH, accountNumber);
         url += prepareQueryString(params);
         return mRestConnector.postForObject(url, null, Map.class);
     }
 
     public Map<String, String> applyLoanAccountAdjustment(String accountNumber, Map<String, String> params) {
-        String url = getServerUrl() + APPLY_LOAN_ADJUSTMENT_PATH_PREFIX + accountNumber + PATH_SUFFIX;
+        String url = getServerUrl() + String.format(APPLY_LOAN_ADJUSTMENT_PATH, accountNumber);
         url += prepareQueryString(params);
         return mRestConnector.postForObject(url, null, Map.class);
     }
 
     public Map<String, String> isLoanInterestWaivable(String globalAccountNumber) {
-        String url = getServerUrl() + LOAN_ACCOUNT_INTEREST_WAIVABLE + globalAccountNumber + PATH_SUFFIX;
+        String url = getServerUrl() + String.format(LOAN_ACCOUNT_INTEREST_WAIVABLE_PATH, globalAccountNumber);
         return mRestConnector.getForObject(url, Map.class);
 
     }
 
     public Map<String, String> fullRepayLoan(String accountNumber, Map<String, String> params) {
-        String url = getServerUrl() + LOAN_ACCOUNT_FULL_REPAY_LOAN_PATH_PREFIX + accountNumber + PATH_SUFFIX;
+        String url = getServerUrl() + String.format(LOAN_ACCOUNT_FULL_REPAY_LOAN_PATH, accountNumber);
         url +=prepareQueryString(params);
         return mRestConnector.postForObject(url, null, Map.class);
      }
 
     public Map<String, String> repayLoan(String accountNumber, Map<String, String> params) {
-        String url = getServerUrl() + LOAN_ACCOUNT_REPAY_LOAN_PATH_PREFIX + accountNumber + PATH_SUFFIX;
+        String url = getServerUrl() + String.format(LOAN_ACCOUNT_REPAY_LOAN_PATH, accountNumber);
         url += prepareQueryString(params);
         return mRestConnector.postForObject(url, null, Map.class);
     }
 
     public Map<String, String> makeSavingsDeposit(String accountNumber, Map<String, String> params) {
-        String url = getServerUrl() + MAKE_SAVINGS_DEPOSIT_PATH_PREFIX + accountNumber + PATH_SUFFIX;
+        String url = getServerUrl() + String.format(MAKE_SAVINGS_DEPOSIT_PATH, accountNumber);
         url += prepareQueryString(params);
         return mRestConnector.postForObject(url, null, Map.class);
     }
 
     public Map<String, String> makeSavingsWithdrawal(String accountNumber, Map<String, String> params) {
-        String url = getServerUrl() + MAKE_SAVINGS_WITHDRAWAL_PATH_PREFIX + accountNumber + PATH_SUFFIX;
+        String url = getServerUrl() + String.format(MAKE_SAVINGS_WITHDRAWAL_PATH, accountNumber);
         url += prepareQueryString(params);
         return mRestConnector.postForObject(url, null, Map.class);
     }
