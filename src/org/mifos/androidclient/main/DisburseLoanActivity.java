@@ -32,12 +32,19 @@ import org.mifos.androidclient.net.services.AccountService;
 import org.mifos.androidclient.templates.OperationFormActivity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class DisburseLoanActivity extends OperationFormActivity {
 
     public static final int REQUEST_CODE = 3;
+
+    public static final String PARAM_DISBURSAL_DATE = "disbursalDate";
+    public static final String PARAM_RECEIPT_ID = "receiptId";
+    public static final String PARAM_RECEIPT_DATE = "receiptDate";
+    public static final String PARAM_DISBURSEMENT_PAYMENT_TYPE = "disbursePaymentTypeId";
+    public static final String PARAM_FEE_PAYMENT_TYPE = "paymentModeOfPayment";
 
     private String mGlobalAccountNumber;
     private Double mOriginalPrincipal;
@@ -92,7 +99,13 @@ public class DisburseLoanActivity extends OperationFormActivity {
 
     @Override
     protected Map<String, String> onPrepareParameters() {
-        return null;
+        Map<String, String> params = new HashMap<String, String>();
+        params.put(PARAM_DISBURSAL_DATE, mDisbursalDateInput.getText().toString());
+        params.put(PARAM_RECEIPT_ID, mReceiptIdInput.getText().toString());
+        params.put(PARAM_RECEIPT_DATE, mReceiptDateInput.getText().toString());
+        params.put(PARAM_DISBURSEMENT_PAYMENT_TYPE, mDisbursementPaymentTypes.get(mDisbursementPaymentModeInput.getSelectedItem()).toString());
+        params.put(PARAM_FEE_PAYMENT_TYPE, mFeePaymentTypes.get(mFeePaymentModeInput.getSelectedItem()).toString());
+        return params;
     }
 
     @Override
