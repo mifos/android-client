@@ -41,6 +41,12 @@ public class SavingsTransactionActivity extends OperationFormActivity
 
     public static final int REQUEST_CODE = 7;
 
+    private static final String PARAM_TRANSACTION_DATE = "transactionDate";
+    private static final String PARAM_AMOUNT = "amount";
+    private static final String PARAM_PAYMENT_MODE = "paymentMode";
+    private static final String PARAM_RECEIPT_ID = "receiptId";
+    private static final String PARAM_RECEIPT_DATE = "receiptDate";
+
     private String mAccountNumber;
 
     private Map<String, Map<String, Integer>> mTransactionTypes;
@@ -49,8 +55,8 @@ public class SavingsTransactionActivity extends OperationFormActivity
     private Spinner mTransactionTypeInput;
     private EditText mAmountInput;
     private Spinner mPaymentModeInput;
-    private EditText mReceiptId;
-    private EditText mReceiptDate;
+    private EditText mReceiptIdInput;
+    private EditText mReceiptDateInput;
 
     private AccountService mAccountService;
 
@@ -76,8 +82,8 @@ public class SavingsTransactionActivity extends OperationFormActivity
                 getString(R.string.savingsTransaction_paymentMode_fieldLabel),
                 new ArrayList<String>(mTransactionTypes.get(mTransactionTypeInput.getSelectedItem()).keySet())
         );
-        mReceiptId = addTextFormField(getString(R.string.savingsTransaction_receiptId_fieldLabel));
-        mReceiptDate = addDateFormField(getString(R.string.savingsTransaction_receiptDate_fieldLabel));
+        mReceiptIdInput = addTextFormField(getString(R.string.savingsTransaction_receiptId_fieldLabel));
+        mReceiptDateInput = addDateFormField(getString(R.string.savingsTransaction_receiptDate_fieldLabel));
 
         setFormHeader(getString(R.string.savingsTransaction_header));
         setFormFieldsVisible(true);
@@ -95,12 +101,25 @@ public class SavingsTransactionActivity extends OperationFormActivity
 
     @Override
     protected Map<String, String> onPrepareParameters() {
-        return null;
+        Map<String, String> params = new HashMap<String, String>();
+        params.put(PARAM_TRANSACTION_DATE, mTransactionDateInput.getText().toString());
+        params.put(PARAM_AMOUNT, mAmountInput.getText().toString());
+        params.put(PARAM_PAYMENT_MODE, mTransactionTypes.get(mTransactionTypeInput.getSelectedItem()).get(mPaymentModeInput.getSelectedItem()).toString());
+        params.put(PARAM_RECEIPT_ID, mReceiptIdInput.getText().toString());
+        params.put(PARAM_RECEIPT_DATE, mReceiptDateInput.getText().toString());
+        return params;
     }
 
     @Override
     protected Map<String, String> onFormSubmission(Map<String, String> parameters) {
-        return null;
+        String transactionType = (String)mTransactionTypeInput.getSelectedItem();
+        if (transactionType.equals(getString(R.string.savingsTransaction_transactionType_deposit))) {
+            return mAccountService.makeSavingsDeposit(mAccountNumber, parameters);
+        } else if (transactionType.equals(getString(R.string.savingsTransaction_transactionType_withdrawal))) {
+            return mAccountService.makeSavingsWithdrawal(mAccountNumber, parameters);
+        } else {
+            return null;
+        }
     }
 
 }

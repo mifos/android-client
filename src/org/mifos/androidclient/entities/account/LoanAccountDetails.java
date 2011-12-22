@@ -20,7 +20,6 @@
 
 package org.mifos.androidclient.entities.account;
 
-import android.util.SparseArray;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.mifos.androidclient.entities.customer.CustomerNote;
 

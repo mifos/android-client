@@ -27,26 +27,44 @@ import java.io.Serializable;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AccountFee implements Serializable {
 
-    private String feeFrequencyTypeName;
-    private String feeStatusName;
+    private Short feeId;
+    private Short feeFrequencyTypeId;
+    private Short feePaymentTypeId;
+    private Short feeStatus;
     private String feeName;
     private Double accountFeeAmount;
     private String meetingRecurrence;
 
-    public String getFeeFrequencyTypeName() {
-        return feeFrequencyTypeName;
+    public Short getFeeId() {
+        return feeId;
     }
 
-    public void setFeeFrequencyTypeName(String feeFrequencyTypeName) {
-        this.feeFrequencyTypeName = feeFrequencyTypeName;
+    public void setFeeId(Short feeId) {
+        this.feeId = feeId;
     }
 
-    public String getFeeStatusName() {
-        return feeStatusName;
+    public Short getFeeFrequencyTypeId() {
+        return feeFrequencyTypeId;
     }
 
-    public void setFeeStatusName(String feeStatusName) {
-        this.feeStatusName = feeStatusName;
+    public void setFeeFrequencyTypeId(Short feeFrequencyTypeId) {
+        this.feeFrequencyTypeId = feeFrequencyTypeId;
+    }
+
+    public Short getFeePaymentTypeId() {
+        return feePaymentTypeId;
+    }
+
+    public void setFeePaymentTypeId(Short feePaymentTypeId) {
+        this.feePaymentTypeId = feePaymentTypeId;
+    }
+
+    public Short getFeeStatus() {
+        return feeStatus;
+    }
+
+    public void setFeeStatus(Short feeStatus) {
+        this.feeStatus = feeStatus;
     }
 
     public String getFeeName() {
