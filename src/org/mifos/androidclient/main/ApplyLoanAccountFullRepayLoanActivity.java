@@ -2,6 +2,7 @@ package org.mifos.androidclient.main;
 
 
 import android.os.Bundle;
+import android.widget.CheckBox;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.account.AbstractAccountDetails;
 import org.mifos.androidclient.net.services.AccountService;
@@ -19,7 +20,8 @@ public class ApplyLoanAccountFullRepayLoanActivity extends OperationFormActivity
     private String mAccountNumber;
     private AccountService mAccountService;
     private Map<String, String> waiveInterest;
-
+    private Map<String, Integer> mLoanPaymentTypes;
+    private CheckBox mWaiveInterest;
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
@@ -27,17 +29,19 @@ public class ApplyLoanAccountFullRepayLoanActivity extends OperationFormActivity
         mAccountNumber = getIntent().getStringExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY);
         mAccountService = new AccountService(this);
         waiveInterest = mAccountService.isLoanInterestWaivable(mAccountNumber);
+        if (waiveInterest.containsValue("true")) {
+                mWaiveInterest = addCheckBoxFormField(getString(R.string.checkBox_label));
+        }
 
         setFormHeader(getString(R.string.accountTransaction_fullRepayLoanButton_header));
         setStatusVisible(false);
         setFormFieldsVisible(true);
-
     }
 
     @Override
     protected Map<String, String> onPrepareParameters() {
         Map<String, String> params = new HashMap<String, String>();
-        if (waiveInterest.containsValue("true")) {
+        if (mWaiveInterest.isChecked()) {
         params.put(PARAM_WAIVE_INTEREST, "true");
         } else {
         params.put(PARAM_WAIVE_INTEREST, "false");

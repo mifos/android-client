@@ -416,6 +416,8 @@
     -->
     <string name="applyLoanAccountRepayLoan_amount_label">Amount:</string>
 
+
+    <string name="checkBox_label">Waive all interest due</string>
     <!--
         String values for LoanAccountTransactionView
     -->

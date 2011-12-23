@@ -137,6 +137,15 @@ public abstract class OperationFormActivity extends MifosActivity
         }
     }
 
+    public CheckBox addCheckBoxFormField(String fieldLabel) {
+        LinearLayout field = (LinearLayout)getLayoutInflater().inflate(R.layout.check_box_form_field, null);
+        CheckBox input = (CheckBox)field.findViewById(R.id.checkBox_label);
+        input.setText(fieldLabel);
+        input.setInputType(InputType.TYPE_NULL);
+        mFormFields.addView(field, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        return input;
+    }
+
     public EditText addDateFormField(String fieldLabel) {
         LinearLayout field = (LinearLayout)getLayoutInflater().inflate(R.layout.date_form_field, null);
         TextView label = (TextView)field.findViewById(R.id.dateFormField_label);
