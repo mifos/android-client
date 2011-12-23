@@ -4,6 +4,7 @@ package org.mifos.androidclient.main;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import org.mifos.androidclient.R;
@@ -25,7 +26,7 @@ public class RepaymentScheduleActivity extends MifosActivity{
         RepaymentScheduleItem item = (RepaymentScheduleItem)getIntent().getSerializableExtra(RepaymentScheduleItem.BUNDLE_KEY);
         TextView textView;
         TableLayout tableLayout;
-        LinearLayout linearLayout;
+        RelativeLayout relativeLayout;
         DecimalFormat df= new DecimalFormat("#.##");
         double feeAmount = 0;
         double feePaid = 0;
@@ -36,9 +37,9 @@ public class RepaymentScheduleActivity extends MifosActivity{
 
 
         if (item.getPaymentDate() == null){ //not
-            linearLayout = (LinearLayout)findViewById(R.id.normallyPaid);
-            if(linearLayout.getVisibility() == View.GONE){
-            linearLayout.setVisibility(View.VISIBLE);
+            relativeLayout = (RelativeLayout)findViewById(R.id.normallyPaid);
+            if(relativeLayout.getVisibility() == View.GONE){
+            relativeLayout.setVisibility(View.VISIBLE);
             tableLayout = (TableLayout)findViewById(R.id.partiallyPaidTable);
             tableLayout.setVisibility(View.GONE);
             }
@@ -61,8 +62,8 @@ public class RepaymentScheduleActivity extends MifosActivity{
             tableLayout = (TableLayout)findViewById(R.id.partiallyPaidTable);
             if(tableLayout.getVisibility() == View.GONE){
             tableLayout.setVisibility(View.VISIBLE);
-            linearLayout = (LinearLayout)findViewById(R.id.normallyPaid);
-            linearLayout.setVisibility(View.GONE);
+            relativeLayout = (RelativeLayout)findViewById(R.id.normallyPaid);
+            relativeLayout.setVisibility(View.GONE);
             }
 
             textView = (TextView)findViewById(R.id.partiallyPaidTable_PrincipalPaid);
@@ -88,9 +89,9 @@ public class RepaymentScheduleActivity extends MifosActivity{
             textView.setText(item.getDueDate());
         }
         else { //paid
-            linearLayout = (LinearLayout)findViewById(R.id.normallyPaid);
-            if(linearLayout.getVisibility() == View.GONE){
-            linearLayout.setVisibility(View.VISIBLE);
+            relativeLayout = (RelativeLayout)findViewById(R.id.normallyPaid);
+            if(relativeLayout.getVisibility() == View.GONE){
+            relativeLayout.setVisibility(View.VISIBLE);
             tableLayout = (TableLayout)findViewById(R.id.partiallyPaidTable);
             tableLayout.setVisibility(View.GONE);
             }
