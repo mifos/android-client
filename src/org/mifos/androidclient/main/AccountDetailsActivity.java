@@ -59,7 +59,7 @@ public class AccountDetailsActivity extends DownloaderActivity {
 
     private AccountDetailsTask mAccountDetailsTask;
 
-    private Map<String, String> mApplicableFees;
+    private Map<String, Map<String, String>> mApplicableFees;
     private AcceptedPaymentTypes mAcceptedPaymentTypes;
 
     @Override
@@ -87,7 +87,7 @@ public class AccountDetailsActivity extends DownloaderActivity {
                 mDetails = (AbstractAccountDetails)bundle.getSerializable(AbstractAccountDetails.BUNDLE_KEY);
             }
             if (bundle.containsKey(Fee.BUNDLE_KEY)) {
-                mApplicableFees = (Map<String, String>)bundle.getSerializable(Fee.BUNDLE_KEY);
+                mApplicableFees = (Map<String, Map<String, String>>)bundle.getSerializable(Fee.BUNDLE_KEY);
             }
             if (bundle.containsKey(SELECTED_TAB_BUNDLE_KEY)) {
                 tabs.setCurrentTab(bundle.getInt(SELECTED_TAB_BUNDLE_KEY));

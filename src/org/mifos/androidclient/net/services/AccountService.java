@@ -104,7 +104,7 @@ public class AccountService extends RestNetworkService {
         return mRestConnector.postForObject(url, null, Map.class);
     }
 
-    public Map<String, String> getApplicableFees(String globalAccountNumber) {
+    public Map<String, Map<String, String>> getApplicableFees(String globalAccountNumber) {
         String url = getServerUrl() + String.format(LOAN_ACCOUNT_APPLICABLE_FEES_PATH, globalAccountNumber);
         return mRestConnector.getForObject(url, Map.class);
     }
