@@ -77,6 +77,27 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
             View disburseButton = view.findViewById(R.id.accountLoan_disburseLoan);
             disburseButton.setVisibility(View.VISIBLE);
         }
+        if (mDetails.getAccountStateName().contentEquals("AccountState-ApplicationPendingApproval")
+                || mDetails.getAccountStateName().contentEquals("AccountState-ApplicationApproved")) {
+            View applyButton = view.findViewById(R.id.accountLoan_applyCharge);
+            applyButton.setVisibility(View.VISIBLE);
+        }
+        if (mDetails.getAccountStateName().contentEquals("AccountState-ObligationMet")) {
+            View applyButton = view.findViewById(R.id.accountLoan_applyAdjustment);
+            applyButton.setVisibility(View.VISIBLE);
+
+        }
+        if (mDetails.getAccountStateName().contentEquals("AccountState-ActiveInGoodStanding")) {
+            View applyButton = view.findViewById(R.id.accountLoan_repayLoan);
+            applyButton.setVisibility(View.VISIBLE);
+            applyButton = view.findViewById(R.id.accountLoan_applyCharge);
+            applyButton.setVisibility(View.VISIBLE);
+            applyButton = view.findViewById(R.id.accountLoan_applyAdjustment);
+            applyButton.setVisibility(View.VISIBLE);
+            applyButton = view.findViewById(R.id.accountLoan_fullRepayLoan);
+            applyButton.setVisibility(View.VISIBLE);
+
+        }
         return view;  //To change body of implemented methods use File | Settings | File Templates.
     }
 

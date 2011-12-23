@@ -407,7 +407,7 @@
     <!--
         String values for ApplyLoanAccountChargeActivity
     -->
-    <string name="applyLoanAccountCharge_header">Apply Charge</string>
+    <string name="applyLoanAccountCharge_header">Apply Charges</string>
     <string name="applyLoanAccountCharge_feeType_fieldLabel">Fee Type:</string>
     <string name="applyLoanAccountCharge_amount_fieldLabel">Amount:</string>
 
@@ -420,8 +420,8 @@
         String values for LoanAccountTransactionView
     -->
     <string name="accountTransaction_applyChargesButton_header">Apply charges</string>
-    <string name="accountTransaction_fullRepayLoanButton_header">Full Loan Repay</string>
-    <string name="accountTransaction_repayLoanButton_header">Loan Repay</string>
+    <string name="accountTransaction_fullRepayLoanButton_header">Repay Loan</string>
+    <string name="accountTransaction_repayLoanButton_header">Apply payment</string>
 
     <!--
         String values for DisburseLoanActivity
