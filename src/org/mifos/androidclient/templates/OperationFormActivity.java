@@ -83,7 +83,11 @@ public abstract class OperationFormActivity extends MifosActivity
         mFormFields = (LinearLayout)findViewById(R.id.operationForm_formFields);
         mLoginService = new LoginService(this);
         mSessionStatusService = new SessionStatusService(this);
+    }
 
+    @Override
+    protected void onRestoreInstanceState(Bundle bundle) {
+        super.onRestoreInstanceState(bundle);
         if (bundle != null && bundle.containsKey(PREVIOUS_STATE_BUNDLE_KEY)) {
             mPreviousResult = (Map<String, String>)bundle.get(PREVIOUS_STATE_BUNDLE_KEY);
             updateViewForResponse(mPreviousResult);
@@ -346,8 +350,6 @@ public abstract class OperationFormActivity extends MifosActivity
             } else {
                 setUnknownProblemView();
             }
-        } else {
-            setUnknownProblemView();
         }
     }
 
