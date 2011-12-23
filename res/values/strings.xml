@@ -376,7 +376,7 @@
         String values for OperationFormActivity
     -->
     <string name="operationForm_submitButton_label">Submit</string>
-    <string name="operationForm_goBackButton_label">Go Back</string>
+    <string name="operationForm_goBackButton_label">Cancel</string>
     <string name="operationForm_okButton_label">OK</string>
     <string name="operationForm_status_label">Status:&#160;</string>
     <string name="operationForm_status_success">Success</string>

@@ -38,7 +38,7 @@ public class Center extends AbstractCustomer implements SimpleListItem, Serializ
     public String getListLabel() {
         String listLabel;
         if (groups != null && groups.size() > 0) {
-            listLabel = "+ " + getDisplayName() + " (" + groups.size() + ")";
+            listLabel = getDisplayName() + " (" + groups.size() + ")";
         } else {
             listLabel = getDisplayName();
         }
