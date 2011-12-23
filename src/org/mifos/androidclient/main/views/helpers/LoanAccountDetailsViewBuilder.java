@@ -89,7 +89,7 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
             applyButton = view.findViewById(R.id.accountLoan_repayLoan);
             applyButton.setVisibility(View.GONE);
         }
-        if (mDetails.getAccountStateName().contentEquals("AccountState-ObligationMet")) {
+        if (mDetails.getAccountStateName().contentEquals("AccountState-ClosedObligationMet")) {
             View applyButton = view.findViewById(R.id.accountLoan_applyAdjustment);
             applyButton.setVisibility(View.VISIBLE);
             applyButton = view.findViewById(R.id.accountLoan_fullRepayLoan);
@@ -100,7 +100,8 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
             applyButton.setVisibility(View.GONE);
 
         }
-        if (mDetails.getAccountStateName().contentEquals("AccountState-ActiveInGoodStanding")) {
+        if (mDetails.getAccountStateName().contentEquals("AccountState-ActiveInGoodStanding")
+                || mDetails.getAccountStateName().contentEquals("AccountState-ActiveInBadStanding") ) {
             View applyButton = view.findViewById(R.id.accountLoan_repayLoan);
             applyButton.setVisibility(View.VISIBLE);
             applyButton = view.findViewById(R.id.accountLoan_applyCharge);
