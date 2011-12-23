@@ -415,6 +415,10 @@
         String values for ApplyLoanAccountRepayLoanActivity
     -->
     <string name="applyLoanAccountRepayLoan_amount_label">Amount:</string>
+    <string name="applyLoanAccountRepayLoan_transactionDate_label">Transaction Date:</string>
+    <string name="applyLoanAccountRepayLoan_paymentMode_label">Mode of Payment:</string>
+    <string name="applyLoanAccountRepayLoan_receiptId_label">Receipt ID:</string>
+    <string name="applyLoanAccountRepayLoan_receiptDate_label">Receipt Date:</string>
 
 
     <string name="checkBox_label">Waive all interest due</string>

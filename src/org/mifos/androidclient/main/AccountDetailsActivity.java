@@ -225,6 +225,7 @@ public class AccountDetailsActivity extends DownloaderActivity {
     public void onApplyLoanRepaySelected(View view) {
         Intent intent = new Intent().setClass(this, ApplyLoanAccountRepayLoanActivity.class);
         intent.putExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY, mAccount.getGlobalAccountNum());
+        intent.putExtra(AcceptedPaymentTypes.ACCEPTED_REPAYMENT_PAYMENT_TYPES_BUNDLE_KEY, (Serializable)mAcceptedPaymentTypes.asMap(mAcceptedPaymentTypes.getOutRepaymentList()));
         startActivityForResult(intent, ApplyLoanAccountRepayLoanActivity.REQUEST_CODE);
     }
 
