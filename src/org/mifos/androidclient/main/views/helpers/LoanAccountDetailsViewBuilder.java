@@ -73,18 +73,31 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
     public View buildTransactionView() {
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.account_loan_transaction, null);
-        if (!mDetails.getDisbursed()) {
+        if (!mDetails.getDisbursed() && mDetails.getAccountStateName().contentEquals("AccountState-ApplicationApproved")) {
             View disburseButton = view.findViewById(R.id.accountLoan_disburseLoan);
             disburseButton.setVisibility(View.VISIBLE);
         }
         if (mDetails.getAccountStateName().contentEquals("AccountState-ApplicationPendingApproval")
-                || mDetails.getAccountStateName().contentEquals("AccountState-ApplicationApproved")) {
+                || mDetails.getAccountStateName().contentEquals("AccountState-ApplicationApproved")
+                || mDetails.getAccountStateName().contentEquals("AccountState-PartialApplication")) {
             View applyButton = view.findViewById(R.id.accountLoan_applyCharge);
             applyButton.setVisibility(View.VISIBLE);
+            applyButton = view.findViewById(R.id.accountLoan_applyAdjustment);
+            applyButton.setVisibility(View.GONE);
+            applyButton = view.findViewById(R.id.accountLoan_fullRepayLoan);
+            applyButton.setVisibility(View.GONE);
+            applyButton = view.findViewById(R.id.accountLoan_repayLoan);
+            applyButton.setVisibility(View.GONE);
         }
         if (mDetails.getAccountStateName().contentEquals("AccountState-ObligationMet")) {
             View applyButton = view.findViewById(R.id.accountLoan_applyAdjustment);
             applyButton.setVisibility(View.VISIBLE);
+            applyButton = view.findViewById(R.id.accountLoan_fullRepayLoan);
+            applyButton.setVisibility(View.GONE);
+            applyButton = view.findViewById(R.id.accountLoan_repayLoan);
+            applyButton.setVisibility(View.GONE);
+            applyButton = view.findViewById(R.id.accountLoan_applyCharge);
+            applyButton.setVisibility(View.GONE);
 
         }
         if (mDetails.getAccountStateName().contentEquals("AccountState-ActiveInGoodStanding")) {

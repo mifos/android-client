@@ -127,7 +127,7 @@
     <string name="customerOverview_loanCyclePerProduct_label">Loan Cycle per Product:&#160;</string>
     <string name="customerOverview_name_label">Client name:&#160;</string>
 
-    <string name="accountDetails_chargesDetailsButton_label">View Charges Details</string>
+    <string name="accountDetails_chargesDetailsButton_label">Charges Details</string>
     <string name="accountDetails_applyChargeButton_label">Apply Charge</string>
 
     <string name="savingsAccountListItem_balance_label">Balance:&#160;</string>
@@ -189,7 +189,7 @@
     -->
     <string name="accountDetails_tab_overview">Account Overview</string>
     <string name="accountDetails_tab_additionalInfo">Account Details</string>
-    <string name="accountDetails_tab_transaction">Account Transaction</string>
+    <string name="accountDetails_tab_transaction">Account Transactions</string>
 
     <string name="accountOverviewLoan_accountSummary_label">Account Summary</string>
     <string name="accountOverviewLoan_status_label">Status:&#160;</string>
@@ -283,9 +283,9 @@
     <string name="partiallyPaid">Partially paid</string>
 
     <string name="accountTransaction_disburseLoan_label">Disburse Loan</string>
-    <string name="accountTransaction_applySavingsAdjustment_label">Apply Adjustment</string>
-    <string name="accountTransaction_applyLoanAdjustment_label">Apply Adjustment</string>
-    <string name="accountTransaction_savingsTransaction_label">Make a Deposit/Withdrawal</string>
+    <string name="accountTransaction_applySavingsAdjustment_label">Apply adjustment</string>
+    <string name="accountTransaction_applyLoanAdjustment_label">Apply adjustment</string>
+    <string name="accountTransaction_savingsTransaction_label">Make deposit/withdrawal</string>
 
     <!--
         String values for AccountTransactionHistoryActivity

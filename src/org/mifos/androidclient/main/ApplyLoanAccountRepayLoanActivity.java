@@ -27,7 +27,7 @@ public class ApplyLoanAccountRepayLoanActivity extends OperationFormActivity {
         mAccountNumber = getIntent().getStringExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY);
         mAccountService = new AccountService(this);
 
-        setFormHeader(getString(R.string.accountTransaction_fullRepayLoanButton_header));
+        setFormHeader(getString(R.string.accountTransaction_repayLoanButton_header));
         setStatusVisible(false);
         mAmountInput = addDecimalNumberFormField(getString(R.string.applyLoanAccountRepayLoan_amount_label));
         setFormFieldsVisible(true);

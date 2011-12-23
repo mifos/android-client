@@ -76,6 +76,19 @@ public class SavingsAccountDetailsViewBuilder implements AccountDetailsViewBuild
     public View buildTransactionView() {
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.account_savings_transaction, null);
+        if (mDetails.getAccountStateName().contentEquals("SAVINGS_PARTIAL_APPLICATION")
+                || mDetails.getAccountStateName().contentEquals("SAVINGS_PENDING_APPROVAL")) {
+            View button = view.findViewById(R.id.accountSavings_applyAdjustment);
+            button.setVisibility(View.GONE);
+            button = view.findViewById(R.id.accountSavings_savingsTransaction);
+            button.setVisibility(View.GONE);
+        }
+        if (mDetails.getAccountStateName().contentEquals("SAVINGS_ACTIVE")) {
+            View button = view.findViewById(R.id.accountSavings_applyAdjustment);
+            button.setVisibility(View.VISIBLE);
+            button = view.findViewById(R.id.accountSavings_savingsTransaction);
+            button.setVisibility(View.VISIBLE);
+        }
         return view;  //To change body of implemented methods use File | Settings | File Templates.
    }
 
