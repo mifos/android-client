@@ -59,6 +59,7 @@ public abstract class OperationFormActivity extends MifosActivity
     protected final static String STATUS_KEY = "status";
     protected final static String STATUS_SUCCESS = "success";
     protected final static String STATUS_ERROR = "error";
+    protected final static String STATUS_INTERRUPT = "interrupt";
     protected final static String CAUSE_KEY = "cause";
 
     private LinearLayout mFormFields;
@@ -340,6 +341,8 @@ public abstract class OperationFormActivity extends MifosActivity
                 setSuccessView(result);
             } else if (result.get(STATUS_KEY).equals(STATUS_ERROR)) {
                 setErrorView(result);
+            } else if (result.get(STATUS_KEY).equals(STATUS_INTERRUPT)) {
+                setInterruptView(result);
             } else {
                 setUnknownProblemView();
             }
@@ -354,6 +357,17 @@ public abstract class OperationFormActivity extends MifosActivity
         setSuccessButtonSet();
         setFormFieldsVisible(false);
         setOperationSummaryContent(summary);
+        setOperationSummaryVisible(true);
+    }
+
+    protected void setInterruptView(Map<String, String> summary) {
+        setStatus(true);
+        setStatusVisible(true);
+        setSuccessButtonSet();
+        setFormFieldsVisible(false);
+        Map<String, String> interruptSummary = new HashMap<String, String>();
+        interruptSummary.put(getString(R.string.operationForm_interruptCause_label), summary.get(CAUSE_KEY));
+        setOperationSummaryContent(interruptSummary);
         setOperationSummaryVisible(true);
     }
 

@@ -386,6 +386,8 @@
     <string name="operationForm_unknownProblem_label">Unknown error:&#160;</string>
     <string name="operationForm_unknownProblem_desc">An unknown problem occurred.</string>
 
+    <string name="operationForm_interruptCause_label">Operation summary:&#160;</string>
+
     <!--
 
         String values for CustomerMeetingScheduleActivity
