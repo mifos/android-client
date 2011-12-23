@@ -37,6 +37,7 @@ import org.mifos.androidclient.net.services.CustomerService;
 import org.mifos.androidclient.templates.DownloaderActivity;
 import org.mifos.androidclient.templates.ServiceConnectivityTask;
 import org.mifos.androidclient.util.ApplicationConstants;
+import org.mifos.androidclient.util.ValueUtils;
 import org.mifos.androidclient.util.listadapters.SimpleListAdapter;
 import org.mifos.androidclient.util.listadapters.SimpleListItem;
 import org.springframework.web.client.RestClientException;
@@ -107,9 +108,11 @@ public class CentersListActivity extends DownloaderActivity
     @Override
     public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long rowId) {
         Center center = (Center)adapterView.getAdapter().getItem(position);
-        Intent intent = new Intent().setClass(this, CustomerDetailsActivity.class);
-        intent.putExtra(AbstractCustomer.BUNDLE_KEY, center);
-        startActivity(intent);
+        if (!center.getId().equals(ApplicationConstants.DUMMY_IDENTIFIER)) {
+            Intent intent = new Intent().setClass(this, CustomerDetailsActivity.class);
+            intent.putExtra(AbstractCustomer.BUNDLE_KEY, center);
+            startActivity(intent);
+        }
         return true;
     }
 
@@ -212,12 +215,21 @@ public class CentersListActivity extends DownloaderActivity
         protected void onPostExecuteBody(CustomersData result) {
             if (result != null) {
                 mCustomersData = result;
-                if (mCustomersData.getGroups() != null && mCustomersData.getGroups().size() > 0) {
+                if (ValueUtils.hasElements(mCustomersData.getGroups()) || ValueUtils.hasElements(mCustomersData.getClients())) {
                     Center emptyCenter = new Center();
                     emptyCenter.setDisplayName(getString(R.string.centerslist_no_center));
                     emptyCenter.setId(ApplicationConstants.DUMMY_IDENTIFIER);
                     emptyCenter.setSearchId(ApplicationConstants.EMPTY_STRING);
                     emptyCenter.setGroups(mCustomersData.getGroups());
+                    if (ValueUtils.hasElements(mCustomersData.getClients())) {
+                        Group emptyGroup = new Group();
+                        emptyGroup.setDisplayName(getString(R.string.centersList_clientsAssignedToBranch));
+                        emptyGroup.setId(ApplicationConstants.DUMMY_IDENTIFIER);
+                        emptyGroup.setSearchId(ApplicationConstants.EMPTY_STRING);
+                        emptyGroup.setClients(mCustomersData.getClients());
+                        emptyCenter.getGroups().add(emptyGroup);
+                    }
+                    mCustomersData.getCenters().add(emptyCenter);
                 }
                 repopulateCustomersList(result);
             }

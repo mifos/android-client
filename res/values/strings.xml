@@ -92,7 +92,8 @@
         String values for CentersListActivity:
     -->
     <string name="centerslist_label">Choose a center:</string>
-    <string name="centerslist_no_center">Customers without a center</string>
+    <string name="centerslist_no_center">Customers assigned to the branch</string>
+    <string name="centersList_clientsAssignedToBranch">Clients assigned to the branch</string>
     <string name="centersList_hint">Click on a center to go to its groups. Do a long click on a center to view its details.</string>
     <string name="centersList_no_centers_available">You are logged in as \'%s\', but it appears You have no customers assigned. </string>
     <string name="centersList_listItemLabel_withChildren"><b>+</b> %1$s (%2$d)</string>

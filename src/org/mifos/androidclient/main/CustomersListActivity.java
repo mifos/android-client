@@ -30,6 +30,7 @@ import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.simple.AbstractCustomer;
 import org.mifos.androidclient.entities.simple.Group;
 import org.mifos.androidclient.templates.MifosActivity;
+import org.mifos.androidclient.util.ApplicationConstants;
 import org.mifos.androidclient.util.listadapters.SimpleExpandableListAdapter;
 import org.mifos.androidclient.util.listadapters.SimpleListItem;
 
@@ -98,9 +99,11 @@ public class CustomersListActivity extends MifosActivity
     public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
         if (view.getId() == R.id.expandableListGroup) {
             Group group = (Group)adapterView.getAdapter().getItem(position);
-            Intent intent = new Intent().setClass(this, CustomerDetailsActivity.class);
-            intent.putExtra(AbstractCustomer.BUNDLE_KEY, group);
-            startActivity(intent);
+            if (!group.getId().equals(ApplicationConstants.DUMMY_IDENTIFIER)) {
+                Intent intent = new Intent().setClass(this, CustomerDetailsActivity.class);
+                intent.putExtra(AbstractCustomer.BUNDLE_KEY, group);
+                startActivity(intent);
+            }
             return true;
         }
         return false;
