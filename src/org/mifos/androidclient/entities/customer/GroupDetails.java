@@ -32,6 +32,8 @@ public class GroupDetails extends CustomerDetailsEntity implements Serializable 
     private List<CustomerFlag> customerFlags;
     private GroupDisplay groupDisplay;
     private GroupPerformanceHistory groupPerformanceHistory;
+    private List<LoanAccountBasicInformation> closedLoanAccounts;
+    private List<SavingsAccountBasicInformation> closedSavingsAccounts;
 
     public List<LoanAccountBasicInformation> getLoanAccountsInUse() {
         return loanAccountsInUse;
@@ -65,4 +67,19 @@ public class GroupDetails extends CustomerDetailsEntity implements Serializable 
         this.groupPerformanceHistory = groupPerformanceHistory;
     }
 
+    public List<LoanAccountBasicInformation> getClosedLoanAccounts() {
+        return closedLoanAccounts;
+    }
+
+    public void setClosedLoanAccounts(List<LoanAccountBasicInformation> closedLoanAccounts) {
+        this.closedLoanAccounts = closedLoanAccounts;
+    }
+
+    public List<SavingsAccountBasicInformation> getClosedSavingsAccounts() {
+        return closedSavingsAccounts;
+    }
+
+    public void setClosedSavingsAccounts(List<SavingsAccountBasicInformation> closedSavingsAccounts) {
+        this.closedSavingsAccounts = closedSavingsAccounts;
+    }
 }

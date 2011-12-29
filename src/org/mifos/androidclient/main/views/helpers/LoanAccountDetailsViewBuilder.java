@@ -73,6 +73,7 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
     public View buildTransactionView() {
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.account_loan_transaction, null);
+        TextView tv =(TextView)view.findViewById(R.id.no_loan_operation);
         if (!mDetails.getDisbursed() && mDetails.getAccountStateName().contentEquals("AccountState-ApplicationApproved")) {
             View disburseButton = view.findViewById(R.id.accountLoan_disburseLoan);
             disburseButton.setVisibility(View.VISIBLE);
@@ -88,6 +89,8 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
             applyButton.setVisibility(View.GONE);
             applyButton = view.findViewById(R.id.accountLoan_repayLoan);
             applyButton.setVisibility(View.GONE);
+            tv.setText(mContext.getString(R.string.no_operation_available));
+            tv.setVisibility(View.GONE);
         }
         if (mDetails.getAccountStateName().contentEquals("AccountState-ClosedObligationMet")) {
             View applyButton = view.findViewById(R.id.accountLoan_applyAdjustment);
@@ -98,6 +101,8 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
             applyButton.setVisibility(View.GONE);
             applyButton = view.findViewById(R.id.accountLoan_applyCharge);
             applyButton.setVisibility(View.GONE);
+            tv.setText(mContext.getString(R.string.no_operation_available));
+            tv.setVisibility(View.GONE);
 
         }
         if (mDetails.getAccountStateName().contentEquals("AccountState-ActiveInGoodStanding")
@@ -110,7 +115,14 @@ public class LoanAccountDetailsViewBuilder implements AccountDetailsViewBuilder 
             applyButton.setVisibility(View.VISIBLE);
             applyButton = view.findViewById(R.id.accountLoan_fullRepayLoan);
             applyButton.setVisibility(View.VISIBLE);
-
+            tv.setText(mContext.getString(R.string.no_operation_available));
+            tv.setVisibility(View.GONE);
+        }
+        if(mDetails.getAccountStateName().contentEquals("AccountState-Cancel")) {
+            View applyButton = view.findViewById(R.id.accountLoan_repayLoan);
+            applyButton.setVisibility(View.GONE);
+            tv.setText(mContext.getString(R.string.no_operation_available));
+            tv.setVisibility(View.VISIBLE);
         }
         return view;  //To change body of implemented methods use File | Settings | File Templates.
     }

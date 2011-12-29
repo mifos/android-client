@@ -76,18 +76,25 @@ public class SavingsAccountDetailsViewBuilder implements AccountDetailsViewBuild
     public View buildTransactionView() {
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.account_savings_transaction, null);
+        TextView tv = (TextView)view.findViewById(R.id.no_savings_operation);
         if (mDetails.getAccountStateName().contentEquals("SAVINGS_PARTIAL_APPLICATION")
-                || mDetails.getAccountStateName().contentEquals("SAVINGS_PENDING_APPROVAL")) {
+                || mDetails.getAccountStateName().contentEquals("SAVINGS_PENDING_APPROVAL")
+                || mDetails.getAccountStateName().contentEquals("SAVINGS_CLOSED")) {
             View button = view.findViewById(R.id.accountSavings_applyAdjustment);
             button.setVisibility(View.GONE);
             button = view.findViewById(R.id.accountSavings_savingsTransaction);
             button.setVisibility(View.GONE);
+            tv.setText(mContext.getString(R.string.no_operation_available));
+            tv.setVisibility(View.VISIBLE);
         }
-        if (mDetails.getAccountStateName().contentEquals("SAVINGS_ACTIVE")) {
+        if (mDetails.getAccountStateName().contentEquals("SAVINGS_ACTIVE")
+                || mDetails.getAccountStateName().contentEquals("SAVINGS_INACTIVE")) {
             View button = view.findViewById(R.id.accountSavings_applyAdjustment);
             button.setVisibility(View.VISIBLE);
             button = view.findViewById(R.id.accountSavings_savingsTransaction);
             button.setVisibility(View.VISIBLE);
+            tv.setText(mContext.getString(R.string.no_operation_available));
+            tv.setVisibility(View.GONE);
         }
         return view;  //To change body of implemented methods use File | Settings | File Templates.
    }

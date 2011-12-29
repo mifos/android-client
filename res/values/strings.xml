@@ -140,6 +140,8 @@
     <string name="loan_label">Loan Accounts</string>
     <string name="savings_label">Savings Accounts</string>
     <string name="charges_label">Client Charges:</string>
+    <string name="closedSavingsLabel">Closed Savings Accounts</string>
+    <string name="closedLoanLabel">Closed Loan Accounts</string>
 
     <string name="loanAccounts_amountDue_label">Amount due:&#160;</string>
 
@@ -420,7 +422,12 @@
     <string name="applyLoanAccountRepayLoan_receiptId_label">Receipt ID:</string>
     <string name="applyLoanAccountRepayLoan_receiptDate_label">Receipt Date:</string>
 
-
+    <!--
+        String values fdr ApplyLoanAccountFullRepayLoan
+    -->
+    <string name="applyLoanAccountFullRepayLoan_receiptId_label">Receipt ID:</string>
+    <string name="applyLoanAccountFullRepayLoan_transactionDate_label">Transaction Date:</string>
+    <string name="applyLoanAccountFullRepayLoan_paymentMode_label">Mode of Payment:</string>
     <string name="checkBox_label">Waive all interest due</string>
     <!--
         String values for LoanAccountTransactionView
@@ -428,7 +435,7 @@
     <string name="accountTransaction_applyChargesButton_header">Apply charges</string>
     <string name="accountTransaction_fullRepayLoanButton_header">Repay Loan</string>
     <string name="accountTransaction_repayLoanButton_header">Apply payment</string>
-
+    <string name="no_operation_available">There is no available operation</string>
     <!--
         String values for DisburseLoanActivity
     -->

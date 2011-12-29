@@ -24,5 +24,16 @@
             android:onClick="onSavingsTransactionSelected"
             />
 
+        <TextView
+            style="@style/InfoBig"
+            android:gravity="center"
+            android:id="@+id/no_savings_operation"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="gone"
+            android:layout_below="@id/accountSavings_savingsTransaction"
+            android:text="@string/no_operation_available"
+            />
+
         </RelativeLayout>
 </ScrollView>

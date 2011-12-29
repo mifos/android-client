@@ -104,6 +104,7 @@ public class ClientDetailsViewBuilder implements CustomerDetailsViewBuilder {
         Button viewChargesDetailsButton = (Button)view.findViewById(R.id.view_chargesDetails_button);
         viewChargesDetailsButton.setVisibility(View.VISIBLE);
 
+
         Map<String, List<AccountBasicInformation>> items = new HashMap<String, List<AccountBasicInformation>>();
         if (mDetails.getLoanAccountsInUse()!= null && mDetails.getLoanAccountsInUse().size() > 0) {
             String loanLabel = mContext.getString(R.string.loan_label);
@@ -113,6 +114,14 @@ public class ClientDetailsViewBuilder implements CustomerDetailsViewBuilder {
             }
             items.put(loanLabel, loanAccounts);
         }
+        if(true){
+            String closedLoanLabel = mContext.getString(R.string.closedLoanLabel);
+            List<AccountBasicInformation> closedLoanAccounts = new ArrayList<AccountBasicInformation>();
+            for(LoanAccountBasicInformation account: mDetails.getClosedLoanAccounts()) {
+                closedLoanAccounts.add(account);
+            }
+            items.put(closedLoanLabel, closedLoanAccounts);
+        }
         if (mDetails.getSavingsAccountsInUse() != null && mDetails.getSavingsAccountsInUse().size() > 0) {
             String savingsLabel = mContext.getString(R.string.savings_label);
             List<AccountBasicInformation> savingsAccounts = new ArrayList<AccountBasicInformation>();
@@ -121,6 +130,15 @@ public class ClientDetailsViewBuilder implements CustomerDetailsViewBuilder {
             }
             items.put(savingsLabel, savingsAccounts);
         }
+        if(true){
+            String closedSavingsLabel = mContext.getString(R.string.closedSavingsLabel);
+            List<AccountBasicInformation> closedSavingsAccounts = new ArrayList<AccountBasicInformation>();
+            for(SavingsAccountBasicInformation account: mDetails.getClosedSavingsAccounts()) {
+                closedSavingsAccounts.add(account);
+            }
+            items.put(closedSavingsLabel, closedSavingsAccounts);
+        }
+
         if (items.size() > 0) {
             list.setAdapter(new AccountsExpandableListAdapter(mContext, items));
         }

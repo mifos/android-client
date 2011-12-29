@@ -99,6 +99,14 @@ public class GroupDetailsViewBuilder implements CustomerDetailsViewBuilder {
         chargesAmountDue.setText(mDetails.getCustomerAccountSummary().getNextDueAmount());
 
         Map<String, List<AccountBasicInformation>> items = new HashMap<String, List<AccountBasicInformation>>();
+        if (mDetails.getClosedLoanAccounts()!= null && mDetails.getClosedLoanAccounts().size() > 0) {
+            String closedLoanLabel = mContext.getString(R.string.closedLoanLabel);
+            List<AccountBasicInformation> closedLoanAccount = new ArrayList<AccountBasicInformation>();
+            for (LoanAccountBasicInformation account : mDetails.getClosedLoanAccounts()) {
+                closedLoanAccount.add(account);
+            }
+            items.put(closedLoanLabel, closedLoanAccount);
+        }
         if (mDetails.getLoanAccountsInUse()!= null && mDetails.getLoanAccountsInUse().size() > 0) {
             String loanLabel = mContext.getString(R.string.loan_label);
             List<AccountBasicInformation> loanAccounts = new ArrayList<AccountBasicInformation>();
@@ -106,6 +114,14 @@ public class GroupDetailsViewBuilder implements CustomerDetailsViewBuilder {
                 loanAccounts.add(account);
             }
             items.put(loanLabel, loanAccounts);
+        }
+        if (mDetails.getClosedSavingsAccounts()!= null && mDetails.getClosedSavingsAccounts().size() > 0) {
+            String closedLoanLabel = mContext.getString(R.string.closedSavingsLabel);
+            List<AccountBasicInformation> closedSavingsAccount = new ArrayList<AccountBasicInformation>();
+            for (SavingsAccountBasicInformation account : mDetails.getClosedSavingsAccounts()) {
+                closedSavingsAccount.add(account);
+            }
+            items.put(closedLoanLabel, closedSavingsAccount);
         }
         if (mDetails.getSavingsAccountsInUse() != null && mDetails.getSavingsAccountsInUse().size() > 0) {
             String savingsLabel = mContext.getString(R.string.savings_label);

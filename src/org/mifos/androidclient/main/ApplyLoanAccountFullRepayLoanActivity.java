@@ -3,11 +3,16 @@ package org.mifos.androidclient.main;
 
 import android.os.Bundle;
 import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.account.AbstractAccountDetails;
+import org.mifos.androidclient.entities.account.AcceptedPaymentTypes;
 import org.mifos.androidclient.net.services.AccountService;
 import org.mifos.androidclient.templates.OperationFormActivity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,36 +21,61 @@ public class ApplyLoanAccountFullRepayLoanActivity extends OperationFormActivity
     public static final int REQUEST_CODE = 2;
 
     private static final String PARAM_WAIVE_INTEREST = "waiveInterest";
+    private static final String PARAM_PAYMENT_MODE = "paymentModeId";
+    private static final String PARAM_TRANSACTION_DATE = "paymentDate";
+    private static final String PARAM_RECEIPT_ID = "receiptId";
+    private static final String PARAM_RECEIPT_DATE = "receiptDate";
 
     private String mAccountNumber;
     private AccountService mAccountService;
     private Map<String, String> waiveInterest;
-    private Map<String, Integer> mLoanPaymentTypes;
+    private Map<String, Integer> mTransactionTypes;
+
     private CheckBox mWaiveInterest;
+    private Spinner mPaymentModeInput;
+    private EditText mTransactionDateInput;
+    private EditText mReceiptIdInput;
+    private EditText mReceiptDateInput;
+
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
         mAccountNumber = getIntent().getStringExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY);
+        mTransactionTypes = (Map<String, Integer>)getIntent().getSerializableExtra(AcceptedPaymentTypes.ACCEPTED_REPAYMENT_PAYMENT_TYPES_BUNDLE_KEY);
+
         mAccountService = new AccountService(this);
+
+        setFormHeader(getString(R.string.accountTransaction_fullRepayLoanButton_header));
+        setStatusVisible(false);
+
         waiveInterest = mAccountService.isLoanInterestWaivable(mAccountNumber);
         if (waiveInterest.containsValue("true")) {
                 mWaiveInterest = addCheckBoxFormField(getString(R.string.checkBox_label));
         }
 
-        setFormHeader(getString(R.string.accountTransaction_fullRepayLoanButton_header));
-        setStatusVisible(false);
+       mTransactionDateInput = addDateFormField(getString(R.string.applyLoanAccountFullRepayLoan_transactionDate_label));
+        mPaymentModeInput = addComboBoxFormField(getString(R.string.applyLoanAccountFullRepayLoan_paymentMode_label),
+                new ArrayList<String>(mTransactionTypes.keySet()));
+        mReceiptIdInput = addTextFormField(getString(R.string.applyLoanAccountFullRepayLoan_receiptId_label));
+        mReceiptDateInput = addDateFormField(getString(R.string.applyLoanAccountRepayLoan_receiptDate_label));
+
+
         setFormFieldsVisible(true);
     }
 
     @Override
     protected Map<String, String> onPrepareParameters() {
         Map<String, String> params = new HashMap<String, String>();
-        if (mWaiveInterest.isChecked()) {
-        params.put(PARAM_WAIVE_INTEREST, "true");
-        } else {
+        if (mWaiveInterest == null || !mWaiveInterest.isChecked()) {
         params.put(PARAM_WAIVE_INTEREST, "false");
+        } else {
+        params.put(PARAM_WAIVE_INTEREST, "true");
         }
+        params.put(PARAM_TRANSACTION_DATE, mTransactionDateInput.getText().toString());
+        params.put(PARAM_PAYMENT_MODE, mTransactionTypes.get(mPaymentModeInput.getSelectedItem()).toString());
+        params.put(PARAM_RECEIPT_ID, mReceiptIdInput.getText().toString());
+        params.put(PARAM_RECEIPT_DATE, mReceiptDateInput.getText().toString());
         return params;
     }
 

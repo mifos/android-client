@@ -92,6 +92,14 @@ public class CenterDetailsViewBuilder implements CustomerDetailsViewBuilder {
             }
             items.put(savingsLabel, savingsAccounts);
         }
+        if (mDetails.getClosedSavingsAccounts()!=null && mDetails.getClosedSavingsAccounts().size() > 0) {
+            String closedSavingsLabel = mContext.getString(R.string.closedSavingsLabel);
+            List<AccountBasicInformation> closedSavingsAccounts = new ArrayList<AccountBasicInformation>();
+            for (SavingsAccountBasicInformation account : mDetails.getClosedSavingsAccounts()) {
+                closedSavingsAccounts.add(account);
+            }
+            items.put(closedSavingsLabel, closedSavingsAccounts);
+        }
         if (items.size() > 0) {
             list.setAdapter(new AccountsExpandableListAdapter(mContext, items));
         }

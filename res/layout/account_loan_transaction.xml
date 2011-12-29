@@ -56,5 +56,16 @@
             android:onClick="onDisburseLoanSelected"
             />
 
+        <TextView
+            style="@style/InfoBig"
+            android:gravity="center"
+            android:id="@+id/no_loan_operation"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="gone"
+            android:layout_below="@id/accountLoan_disburseLoan"
+            android:text="@string/no_operation_available"
+            />
+
         </RelativeLayout>
 </ScrollView>

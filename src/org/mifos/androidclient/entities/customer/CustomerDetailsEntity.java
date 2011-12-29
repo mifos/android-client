@@ -36,10 +36,21 @@ public abstract class CustomerDetailsEntity extends BaseEntity implements Serial
     private List<CustomerSurvey> customerSurveys;
     private CustomerMeeting customerMeeting;
     private List<SavingsAccountBasicInformation> savingsAccountsInUse;
+    private List<SavingsAccountBasicInformation> closedSavingsAccounts;
+
+
 
     public CustomerAccountSummary getCustomerAccountSummary() {
 
         return customerAccountSummary;
+    }
+
+    public List<SavingsAccountBasicInformation> getClosedSavingsAccounts() {
+        return closedSavingsAccounts;
+    }
+
+    public void setClosedSavingsAccounts(List<SavingsAccountBasicInformation> closedSavingsAccounts) {
+        this.closedSavingsAccounts = closedSavingsAccounts;
     }
 
     public void setCustomerAccountSummary(CustomerAccountSummary customerAccountSummary) {

@@ -28,6 +28,8 @@ public class ClientDetails extends CustomerDetailsEntity implements Serializable
     private List<CustomerFlag> customerFlags;
     private ClientPerformanceHistory clientPerformanceHistory;
     private List<LoanAccountBasicInformation> loanAccountsInUse;
+    private List<SavingsAccountBasicInformation> closedSavingsAccounts;
+    private List<LoanAccountBasicInformation> closedLoanAccounts;
     private ClientDisplay clientDisplay;
 
     public List<CustomerFlag> getCustomerFlags() {
@@ -58,8 +60,23 @@ public class ClientDetails extends CustomerDetailsEntity implements Serializable
         return clientDisplay;
     }
 
+    public List<SavingsAccountBasicInformation> getClosedSavingsAccounts() {
+        return closedSavingsAccounts;
+    }
+
+    public void setClosedSavingsAccounts(List<SavingsAccountBasicInformation> closedSavingsAccounts) {
+        this.closedSavingsAccounts = closedSavingsAccounts;
+    }
+
+    public List<LoanAccountBasicInformation> getClosedLoanAccounts() {
+        return closedLoanAccounts;
+    }
+
+    public void setClosedLoanAccounts(List<LoanAccountBasicInformation> closedLoanAccounts) {
+        this.closedLoanAccounts = closedLoanAccounts;
+    }
+
     public void setClientDisplay(ClientDisplay clientDisplay) {
         this.clientDisplay = clientDisplay;
     }
-
 }
