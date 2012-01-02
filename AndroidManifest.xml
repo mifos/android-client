@@ -40,6 +40,7 @@
         <activity android:name=".main.ApplyLoanAdjustmentActivity" />
         <activity android:name=".main.SavingsTransactionActivity" />
         <activity android:name=".main.ApplyLoanAccountRepayLoanActivity"/>
+        <activity android:name=".main.CollectionSheetCentersActivity" />
 
     </application>
 

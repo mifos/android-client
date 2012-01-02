@@ -77,6 +77,7 @@
     -->
     <string name="client_main_button_client_list">Browse customers</string>
     <string name="client_main_button_meetings_list">Upcoming meetings</string>
+    <string name="client_main_button_collectionSheet">Enter collection sheet data</string>
     <string name="client_main_label">Welcome to Mifos\nAndroid client!</string>
 
     <!--
@@ -477,6 +478,11 @@
 
     <string name="savingsTransaction_transactionType_deposit">Deposit</string>
     <string name="savingsTransaction_transactionType_withdrawal">Withdrawal</string>
+
+    <!--
+        String values for CollectionSheetCentersActivity
+    -->
+    <string name="collectionSheetCenters_header">Choose a center to enter collection sheet data for:</string>
 
 
 </resources>

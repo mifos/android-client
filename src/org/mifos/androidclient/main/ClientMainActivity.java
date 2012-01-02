@@ -60,6 +60,17 @@ public class ClientMainActivity extends MifosActivity {
     }
 
     /**
+     * Called upon pressing the collection sheets button.<br />
+     * Configured in the layout file of this activity.
+     *
+     * @param view the button which was pressed
+     */
+    public void onCollectionSheetsSelected(View view) {
+        Intent intent = new Intent().setClass(this, CollectionSheetCentersActivity.class);
+        startActivity(intent);
+    }
+
+    /**
      * Checks whether the Mifos server address has been specified or not and
      * displays a dialog prompting for it in the latter case.
      */
