@@ -21,11 +21,13 @@
 package org.mifos.androidclient.main;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.collectionsheet.CollectionSheetData;
 import org.mifos.androidclient.entities.simple.AbstractCustomer;
 import org.mifos.androidclient.entities.simple.Center;
+import org.mifos.androidclient.net.services.CollectionSheetService;
 import org.mifos.androidclient.templates.DownloaderActivity;
 import org.mifos.androidclient.templates.ServiceConnectivityTask;
 import org.springframework.web.client.RestClientException;
@@ -35,28 +37,64 @@ public class CollectionSheetActivity extends DownloaderActivity {
     private Center mCenter;
     private CollectionSheetData mCollectionSheetData;
 
+    private CollectionSheetService mCollectionSheetService;
+
+    private CollectionSheetTask mCollectionSheetTask;
+
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.collection_sheet);
 
-        mCenter = (Center)bundle.getSerializable(AbstractCustomer.BUNDLE_KEY);
+        mCenter = (Center)getIntent().getSerializableExtra((AbstractCustomer.BUNDLE_KEY));
+
+        mCollectionSheetService = new CollectionSheetService(this);
     }
 
-    private class CollectionSheetTask extends ServiceConnectivityTask<String, Void, CollectionSheetData> {
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mCollectionSheetTask != null) {
+            mCollectionSheetTask.terminate();
+            mCollectionSheetTask = null;
+        }
+    }
+
+    @Override
+    protected void onSessionActive() {
+        super.onSessionActive();
+        if (mCollectionSheetData == null) {
+            runCollectionSheetTask();
+        }
+    }
+
+    private void runCollectionSheetTask() {
+        if (mCenter != null) {
+            if (mCollectionSheetTask == null || mCollectionSheetTask.getStatus() != AsyncTask.Status.RUNNING) {
+                mCollectionSheetTask = new CollectionSheetTask(
+                        this,
+                        getString(R.string.dialog_loading_message),
+                        getString(R.string.collectionSheet_loadingText)
+                );
+                mCollectionSheetTask.execute(mCenter.getId());
+            }
+        }
+    }
+
+    private class CollectionSheetTask extends ServiceConnectivityTask<Integer,Void,CollectionSheetData> {
 
         public CollectionSheetTask(Context context, String progressTitle, String progressMessage) {
             super(context, progressTitle, progressMessage);
         }
 
         @Override
-        protected CollectionSheetData doInBackgroundBody(String... params) throws RestClientException, IllegalArgumentException {
-            return null;
+        protected CollectionSheetData doInBackgroundBody(Integer... params) throws RestClientException, IllegalArgumentException {
+            return mCollectionSheetService.getCollectionSheetForCustomer(params[0]);
         }
 
         @Override
         protected void onPostExecuteBody(CollectionSheetData collectionSheetData) {
-
+            mCollectionSheetData = collectionSheetData;
         }
 
     }

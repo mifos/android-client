@@ -20,33 +20,36 @@
 
 package org.mifos.androidclient.entities.collectionsheet;
 
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
-import org.mifos.androidclient.util.serialization.JodaLocalDateDeserializer;
-
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 
-public class CollectionSheetData implements Serializable {
+public class CollectionSheetCustomerAccount implements Serializable {
 
-    private Date date;
-    private List<CollectionSheetCustomer> collectionSheetCustomer;
+    private Integer accountId;
+    private Short currencyId;
+    private Double totalCustomerAccountCollectionFee;
 
-    public Date getDate() {
-        return date;
+    public Integer getAccountId() {
+        return accountId;
     }
 
-    @JsonDeserialize(using = JodaLocalDateDeserializer.class)
-    public void setDate(Date date) {
-        this.date = date;
+    public void setAccountId(Integer accountId) {
+        this.accountId = accountId;
     }
 
-    public List<CollectionSheetCustomer> getCollectionSheetCustomer() {
-        return collectionSheetCustomer;
+    public Short getCurrencyId() {
+        return currencyId;
     }
 
-    public void setCollectionSheetCustomer(List<CollectionSheetCustomer> collectionSheetCustomer) {
-        this.collectionSheetCustomer = collectionSheetCustomer;
+    public void setCurrencyId(Short currencyId) {
+        this.currencyId = currencyId;
+    }
+
+    public Double getTotalCustomerAccountCollectionFee() {
+        return totalCustomerAccountCollectionFee;
+    }
+
+    public void setTotalCustomerAccountCollectionFee(Double totalCustomerAccountCollectionFee) {
+        this.totalCustomerAccountCollectionFee = totalCustomerAccountCollectionFee;
     }
 
 }

@@ -20,11 +20,14 @@
 
 package org.mifos.androidclient.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
 import org.mifos.androidclient.R;
+import org.mifos.androidclient.entities.simple.AbstractCustomer;
+import org.mifos.androidclient.entities.simple.Center;
 
 public class CollectionSheetCentersActivity extends CentersListActivity {
 
@@ -40,7 +43,10 @@ public class CollectionSheetCentersActivity extends CentersListActivity {
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long rowId) {
-
+        Center center = (Center)adapterView.getAdapter().getItem(position);
+        Intent intent = new Intent().setClass(this, CollectionSheetActivity.class);
+        intent.putExtra(AbstractCustomer.BUNDLE_KEY, center);
+        startActivity(intent);
     }
 
     @Override

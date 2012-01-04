@@ -484,5 +484,10 @@
     -->
     <string name="collectionSheetCenters_header">Choose a center to enter collection sheet data for:</string>
 
+    <!--
+        String values for CollectionSheetActivity
+    -->
+    <string name="collectionSheet_loadingText">Getting collection sheet data</string>
+
 
 </resources>
