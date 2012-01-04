@@ -488,6 +488,14 @@
         String values for CollectionSheetActivity
     -->
     <string name="collectionSheet_loadingText">Getting collection sheet data</string>
-
+    <string name="collectionSheet_totalCollections_label">Total Collections</string>
+    <string name="collectionSheet_totalIssuesWithdrawals_label">Total Issues/Withdrawals</string>
+    <string name="collectionSheet_netCash_label">Net Cash:</string>
+    <string name="collectionSheet_dueCollections_label">Due collections:</string>
+    <string name="collectionSheet_otherCollections_label">Other collections:</string>
+    <string name="collectionSheet_loanDisbursements_label">Loan disbursements:</string>
+    <string name="collectionSheet_withdrawals_label">Withdrawals:</string>
+    <string name="collectionSheet_total_label">Total:</string>
+    <string name="collectionSheet_amount_label">Amount</string>
 
 </resources>
