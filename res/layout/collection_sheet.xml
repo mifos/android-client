@@ -17,6 +17,7 @@
 
         <LinearLayout
             android:id="@+id/collectionSheet_formFields"
+            android:orientation="vertical"
             android:layout_below="@id/collectionSheet_header"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
