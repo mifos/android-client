@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+            <TextView
+                style="@style/Header"
+                android:id="@+id/collectionSheet_customer_header"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <HorizontalScrollView
+                android:id="@+id/collectionSheet_horizontalView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/collectionSheet_customer_header">
+                <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/collectionSheet_customerTableLayout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="5"
+                    android:padding="3dp">
+                    <TableRow
+                        android:id="@+id/collectionSheet_customerTableRow"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        />
+                    </TableLayout>
+                </HorizontalScrollView>
+            <TextView
+                style="@style/Label"
+                android:id="@+id/collectionSheetCustomer_ac_Collections_label"
+                android:text="@string/collectionSheetCustomer_ac_Collections_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/collectionSheet_horizontalView"
+                />
+            <EditText
+                android:id="@+id/collectionSheetCustomer_ac_Collections"
+                android:layout_below="@id/collectionSheetCustomer_ac_Collections_label"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <Button
+                android:id="@+id/collectionSheet_customerSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/collectionSheetCustomer_ac_Collections"
+                android:text="@string/collectionSheetCustomer_save_button"
+                android:onClick="onCustomerSave"
+                />
+    </RelativeLayout>
+</ScrollView>

@@ -25,7 +25,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-@JsonIgnoreProperties(ignoreUnknown = true, value = { "totalDepositAmount" })
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CollectionSheetCustomerSavings implements Serializable {
 
     private Integer customerId;
@@ -34,9 +34,9 @@ public class CollectionSheetCustomerSavings implements Serializable {
     private String productShortName;
     private Short recommendedAmountUnitId;
     private Short currencyId;
-    private BigDecimal depositDue;
-    private BigDecimal depositPaid;
-
+    private Double depositDue;
+    private Double depositPaid;
+    private Double totalDepositAmount;
     public Integer getCustomerId() {
         return customerId;
     }
@@ -85,24 +85,27 @@ public class CollectionSheetCustomerSavings implements Serializable {
         this.currencyId = currencyId;
     }
 
-    public BigDecimal getDepositDue() {
+    public Double getDepositDue() {
         return depositDue;
     }
 
-    public void setDepositDue(BigDecimal depositDue) {
+    public void setDepositDue(Double depositDue) {
         this.depositDue = depositDue;
     }
 
-    public BigDecimal getDepositPaid() {
+    public Double getDepositPaid() {
         return depositPaid;
     }
 
-    public void setDepositPaid(BigDecimal depositPaid) {
+    public void setDepositPaid(Double depositPaid) {
         this.depositPaid = depositPaid;
     }
 
     public Double getTotalDepositAmount() {
-        return depositDue.subtract(depositPaid).doubleValue();
+        return totalDepositAmount;
+    }
+    public void setTotalDepositAmount(Double totalDepositAmount) {
+        this.totalDepositAmount = totalDepositAmount;
     }
 
 }

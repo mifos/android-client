@@ -31,6 +31,7 @@ import android.text.InputType;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+import org.codehaus.jackson.JsonGenerationException;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.SessionStatus;
 import org.mifos.androidclient.main.LoginActivity;
@@ -40,11 +41,9 @@ import org.mifos.androidclient.util.ServerMessageTranslator;
 import org.mifos.androidclient.util.ui.TableLayoutHelper;
 import org.springframework.web.client.RestClientException;
 
+import java.io.IOException;
 import java.io.Serializable;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * A base class for forms used to perform operations on Mifos customers
@@ -56,11 +55,11 @@ public abstract class OperationFormActivity extends MifosActivity
     private static final String PREVIOUS_STATE_BUNDLE_KEY = OperationFormActivity.class.getSimpleName() + "-previousState";
     private static final int DATE_DIALOG_ID = 0;
 
-    protected final static String STATUS_KEY = "status";
-    protected final static String STATUS_SUCCESS = "success";
-    protected final static String STATUS_ERROR = "error";
-    protected final static String STATUS_INTERRUPT = "interrupt";
-    protected final static String CAUSE_KEY = "cause";
+    public final static String STATUS_KEY = "status";
+    public final static String STATUS_SUCCESS = "success";
+    public final static String STATUS_ERROR = "error";
+    public final static String STATUS_INTERRUPT = "interrupt";
+    public final static String CAUSE_KEY = "cause";
 
     private LinearLayout mFormFields;
     private TextView mCurrentlySetTextView;
@@ -290,7 +289,7 @@ public abstract class OperationFormActivity extends MifosActivity
         finish();
     }
 
-    public void onSubmitPressed(View view) {
+    public void onSubmitPressed(View view) throws IOException {
         runFormSubmissionTask(onPrepareParameters());
     }
 
@@ -339,7 +338,7 @@ public abstract class OperationFormActivity extends MifosActivity
         }
     }
 
-    protected abstract Map<String,String> onPrepareParameters();
+    protected abstract Map<String,String> onPrepareParameters() throws IOException;
 
     protected abstract Map<String, String> onFormSubmission(Map<String,String> parameters);
 

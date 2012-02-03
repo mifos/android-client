@@ -21,6 +21,7 @@
 package org.mifos.androidclient.entities.collectionsheet;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 
 public class CollectionSheetCustomerAccount implements Serializable {
 
@@ -45,7 +46,8 @@ public class CollectionSheetCustomerAccount implements Serializable {
     }
 
     public Double getTotalCustomerAccountCollectionFee() {
-        return totalCustomerAccountCollectionFee;
+        DecimalFormat df = new DecimalFormat("#.##");
+        return Double.valueOf(df.format(totalCustomerAccountCollectionFee));
     }
 
     public void setTotalCustomerAccountCollectionFee(Double totalCustomerAccountCollectionFee) {

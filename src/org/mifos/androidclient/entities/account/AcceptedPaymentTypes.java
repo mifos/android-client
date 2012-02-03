@@ -21,6 +21,7 @@
 package org.mifos.androidclient.entities.account;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,6 +53,30 @@ public class AcceptedPaymentTypes implements Serializable {
         }
         return typesAsMap;
     }
+
+    public Map<String, Integer>  allTypes() {
+        Map<String, Integer> allTypesAsMap = new HashMap<String, Integer>();
+            List<List<PaymentType>> typesList = new ArrayList<List<PaymentType>>();
+            typesList.add(inFeeList);
+            typesList.add(outFeeList);
+            typesList.add(inDisbursementList);
+            typesList.add(outDisbursementList);
+            typesList.add(inRepaymentList);
+            typesList.add(outRepaymentList);
+            typesList.add(inWithdrawalList);
+            typesList.add(outWithdrawalList);
+            typesList.add(inDepositList);
+            typesList.add(outDepositList);
+            for(List<PaymentType> lo : typesList){
+                for (PaymentType type : lo){
+                     if(!allTypesAsMap.containsValue(lo.contains(type.getName()))) {
+                        allTypesAsMap.put(type.getName(), type.getId().intValue());
+                     }
+                }
+            }
+        return allTypesAsMap;
+    }
+
 
     public List<PaymentType> getInFeeList() {
         return inFeeList;

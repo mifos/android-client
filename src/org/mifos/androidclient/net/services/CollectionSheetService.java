@@ -22,10 +22,19 @@ package org.mifos.androidclient.net.services;
 
 import android.content.Context;
 import org.mifos.androidclient.entities.collectionsheet.CollectionSheetData;
+import org.mifos.androidclient.templates.OperationFormActivity;
+
+import java.io.OptionalDataException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class CollectionSheetService extends RestNetworkService {
 
     private final static String GET_COLLECTION_SHEET_PATH = "/collectionsheet/customer/id-%s.json";
+    private final static String SET_COLLECTION_SHEET_PATH = "/collectionsheet/save.json";
+    public static final String INVALID_COLLECTION_SHEET = "invalidCollectionSheet";
+    public static final String ERRORS = "errors";
 
     public CollectionSheetService(Context context) {
         super(context);
@@ -36,4 +45,33 @@ public class CollectionSheetService extends RestNetworkService {
         return mRestConnector.getForObject(url, CollectionSheetData.class);
     }
 
+    public Map<String, String> setCollectionSheetForCustomer(Map<String, String> params) {
+
+        String url = getServerUrl() + String.format(SET_COLLECTION_SHEET_PATH);
+        Map<String, Object> map = mRestConnector.postForObject(url, params ,  Map.class);
+        Map<String, String> results = new HashMap<String, String>();
+        StringBuilder stringBuilder = new StringBuilder();
+        List<String> errorCause = (List<String>) map.get(INVALID_COLLECTION_SHEET);
+
+        if(errorCause != null && !errorCause.isEmpty()) {
+            stringBuilder.append("Errors: ");
+            for (String error : errorCause) {
+                stringBuilder.append(error);
+                stringBuilder.append(", ");
+            }
+        }
+        String errors = (String) map.get(ERRORS);
+        if (errors != null && errors.length() > 0) {
+            stringBuilder.append(errors);
+        }
+        if(stringBuilder.length() > 0) {
+            results.put(OperationFormActivity.STATUS_KEY, OperationFormActivity.STATUS_ERROR);
+            results.put(OperationFormActivity.CAUSE_KEY, stringBuilder.toString());
+        }
+        else {
+            results.put(OperationFormActivity.STATUS_KEY, OperationFormActivity.STATUS_SUCCESS);
+        }
+
+        return results;
+    }
 }

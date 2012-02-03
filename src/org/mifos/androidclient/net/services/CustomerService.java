@@ -29,6 +29,7 @@ import java.util.Map;
 public class CustomerService extends RestNetworkService {
 
     private final static String LOAN_OFFICER_CUSTOMERS_PATH = "/personnel/id-current/clients.json";
+    private final static String LOAN_OFFICER_PATH = "/personnel/id-current.json";
     private final static String MEETINGS_LIST_PATH_PREFIX = "/personnel/id-current/meetings-";
     private final static String CLIENT_DETAILS_PATH_PREFIX = "/client/num-";
     private final static String GROUP_DETAILS_PATH_PREFIX = "/group/num-";
@@ -47,6 +48,11 @@ public class CustomerService extends RestNetworkService {
     public CustomersData getLoanOfficersCustomers() {
         String url = getServerUrl() + LOAN_OFFICER_CUSTOMERS_PATH;
         return mRestConnector.getForObject(url, CustomersData.class);
+    }
+
+    public LoanOfficerData getCurrentOfficer() {
+        String url = getServerUrl() + LOAN_OFFICER_PATH;
+        return mRestConnector.getForObject(url,LoanOfficerData.class);
     }
 
     public CustomersData getMeetingsList(String meetingDate) {

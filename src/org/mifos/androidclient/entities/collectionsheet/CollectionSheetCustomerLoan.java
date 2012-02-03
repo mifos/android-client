@@ -25,7 +25,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-@JsonIgnoreProperties(ignoreUnknown = true, value = { "totalRepaymentDue", "totalDisbursement" })
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CollectionSheetCustomerLoan implements Serializable {
 
     private Integer customerId;
@@ -34,24 +34,44 @@ public class CollectionSheetCustomerLoan implements Serializable {
     private String productShortName;
     private Short productId;
     private Short currencyId;
-    private BigDecimal principalDue;
-    private BigDecimal principalPaid;
-    private BigDecimal interestDue;
-    private BigDecimal interestPaid;
-    private BigDecimal penaltyDue;
-    private BigDecimal penaltyPaid;
-    private BigDecimal miscFeesDue;
-    private BigDecimal miscFeesPaid;
-    private BigDecimal miscPenaltyDue;
-    private BigDecimal miscPenaltyPaid;
-
-    private Double totalAccountFees;
-
-    private BigDecimal disbursementAmount;
-    private Short payInterestAtDisbursement;
+    private Double payInterestAtDisbursement;
     private Double amountDueAtDisbursement;
-
+    private Double totalRepaymentDue;
+    private Double totalDisbursement;
     private boolean disbursalAccount;
+
+    public Double getPayInterestAtDisbursement() {
+        return payInterestAtDisbursement;
+    }
+
+    public void setPayInterestAtDisbursement(Double payInterestAtDisbursement) {
+        this.payInterestAtDisbursement = payInterestAtDisbursement;
+    }
+
+    public Double getAmountDueAtDisbursement() {
+        return amountDueAtDisbursement;
+    }
+
+    public void setAmountDueAtDisbursement(Double amountDueAtDisbursement) {
+        this.amountDueAtDisbursement = amountDueAtDisbursement;
+    }
+
+    public Double getTotalDisbursement() {
+        return totalDisbursement;
+    }
+
+    public void setTotalDisbursement(Double totalDisbursement) {
+        this.totalDisbursement = totalDisbursement;
+    }
+
+    public Double getTotalRepaymentDue() {
+        return totalRepaymentDue;
+    }
+
+    public void setTotalRepaymentDue(Double totalRepaymentDue) {
+        this.totalRepaymentDue = totalRepaymentDue;
+    }
+
 
     public Integer getCustomerId() {
         return customerId;
@@ -99,128 +119,6 @@ public class CollectionSheetCustomerLoan implements Serializable {
 
     public void setCurrencyId(Short currencyId) {
         this.currencyId = currencyId;
-    }
-
-    public BigDecimal getPrincipalDue() {
-        return principalDue;
-    }
-
-    public void setPrincipalDue(BigDecimal principalDue) {
-        this.principalDue = principalDue;
-    }
-
-    public BigDecimal getPrincipalPaid() {
-        return principalPaid;
-    }
-
-    public void setPrincipalPaid(BigDecimal principalPaid) {
-        this.principalPaid = principalPaid;
-    }
-
-    public BigDecimal getInterestDue() {
-        return interestDue;
-    }
-
-    public void setInterestDue(BigDecimal interestDue) {
-        this.interestDue = interestDue;
-    }
-
-    public BigDecimal getInterestPaid() {
-        return interestPaid;
-    }
-
-    public void setInterestPaid(BigDecimal interestPaid) {
-        this.interestPaid = interestPaid;
-    }
-
-    public BigDecimal getPenaltyDue() {
-        return penaltyDue;
-    }
-
-    public void setPenaltyDue(BigDecimal penaltyDue) {
-        this.penaltyDue = penaltyDue;
-    }
-
-    public BigDecimal getPenaltyPaid() {
-        return penaltyPaid;
-    }
-
-    public void setPenaltyPaid(BigDecimal penaltyPaid) {
-        this.penaltyPaid = penaltyPaid;
-    }
-
-    public BigDecimal getMiscFeesDue() {
-        return miscFeesDue;
-    }
-
-    public void setMiscFeesDue(BigDecimal miscFeesDue) {
-        this.miscFeesDue = miscFeesDue;
-    }
-
-    public BigDecimal getMiscFeesPaid() {
-        return miscFeesPaid;
-    }
-
-    public void setMiscFeesPaid(BigDecimal miscFeesPaid) {
-        this.miscFeesPaid = miscFeesPaid;
-    }
-
-    public BigDecimal getMiscPenaltyDue() {
-        return miscPenaltyDue;
-    }
-
-    public void setMiscPenaltyDue(BigDecimal miscPenaltyDue) {
-        this.miscPenaltyDue = miscPenaltyDue;
-    }
-
-    public BigDecimal getMiscPenaltyPaid() {
-        return miscPenaltyPaid;
-    }
-
-    public void setMiscPenaltyPaid(BigDecimal miscPenaltyPaid) {
-        this.miscPenaltyPaid = miscPenaltyPaid;
-    }
-
-    public Double getTotalAccountFees() {
-        return totalAccountFees;
-    }
-
-    public void setTotalAccountFees(Double totalAccountFees) {
-        this.totalAccountFees = totalAccountFees;
-    }
-
-    public BigDecimal getDisbursementAmount() {
-        return disbursementAmount;
-    }
-
-    public void setDisbursementAmount(BigDecimal disbursementAmount) {
-        this.disbursementAmount = disbursementAmount;
-    }
-
-    public Short getPayInterestAtDisbursement() {
-        return payInterestAtDisbursement;
-    }
-
-    public void setPayInterestAtDisbursement(Short payInterestAtDisbursement) {
-        this.payInterestAtDisbursement = payInterestAtDisbursement;
-    }
-
-    public Double getAmountDueAtDisbursement() {
-        return amountDueAtDisbursement;
-    }
-
-    public void setAmountDueAtDisbursement(Double amountDueAtDisbursement) {
-        this.amountDueAtDisbursement = amountDueAtDisbursement;
-    }
-
-    public Double getTotalRepaymentDue() {
-        return principalDue.add(interestDue).add(penaltyDue).add(miscFeesDue).add(miscPenaltyDue).subtract(
-                principalPaid.add(interestPaid).add(penaltyPaid).add(miscFeesPaid).add(miscPenaltyPaid)
-        ).add(new BigDecimal(this.totalAccountFees)).doubleValue();
-    }
-
-    public Double getTotalDisbursement() {
-        return disbursementAmount.doubleValue();
     }
 
     public boolean isDisbursalAccount() {

@@ -60,7 +60,7 @@ public class CentersListActivity extends DownloaderActivity
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.centers_list);
-
+        CollectionSheetHolder.setCOLLECTION_SHEET(1);
         if (bundle != null && bundle.containsKey(CustomersData.BUNDLE_KEY)) {
             mCustomersData = (CustomersData)bundle.getSerializable(CustomersData.BUNDLE_KEY);
         }
@@ -215,21 +215,23 @@ public class CentersListActivity extends DownloaderActivity
         protected void onPostExecuteBody(CustomersData result) {
             if (result != null) {
                 mCustomersData = result;
-                if (ValueUtils.hasElements(mCustomersData.getGroups()) || ValueUtils.hasElements(mCustomersData.getClients())) {
-                    Center emptyCenter = new Center();
-                    emptyCenter.setDisplayName(getString(R.string.centerslist_no_center));
-                    emptyCenter.setId(ApplicationConstants.DUMMY_IDENTIFIER);
-                    emptyCenter.setSearchId(ApplicationConstants.EMPTY_STRING);
-                    emptyCenter.setGroups(mCustomersData.getGroups());
-                    if (ValueUtils.hasElements(mCustomersData.getClients())) {
-                        Group emptyGroup = new Group();
-                        emptyGroup.setDisplayName(getString(R.string.centersList_clientsAssignedToBranch));
-                        emptyGroup.setId(ApplicationConstants.DUMMY_IDENTIFIER);
-                        emptyGroup.setSearchId(ApplicationConstants.EMPTY_STRING);
-                        emptyGroup.setClients(mCustomersData.getClients());
-                        emptyCenter.getGroups().add(emptyGroup);
+                if(CollectionSheetHolder.getCOLLECTION_SHEET() == 1) {
+                    if (ValueUtils.hasElements(mCustomersData.getGroups()) || ValueUtils.hasElements(mCustomersData.getClients())) {
+                        Center emptyCenter = new Center();
+                        emptyCenter.setDisplayName(getString(R.string.centerslist_no_center));
+                        emptyCenter.setId(ApplicationConstants.DUMMY_IDENTIFIER);
+                        emptyCenter.setSearchId(ApplicationConstants.EMPTY_STRING);
+                        emptyCenter.setGroups(mCustomersData.getGroups());
+                        if (ValueUtils.hasElements(mCustomersData.getClients())) {
+                            Group emptyGroup = new Group();
+                            emptyGroup.setDisplayName(getString(R.string.centersList_clientsAssignedToBranch));
+                            emptyGroup.setId(ApplicationConstants.DUMMY_IDENTIFIER);
+                            emptyGroup.setSearchId(ApplicationConstants.EMPTY_STRING);
+                            emptyGroup.setClients(mCustomersData.getClients());
+                            emptyCenter.getGroups().add(emptyGroup);
+                        }
+                        mCustomersData.getCenters().add(emptyCenter);
                     }
-                    mCustomersData.getCenters().add(emptyCenter);
                 }
                 repopulateCustomersList(result);
             }

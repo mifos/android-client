@@ -29,6 +29,8 @@ import java.util.List;
 
 public class CollectionSheetData implements Serializable {
 
+    public static final String BUNDLE_KEY = CollectionSheetData.class.getSimpleName();
+
     private Date date;
     private List<CollectionSheetCustomer> collectionSheetCustomer;
 

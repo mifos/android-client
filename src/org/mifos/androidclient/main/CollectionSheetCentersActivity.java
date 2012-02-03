@@ -34,7 +34,7 @@ public class CollectionSheetCentersActivity extends CentersListActivity {
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-
+        CollectionSheetHolder.setCOLLECTION_SHEET(0);
         TextView header = (TextView)findViewById(R.id.centers_list_label);
         header.setText(R.string.collectionSheetCenters_header);
         TextView hint = (TextView)findViewById(R.id.centers_list_hint);
@@ -44,6 +44,7 @@ public class CollectionSheetCentersActivity extends CentersListActivity {
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long rowId) {
         Center center = (Center)adapterView.getAdapter().getItem(position);
+        CollectionSheetHolder.setSelectedCenter(center);
         Intent intent = new Intent().setClass(this, CollectionSheetActivity.class);
         intent.putExtra(AbstractCustomer.BUNDLE_KEY, center);
         startActivity(intent);
@@ -53,5 +54,6 @@ public class CollectionSheetCentersActivity extends CentersListActivity {
     public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long rowId) {
         return true;
     }
+
 
 }

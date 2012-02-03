@@ -12,42 +12,81 @@
             android:id="@+id/collectionSheet_header"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:text="@string/collectionSheet_header"
             style="@style/Header"
             />
-
         <LinearLayout
             android:id="@+id/collectionSheet_formFields"
             android:orientation="vertical"
             android:layout_below="@id/collectionSheet_header"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
-            <include
-                layout="@layout/edit_text_form_field"
+
+            <TextView
+                style="@style/Label"
+                android:id="@+id/collectionSheet_formField_transactionDate_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/collectionSheet_transactionDate_label"
+                />
+            <EditText
                 android:id="@+id/collectionSheet_formField_transactionDate"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 />
-            <include
-                layout="@layout/combo_box_form_field"
-                android:id="@+id/collectionSheet_formField_paymentMode"
+            <TextView
+                style="@style/Label"
+                android:id="@+id/collectionSheet_formField_transactionDate_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/collectionSheet_formField_paymentMode_label"
                 />
-            <include
-                layout="@layout/edit_text_form_field"
+            <Spinner
+                android:id="@+id/collectionSheet_spinner_paymentTypes"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                />
+            <TextView
+                style="@style/Label"
+                android:id="@+id/collectionSheet_formField_receiptId_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/collectionSheet_formField_receiptId_label"
+                />
+            <EditText
                 android:id="@+id/collectionSheet_formField_receiptId"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 />
-            <include
-                layout="@layout/edit_text_form_field"
+
+            <TextView
+                style="@style/Label"
+                android:id="@+id/collectionSheet_formField_receiptDate_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/collectionSheet_formField_receiptDate_label"
+                />
+
+            <EditText
                 android:id="@+id/collectionSheet_formField_receiptDate"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onDateFieldClicked"
                 />
         </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/collectionSheet_entriesWrapper"
             android:layout_below="@id/collectionSheet_formFields"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
+            android:focusableInTouchMode="true"
             android:layout_height="wrap_content">
             <ExpandableListView
                 android:id="@+id/collectionSheet_entries"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:groupIndicator="@null"
                 />
         </LinearLayout>
 
@@ -82,7 +121,6 @@
                     android:id="@+id/collectionSheet_dueCollections"
                     style="@style/TableItem"
                     android:layout_column="2"
-                    android:text="@string/not_available"
                     />
             </TableRow>
             <View
@@ -98,7 +136,6 @@
                     android:id="@+id/collectionSheet_otherCollections"
                     style="@style/TableItem"
                     android:layout_column="2"
-                    android:text="@string/not_available"
                     />
             </TableRow>
             <View
@@ -114,7 +151,6 @@
                     android:id="@+id/collectionSheet_collectionsTotal"
                     style="@style/ItalicizedTableItem"
                     android:layout_column="2"
-                    android:text="@string/not_available"
                     />
             </TableRow>
             <View
@@ -145,7 +181,6 @@
                     android:id="@+id/collectionSheet_loanDisbursements"
                     style="@style/TableItem"
                     android:layout_column="2"
-                    android:text="@string/not_available"
                     />
             </TableRow>
             <View
@@ -177,7 +212,6 @@
                     android:id="@+id/collectionSheet_issuesWithdrawalsTotal"
                     style="@style/ItalicizedTableItem"
                     android:layout_column="2"
-                    android:text="@string/not_available"
                     />
             </TableRow>
             <View
@@ -193,11 +227,18 @@
                     android:id="@+id/collectionSheet_netCash"
                     style="@style/TableColumnHeader"
                     android:layout_column="2"
-                    android:text="@string/not_available"
                     />
             </TableRow>
         </TableLayout>
 
-    </RelativeLayout>
+        <Button
+        android:id="@+id/collectionSheet_saveButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/collectionSheet_summary"
+        android:text="@string/collectionSheetCustomer_save_button"
+        android:onClick="onApplyCollectionSheet"
+        />
 
+    </RelativeLayout>
 </ScrollView>

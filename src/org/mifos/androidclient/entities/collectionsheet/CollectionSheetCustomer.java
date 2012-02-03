@@ -20,10 +20,13 @@
 
 package org.mifos.androidclient.entities.collectionsheet;
 
+import org.mifos.androidclient.util.listadapters.SimpleListItem;
+
 import java.io.Serializable;
 import java.util.List;
 
-public class CollectionSheetCustomer implements Serializable {
+public class CollectionSheetCustomer implements Serializable, SimpleListItem {
+    public static final String BUNDLE_KEY = CollectionSheetCustomer.class.getSimpleName();
 
     private Integer customerId;
     private String name;
@@ -125,4 +128,15 @@ public class CollectionSheetCustomer implements Serializable {
         this.individualSavingAccounts = individualSavingAccounts;
     }
 
+    @Override
+    public String getListLabel() {
+        String listLabel;
+        listLabel = getName();
+        return listLabel;
+    }
+
+    @Override
+    public int getItemIdentifier() {
+        return getCustomerId();
+    }
 }
