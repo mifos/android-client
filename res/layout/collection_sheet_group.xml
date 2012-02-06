@@ -8,6 +8,7 @@
         android:id="@+id/collectionSheetGroup_label"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:padding="7dp"
         />
 
 </LinearLayout>

@@ -39,7 +39,6 @@ import org.mifos.androidclient.templates.DownloaderActivity;
 import org.mifos.androidclient.templates.ServiceConnectivityTask;
 import org.springframework.web.client.RestClientException;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +51,7 @@ public class CollectionSheetActivity extends DownloaderActivity implements Expan
     private CollectionSheetTask mCollectionSheetTask;
     private SystemSettingsService mSystemSettingsService;
     private SaveCollectionSheet mSaveCustomer = new SaveCollectionSheet();
-    private List<CollectionSheetCustomer> mCustomerList;
+
     private CollectionSheetCustomer mSelectedCustomer;
     private CustomerService mCustomerService;
     public LoanOfficerData mLoanOfficer;
@@ -62,7 +61,7 @@ public class CollectionSheetActivity extends DownloaderActivity implements Expan
         setContentView(R.layout.collection_sheet);
 
         mCenter = (Center)getIntent().getSerializableExtra((AbstractCustomer.BUNDLE_KEY));
-
+        mSaveCustomer = CollectionSheetHolder.getSaveCollectionSheet();
         mCollectionSheetService = new CollectionSheetService(this);
         mSystemSettingsService = new SystemSettingsService(this);
         mCustomerService = new CustomerService(this);
@@ -108,6 +107,10 @@ public class CollectionSheetActivity extends DownloaderActivity implements Expan
     protected void updateContent(CollectionSheetData collectionSheet){
         if(collectionSheet != null) {
            mCollectionSheetData = collectionSheet;
+
+            TextView textView = (TextView)findViewById(R.id.collectionSheet_header);
+            textView.setText(mCenter.getDisplayName());
+
             if (CollectionSheetHolder.getCollectionSheetData() == null) {
                 mCollectionSheetData = collectionSheet;
             }
@@ -130,10 +133,13 @@ public class CollectionSheetActivity extends DownloaderActivity implements Expan
             expandableListView.setOnChildClickListener(this);
             ArrayList<SaveCollectionSheetCustomer> saveCollectionSheetCustomers = new ArrayList<SaveCollectionSheetCustomer>();
             prepareSaveCollectionSheet(saveCollectionSheetCustomers);
+            CollectionSheetHolder.getSaveCollectionSheet();
             mSaveCustomer.setSaveCollectionSheetCustomers(saveCollectionSheetCustomers);
+            CollectionSheetHolder.setSaveCollectionSheet(mSaveCustomer);
+            CollectionSheetHolder.setCollectionSheetData(mCollectionSheetData);
             }
         }
-        prepareSummaryTable();
+
     }
 
 
@@ -230,55 +236,7 @@ public class CollectionSheetActivity extends DownloaderActivity implements Expan
         }
     }
 
-    private void prepareSummaryTable() {
-        double dueCollections = 0.0;
-        double otherCollections = 0.0;
-        double loanDisbursements = 0.0;
-        double withdrawals = 0.0;
 
-        List<CollectionSheetCustomer> customer = mCollectionSheetData.getCollectionSheetCustomer();
-        mCustomerList = customer;
-        for(CollectionSheetCustomer cst: customer) {
-            CollectionSheetCustomerAccount accounts = cst.getCollectionSheetCustomerAccount();
-
-            otherCollections += accounts.getTotalCustomerAccountCollectionFee();
-
-            if(cst.getCollectionSheetCustomerLoan().size() > 0 && cst.getCollectionSheetCustomerLoan() != null) {
-                List<CollectionSheetCustomerLoan> loans = cst.getCollectionSheetCustomerLoan();
-                for(CollectionSheetCustomerLoan loan : loans) {
-                    dueCollections += loan.getTotalRepaymentDue();
-                    loanDisbursements += loan.getTotalDisbursement();
-                }
-            }
-            if(cst.getCollectionSheetCustomerSaving() != null && cst.getCollectionSheetCustomerSaving().size() > 0){
-                List<CollectionSheetCustomerSavings> savings = cst.getCollectionSheetCustomerSaving();
-                for(CollectionSheetCustomerSavings saving :savings) {
-                    dueCollections += saving.getTotalDepositAmount();
-                }
-            }
-            if(cst.getIndividualSavingAccounts() != null && cst.getIndividualSavingAccounts().size() > 0) {
-                List<CollectionSheetCustomerSavings> individuals = cst.getIndividualSavingAccounts();
-                for(CollectionSheetCustomerSavings individual : individuals) {
-                    dueCollections += individual.getTotalDepositAmount();
-                }
-            }
-        }
-
-        TextView textView = (TextView)findViewById(R.id.collectionSheet_dueCollections);
-        textView.setText(String.format("%.1f", dueCollections));
-        textView = (TextView)findViewById(R.id.collectionSheet_otherCollections);
-        textView.setText(String.format("%.1f", otherCollections));
-        textView = (TextView)findViewById(R.id.collectionSheet_collectionsTotal);
-        textView.setText(String.format("%.1f", (otherCollections + dueCollections)));
-        textView = (TextView)findViewById(R.id.collectionSheet_loanDisbursements);
-        textView.setText(String.format("%.1f", (loanDisbursements)));
-        textView = (TextView)findViewById(R.id.collectionSheet_withdrawals);
-        textView.setText(String.format("%.1f", (withdrawals)));
-        textView = (TextView)findViewById(R.id.collectionSheet_issuesWithdrawalsTotal);
-        textView.setText(String.format("%.1f", (withdrawals + loanDisbursements)));
-        textView = (TextView)findViewById(R.id.collectionSheet_netCash);
-        textView.setText(String.format("%.1f", (dueCollections + otherCollections - loanDisbursements)));
-    }
 
     private void updateCustomers(CollectionSheetData collectionSheet) {
         List<CollectionSheetCustomer> tmpCustomer = collectionSheet.getCollectionSheetCustomer();

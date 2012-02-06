@@ -506,6 +506,8 @@
     <string name="pre_collectionSheet_formField_paymentMode_label">Mode of payment:</string>
     <string name="pre_collectionSheet_formField_receiptId_label">Receipt ID:</string>
     <string name="pre_collectionSheet_formField_receiptDate_label">Receipt date:</string>
+    <string name="pre_collectionSheet_continueButton_label">Continue</string>
+    <string name="pre_collectionSheet_cancelButton_label">Cancel</string>
 
     <!--
         String values for CollectionSheetCustomerActivity

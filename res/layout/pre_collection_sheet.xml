@@ -4,7 +4,7 @@
               android:layout_height="fill_parent">
 
         <TextView
-            android:id="@+id/collectionSheet_header"
+            android:id="@+id/pre_collectionSheet_header"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/pre_collectionSheet_header"
@@ -13,7 +13,7 @@
         <LinearLayout
             android:id="@+id/pre_collectionSheet_formFields"
             android:orientation="vertical"
-            android:layout_below="@id/collectionSheet_header"
+            android:layout_below="@id/pre_collectionSheet_header"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
@@ -69,12 +69,27 @@
                 android:onClick="onDateFieldClicked"
                 />
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/pre_collectionSheet_buttons"
+            android:layout_below="@id/pre_collectionSheet_formFields"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
             <Button
-                android:id="@+id/collectionSheet_saveButton"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/pre_collectionSheet_formFields"
-                android:text="@string/collectionSheetCustomer_save_button"
+                android:id="@+id/pre_collectionSheet_continueButton_label"
+                android:layout_width="0.0dip"
+                android:layout_weight="1.0"
+                android:layout_height="fill_parent"
+                android:text="@string/pre_collectionSheet_continueButton_label"
                 android:onClick="onContinueCollectionSheet"
             />
+                <Button
+                android:id="@+id/pre_collectionSheet_cancelButton_label"
+                android:layout_width="0.0dip"
+                android:layout_weight="1.0"
+                android:layout_height="fill_parent"
+                android:text="@string/pre_collectionSheet_cancelButton_label"
+                android:onClick="onBackFromPreCollectionSheet"
+            />
+        </LinearLayout>
 </RelativeLayout>

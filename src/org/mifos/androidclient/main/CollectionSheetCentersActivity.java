@@ -39,6 +39,10 @@ public class CollectionSheetCentersActivity extends CentersListActivity {
         header.setText(R.string.collectionSheetCenters_header);
         TextView hint = (TextView)findViewById(R.id.centers_list_hint);
         hint.setVisibility(View.GONE);
+        CollectionSheetHolder.setCollectionSheetData(null);
+        CollectionSheetHolder.setSelectedCenter(null);
+        CollectionSheetHolder.setSaveCollectionSheet(null);
+        CollectionSheetHolder.setCurrentCustomer(null);
     }
 
     @Override

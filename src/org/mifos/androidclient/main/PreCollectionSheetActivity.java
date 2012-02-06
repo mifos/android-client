@@ -29,7 +29,7 @@ public class PreCollectionSheetActivity extends CollectionSheetActivity implemen
     private EditText dateField;
     private EditText receiptID;
     private Spinner typesSpinner;
-
+    private DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
     private Map<String, Integer> mTransactionTypes;
     private SaveCollectionSheet mSaveCustomer = new SaveCollectionSheet();
 
@@ -46,10 +46,26 @@ public class PreCollectionSheetActivity extends CollectionSheetActivity implemen
     }
 
     public void onContinueCollectionSheet(View view) {
+        mSaveCustomer.setUserId(mLoanOfficer.getId());
+        mSaveCustomer.setPaymentType((short)1);
+        mSaveCustomer.setReceiptId(receiptID.getText().toString());
+        mSaveCustomer.setTransactionDate(mCollectionSheetData.getDate());
+        if (mSaveCustomer.getReceiptDate() != null) {
+            try {
+                mSaveCustomer.setReceiptDate(df.parse(dateField.getText().toString()));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
         CollectionSheetHolder.setSaveCollectionSheet(mSaveCustomer);
         Center center = CollectionSheetHolder.getSelectedCenter();
         Intent intent = new Intent().setClass(this, CollectionSheetActivity.class);
         intent.putExtra(AbstractCustomer.BUNDLE_KEY, center);
+        startActivity(intent);
+    }
+
+    public void onBackFromPreCollectionSheet(View view) {
+        Intent intent = new Intent().setClass(this, CollectionSheetCentersActivity.class);
         startActivity(intent);
     }
 
@@ -71,7 +87,6 @@ public class PreCollectionSheetActivity extends CollectionSheetActivity implemen
             linearLayout = (LinearLayout)findViewById(R.id.pre_collectionSheet_formFields);
             editText = (EditText)linearLayout.findViewById(R.id.collectionSheet_formField_transactionDate);
             editText.setInputType(InputType.TYPE_NULL);
-            DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
             editText.setText(df.format(mCollectionSheetData.getDate()).toString());
             editText.setEnabled(false);
             linearLayout = (LinearLayout)findViewById(R.id.collectionSheet_entriesWrapper);
@@ -81,22 +96,12 @@ public class PreCollectionSheetActivity extends CollectionSheetActivity implemen
             dateField = (EditText)findViewById(R.id.collectionSheet_formField_receiptDate);
             dateField.setInputType(InputType.TYPE_NULL);
             dateField.setOnFocusChangeListener(this);
-            mSaveCustomer.setUserId(mLoanOfficer.getId());
-            mSaveCustomer.setPaymentType((short)1);
-            mSaveCustomer.setReceiptId(receiptID.getText().toString());
-            mSaveCustomer.setTransactionDate(mCollectionSheetData.getDate());
 
-            try {
-                mSaveCustomer.setReceiptDate(df.parse(dateField.getText().toString()));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
             mTransactionTypes = mAcceptedPaymentTypes.allTypes();
             linearLayout =  (LinearLayout)findViewById(R.id.pre_collectionSheet_formFields);
             typesSpinner = (Spinner)linearLayout.findViewById(R.id.collectionSheet_spinner_paymentTypes);
             Object[] list = mTransactionTypes.keySet().toArray();
             typesSpinner.setAdapter(new ArrayAdapter(this, R.layout.combo_box_item, list));
-
         }
     }
 
