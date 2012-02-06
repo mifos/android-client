@@ -45,7 +45,7 @@ public class CollectionSheetCentersActivity extends CentersListActivity {
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long rowId) {
         Center center = (Center)adapterView.getAdapter().getItem(position);
         CollectionSheetHolder.setSelectedCenter(center);
-        Intent intent = new Intent().setClass(this, CollectionSheetActivity.class);
+        Intent intent = new Intent().setClass(this, PreCollectionSheetActivity.class);
         intent.putExtra(AbstractCustomer.BUNDLE_KEY, center);
         startActivity(intent);
     }

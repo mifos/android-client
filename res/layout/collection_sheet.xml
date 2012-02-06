@@ -1,85 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent">
-
-    <RelativeLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/collectionSheet_contentWrapper"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
+
 
         <TextView
             android:id="@+id/collectionSheet_header"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/collectionSheet_header"
             style="@style/Header"
             />
-        <LinearLayout
-            android:id="@+id/collectionSheet_formFields"
-            android:orientation="vertical"
-            android:layout_below="@id/collectionSheet_header"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                style="@style/Label"
-                android:id="@+id/collectionSheet_formField_transactionDate_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/collectionSheet_transactionDate_label"
-                />
-            <EditText
-                android:id="@+id/collectionSheet_formField_transactionDate"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                />
-            <TextView
-                style="@style/Label"
-                android:id="@+id/collectionSheet_formField_transactionDate_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/collectionSheet_formField_paymentMode_label"
-                />
-            <Spinner
-                android:id="@+id/collectionSheet_spinner_paymentTypes"
-                android:layout_height="wrap_content"
-                android:layout_width="fill_parent"
-                />
-            <TextView
-                style="@style/Label"
-                android:id="@+id/collectionSheet_formField_receiptId_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/collectionSheet_formField_receiptId_label"
-                />
-            <EditText
-                android:id="@+id/collectionSheet_formField_receiptId"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                />
-
-            <TextView
-                style="@style/Label"
-                android:id="@+id/collectionSheet_formField_receiptDate_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/collectionSheet_formField_receiptDate_label"
-                />
-
-            <EditText
-                android:id="@+id/collectionSheet_formField_receiptDate"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:onClick="onDateFieldClicked"
-                />
-        </LinearLayout>
-
 
         <LinearLayout
             android:id="@+id/collectionSheet_entriesWrapper"
-            android:layout_below="@id/collectionSheet_formFields"
             android:layout_width="wrap_content"
+            android:layout_below="@id/collectionSheet_header"
             android:focusableInTouchMode="true"
             android:layout_height="wrap_content">
             <ExpandableListView
@@ -240,5 +176,4 @@
         android:onClick="onApplyCollectionSheet"
         />
 
-    </RelativeLayout>
-</ScrollView>
+</RelativeLayout>

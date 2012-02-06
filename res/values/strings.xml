@@ -497,12 +497,15 @@
     <string name="collectionSheet_withdrawals_label">Withdrawals:</string>
     <string name="collectionSheet_total_label">Total:</string>
     <string name="collectionSheet_amount_label">Amount</string>
-    <string name="collectionSheet_header">Collection Sheet</string>
-    <string name="collectionSheet_receiptID_label">Receipt ID:</string>
-    <string name="collectionSheet_transactionDate_label">Date of transaction :</string>
-    <string name="collectionSheet_formField_paymentMode_label">Mode of payment:</string>
-    <string name="collectionSheet_formField_receiptId_label">Receipt ID:</string>
-    <string name="collectionSheet_formField_receiptDate_label">Receipt date:</string>
+
+    <!--
+        String values for PreCollectionSheetActivity
+    -->
+    <string name="pre_collectionSheet_header">Collection Sheet</string>
+    <string name="pre_collectionSheet_transactionDate_label">Date of transaction :</string>
+    <string name="pre_collectionSheet_formField_paymentMode_label">Mode of payment:</string>
+    <string name="pre_collectionSheet_formField_receiptId_label">Receipt ID:</string>
+    <string name="pre_collectionSheet_formField_receiptDate_label">Receipt date:</string>
 
     <!--
         String values for CollectionSheetCustomerActivity
