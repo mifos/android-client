@@ -37,7 +37,7 @@ public class JodaLocalDateDeserializer extends JsonDeserializer<Date> {
 
         int[] jodaDate = jsonParser.readValueAs(int[].class);
         Calendar calendar = Calendar.getInstance();
-        calendar.set(jodaDate[0], jodaDate[1], jodaDate[2]);
+        calendar.set(jodaDate[0], jodaDate[1] -1, jodaDate[2]);
         return calendar.getTime();
     }
 

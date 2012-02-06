@@ -195,11 +195,7 @@ public class CollectionSheetActivity extends DownloaderActivity implements DateP
             editText = (EditText)linearLayout.findViewById(R.id.collectionSheet_formField_transactionDate);
             editText.setInputType(InputType.TYPE_NULL);
             DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(mCollectionSheetData.getDate());
-            calendar.add(Calendar.MONTH, -1);
-            Date date = calendar.getTime();
-            editText.setText(df.format(date).toString());
+            editText.setText(df.format(mCollectionSheetData.getDate()).toString());
             editText.setEnabled(false);
             LinearLayout layout = (LinearLayout)findViewById(R.id.collectionSheet_entriesWrapper);
             layout.requestFocus();
@@ -215,8 +211,7 @@ public class CollectionSheetActivity extends DownloaderActivity implements DateP
                 mSaveCustomer.setUserId(mLoanOfficer.getId());
                 mSaveCustomer.setPaymentType((short)1);
                 mSaveCustomer.setReceiptId(receiptID.getText().toString());
-
-                mSaveCustomer.setTransactionDate(date);
+                mSaveCustomer.setTransactionDate(mCollectionSheetData.getDate());
 
                 try {
                     mSaveCustomer.setReceiptDate(df.parse(dateField.getText().toString()));
@@ -236,7 +231,6 @@ public class CollectionSheetActivity extends DownloaderActivity implements DateP
         Object[] list = mTransactionTypes.keySet().toArray();
         typesSpinner.setAdapter(new ArrayAdapter(this, R.layout.combo_box_item, list));
         double dueCollections = 0.0;
-        double totalCollections = 0.0;
         double otherCollections = 0.0;
         double loanDisbursements = 0.0;
         double withdrawals = 0.0;

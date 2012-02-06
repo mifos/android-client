@@ -114,7 +114,7 @@ public class ClientDetailsViewBuilder implements CustomerDetailsViewBuilder {
             }
             items.put(loanLabel, loanAccounts);
         }
-        if(true){
+        if(mDetails.getLoanAccountsInUse() != null && mDetails.getClosedLoanAccounts().size() > 0){
             String closedLoanLabel = mContext.getString(R.string.closedLoanLabel);
             List<AccountBasicInformation> closedLoanAccounts = new ArrayList<AccountBasicInformation>();
             for(LoanAccountBasicInformation account: mDetails.getClosedLoanAccounts()) {
@@ -130,7 +130,7 @@ public class ClientDetailsViewBuilder implements CustomerDetailsViewBuilder {
             }
             items.put(savingsLabel, savingsAccounts);
         }
-        if(true){
+        if(mDetails.getClosedSavingsAccounts() != null && mDetails.getClosedSavingsAccounts().size() > 0){
             String closedSavingsLabel = mContext.getString(R.string.closedSavingsLabel);
             List<AccountBasicInformation> closedSavingsAccounts = new ArrayList<AccountBasicInformation>();
             for(SavingsAccountBasicInformation account: mDetails.getClosedSavingsAccounts()) {
