@@ -26,13 +26,27 @@
                 />
         </LinearLayout>
 
-        <Button
-        android:id="@+id/collectionSheet_saveButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/collectionSheet_entriesWrapper"
-        android:text="@string/collectionSheetCustomer_save_button"
-        android:onClick="onApplyCollectionSheet"
-        />
+        <LinearLayout
+            android:id="@+id/collectionSheet_buttons"
+            android:layout_below="@id/collectionSheet_entriesWrapper"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
 
+            <Button
+                android:id="@+id/collectionSheet_saveButton"
+                android:layout_width="0.0dip"
+                android:layout_weight="1.0"
+                android:layout_height="fill_parent"
+                android:text="@string/pre_collectionSheet_continueButton_label"
+                android:onClick="onApplyCollectionSheet"
+            />
+                <Button
+                android:id="@+id/collectionSheet_cancelButton"
+                android:layout_width="0.0dip"
+                android:layout_weight="1.0"
+                android:layout_height="fill_parent"
+                android:text="@string/pre_collectionSheet_cancelButton_label"
+                android:onClick="onBackFromCollectionSheet"
+            />
+        </LinearLayout>
 </RelativeLayout>

@@ -74,6 +74,13 @@ public class CollectionSheetActivity extends DownloaderActivity implements Expan
         startActivity(intent);
     }
 
+    public void onBackFromCollectionSheet(View view) {
+        Center center = CollectionSheetHolder.getSelectedCenter();
+        Intent intent = new Intent().setClass(this, PreCollectionSheetActivity.class);
+        intent.putExtra(AbstractCustomer.BUNDLE_KEY, center);
+        startActivity(intent);
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
