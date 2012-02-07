@@ -65,7 +65,7 @@ public class PreCollectionSheetActivity extends CollectionSheetActivity implemen
     }
 
     public void onBackFromPreCollectionSheet(View view) {
-        Intent intent = new Intent().setClass(this, CollectionSheetCentersActivity.class);
+        Intent intent = new Intent().setClass(this, ClientMainActivity.class);
         startActivity(intent);
     }
 
