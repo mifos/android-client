@@ -519,5 +519,6 @@
     <string name="collectionSheetCustomer_ac_Collections_label">A/C Collections</string>
     <string name="collectionSheetCustomer_totalGroup_label">Group total</string>
     <string name="collectionSheetCustomer_save_button">Continue</string>
+    <string name="validation_null_error">Field must contain a number</string>
 
 </resources>

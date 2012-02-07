@@ -39,16 +39,16 @@ public class CollectionSheetCentersActivity extends CentersListActivity {
         header.setText(R.string.collectionSheetCenters_header);
         TextView hint = (TextView)findViewById(R.id.centers_list_hint);
         hint.setVisibility(View.GONE);
-        CollectionSheetHolder.setCollectionSheetData(null);
-        CollectionSheetHolder.setSelectedCenter(null);
-        CollectionSheetHolder.setSaveCollectionSheet(null);
-        CollectionSheetHolder.setCurrentCustomer(null);
+
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long rowId) {
         Center center = (Center)adapterView.getAdapter().getItem(position);
         CollectionSheetHolder.setSelectedCenter(center);
+        CollectionSheetHolder.setCollectionSheetData(null);
+        CollectionSheetHolder.setSaveCollectionSheet(null);
+        CollectionSheetHolder.setCurrentCustomer(null);
         Intent intent = new Intent().setClass(this, PreCollectionSheetActivity.class);
         intent.putExtra(AbstractCustomer.BUNDLE_KEY, center);
         startActivity(intent);

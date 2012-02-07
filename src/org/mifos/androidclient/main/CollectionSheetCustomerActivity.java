@@ -17,7 +17,6 @@ import org.mifos.androidclient.entities.simple.AbstractCustomer;
 import org.mifos.androidclient.entities.simple.Center;
 import org.mifos.androidclient.templates.MifosActivity;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +25,7 @@ public class CollectionSheetCustomerActivity extends MifosActivity {
     private CollectionSheetCustomer mCollectionSheetCustomer;
     private List<EditText> mFieldsValues = new ArrayList<EditText>();
     private EditText feeField;
+
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
@@ -66,19 +66,37 @@ public class CollectionSheetCustomerActivity extends MifosActivity {
         if (customerLoans.size() > 0) {
             int j = 0;
             for (CollectionSheetCustomerLoan loans : customerLoans) {
-                mCollectionSheetCustomer.getCollectionSheetCustomerLoan().get(j).setTotalRepaymentDue(Double.valueOf(mFieldsValues.get(i).getText().toString()));
+                if (!mFieldsValues.get(i).getText().toString().equals("")) {
+                    mCollectionSheetCustomer.getCollectionSheetCustomerLoan().get(j).setTotalRepaymentDue(Double.valueOf(mFieldsValues.get(i).getText().toString()));
+                } else {
+                    mCollectionSheetCustomer.getCollectionSheetCustomerLoan().get(j).setTotalRepaymentDue(Double.valueOf(0.0));
+                }
                 i++;
-                mCollectionSheetCustomer.getCollectionSheetCustomerLoan().get(j).setTotalDisbursement(Double.valueOf(mFieldsValues.get(i).getText().toString()));
-                i++;
+                if (loans.getTotalDisbursement() > 0.0) {
+                    if (!mFieldsValues.get(i).getText().toString().equals("")) {
+                    mCollectionSheetCustomer.getCollectionSheetCustomerLoan().get(j).setTotalDisbursement(Double.valueOf(mFieldsValues.get(i).getText().toString()));
+                    } else {
+                        mCollectionSheetCustomer.getCollectionSheetCustomerLoan().get(j).setTotalDisbursement(Double.valueOf(0.0));
+                    }
+                    i++;
+                }
                 j++;
             }
         }
         if (customerSavings.size() > 0) {
             int k = 0;
             for (CollectionSheetCustomerSavings savings : customerSavings) {
-                mCollectionSheetCustomer.getCollectionSheetCustomerSaving().get(k).setTotalDepositAmount(Double.valueOf(mFieldsValues.get(i).getText().toString()));
+                if (!mFieldsValues.get(i).getText().toString().equals("")) {
+                    mCollectionSheetCustomer.getCollectionSheetCustomerSaving().get(k).setTotalDepositAmount(Double.valueOf(mFieldsValues.get(i).getText().toString()));
+                } else {
+                    mCollectionSheetCustomer.getCollectionSheetCustomerSaving().get(k).setTotalDepositAmount(Double.valueOf(0.0));
+                }
                 i++;
-                mCollectionSheetCustomer.getCollectionSheetCustomerSaving().get(k).setWithdrawal(Double.valueOf(mFieldsValues.get(i).getText().toString()));
+                if (!mFieldsValues.get(i).getText().toString().equals("")) {
+                    mCollectionSheetCustomer.getCollectionSheetCustomerSaving().get(k).setWithdrawal(Double.valueOf(mFieldsValues.get(i).getText().toString()));
+                } else {
+                    mCollectionSheetCustomer.getCollectionSheetCustomerSaving().get(k).setWithdrawal(Double.valueOf(0.0));
+                }
                 i++;
                 k++;
             }
@@ -86,9 +104,17 @@ public class CollectionSheetCustomerActivity extends MifosActivity {
         if (customerIndividuals.size() > 0) {
             int l = 0;
             for (CollectionSheetCustomerSavings individuals: customerIndividuals) {
+                if (!mFieldsValues.get(i).getText().toString().equals("")) {
                 mCollectionSheetCustomer.getIndividualSavingAccounts().get(l).setTotalDepositAmount(Double.valueOf(mFieldsValues.get(i).getText().toString()));
+                } else {
+                    mCollectionSheetCustomer.getIndividualSavingAccounts().get(l).setTotalDepositAmount(Double.valueOf(0.0));
+                }
                 i++;
+                if (!mFieldsValues.get(i).getText().toString().equals("")) {
                 mCollectionSheetCustomer.getIndividualSavingAccounts().get(l).setWithdrawal(Double.valueOf(mFieldsValues.get(i).getText().toString()));
+                } else {
+                mCollectionSheetCustomer.getIndividualSavingAccounts().get(l).setWithdrawal(Double.valueOf(0.0));
+                }
                 i++;
                 l++;
             }
@@ -137,22 +163,23 @@ public class CollectionSheetCustomerActivity extends MifosActivity {
             textView.setGravity(Gravity.LEFT);
             tableRow.addView(textView);
 
+            editText = new EditText(this);
+            editText.setText(String.valueOf(customerLoan.getAmountDueAtDisbursement() + customerLoan.getTotalRepaymentDue()));
+            editText.setLayoutParams(new TableRow.LayoutParams(1));
+            editText.setGravity(Gravity.RIGHT);
+            editText.setInputType(InputType.TYPE_NUMBER_FLAG_SIGNED);
+            mFieldsValues.add(editText);
+            tableRow.addView(editText);
 
-                    editText = new EditText(this);
-                    editText.setText(String.valueOf(customerLoan.getAmountDueAtDisbursement() + customerLoan.getTotalRepaymentDue()));
-                    editText.setLayoutParams(new TableRow.LayoutParams(1));
-                    editText.setGravity(Gravity.RIGHT);
-                    editText.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
-                    mFieldsValues.add(editText);
-                    tableRow.addView(editText);
-
-                    editText = new EditText(this);
-                    editText.setText(String.valueOf(customerLoan.getTotalDisbursement()));
-                    editText.setLayoutParams(new TableRow.LayoutParams(2));
-                    editText.setGravity(Gravity.RIGHT);
-                    editText.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
-                    mFieldsValues.add(editText);
-                    tableRow.addView(editText);
+            if (customerLoan.getTotalDisbursement() > 0) {
+                editText = new EditText(this);
+                editText.setText(String.valueOf(customerLoan.getTotalDisbursement()));
+                editText.setLayoutParams(new TableRow.LayoutParams(2));
+                editText.setGravity(Gravity.RIGHT);
+                editText.setInputType(InputType.TYPE_NUMBER_FLAG_SIGNED);
+                mFieldsValues.add(editText);
+                tableRow.addView(editText);
+            }
 
 
             layout.addView(tableRow);
