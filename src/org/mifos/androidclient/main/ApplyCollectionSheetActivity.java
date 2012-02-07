@@ -71,12 +71,14 @@ public class ApplyCollectionSheetActivity extends OperationFormActivity {
                 List<CollectionSheetCustomerSavings> savings = cst.getCollectionSheetCustomerSaving();
                 for(CollectionSheetCustomerSavings saving :savings) {
                     dueCollections += saving.getTotalDepositAmount();
+                    withdrawals += saving.getWithdrawal();
                 }
             }
             if(cst.getIndividualSavingAccounts() != null && cst.getIndividualSavingAccounts().size() > 0) {
                 List<CollectionSheetCustomerSavings> individuals = cst.getIndividualSavingAccounts();
                 for(CollectionSheetCustomerSavings individual : individuals) {
                     dueCollections += individual.getTotalDepositAmount();
+                    withdrawals += individual.getWithdrawal();
                 }
             }
         }
@@ -94,7 +96,7 @@ public class ApplyCollectionSheetActivity extends OperationFormActivity {
         textView = (TextView)findViewById(R.id.collectionSheet_issuesWithdrawalsTotal);
         textView.setText(String.format("%.1f", (withdrawals + loanDisbursements)));
         textView = (TextView)findViewById(R.id.collectionSheet_netCash);
-        textView.setText(String.format("%.1f", (dueCollections + otherCollections - loanDisbursements)));
+        textView.setText(String.format("%.1f", (dueCollections + otherCollections - loanDisbursements - withdrawals)));
     }
 
 }

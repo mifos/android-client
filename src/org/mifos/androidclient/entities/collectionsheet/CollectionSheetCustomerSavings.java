@@ -37,12 +37,21 @@ public class CollectionSheetCustomerSavings implements Serializable {
     private Double depositDue;
     private Double depositPaid;
     private Double totalDepositAmount;
+    private Double withdrawal = 0.0;
     public Integer getCustomerId() {
         return customerId;
     }
 
     public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
+    }
+
+    public Double getWithdrawal() {
+        return withdrawal;
+    }
+
+    public void setWithdrawal(Double withdrawal) {
+        this.withdrawal = withdrawal;
     }
 
     public Integer getAccountId() {

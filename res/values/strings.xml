@@ -497,7 +497,7 @@
     <string name="collectionSheet_withdrawals_label">Withdrawals:</string>
     <string name="collectionSheet_total_label">Total:</string>
     <string name="collectionSheet_amount_label">Amount</string>
-
+    <string name="collectionSheet_header">Collection Sheet</string>
     <!--
         String values for PreCollectionSheetActivity
     -->

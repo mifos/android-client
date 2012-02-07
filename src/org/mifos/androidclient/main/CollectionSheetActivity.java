@@ -24,6 +24,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.*;
 import org.mifos.androidclient.R;
@@ -42,7 +43,7 @@ import org.springframework.web.client.RestClientException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CollectionSheetActivity extends DownloaderActivity implements ExpandableListView.OnChildClickListener, AdapterView.OnItemLongClickListener{
+public class CollectionSheetActivity extends DownloaderActivity implements ExpandableListView.OnChildClickListener, AdapterView.OnItemLongClickListener, View.OnTouchListener {
 
     private Center mCenter;
     private CollectionSheetData mCollectionSheetData;
@@ -115,8 +116,9 @@ public class CollectionSheetActivity extends DownloaderActivity implements Expan
         if(collectionSheet != null) {
            mCollectionSheetData = collectionSheet;
 
-            TextView textView = (TextView)findViewById(R.id.collectionSheet_header);
-            textView.setText(mCenter.getDisplayName());
+            TextView textView = (TextView)findViewById(R.id.collectionSheet_centerInfo);
+            textView.setText("  + " + mCenter.getDisplayName());
+            textView.setOnTouchListener(this);
 
             if (CollectionSheetHolder.getCollectionSheetData() == null) {
                 mCollectionSheetData = collectionSheet;
@@ -167,6 +169,16 @@ public class CollectionSheetActivity extends DownloaderActivity implements Expan
         CollectionSheetHolder.setCurrentCustomer(customer);
         Intent intent = new Intent().setClass(this, CollectionSheetCustomerActivity.class);
         intent.putExtra(CollectionSheetCustomer.BUNDLE_KEY, customer);
+        startActivity(intent);
+        return true;
+    }
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        CollectionSheetCustomer center = findCenterFromCollection(mCollectionSheetData);
+        CollectionSheetHolder.setCurrentCustomer(center);
+        Intent intent = new Intent().setClass(this, CollectionSheetCustomerActivity.class);
+        intent.putExtra(CollectionSheetCustomer.BUNDLE_KEY, center);
         startActivity(intent);
         return true;
     }
@@ -225,7 +237,7 @@ public class CollectionSheetActivity extends DownloaderActivity implements Expan
                     saveSaving.setAccountId(savings.getAccountId());
                     saveSaving.setCurrencyId(savings.getCurrencyId());
                     saveSaving.setTotalDeposit(savings.getTotalDepositAmount());
-                    saveSaving.setTotalWithdrawal(0.0);
+                    saveSaving.setTotalWithdrawal(savings.getWithdrawal());
                     saving.add(saveSaving);
                 }
                 for (CollectionSheetCustomerSavings individuals : data.getIndividualSavingAccounts()) {
@@ -233,7 +245,7 @@ public class CollectionSheetActivity extends DownloaderActivity implements Expan
                     saveIndividual.setAccountId(individuals.getAccountId());
                     saveIndividual.setCurrencyId(individuals.getCurrencyId());
                     saveIndividual.setTotalDeposit(individuals.getTotalDepositAmount());
-                    saveIndividual.setTotalWithdrawal(0.0);
+                    saveIndividual.setTotalWithdrawal(individuals.getWithdrawal());
                     individual.add(saveIndividual);
                 }
             saveCollection.setSaveCollectionSheetCustomerLoans(loan);
@@ -252,6 +264,19 @@ public class CollectionSheetActivity extends DownloaderActivity implements Expan
                 tmpCustomer.set(tmpCustomer.indexOf(customer), mSelectedCustomer);
             }
        }
+    }
+
+    private CollectionSheetCustomer findCenterFromCollection(CollectionSheetData collectionSheet) {
+        CollectionSheetCustomer center = new CollectionSheetCustomer();
+        List<CollectionSheetCustomer> customers = collectionSheet.getCollectionSheetCustomer();
+        for (CollectionSheetCustomer customer : customers) {
+            if (customer.getLevelId() == 3) {
+                center = customer;
+                break;
+            }
+
+        }
+        return center;
     }
 
 }

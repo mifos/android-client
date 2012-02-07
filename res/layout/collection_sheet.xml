@@ -9,13 +9,21 @@
             android:id="@+id/collectionSheet_header"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:text="@string/collectionSheet_header"
             style="@style/Header"
+            />
+
+        <TextView
+            android:id="@+id/collectionSheet_centerInfo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/collectionSheet_header"
             />
 
         <LinearLayout
             android:id="@+id/collectionSheet_entriesWrapper"
             android:layout_width="wrap_content"
-            android:layout_below="@id/collectionSheet_header"
+            android:layout_below="@id/collectionSheet_centerInfo"
             android:focusableInTouchMode="true"
             android:layout_height="wrap_content">
             <ExpandableListView

@@ -77,16 +77,20 @@ public class CollectionSheetCustomerActivity extends MifosActivity {
             int k = 0;
             for (CollectionSheetCustomerSavings savings : customerSavings) {
                 mCollectionSheetCustomer.getCollectionSheetCustomerSaving().get(k).setTotalDepositAmount(Double.valueOf(mFieldsValues.get(i).getText().toString()));
-                k++;
                 i++;
+                mCollectionSheetCustomer.getCollectionSheetCustomerSaving().get(k).setWithdrawal(Double.valueOf(mFieldsValues.get(i).getText().toString()));
+                i++;
+                k++;
             }
         }
         if (customerIndividuals.size() > 0) {
             int l = 0;
             for (CollectionSheetCustomerSavings individuals: customerIndividuals) {
                 mCollectionSheetCustomer.getIndividualSavingAccounts().get(l).setTotalDepositAmount(Double.valueOf(mFieldsValues.get(i).getText().toString()));
-                l++;
                 i++;
+                mCollectionSheetCustomer.getIndividualSavingAccounts().get(l).setWithdrawal(Double.valueOf(mFieldsValues.get(i).getText().toString()));
+                i++;
+                l++;
             }
         }
     }
@@ -161,13 +165,21 @@ public class CollectionSheetCustomerActivity extends MifosActivity {
             textView.setText(customerSaving.getProductShortName());
             textView.setLayoutParams(new TableRow.LayoutParams(0));
             tableRow.addView(textView);
-            editText = new EditText(this);
 
+                editText = new EditText(this);
                 editText.setText(String.valueOf(customerSaving.getTotalDepositAmount()));
                 editText.setLayoutParams(new TableRow.LayoutParams(3));
                 editText.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
                 mFieldsValues.add(editText);
                 tableRow.addView(editText);
+
+                editText = new EditText(this);
+                editText.setText(String.valueOf(customerSaving.getWithdrawal()));
+                editText.setLayoutParams(new TableRow.LayoutParams(4));
+                editText.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+                mFieldsValues.add(editText);
+                tableRow.addView(editText);
+
                 layout.addView(tableRow);
 
         }
@@ -180,12 +192,21 @@ public class CollectionSheetCustomerActivity extends MifosActivity {
             textView.setText(customerIndividual.getProductShortName());
             textView.setLayoutParams(new TableRow.LayoutParams(0));
             tableRow.addView(textView);
+
             editText = new EditText(this);
             editText.setText(String.valueOf(customerIndividual.getTotalDepositAmount()));
             editText.setLayoutParams(new TableRow.LayoutParams(3));
             editText.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
             mFieldsValues.add(editText);
             tableRow.addView(editText);
+
+            editText = new EditText(this);
+            editText.setText(String.valueOf(customerIndividual.getWithdrawal()));
+            editText.setLayoutParams(new TableRow.LayoutParams(4));
+            editText.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+            mFieldsValues.add(editText);
+            tableRow.addView(editText);
+
             layout.addView(tableRow);
         }
     }
