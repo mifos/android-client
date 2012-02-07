@@ -2,13 +2,15 @@
 <resources>
 
     <style name="Label" parent="@android:style/TextAppearance.Medium">
-        <item name="android:textColor">#F5F5F5</item>
+        <item name="android:textColor">#030100</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="Header" parent="@android:style/TextAppearance.Large">
-        <item name="android:textColor">#EE7621</item>
+        <item name="android:textColor">#D46601</item>
         <item name="android:padding">10dp</item>
         <item name="android:gravity">center_horizontal</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="Errors" parent="@android:style/TextAppearance.Medium">
@@ -18,13 +20,13 @@
 
     <style name="Info" parent="@android:style/TextAppearance.Small">
         <item name="android:textStyle">italic</item>
-        <item name="android:textColor">#FAFAFA</item>
+        <item name="android:textColor">#030100</item>
         <item name="android:padding">10dp</item>
     </style>
 
     <style name="InfoBig" parent="@android:style/TextAppearance.Medium">
         <item name="android:textStyle">italic</item>
-        <item name="android:textColor">#FAFAFA</item>
+        <item name="android:textColor">#030100</item>
         <item name="android:padding">10dp</item>
     </style>
 

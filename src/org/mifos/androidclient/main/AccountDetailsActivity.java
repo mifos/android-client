@@ -23,12 +23,18 @@ package org.mifos.androidclient.main;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
+import android.widget.TabHost.OnTabChangeListener;
+import android.widget.TextView;
+
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.account.*;
 import org.mifos.androidclient.entities.customer.AccountBasicInformation;
@@ -39,6 +45,7 @@ import org.mifos.androidclient.templates.AccountDetailsViewBuilder;
 import org.mifos.androidclient.templates.DownloaderActivity;
 import org.mifos.androidclient.templates.ServiceConnectivityTask;
 import org.mifos.androidclient.templates.ViewBuilderFactory;
+import org.mifos.androidclient.util.TabColorUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestClientException;
 
@@ -47,7 +54,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class AccountDetailsActivity extends DownloaderActivity {
+public class AccountDetailsActivity extends DownloaderActivity implements OnTabChangeListener{
 
     public static final String SELECTED_TAB_BUNDLE_KEY = AccountDetailsActivity.class.getSimpleName() + "-selectedTab";
 
@@ -61,14 +68,15 @@ public class AccountDetailsActivity extends DownloaderActivity {
 
     private Map<String, Map<String, String>> mApplicableFees;
     private AcceptedPaymentTypes mAcceptedPaymentTypes;
+    private TabHost tabs;
 
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.account_details);
 
-        TabHost tabs = (TabHost)findViewById(R.id.accountDetails_tabHost);
-        tabs.setup();
+        tabs = (TabHost)findViewById(R.id.accountDetails_tabHost);
+        tabs.setup();       
         TabHost.TabSpec overviewSpec = tabs.newTabSpec(getString(R.string.accountDetails_tab_overview));
         overviewSpec.setIndicator(getString(R.string.accountDetails_tab_overview));
         overviewSpec.setContent(R.id.account_overview);
@@ -81,7 +89,9 @@ public class AccountDetailsActivity extends DownloaderActivity {
         tabs.addTab(overviewSpec);
         tabs.addTab(transactionSpec);
         tabs.addTab(additionalInfoSpec);
-
+        TabColorUtils.setTabColor(tabs);
+        tabs.setOnTabChangedListener(this); 
+        
         if (bundle != null) {
             if (bundle.containsKey(AbstractAccountDetails.BUNDLE_KEY)) {
                 mDetails = (AbstractAccountDetails)bundle.getSerializable(AbstractAccountDetails.BUNDLE_KEY);
@@ -94,12 +104,18 @@ public class AccountDetailsActivity extends DownloaderActivity {
             }
 
         }
-
+        
         mAccount = (AccountBasicInformation)getIntent().getSerializableExtra(AccountBasicInformation.BUNDLE_KEY);
         mAccountService = new AccountService(this);
         mSystemSettingsService = new SystemSettingsService(this);
     }
-
+    
+	@Override
+	public void onTabChanged(String tabId) {
+        TabColorUtils.setTabColor(tabs);
+		
+	}
+    
     @Override
     protected void onSessionActive() {
         super.onSessionActive();

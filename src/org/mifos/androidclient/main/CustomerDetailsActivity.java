@@ -29,6 +29,8 @@ import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
+import android.widget.TabHost.OnTabChangeListener;
+
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.customer.AccountBasicInformation;
 import org.mifos.androidclient.entities.customer.CustomerDetailsEntity;
@@ -40,6 +42,7 @@ import org.mifos.androidclient.templates.CustomerDetailsViewBuilder;
 import org.mifos.androidclient.templates.DownloaderActivity;
 import org.mifos.androidclient.templates.ServiceConnectivityTask;
 import org.mifos.androidclient.templates.ViewBuilderFactory;
+import org.mifos.androidclient.util.TabColorUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestClientException;
 
@@ -47,7 +50,7 @@ import java.io.Serializable;
 import java.util.Map;
 
 public class CustomerDetailsActivity extends DownloaderActivity
-        implements ExpandableListView.OnChildClickListener {
+        implements ExpandableListView.OnChildClickListener, OnTabChangeListener {
 
     public static final String SELECTED_TAB_BUNDLE_KEY = CustomerDetailsActivity.class.getSimpleName() + "-selectedTab";
 
@@ -56,13 +59,14 @@ public class CustomerDetailsActivity extends DownloaderActivity
     private CustomerService mCustomerService;
     private CustomerDetailsEntity mDetails;
     private Map<String, Map<String, String>> mApplicableFees;
+    private TabHost tabs;
 
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.customer_details);
 
-        TabHost tabs = (TabHost)findViewById(R.id.customerDetails_tabhost);
+        tabs = (TabHost)findViewById(R.id.customerDetails_tabhost);
         tabs.setup();
         TabHost.TabSpec overviewSpec = tabs.newTabSpec(getString(R.string.customerDetails_tab_overview));
         overviewSpec.setIndicator(getString(R.string.customerDetails_tab_overview));
@@ -76,6 +80,9 @@ public class CustomerDetailsActivity extends DownloaderActivity
         tabs.addTab(overviewSpec);
         tabs.addTab(accountsSpec);
         tabs.addTab(additionalSpec);
+        TabColorUtils.setTabColor(tabs);
+        tabs.setOnTabChangedListener(this); 
+
 
         if (bundle != null) {
             if (bundle.containsKey(CustomerDetailsEntity.BUNDLE_KEY)) {
@@ -92,6 +99,11 @@ public class CustomerDetailsActivity extends DownloaderActivity
         mCustomer = (AbstractCustomer)getIntent().getSerializableExtra(AbstractCustomer.BUNDLE_KEY);
         mCustomerService = new CustomerService(this);
     }
+    
+	@Override
+	public void onTabChanged(String tabId) {
+		 TabColorUtils.setTabColor(tabs);
+	}
 
     @Override
     protected void onSessionActive() {
@@ -254,5 +266,6 @@ public class CustomerDetailsActivity extends DownloaderActivity
         }
 
     }
+
 
 }
