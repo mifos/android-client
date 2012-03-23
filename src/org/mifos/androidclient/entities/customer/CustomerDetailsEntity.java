@@ -20,11 +20,14 @@
 
 package org.mifos.androidclient.entities.customer;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.mifos.androidclient.entities.BaseEntity;
 
 import java.io.Serializable;
 import java.util.List;
 
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public abstract class CustomerDetailsEntity extends BaseEntity implements Serializable {
 
     public static final String BUNDLE_KEY = CustomerDetailsEntity.class.getSimpleName();
