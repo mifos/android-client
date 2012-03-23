@@ -1,9 +1,11 @@
 package org.mifos.androidclient.entities.collectionsheet;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SaveCollectionSheetCustomerSaving implements Serializable{
     private Integer accountId;
     private Short currencyId;

@@ -20,11 +20,12 @@
 
 package org.mifos.androidclient.entities.collectionsheet;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.mifos.androidclient.util.listadapters.SimpleListItem;
 
 import java.io.Serializable;
 import java.util.List;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CollectionSheetCustomer implements Serializable, SimpleListItem {
     public static final String BUNDLE_KEY = CollectionSheetCustomer.class.getSimpleName();
 

@@ -20,8 +20,10 @@
 
 package org.mifos.androidclient.entities.account;
 
-import java.io.Serializable;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
+import java.io.Serializable;
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class LoanSummary implements Serializable {
 
     public static final String ORIGINAL_PRINCIPAL_BUNDLE_KEY = LoanSummary.class.getSimpleName() + "-originalPrincipal";

@@ -20,6 +20,7 @@
 
 package org.mifos.androidclient.entities.simple;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.mifos.androidclient.util.listadapters.SimpleListItem;
 
 import java.io.Serializable;
@@ -30,6 +31,7 @@ import java.util.List;
  * Used on list - provides a display name and an identifier which can
  * be used to fetch more detailed data.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Center extends AbstractCustomer implements SimpleListItem, Serializable {
 
     private List<Group> groups;

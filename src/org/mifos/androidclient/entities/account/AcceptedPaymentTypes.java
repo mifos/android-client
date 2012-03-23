@@ -20,12 +20,14 @@
 
 package org.mifos.androidclient.entities.account;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class AcceptedPaymentTypes implements Serializable {
 
     public static final String ACCEPTED_DEPOSIT_PAYMENT_TYPES_BUNDLE_KEY = AcceptedPaymentTypes.class.getSimpleName() + "-deposit";

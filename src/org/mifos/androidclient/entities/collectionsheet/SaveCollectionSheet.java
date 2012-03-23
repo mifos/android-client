@@ -1,10 +1,12 @@
 package org.mifos.androidclient.entities.collectionsheet;
 
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SaveCollectionSheet implements Serializable {
 
     private List<SaveCollectionSheetCustomer> saveCollectionSheetCustomers;

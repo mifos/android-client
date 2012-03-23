@@ -20,8 +20,10 @@
 
 package org.mifos.androidclient.entities.customer;
 
-import java.io.Serializable;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
+import java.io.Serializable;
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CenterDisplay extends CustomerDisplay implements Serializable {
 
     private String mfiJoiningDate;

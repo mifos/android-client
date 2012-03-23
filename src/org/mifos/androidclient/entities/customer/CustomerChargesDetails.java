@@ -20,12 +20,13 @@
 
 package org.mifos.androidclient.entities.customer;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.mifos.androidclient.entities.account.AccountFee;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CustomerChargesDetails implements Serializable {
 
     public static final String BUNDLE_KEY = CustomerChargesDetails.class.getSimpleName();

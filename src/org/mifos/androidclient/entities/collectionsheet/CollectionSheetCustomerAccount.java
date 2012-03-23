@@ -20,9 +20,11 @@
 
 package org.mifos.androidclient.entities.collectionsheet;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import java.io.Serializable;
 import java.text.DecimalFormat;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CollectionSheetCustomerAccount implements Serializable {
 
     private Integer accountId;

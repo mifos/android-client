@@ -20,9 +20,11 @@
 
 package org.mifos.androidclient.entities.account.savings;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import java.io.Serializable;
 import java.util.Date;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DueOnDate implements Serializable {
 
     private Date dueDate;

@@ -1,8 +1,10 @@
 package org.mifos.androidclient.entities.collectionsheet;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import java.io.Serializable;
 import java.util.List;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SaveCollectionSheetCustomer implements Serializable{
     private Integer customerId;
     private Integer parentCustomerId;

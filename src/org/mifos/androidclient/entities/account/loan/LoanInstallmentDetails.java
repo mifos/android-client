@@ -20,11 +20,12 @@
 
 package org.mifos.androidclient.entities.account.loan;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.mifos.androidclient.entities.account.InstallmentDetails;
 
 import java.io.Serializable;
 import java.util.Date;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class LoanInstallmentDetails implements Serializable {
 
     public static final String BUNDLE_KEY = LoanInstallmentDetails.class.getSimpleName();

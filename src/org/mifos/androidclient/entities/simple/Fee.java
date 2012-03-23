@@ -1,7 +1,10 @@
 package org.mifos.androidclient.entities.simple;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import java.io.Serializable;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Fee implements Serializable {
 
     public final static String BUNDLE_KEY = Fee.class.getSimpleName();

@@ -1,7 +1,9 @@
 package org.mifos.androidclient.entities.collectionsheet;
 
-import java.io.Serializable;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
+import java.io.Serializable;
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SaveCollectionSheetCustomerLoan implements Serializable{
     private Integer accountId;
     private Short currencyId;

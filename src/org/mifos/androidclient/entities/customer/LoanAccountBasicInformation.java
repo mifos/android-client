@@ -20,8 +20,10 @@
 
 package org.mifos.androidclient.entities.customer;
 
-import java.io.Serializable;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
+import java.io.Serializable;
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class LoanAccountBasicInformation extends AccountBasicInformation implements Serializable {
 
     private String outstandingBalance;

@@ -20,10 +20,11 @@
 
 package org.mifos.androidclient.entities.customer;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.mifos.androidclient.entities.BaseEntity;
 
 import java.io.Serializable;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CustomerMeeting extends BaseEntity implements Serializable {
 
     private String meetingSchedule;

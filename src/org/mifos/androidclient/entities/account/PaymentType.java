@@ -20,10 +20,11 @@
 
 package org.mifos.androidclient.entities.account;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.mifos.androidclient.util.listadapters.SimpleListItem;
 
 import java.io.Serializable;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PaymentType implements Serializable {
 
     private Short id;

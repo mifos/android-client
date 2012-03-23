@@ -20,9 +20,11 @@
 
 package org.mifos.androidclient.entities.customer;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import java.io.Serializable;
 import java.util.List;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ClientDisplay extends CustomerDisplay implements Serializable {
 
     private Integer age;

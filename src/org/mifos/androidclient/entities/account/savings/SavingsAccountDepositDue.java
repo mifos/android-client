@@ -20,9 +20,11 @@
 
 package org.mifos.androidclient.entities.account.savings;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import java.io.Serializable;
 import java.util.List;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SavingsAccountDepositDue implements Serializable {
 
     public final static String BUNDLE_KEY = SavingsAccountDepositDue.class.getSimpleName();

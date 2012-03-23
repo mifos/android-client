@@ -20,11 +20,12 @@
 
 package org.mifos.androidclient.entities.customer;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.mifos.androidclient.entities.account.AccountFeeSchedule;
 
 import java.io.Serializable;
 import java.util.List;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CustomerSchedule implements Serializable {
 
     private Double miscFee;

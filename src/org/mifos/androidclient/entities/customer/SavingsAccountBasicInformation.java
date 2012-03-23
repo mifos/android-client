@@ -20,10 +20,10 @@
 
 package org.mifos.androidclient.entities.customer;
 
-import org.mifos.androidclient.entities.BaseEntity;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import java.io.Serializable;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SavingsAccountBasicInformation extends AccountBasicInformation implements Serializable {
 
     private Integer prdOfferingId;
