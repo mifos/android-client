@@ -26,6 +26,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
 import org.mifos.androidclient.R;
+import org.mifos.androidclient.entities.collectionsheet.CollectionSheetCustomer;
 import org.mifos.androidclient.entities.simple.AbstractCustomer;
 import org.mifos.androidclient.entities.simple.Center;
 

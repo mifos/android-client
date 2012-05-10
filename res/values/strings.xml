@@ -521,4 +521,7 @@
     <string name="collectionSheetCustomer_save_button">Continue</string>
     <string name="validation_null_error">Field must contain a number</string>
 
+    <string name="invalidCollectionSheet">Invalid Collections: </string>
+    <string name="collectionSheetErrors">Errors: </string>
+    <string name="account_invalid">The accounts have not been updated due to simultaneous updates/insufficient balance/invalid disbursement date/invalid repayment</string>
 </resources>

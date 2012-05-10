@@ -384,7 +384,7 @@ public abstract class OperationFormActivity extends MifosActivity
     protected void setErrorView(Map<String, String> summary) {
         setStatus(false);
         setStatusVisible(true);
-        setSubmissionButtonSet();
+        setSuccessButtonSet();
         setFormFieldsVisible(true);
         Map<String, String> errorCause = new HashMap<String, String>();
         errorCause.put(CAUSE_KEY, summary.get(CAUSE_KEY));

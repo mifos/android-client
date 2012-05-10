@@ -21,10 +21,10 @@
 package org.mifos.androidclient.net.services;
 
 import android.content.Context;
+import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.collectionsheet.CollectionSheetData;
 import org.mifos.androidclient.templates.OperationFormActivity;
 
-import java.io.OptionalDataException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,9 +35,11 @@ public class CollectionSheetService extends RestNetworkService {
     private final static String SET_COLLECTION_SHEET_PATH = "/collectionsheet/save.json";
     public static final String INVALID_COLLECTION_SHEET = "invalidCollectionSheet";
     public static final String ERRORS = "errors";
+    private Context mContext;
 
     public CollectionSheetService(Context context) {
         super(context);
+        mContext = context;
     }
 
     public CollectionSheetData getCollectionSheetForCustomer(Integer customerId) {
@@ -54,14 +56,12 @@ public class CollectionSheetService extends RestNetworkService {
         List<String> errorCause = (List<String>) map.get(INVALID_COLLECTION_SHEET);
 
         if(errorCause != null && !errorCause.isEmpty()) {
-            stringBuilder.append("Errors: ");
-            for (String error : errorCause) {
-                stringBuilder.append(error);
-                stringBuilder.append(", ");
-            }
+            stringBuilder.append(mContext.getString(R.string.invalidCollectionSheet) + " ");
+            stringBuilder.append(mContext.getString(R.string.account_invalid));
         }
         String errors = (String) map.get(ERRORS);
         if (errors != null && errors.length() > 0) {
+            stringBuilder.append(mContext.getString(R.string.collectionSheetErrors));
             stringBuilder.append(errors);
         }
         if(stringBuilder.length() > 0) {
