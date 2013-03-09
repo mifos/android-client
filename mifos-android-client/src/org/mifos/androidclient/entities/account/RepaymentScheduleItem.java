@@ -44,7 +44,11 @@ public class RepaymentScheduleItem implements SimpleListItem, Serializable{
         this.installmentNumber = installmentNumber;
     }
 
-    public String getDueDate() {
+    public Date getDueDate() {
+        return dueDate;
+    }
+    
+    public String getDueDateFormated() {
         return DateUtils.format(dueDate);
     }
 
@@ -187,12 +191,17 @@ public class RepaymentScheduleItem implements SimpleListItem, Serializable{
         }
         else total = (feeAmount - feePaid) + (miscFee - miscFeePaid)  + (principal - principalPaid) + (interest - interestPaid);
 
+        Date date = paymentDate != null ? paymentDate : new Date();
+        long diff = date.getTime() - dueDate.getTime();
+        long days = diff / (86400000);
+        if (days < 0) days = 0;
+        
         if (paymentDate != null && paymentStatus == 1){
-            return DateUtils.format(dueDate) + "   " + DateUtils.format(paymentDate) + "     " + Double.valueOf(df.format(round(total)));
+            return DateUtils.format(dueDate) + "   " + DateUtils.format(paymentDate) + "       " + days + "     " + Double.valueOf(df.format(round(total)));
         }else if(paymentDate != null && paymentStatus != 1){
-            return DateUtils.format(dueDate) + "  Partially paid     " + Double.valueOf(df.format(round(total)));
+            return DateUtils.format(dueDate) + "  Partially paid    " + days + "     " + Double.valueOf(df.format(round(total)));
         }
-        else return DateUtils.format(dueDate) + "   Not paid yet     " + Double.valueOf(df.format(round(total)));
+        else return DateUtils.format(dueDate) + "   Not paid yet     " + days + "     " + Double.valueOf(df.format(round(total)));
     }
 
     @Override
