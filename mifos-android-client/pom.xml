@@ -1,0 +1,101 @@
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <modelVersion>4.0.0</modelVersion>
+ 
+    <parent>
+        <groupId>org.mifos</groupId>
+        <artifactId>mifos-android-client-parent</artifactId>
+        <version>1.0</version>
+    </parent>
+    
+    <artifactId>mifos-android-client</artifactId>
+    <packaging>apk</packaging>
+
+    <name>Mifos Android Client</name>
+
+    <properties>
+        <spring-android-version>1.0.0.M4</spring-android-version>
+        <jackson-version>1.8.3</jackson-version>
+    </properties>
+ 
+    <dependencies>
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>android</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.android</groupId>
+            <artifactId>spring-android-rest-template</artifactId>
+            <version>${spring-android-version}</version>
+        </dependency>
+        <dependency>
+            <!-- Using Jackson for JSON marshaling -->
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>${jackson-version}</version>
+        </dependency>
+    </dependencies>
+    
+    <build>
+        
+        <sourceDirectory>src</sourceDirectory>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                <artifactId>android-maven-plugin</artifactId>
+                <configuration>
+                    <sdk>
+                        <platform>${android-platform}</platform>
+                    </sdk>
+                    <undeployBeforeDeploy>true</undeployBeforeDeploy>
+                    <emulator>
+                        <avd>${android-emulator}</avd>
+                    </emulator>
+                    <deleteConflictingFiles>true</deleteConflictingFiles>
+                    <sign>
+                        <debug>true</debug>
+                    </sign>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.0</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+ 
+    <repositories>
+        <!-- For developing with Android ROME Feed Reader -->
+        <repository>
+            <id>android-rome-feed-reader-repository</id>
+            <name>Android ROME Feed Reader Repository</name>
+            <url>https://android-rome-feed-reader.googlecode.com/svn/maven2/releases</url>
+        </repository>
+        <!-- For testing against latest Spring snapshots -->
+        <repository>
+            <id>org.springframework.maven.snapshot</id>
+            <name>Spring Maven Snapshot Repository</name>
+            <url>http://maven.springframework.org/snapshot</url>
+            <releases><enabled>false</enabled></releases>
+            <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+        <!-- For developing against latest Spring milestones -->
+        <repository>
+            <id>org.springframework.maven.milestone</id>
+            <name>Spring Maven Milestone Repository</name>
+            <url>http://maven.springframework.org/milestone</url>
+            <snapshots><enabled>false</enabled></snapshots>
+        </repository>
+    </repositories>
+ 
+</project>
