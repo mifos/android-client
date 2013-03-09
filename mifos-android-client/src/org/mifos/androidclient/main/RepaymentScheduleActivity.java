@@ -1,20 +1,19 @@
 package org.mifos.androidclient.main;
 
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TableLayout;
-import android.widget.TextView;
+import java.text.DecimalFormat;
+import java.util.Date;
+
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.account.RepaymentScheduleItem;
 import org.mifos.androidclient.templates.MifosActivity;
 import org.mifos.androidclient.util.ui.DateUtils;
 
-import java.text.DecimalFormat;
-
-import static java.lang.Math.round;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TableLayout;
+import android.widget.TextView;
 
 public class RepaymentScheduleActivity extends MifosActivity{
 
@@ -35,6 +34,10 @@ public class RepaymentScheduleActivity extends MifosActivity{
             feePaid += item.getFeesActionDetails().get(i).getFeeAmountPaid();
         }
 
+        Date date = item.getPaymentDate() != null ? item.getPaymentDate() : new Date();
+        long diff = date.getTime() - item.getDueDate().getTime();
+        long days = diff / (86400000);
+        if (days < 0) days = 0;
 
         if (item.getPaymentDate() == null){ //not
             relativeLayout = (RelativeLayout)findViewById(R.id.normallyPaid);
@@ -46,9 +49,11 @@ public class RepaymentScheduleActivity extends MifosActivity{
             textView = (TextView)findViewById(R.id.repaymentScheduleItem_installmentNumber);
             textView.setText(item.getInstallmentNumber().toString());
             textView = (TextView)findViewById(R.id.repaymentScheduleItem_dueDate);
-            textView.setText(item.getDueDate());
+            textView.setText(item.getDueDateFormated());
             textView = (TextView)findViewById(R.id.repaymentScheduleItem_paymentDate);
             textView.setText(R.string.notPaidYet);
+            textView = (TextView)findViewById(R.id.repaymentScheduleItem_daysLate);
+            textView.setText(Long.toString(days));
             textView = (TextView)findViewById(R.id.repaymentScheduleItem_principal);
             textView.setText(Double.toString(item.getPrincipal()));
             textView = (TextView)findViewById(R.id.repaymentScheduleItem_interest);
@@ -86,7 +91,9 @@ public class RepaymentScheduleActivity extends MifosActivity{
             textView = (TextView)findViewById(R.id.partiallyPaidTable_datePaid);
             textView.setText(DateUtils.format(item.getPaymentDate()));
             textView = (TextView)findViewById(R.id.partiallyPaidTable_dateDue);
-            textView.setText(item.getDueDate());
+            textView.setText(item.getDueDateFormated());
+            textView = (TextView)findViewById(R.id.partiallyPaidTable_daysLate);
+            textView.setText(Long.toString(days));
         }
         else { //paid
             relativeLayout = (RelativeLayout)findViewById(R.id.normallyPaid);
@@ -98,9 +105,11 @@ public class RepaymentScheduleActivity extends MifosActivity{
             textView = (TextView)findViewById(R.id.repaymentScheduleItem_installmentNumber);
             textView.setText(item.getInstallmentNumber().toString());
             textView = (TextView)findViewById(R.id.repaymentScheduleItem_dueDate);
-            textView.setText(item.getDueDate());
+            textView.setText(item.getDueDateFormated());
             textView = (TextView)findViewById(R.id.repaymentScheduleItem_paymentDate);
             textView.setText(DateUtils.format(item.getPaymentDate()));
+            textView = (TextView)findViewById(R.id.repaymentScheduleItem_daysLate);
+            textView.setText(Long.toString(days));
             textView = (TextView)findViewById(R.id.repaymentScheduleItem_principal);
             textView.setText(Double.toString(item.getPrincipalPaid()));
             textView = (TextView)findViewById(R.id.repaymentScheduleItem_interest);

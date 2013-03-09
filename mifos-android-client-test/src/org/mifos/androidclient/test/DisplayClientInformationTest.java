@@ -1,10 +1,12 @@
 package org.mifos.androidclient.test;
 
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import junit.framework.Assert;
 
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.customer.Address;
@@ -19,12 +21,11 @@ import org.mifos.androidclient.main.CustomerDetailsActivity;
 import org.mifos.androidclient.net.RestConnector;
 import org.mifos.androidclient.net.services.CustomerService;
 import org.mifos.androidclient.test.utils.AsyncTaskHelper;
-import org.mockito.Mockito;
+import org.mifos.androidclient.test.utils.TextViewHelper;
 
 import android.content.Intent;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.MediumTest;
-import android.widget.TextView;
 
 public class DisplayClientInformationTest extends ActivityInstrumentationTestCase2<CustomerDetailsActivity> {
 
@@ -69,87 +70,67 @@ public class DisplayClientInformationTest extends ActivityInstrumentationTestCas
        
 		final CustomerDetailsActivity activity = getActivity();
 		
-		ClientDisplay clientDisplay = Mockito.mock(ClientDisplay.class);
-		Mockito.when(clientDisplay.getDisplayName()).thenReturn(DISPLAY_NAME);
-		Mockito.when(clientDisplay.getGlobalCustNum()).thenReturn(GLOBAL_CUST_NUM);
-		Mockito.when(clientDisplay.getCustomerStatusName()).thenReturn(STATUS_NAME);
-		Mockito.when(clientDisplay.getCustomerActivationDate()).thenReturn(ACTIVATION_DATE);
-		Mockito.when(clientDisplay.getCustomerFormedByDisplayName()).thenReturn(FORMED_BY_DISPLAY_NAME);
-		Mockito.when(clientDisplay.getDateOfBirth()).thenReturn(DATE_OF_BIRTH);
-		Mockito.when(clientDisplay.getEthnicity()).thenReturn(ETHNICITY);
-		Mockito.when(clientDisplay.getEducationLevel()).thenReturn(EDUCATION_LEVEL);
-		Mockito.when(clientDisplay.getCitizenship()).thenReturn(CITIZENSHIP);
+		ClientDisplay clientDisplay = mock(ClientDisplay.class);
+		when(clientDisplay.getDisplayName()).thenReturn(DISPLAY_NAME);
+		when(clientDisplay.getGlobalCustNum()).thenReturn(GLOBAL_CUST_NUM);
+		when(clientDisplay.getCustomerStatusName()).thenReturn(STATUS_NAME);
+		when(clientDisplay.getCustomerActivationDate()).thenReturn(ACTIVATION_DATE);
+		when(clientDisplay.getCustomerFormedByDisplayName()).thenReturn(FORMED_BY_DISPLAY_NAME);
+		when(clientDisplay.getDateOfBirth()).thenReturn(DATE_OF_BIRTH);
+		when(clientDisplay.getEthnicity()).thenReturn(ETHNICITY);
+		when(clientDisplay.getEducationLevel()).thenReturn(EDUCATION_LEVEL);
+		when(clientDisplay.getCitizenship()).thenReturn(CITIZENSHIP);
 	       
-		Address address = Mockito.mock(Address.class);
-		Mockito.when(address.getPhoneNumber()).thenReturn(PHONE_NUMBER);
+		Address address = mock(Address.class);
+		when(address.getPhoneNumber()).thenReturn(PHONE_NUMBER);
 
-		ClientPerformanceHistory clientPerformanceHistory = Mockito.mock(ClientPerformanceHistory.class);
-		Mockito.when(clientPerformanceHistory.getLoanCycleNumber()).thenReturn(LOAN_CYCLE_NUM);
-		Mockito.when(clientPerformanceHistory.getLastLoanAmount()).thenReturn(LAST_LOAN_AMOUNT);
-		Mockito.when(clientPerformanceHistory.getNoOfActiveLoans()).thenReturn(ACTIVE_LOANS);
-		Mockito.when(clientPerformanceHistory.getDelinquentPortfolioAmount()).thenReturn(PORTFOLIO_AMOUNT);
-		Mockito.when(clientPerformanceHistory.getTotalSavingsAmount()).thenReturn(TOTAL_SAVINGS);
-		Mockito.when(clientPerformanceHistory.getMeetingsAttended()).thenReturn(MEETINGS_ATTENDED);
-		Mockito.when(clientPerformanceHistory.getMeetingsMissed()).thenReturn(MEETINGS_MISSED);
-		Mockito.when(clientPerformanceHistory.getLoanCycleCounters()).thenReturn(new ArrayList<LoanCycleCounter>());
+		ClientPerformanceHistory clientPerformanceHistory = mock(ClientPerformanceHistory.class);
+		when(clientPerformanceHistory.getLoanCycleNumber()).thenReturn(LOAN_CYCLE_NUM);
+		when(clientPerformanceHistory.getLastLoanAmount()).thenReturn(LAST_LOAN_AMOUNT);
+		when(clientPerformanceHistory.getNoOfActiveLoans()).thenReturn(ACTIVE_LOANS);
+		when(clientPerformanceHistory.getDelinquentPortfolioAmount()).thenReturn(PORTFOLIO_AMOUNT);
+		when(clientPerformanceHistory.getTotalSavingsAmount()).thenReturn(TOTAL_SAVINGS);
+		when(clientPerformanceHistory.getMeetingsAttended()).thenReturn(MEETINGS_ATTENDED);
+		when(clientPerformanceHistory.getMeetingsMissed()).thenReturn(MEETINGS_MISSED);
+		when(clientPerformanceHistory.getLoanCycleCounters()).thenReturn(new ArrayList<LoanCycleCounter>());
 		
-		CustomerAccountSummary customerAccountSummary = Mockito.mock(CustomerAccountSummary.class);
-		Mockito.when(customerAccountSummary.getNextDueAmount()).thenReturn(NEXT_DUE_AMOUNT);
+		CustomerAccountSummary customerAccountSummary = mock(CustomerAccountSummary.class);
+		when(customerAccountSummary.getNextDueAmount()).thenReturn(NEXT_DUE_AMOUNT);
         
-		ClientDetails clientDetails = Mockito.mock(ClientDetails.class);
-		Mockito.when(clientDetails.getAddress()).thenReturn(address);
-		Mockito.when(clientDetails.getClientDisplay()).thenReturn(clientDisplay);
-		Mockito.when(clientDetails.getClientPerformanceHistory()).thenReturn(clientPerformanceHistory);
-		Mockito.when(clientDetails.getCustomerAccountSummary()).thenReturn(customerAccountSummary);
+		ClientDetails clientDetails = mock(ClientDetails.class);
+		when(clientDetails.getAddress()).thenReturn(address);
+		when(clientDetails.getClientDisplay()).thenReturn(clientDisplay);
+		when(clientDetails.getClientPerformanceHistory()).thenReturn(clientPerformanceHistory);
+		when(clientDetails.getCustomerAccountSummary()).thenReturn(customerAccountSummary);
 
-		CustomerService customerService = Mockito.mock(CustomerService.class);
-		Mockito.when(customerService.getApplicableFees(Mockito.any(String.class))).thenReturn(new HashMap<String, Map<String, String>>());
-		Mockito.when(customerService.getDetailsForEntity(Mockito.any(Customer.class))).thenReturn(clientDetails);
+		CustomerService customerService = mock(CustomerService.class);
+		when(customerService.getApplicableFees(any(String.class))).thenReturn(new HashMap<String, Map<String, String>>());
+		when(customerService.getDetailsForEntity(any(Customer.class))).thenReturn(clientDetails);
 	        
 		activity.setCustomerService(customerService);
 		getInstrumentation().callActivityOnStart(activity);
 		getInstrumentation().callActivityOnResume(activity);
 		
-		new AsyncTaskHelper(activity.getCustomerDetailsTask()).waitForFinish(10000);
+		new AsyncTaskHelper(activity.getCustomerDetailsTask()).waitForFinish();
+		TextViewHelper textViewHelper = new TextViewHelper(activity);
 		
-		TextView textView = (TextView) activity.findViewById(org.mifos.androidclient.R.id.customerOverview_phoneNumber);
-		Assert.assertEquals(PHONE_NUMBER, textView.getText().toString());
-		textView = (TextView) activity.findViewById(R.id.customerOverview_name);
-		Assert.assertEquals(DISPLAY_NAME, textView.getText().toString());
-		textView = (TextView) activity.findViewById(R.id.customerOverview_systemId);
-		Assert.assertEquals(GLOBAL_CUST_NUM, textView.getText().toString());
-		textView = (TextView) activity.findViewById(R.id.customerOverview_status);
-		Assert.assertEquals(STATUS_NAME, textView.getText().toString());
-		textView = (TextView) activity.findViewById(R.id.customerOverview_loanCycleNo);
-		Assert.assertEquals(Integer.toString(LOAN_CYCLE_NUM), textView.getText().toString());
-		textView = (TextView) activity.findViewById(R.id.customerOverview_amountOfLastLoan);
-		Assert.assertEquals(LAST_LOAN_AMOUNT, textView.getText().toString());
-		textView = (TextView) activity.findViewById(R.id.customerOverview_noOfActiveLoans);
-		Assert.assertEquals(Integer.toString(ACTIVE_LOANS), textView.getText().toString());
-		textView = (TextView) activity.findViewById(R.id.customerOverview_delinquentPortfolio);
-		Assert.assertEquals(PORTFOLIO_AMOUNT, textView.getText().toString());
-		textView = (TextView) activity.findViewById(R.id.customerOverview_totalSavings);
-		Assert.assertEquals(TOTAL_SAVINGS, textView.getText().toString());
-		textView = (TextView) activity.findViewById(R.id.customerOverview_meetingsAttended);
-		Assert.assertEquals(Integer.toString(MEETINGS_ATTENDED), textView.getText().toString());
-		textView = (TextView) activity.findViewById(R.id.customerOverview_meetingsMissed);
-		Assert.assertEquals(Integer.toString(MEETINGS_MISSED), textView.getText().toString());
-		
-		textView = (TextView) activity.findViewById(R.id.loanAccounts_amountDue);
-		Assert.assertEquals(NEXT_DUE_AMOUNT, textView.getText().toString());
-	
-	   	textView = (TextView) activity.findViewById(R.id.customerAdditional_customerActivation);
-		Assert.assertEquals(ACTIVATION_DATE, textView.getText().toString());
-	   	textView = (TextView) activity.findViewById(R.id.customerAdditional_RecruitByDisplayName);
-		Assert.assertEquals(FORMED_BY_DISPLAY_NAME, textView.getText().toString());
-		textView = (TextView) activity.findViewById(R.id.customerAdditional_dateOfBirthDay);
-		Assert.assertEquals(DATE_OF_BIRTH, textView.getText().toString());
-		textView = (TextView) activity.findViewById(R.id.customerAdditional_ethinicity);
-		Assert.assertEquals(ETHNICITY, textView.getText().toString());
-		textView = (TextView) activity.findViewById(R.id.customerAdditional_educationLevel);
-		Assert.assertEquals(EDUCATION_LEVEL, textView.getText().toString());
-		textView = (TextView) activity.findViewById(R.id.customerAdditional_citizenship);
-		Assert.assertEquals(CITIZENSHIP, textView.getText().toString());
+		textViewHelper.verifyText(R.id.customerOverview_phoneNumber, PHONE_NUMBER);
+		textViewHelper.verifyText(R.id.customerOverview_name, DISPLAY_NAME);
+		textViewHelper.verifyText(R.id.customerOverview_systemId, GLOBAL_CUST_NUM);
+		textViewHelper.verifyText(R.id.customerOverview_status, STATUS_NAME);
+		textViewHelper.verifyText(R.id.customerOverview_loanCycleNo, Integer.toString(LOAN_CYCLE_NUM));
+		textViewHelper.verifyText(R.id.customerOverview_amountOfLastLoan, LAST_LOAN_AMOUNT);
+		textViewHelper.verifyText(R.id.customerOverview_noOfActiveLoans, Integer.toString(ACTIVE_LOANS));
+		textViewHelper.verifyText(R.id.customerOverview_delinquentPortfolio, PORTFOLIO_AMOUNT);
+		textViewHelper.verifyText(R.id.customerOverview_meetingsAttended, Integer.toString(MEETINGS_ATTENDED));
+		textViewHelper.verifyText(R.id.customerOverview_meetingsMissed, Integer.toString(MEETINGS_MISSED));
+		textViewHelper.verifyText(R.id.loanAccounts_amountDue, NEXT_DUE_AMOUNT);
+		textViewHelper.verifyText(R.id.customerAdditional_customerActivation, ACTIVATION_DATE);
+		textViewHelper.verifyText(R.id.customerAdditional_RecruitByDisplayName, FORMED_BY_DISPLAY_NAME);
+		textViewHelper.verifyText(R.id.customerAdditional_dateOfBirthDay, DATE_OF_BIRTH);
+		textViewHelper.verifyText(R.id.customerAdditional_ethinicity, ETHNICITY);
+		textViewHelper.verifyText(R.id.customerAdditional_educationLevel, EDUCATION_LEVEL);
+		textViewHelper.verifyText(R.id.customerAdditional_citizenship, CITIZENSHIP);
 	}
 	
 }
