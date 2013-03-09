@@ -302,6 +302,7 @@
     <string name="repaymentScheduleItem_principal_label">Principal:&#160;</string>
     <string name="repaymentScheduleItem_interest_label">Interest:&#160;</string>
     <string name="repaymentScheduleItem_fees_label">Fees:&#160;</string>
+    <string name="repaymentScheduleItem_daysLate_label">Days late:&#160;</string>
     <string name="repaymentScheduleItem_total_label">Total:&#160;</string>
     <string name="repaymentScheduleItem_schedule_header">Repayment Schedule:&#160;</string>
     <string name="repaymentScheduleItem_installment_header">Installment Details:&#160;</string>
@@ -312,7 +313,7 @@
     <string name="partiallyPaidTable_fees_label">Fees</string>
     <string name="partiallyPaidTable_total_label">Total</string>
     <string name="partiallyPaidTable_date_label">Date</string>
-
+    <string name="partiallyPaidTable_daysLate_label">Days late</string>
 
     <!--
         String values for AccountTransactionHistoryActivity

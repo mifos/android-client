@@ -77,10 +77,27 @@
             />
         <TextView
             style="@style/Label"
-            android:id="@+id/repaymentScheduleItem_principal_label"
+            android:id="@+id/repaymentScheduleItem_daysLate_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/repaymentScheduleItem_paymentDate_label"
+            android:text="@string/repaymentScheduleItem_daysLate_label"
+            />
+        <TextView
+            style="@style/Shifted"
+            android:id="@+id/repaymentScheduleItem_daysLate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="4dp"
+            android:layout_below="@id/repaymentScheduleItem_paymentDate_label"
+            android:layout_toRightOf="@id/repaymentScheduleItem_daysLate_label"
+            />
+        <TextView
+            style="@style/Label"
+            android:id="@+id/repaymentScheduleItem_principal_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/repaymentScheduleItem_daysLate_label"
             android:text="@string/repaymentScheduleItem_principal_label"
             />
         <TextView
@@ -89,7 +106,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="4dp"
-            android:layout_below="@id/repaymentScheduleItem_paymentDate_label"
+            android:layout_below="@id/repaymentScheduleItem_daysLate_label"
             android:layout_toRightOf="@id/repaymentScheduleItem_principal_label"
             />
         <TextView
@@ -145,7 +162,7 @@
             />
         </RelativeLayout>
 
-            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            <TableLayout
                            android:id="@+id/partiallyPaidTable"
                            android:layout_width="fill_parent"
                            android:layout_height="fill_parent"
@@ -318,6 +335,28 @@
                                    android:id="@+id/partiallyPaidTable_dateDue"
                                    android:layout_width="wrap_content"
                                    android:layout_height="wrap_content"
+                                   />
+                           </TableRow>
+                           <View
+                                   android:layout_height="2dip"
+                                   android:background="#FF909090"
+                               />
+                           <TableRow>
+                               <TextView
+                                   style="@style/Shifted"
+                                   android:id="@+id/partiallyPaidTable_daysLate_label"
+                                   android:textStyle="bold"
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   android:text="@string/partiallyPaidTable_daysLate_label"
+                                    android:gravity="right"
+                                   />
+                               <TextView
+                                   style="@style/Shifted"
+                                   android:id="@+id/partiallyPaidTable_daysLate"
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                    android:gravity="right"
                                    />
                            </TableRow>
                        </TableLayout>
