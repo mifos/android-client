@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        Global application text values:
+    -->
+    <string name="app_name">Mifos Android Client</string>
+
+    <string name="server_name_template">https://demo.mifcloud.com</string>
+
+    <string name="not_implemented_yet_message">To be implemented soon!</string>
+
+    <string name="not_available">N/A</string>
+
+    <string name="type_to_filter">Type to filter the list</string>
+
+    <!--
+        Translations for messages received from the mifos server
+    -->
+    <string name="feeId">Fee ID:&#160;</string>
+    <string name="amount">Amount:&#160;</string>
+    <string name="cause">Error cause:&#160;</string>
+    <string name="exception.accounts.ApplicationException.CannotAdjust">The amount cannot be adjusted either because the status is not yet active or because a payment was received at the time of disbursement.</string>
+    <string name="error.activity.not.allowed">Activity not allowed.</string>
+
+    <!--
+        Text values relates to user dialogs:
+    -->
+    <string name="dialog_ok">Ok</string>
+    <string name="dialog_cancel">Cancel</string>
+
+    <string name="dialog_server_address">Please provide a Mifos server address:</string>
+
+    <string name="dialog_login_title">Logging in</string>
+    <string name="dialog_loading_message">Please wait...</string>
+    <string name="dialog_checking_session">Checking user session</string>
+    <string name="dialog_getting_customer_data">Getting customer data</string>
+    <string name="dialog_getting_account_data">Getting account data</string>
+    <string name="dialog_getting_transaction_history">Getting transaction history</string>
+    <string name="dialog_getting_installment_details">Getting installment details</string>
+    <string name="dialog_getting_customer_charges">Getting customer charges</string>
+    <string name="dialog_getting_deposit_due_details">Getting deposit due details</string>
+    <string name="dialog_getting_repayment_schedule">Getting repayment schedule</string>
+    <string name="dialog_submitting_data">Submitting</string>
+
+
+    <!--
+        Text values for toast messages:
+    -->
+    <string name="toast_first_address_set">The Mifos server address has been set. You can change it later in the options menu.</string>
+    <string name="toast_address_set">The Mifos server address has been changed.</string>
+    <string name="toast_first_address_canceled">The Mifos server address has not been set. Please set it using the options menu.</string>
+    <string name="toast_connection_error">
+        There appears to be a network connection problem. Please make sure You are connected
+        to the internet and the Mifos server address is correct.
+    </string>
+    <string name="toast_address_invalid">
+        The server address You provided appears to be invalid. Please make sure it is correct and
+        retry.
+    </string>
+    <string name="toast_customer_id_not_available">
+        The customer identifier is not available, cannot download customer data.
+    </string>
+    <string name="toast_account_id_not_available">
+        The account number is not available, cannot download account data.
+    </string>
+
+    <!--
+        Menus and menu items related strings:
+    -->
+    <string name="menu_change_address">Change server address</string>
+    <string name="menu_log_out">Log out</string>
+    <string name="menu_synchronize">Synchronize</string>
+
+    <!--
+        String values for ClientMainActivity:
+    -->
+    <string name="client_main_button_client_list">Browse customers</string>
+    <string name="client_main_button_meetings_list">Upcoming meetings</string>
+    <string name="client_main_button_collectionSheet">Enter collection sheet data</string>
+    <string name="client_main_label">Welcome to Mifos\nAndroid client!</string>
+
+    <!--
+        String values for LoginActivity:
+    -->
+    <string name="login_login_label">Username:</string>
+    <string name="login_password_label">Password:</string>
+    <string name="login_button">Log in</string>
+    <string name="login_errors">The login or password You provided was incorrect. Please correct the values and retry.</string>
+    <string name="login_header">Please log in:</string>
+
+    <!--
+        String values for CentersListActivity:
+    -->
+    <string name="centerslist_label">Choose a center:</string>
+    <string name="centerslist_no_center">Customers assigned to the branch</string>
+    <string name="centersList_clientsAssignedToBranch">Clients assigned to the branch</string>
+    <string name="centersList_hint">Click on a center to go to its groups. Do a long click on a center to view its details.</string>
+    <string name="centersList_no_centers_available">You are logged in as \'%s\', but it appears You have no customers assigned. </string>
+    <string name="centersList_listItemLabel_withChildren"><b>+</b> %1$s (%2$d)</string>
+
+    <!--
+        String values for CustomersListActivity:
+    -->
+    <string name="clientslist_label">Select a customer to view his details:</string>
+    <string name="clientsList_hint">Click on a group to view its clients (if any). Do a long click on a group to view its details.</string>
+    <string name="clientsList_no_customers_available">You are logged in as \'%s\', but it appears that You have no groups or clients assigned.</string>
+    <string name="clientsList_listGroupLabel_withChildren">+ %1$s (%2$d)</string>
+
+    <!--
+        String values for CustomerDetailsActivity:
+    -->
+    <string name="customerDetails_tab_overview">Overview</string>
+    <string name="customerDetails_tab_accounts">Accounts &#38; Charges</string>
+    <string name="customerDetails_tab_additional">Additional Info</string>
+
+    <string name="customerOverview_status_label">Status:&#160;</string>
+    <string name="customerOverview_systemId_label">System ID:&#160;</string>
+    <string name="customerOverview_phoneNumber_label">Phone number:&#160;</string>
+    <string name="customerOverview_phoneNumber_empty">No phone number</string>
+
+    <string name="customerOverview_performance_history_label">Performance History:</string>
+    <string name="customerOverview_loanCycleNo_label">Loan Cycle #:&#160;</string>
+    <string name="customerOverview_amountOfLastLoan_label">Amount of last Loan:&#160;</string>
+    <string name="customerOverview_noOfActiveLoans_label"># of active Loans:&#160;</string>
+    <string name="customerOverview_delinquentPortfolio_label">Delinquent Portfolio:&#160;</string>
+    <string name="customerOverview_totalSavings_label">Total Savings:&#160;</string>
+    <string name="customerOverview_meetingsAttended_label">Meetings Attended:&#160;</string>
+    <string name="customerOverview_meetingsMissed_label">Meetings Missed:&#160;</string>
+    <string name="customerOverview_loanCyclePerProduct_label">Loan Cycle per Product:&#160;</string>
+    <string name="customerOverview_name_label">Client name:&#160;</string>
+
+    <string name="accountDetails_chargesDetailsButton_label">Charges Details</string>
+    <string name="accountDetails_applyChargeButton_label">Apply Charge</string>
+
+    <string name="savingsAccountListItem_balance_label">Balance:&#160;</string>
+    <string name="savingsAccountListItem_status_label">Status:&#160;</string>
+
+    <string name="loanAccountListItem_status_label">Status:&#160;</string>
+    <string name="loanAccountListItem_outstandingBalance_label">Outstanding balance:&#160;</string>
+    <string name="loanAccountListItem_amountDue_label">Amount due:&#160;</string>
+
+    <string name="loan_label">Loan Accounts</string>
+    <string name="savings_label">Savings Accounts</string>
+    <string name="charges_label">Client Charges:</string>
+    <string name="closedSavingsLabel">Closed Savings Accounts</string>
+    <string name="closedLoanLabel">Closed Loan Accounts</string>
+
+    <string name="loanAccounts_amountDue_label">Amount due:&#160;</string>
+
+    <string name="groupOverview_name_label">Group name:</string>
+    <string name="groupOverview_noOfActiveClients_label"># of active Clients:&#160;</string>
+    <string name="groupOverview_amountOfLastGroupLoan_label">Amount of last Group Loan:&#160;</string>
+    <string name="groupOverview_averageIndividualLoanSize_label">Avg individual Loan size:&#160;</string>
+    <string name="groupOverview_totalLoanPortfolio_label">Total Loan portfolio:&#160;</string>
+    <string name="groupOverview_portfolioAtRisk_label">Portfolio at risk:&#160;</string>
+    <string name="groupOverview_totalSavings_label">Total Savings:&#160;</string>
+    <string name="groupOverview_loanCyclePerProduct_label">Loan Cycle per Product:&#160;</string>
+
+    <string name="groupCharges_label">Group charges:</string>
+    <string name="centerCharges_label">Center charges:</string>
+
+    <string name="groupAdditional_approvalDate_label">Group approval date:&#160;</string>
+    <string name="groupAdditional_recruitedBy_label">Recruited By:&#160;</string>
+    <string name="groupAdditional_recentNotes_label">Recent Notes:&#160;</string>
+    <string name="groupAdditional_GroupInformation_label">Group information </string>
+    <string name="groupAdditional_ExternalID_label">External ID:&#160;</string>
+    <string name="groupAdditional_Address_label">Address</string>
+
+    <string name="centerOverview_name_label">Center name:</string>
+    <string name="centerOverview_noOfActiveClients_label"># of active Clients:&#160;</string>
+    <string name="centerOverview_noOfActiveGroups_label"># of active Groups:&#160;</string>
+    <string name="centerOverview_totalLoanPortfolio_label">Total Loan portfolio:&#160;</string>
+    <string name="centerOverview_totalSavings">Total Savings:&#160;</string>
+
+    <string name="centerAdditional_centerInformation_label">Center information</string>
+    <string name="centerAdditional_mfiJoining_label">MFI joining date:&#160;</string>
+    <string name="centerAdditional_centerStart_label">Center start date:&#160;</string>
+    <string name="centerAdditional_loanOfficer_name_label">Loan Officer:&#160;</string>
+    <string name="centerAdditional_recentNotes_label">Recent Notes:&#160;</string>
+
+    <string name="customerAdditional_mfiInformation_label">MFI Information:&#160;</string>
+    <string name="customerAdditional_personalInformation_label">Personal Information:&#160;</string>
+    <string name="customerAdditional_customerActivationDate_label">Client start date:&#160;</string>
+    <string name="customerAdditional_RecruitByDisplayName_label">Recruited By:&#160;</string>
+    <string name="customerAdditional_dateOfBirthDay_label">Date Of Birth:&#160;</string>
+    <string name="customerAdditional_ethinicity_label">Ethnicity:&#160;</string>
+    <string name="customerAdditional_educationLevel_label">Education Level:&#160;</string>
+    <string name="customerAdditional_citizenship_label">Citizenship:&#160;</string>
+    <string name="customerAdditional_recentNotes_label">Recent Notes:&#160;</string>
+
+    <!--
+        String values for AccountDetailsActivity:
+    -->
+    <string name="accountDetails_tab_overview">Account Overview</string>
+    <string name="accountDetails_tab_additionalInfo">Account Details</string>
+    <string name="accountDetails_tab_transaction">Account Transactions</string>
+
+    <string name="accountOverviewLoan_accountSummary_label">Account Summary</string>
+    <string name="accountOverviewLoan_status_label">Status:&#160;</string>
+    <string name="accountOverviewLoan_disbursalDate_label">Disbursal date:&#160;</string>
+    <string name="accountOverviewLoan_purposeOfLoan_label">Purpose of Loan:&#160;</string>
+    <string name="accountOverviewLoan_totalAmountDueOn_label">Total amount due on</string>
+    <string name="accountOverviewLoan_amountInArrears_label">Amount in arrears:&#160;</string>
+    <string name="accountOverviewLoan_originalLoan_label">Loan</string>
+    <string name="accountOverviewLoan_amountPaid_label">Paid</string>
+    <string name="accountOverviewLoan_loanBalance_label">Balance</string>
+    <string name="accountOverviewLoan_principal_label">Principal</string>
+    <string name="accountOverviewLoan_interest_label">Interest</string>
+    <string name="accountOverviewLoan_fees_label">Fees</string>
+    <string name="accountOverviewLoan_penalty_label">Penalty</string>
+    <string name="accountOverviewLoan_total_label">Total</string>
+    <string name="accountOverviewLoan_recentActivity_label">Recent activity</string>
+    <string name="accountOverviewLoan_recentNotes_label">Recent notes</string>
+
+
+    <string name="accountOverviewSavings_accountStatus_label">Status:&#160;</string>
+    <string name="accountOverviewSavings_accountBalance_label">Account Balance:&#160;</string>
+    <string name="accountOverviewSavings_totalAmountDue_label">Total amount due on </string>
+    <string name="accountOverviewSavings_recentActivity_label">Recent activity</string>
+    <string name="accountOverviewSavings_recentNotes_label">Recent notes:&#160;</string>
+
+    <string name="tableSavings_recentActivity_date_label">&#160;Date&#160;</string>
+    <string name="tableSavings_recentActivity_description_label">&#160;Description&#160;</string>
+    <string name="tableSavings_recentActivity_amount_label">&#160;Amount&#160;</string>
+
+    <string name="tableLoan_recentActivity_actionDate">&#160;Date&#160;</string>
+    <string name="tableLoan_recentActivity_activity">&#160;Activity&#160;</string>
+    <string name="tableLoan_recentActivity_principal">&#160;Principal&#160;</string>
+    <string name="tableLoan_recentActivity_interest">&#160;Interest&#160;</string>
+    <string name="tableLoan_recentActivity_fees">&#160;Fees&#160;</string>
+    <string name="tableLoan_recentActivity_penalty">&#160;Penalty&#160;</string>
+    <string name="tableLoan_recentActivity_total">&#160;Total&#160;</string>
+    <string name="tableLoan_recentActivity_principalRunning">&#160;Principal balance&#160;</string>
+    <string name="tableLoan_recentActivity_interestRunning">&#160;Interest balance&#160;</string>
+    <string name="tableLoan_recentActivity_feesRunning">&#160;Fees balance&#160;</string>
+    <string name="tableLoan_recentActivity_totalRunning">&#160;Total balance&#160;</string>
+
+    <string name="accountOverviewLoan_performanceHistory_label">Performance history</string>
+    <string name="accountOverviewLoan_noOfPayments_label"># of payments:&#160;</string>
+    <string name="accountOverviewLoan_totalNoOfMissedPayments_label"># of missed payments:&#160;</string>
+    <string name="accountOverviewLoan_daysInArrears_label">Days in arrears:&#160;</string>
+    <string name="accountOverviewLoan_loanMaturityDate_label">Loan maturity date:&#160;</string>
+
+    <string name="accountOverviewSavings_performanceHistory_label">Performance history</string>
+    <string name="accountOverviewSavings_openDate_label">Date account opened:&#160;</string>
+    <string name="accountOverviewSavings_totalDeposits_label">Total deposits:&#160;</string>
+    <string name="accountOverviewSavings_totalInterestEarned_label">Total interest earned:&#160;</string>
+    <string name="accountOverviewSavings_totalWithdrawals_label">Total withdrawals:&#160;</string>
+    <string name="accountOverviewSavings_missedDeposits_label">Missed Deposits:&#160;</string>
+
+    <string name="accountDetailsSavings_recommendedOrMandatoryAmount_label">Mandatory amount for deposit:&#160;</string>
+    <string name="accountDetailsSavings_depositTypeName_label">Type of deposits:&#160;</string>
+    <string name="accountDetailsSavings_maxWithdrawal_label">Max amount per withdrawal:&#160;</string>
+    <string name="accountDetailsSavings_interestRate_label">Interest rate:&#160;</string>
+
+    <string name="accountDetailsLoan_interestRules_label">Interest rules</string>
+    <string name="accountDetailsLoan_interestRateType_label">Interest Rate Type:&#160;</string>
+    <string name="accountDetailsLoan_interestRate_label">Interest rate:&#160;</string>
+    <string name="accountDetailsLoan_interestDeductedAtDisbursement_label">Interest deducted at disbursement:&#160;</string>
+    <string name="accountDetailsLoan_repaymentRules_label">Repayment rules:&#160;</string>
+    <string name="accountDetailsLoan_frequencyOfInstallments_label">Frequency of Installments:&#160;</string>
+    <string name="accountDetailsLoan_PrincipalDueOnLastInstallment_label">Principal due on last installment:&#160;</string>
+    <string name="accountDetailsLoan_GracePeriodType_label">Grace Period Type:&#160;</string>
+    <string name="accountDetailsLoan_NoOfInstallments_label">No. of installments:&#160;</string>
+    <string name="accountDetailsLoan_GracePeriodForRepayments_label">Grace period for repayments:&#160;</string>
+    <string name="accountDetailsLoan_SourceOfFund_label">Source of fund:&#160;</string>
+    <string name="accountDetailsLoan_CollateralDetails_label">Collateral details:&#160;</string>
+    <string name="accountDetailsLoan_CollateralType_label">Collateral type:&#160;</string>
+    <string name="accountDetailsLoan_CollateralNotes_label">Collateral Notes:&#160;</string>
+    <string name="accountDetailsLoan_ExternalID_label">External ID:&#160;</string>
+    <string name="accountDetailsLoan_RecurringAccountFees_label">Recurring account fees:&#160;</string>
+    <string name="accountDetailsLoan_loanBiWeekly_label">loan bi weekly:&#160;</string>
+    <string name="accountDetailsLoan_OneTimeAccountFees_label">One time account fees:&#160;</string>
+    <string name="accountDetailsLoan_UpfrontLoanFee_label">Upfront Loan Fee:&#160;</string>
+
+    <string name="accountDetails_transactionsHistoryButton_label">View Transactions History</string>
+    <string name="accountDetails_installmentDetailsButton_label">View Installment Details</string>
+    <string name="accountDetails_repaymentScheduleButton_label">View Repayment Schedule</string>
+    <string name="accountDetails_depositDueDetails_buttonLabel">View Deposit Due Details</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="notPaidYet">Not paid yet</string>
+    <string name="weeks"> Week(s)</string>
+    <string name="months"> Month(s)</string>
+    <string name="recurEvery">Recur every&#160;</string>
+    <string name="partiallyPaid">Partially paid</string>
+
+    <string name="accountTransaction_disburseLoan_label">Disburse Loan</string>
+    <string name="accountTransaction_applySavingsAdjustment_label">Apply adjustment</string>
+    <string name="accountTransaction_applyLoanAdjustment_label">Apply adjustment</string>
+    <string name="accountTransaction_savingsTransaction_label">Make deposit/withdrawal</string>
+
+    <!--
+        String values for AccountTransactionHistoryActivity
+    -->
+    <string name="repaymentScheduleItem_header">Repayments Schedule</string>
+    <string name="repaymentScheduleItem_installmentNumber_label">No:&#160;</string>
+    <string name="repaymentScheduleItem_dueDate_label">Due date:&#160;</string>
+    <string name="repaymentScheduleItem_paymentDate_label">Date paid:&#160;</string>
+    <string name="repaymentScheduleItem_principal_label">Principal:&#160;</string>
+    <string name="repaymentScheduleItem_interest_label">Interest:&#160;</string>
+    <string name="repaymentScheduleItem_fees_label">Fees:&#160;</string>
+    <string name="repaymentScheduleItem_daysLate_label">Days late:&#160;</string>
+    <string name="repaymentScheduleItem_total_label">Total:&#160;</string>
+    <string name="repaymentScheduleItem_schedule_header">Repayment Schedule:&#160;</string>
+    <string name="repaymentScheduleItem_installment_header">Installment Details:&#160;</string>
+    <string name="partiallyPaidTable_paid">&#160;Paid:&#160;</string>
+    <string name="partiallyPaidTable_due">&#160;Due:&#160;</string>
+    <string name="partiallyPaidTable_principal_label">Principal</string>
+    <string name="partiallyPaidTable_interest_label">Interest</string>
+    <string name="partiallyPaidTable_fees_label">Fees</string>
+    <string name="partiallyPaidTable_total_label">Total</string>
+    <string name="partiallyPaidTable_date_label">Date</string>
+    <string name="partiallyPaidTable_daysLate_label">Days late</string>
+
+    <!--
+        String values for AccountTransactionHistoryActivity
+    -->
+    <string name="transactionHistoryItemDetails_header">Transaction Details:</string>
+    <string name="transactionHistory_label">Account\'s Transaction History</string>
+    <string name="transactionHistoryItemDetails_date_label">Date:&#160;</string>
+    <string name="transactionHistoryItemDetails_paymentId_label">Payment ID:&#160;</string>
+    <string name="transactionHistoryItemDetails_transactionId_label">Transaction ID:&#160;</string>
+    <string name="transactionHistoryItemDetails_type_label">Type:&#160;</string>
+    <string name="transactionHistoryItemDetails_glCode_label">GL Code:&#160;</string>
+    <string name="transactionHistoryItemDetails_debit_label">Debit:&#160;</string>
+    <string name="transactionHistoryItemDetails_credit_label">Credit:&#160;</string>
+    <string name="transactionHistoryItemDetails_clientName_label">Client Name:&#160;</string>
+    <string name="transactionHistoryItemDetails_datePosted_label">Date Posted:&#160;</string>
+    <string name="transactionHistoryItemDetails_postedBy_label">Posted By:&#160;</string>
+    <string name="transactionHistoryItemDetails_adjustmentNotes_label">Adjustment Notes:&#160;</string>
+
+    <!--
+        String values for LoanInstallmentDetailsActivity
+    -->
+    <string name="loanInstallmentDetails_header">Loan Installment Details</string>
+    <string name="loanInstallmentDetails_currentInstallment_columnLabel">Current installment</string>
+    <string name="loanInstallmentDetails_overdueAmount_columnLabel">Overdue amount</string>
+    <string name="loanInstallmentDetails_amount_columnLabel">Amount</string>
+    <string name="loanInstallmentDetails_principal_columnLabel">Principal</string>
+    <string name="loanInstallmentDetails_interest_columnLabel">Interest</string>
+    <string name="loanInstallmentDetails_fees_columnLabel">Fees</string>
+    <string name="loanInstallmentDetails_penalty_columnLabel">Penalty</string>
+    <string name="loanInstallmentDetails_subTotal_columnLabel">subTotal</string>
+    <string name="loanInstallmentDetails_totalAmountDue_columnLabel">Total amount due on&#160;</string>
+
+    <!--
+        String values for CustomerChargesDetailsActivity
+    -->
+    <string name="customerChargesDetails_accountSummary_label">Account summary</string>
+    <string name="customerChargesDetails_upcomingCharges_label">Upcoming charges&#160;</string>
+    <string name="customerChargesDetails_recentAccountActivity_label">Recent Account Activity</string>
+    <string name="customerChargesDetails_recurringAccountFees_label">Recurring Account Fees</string>
+    <string name="customerChargesDetails_amountDue_label">Amount Due:&#160;</string>
+    <string name="customerChargesDetails_amountOverdue_label">Amount Overdue:&#160;</string>
+    <string name="customerChargesDetails_total_label">Total:&#160;</string>
+    <string name="customerChargesDetails_feeType_label">Fee Type:</string>
+    <string name="customerChargesDetails_amount_label">Amount</string>
+    <string name="customerChargesDetails_date_label">Date</string>
+    <string name="customerChargesDetails_description_label">Description</string>
+    <string name="customerChargesDetails_postedBy_label">Posted By</string>
+
+    <string name="customerChargesDetails_miscFee_label">Misc Fee</string>
+    <string name="customerChargesDetails_miscPenalty_label">Misc Penalty</string>
+
+    <string name="customerChargesDetails_recurringAccountFees_feeName_label">Fee Name</string>
+    <string name="customerChargesDetails_recurringAccountFees_amount_label">Amount</string>
+    <string name="customerChargesDetails_recurringAccountFees_recurrence_label">Recur Every</string>
+
+    <!--
+        String values for DepositDueDetailsActivity
+    -->
+    <string name="depositDueDetails_header">Deposit Due:</string>
+    <string name="depositDueDetails_amount_label">Amount</string>
+    <string name="depositDueDetails_nextDeposit_label">Next deposit</string>
+    <string name="depositDueDetails_pastDeposits_label">Past deposit(s) due</string>
+    <string name="depositDueDetails_subTotal_label">Sub total</string>
+    <string name="depositDueDetails_totalAmountDue_label">Total amount due on&#160;</string>
+
+    <!--
+        String values for OperationFormActivity
+    -->
+    <string name="operationForm_submitButton_label">Submit</string>
+    <string name="operationForm_goBackButton_label">Cancel</string>
+    <string name="operationForm_okButton_label">OK</string>
+    <string name="operationForm_status_label">Status:&#160;</string>
+    <string name="operationForm_status_success">Success</string>
+    <string name="operationForm_status_error">Error</string>
+
+    <string name="operationForm_unknownProblem_label">Unknown error:&#160;</string>
+    <string name="operationForm_unknownProblem_desc">An unknown problem occurred.</string>
+
+    <string name="operationForm_interruptCause_label">Operation summary:&#160;</string>
+
+    <!--
+
+        String values for CustomerMeetingScheduleActivity
+    -->
+    <string name="customerMeetingSchedule_header">Meetings Schedule</string>
+    <string name="customerMeetingSchedule_meetings_label">Upcoming meetings:</string>
+    <string name="no_meetings">There are no meetings on&#160;</string>
+
+    <!--
+        String values for ApplyCustomerChargeActivity
+    -->
+    <string name="applyCustomerCharge_header">Apply Charge</string>
+    <string name="applyCustomerCharge_feeId_fieldLabel">Fee ID:</string>
+    <string name="applyCustomerCharge_feeType_fieldLabel">Fee Type:</string>
+    <string name="applyCustomerCharge_amount_fieldLabel">Amount:</string>
+
+    <!--
+        String values for ApplyLoanAccountChargeActivity
+    -->
+    <string name="applyLoanAccountCharge_header">Apply Charges</string>
+    <string name="applyLoanAccountCharge_feeType_fieldLabel">Fee Type:</string>
+    <string name="applyLoanAccountCharge_amount_fieldLabel">Amount:</string>
+
+    <!--
+        String values for ApplyLoanAccountRepayLoanActivity
+    -->
+    <string name="applyLoanAccountRepayLoan_amount_label">Amount:</string>
+    <string name="applyLoanAccountRepayLoan_transactionDate_label">Transaction Date:</string>
+    <string name="applyLoanAccountRepayLoan_paymentMode_label">Mode of Payment:</string>
+    <string name="applyLoanAccountRepayLoan_receiptId_label">Receipt ID:</string>
+    <string name="applyLoanAccountRepayLoan_receiptDate_label">Receipt Date:</string>
+
+    <!--
+        String values fdr ApplyLoanAccountFullRepayLoan
+    -->
+    <string name="applyLoanAccountFullRepayLoan_receiptId_label">Receipt ID:</string>
+    <string name="applyLoanAccountFullRepayLoan_transactionDate_label">Transaction Date:</string>
+    <string name="applyLoanAccountFullRepayLoan_paymentMode_label">Mode of Payment:</string>
+    <string name="checkBox_label">Waive all interest due</string>
+    <!--
+        String values for LoanAccountTransactionView
+    -->
+    <string name="accountTransaction_applyChargesButton_header">Apply charges</string>
+    <string name="accountTransaction_fullRepayLoanButton_header">Repay Loan</string>
+    <string name="accountTransaction_repayLoanButton_header">Apply payment</string>
+    <string name="no_operation_available">There is no available operation</string>
+    <!--
+        String values for DisburseLoanActivity
+    -->
+    <string name="disburseLoan_header">Disburse Loan</string>
+    <string name="disburseLoan_additionalInformation">Disburse %.2f from this account.</string>
+    <string name="disburseLoan_disbursalDate_fieldLabel">Disbursal Date:</string>
+    <string name="disburseLoan_receiptId_fieldLabel">Receipt ID:</string>
+    <string name="disburseLoan_receiptDate_fieldLabel">Receipt Date:</string>
+    <string name="disburseLoan_loanAmount_fieldLabel">Loan Amount:</string>
+    <string name="disburseLoan_loanPaymentMode_fieldLabel">Loan Payment Mode:</string>
+    <string name="disburseLoan_feeAmount_fieldLabel">Fee Amount:</string>
+    <string name="disburseLoan_feePaymentMode_fieldLabel">Fee Payment Mode:</string>
+
+    <!--
+        String values for ApplySavingsAdjustmentActivity
+    -->
+    <string name="applySavingsAdjustment_header">Apply Savings Account Adjustment</string>
+    <string name="applySavingsAdjustment_amount_fieldLabel">Amount:</string>
+    <string name="applySavingsAdjustment_note_fieldLabel">Note:</string>
+
+    <!--
+        String values for ApplyLoanAdjustmentActivity
+    -->
+    <string name="applyLoanAdjustment_header">Apply Loan Account Adjustment</string>
+    <string name="applyLoanAdjustment_note_fieldLabel">Note:</string>
+    <string name="applyLoanAdjustment_additionalInformation_detailed">Revert previous transaction - %1$s (%2$.2f).</string>
+    <string name="applyLoanAdjustment_additionalInformation">Revert previous transaction.</string>
+
+    <!--
+        String values for SavingsTransactionActivity
+    -->
+    <string name="savingsTransaction_header">Make a Savings Transaction</string>
+    <string name="savingsTransaction_transactionDate_fieldLabel">Date of transaction:</string>
+    <string name="savingsTransaction_transactionType_fieldLabel">Transaction type:</string>
+    <string name="savingsTransaction_amount_fieldLabel">Amount:</string>
+    <string name="savingsTransaction_paymentMode_fieldLabel">Mode of payment:</string>
+    <string name="savingsTransaction_receiptId_fieldLabel">Receipt ID:</string>
+    <string name="savingsTransaction_receiptDate_fieldLabel">Receipt date:</string>
+
+    <string name="savingsTransaction_transactionType_deposit">Deposit</string>
+    <string name="savingsTransaction_transactionType_withdrawal">Withdrawal</string>
+
+    <!--
+        String values for CollectionSheetCentersActivity
+    -->
+    <string name="collectionSheetCenters_header">Choose a center to enter collection sheet data for:</string>
+
+    <!--
+        String values for CollectionSheetActivity
+    -->
+    <string name="collectionSheet_loadingText">Getting collection sheet data</string>
+    <string name="collectionSheet_totalCollections_label">Total Collections</string>
+    <string name="collectionSheet_totalIssuesWithdrawals_label">Total Issues/Withdrawals</string>
+    <string name="collectionSheet_netCash_label">Net Cash:</string>
+    <string name="collectionSheet_dueCollections_label">Due collections:</string>
+    <string name="collectionSheet_otherCollections_label">Other collections:</string>
+    <string name="collectionSheet_loanDisbursements_label">Loan disbursements:</string>
+    <string name="collectionSheet_withdrawals_label">Withdrawals:</string>
+    <string name="collectionSheet_total_label">Total:</string>
+    <string name="collectionSheet_amount_label">Amount</string>
+    <string name="collectionSheet_header">Collection Sheet</string>
+    <!--
+        String values for PreCollectionSheetActivity
+    -->
+    <string name="pre_collectionSheet_header">Collection Sheet</string>
+    <string name="pre_collectionSheet_transactionDate_label">Date of transaction :</string>
+    <string name="pre_collectionSheet_formField_paymentMode_label">Mode of payment:</string>
+    <string name="pre_collectionSheet_formField_receiptId_label">Receipt ID:</string>
+    <string name="pre_collectionSheet_formField_receiptDate_label">Receipt date:</string>
+    <string name="pre_collectionSheet_continueButton_label">Continue</string>
+    <string name="pre_collectionSheet_cancelButton_label">Cancel</string>
+
+    <!--
+        String values for CollectionSheetCustomerActivity
+    -->
+    <string name="collectionSheetCustomer_payment_label">Due</string>
+    <string name="collectionSheetCustomer_deposit_label">Collections</string>
+    <string name="collectionSheetCustomer_withdrawals_label">Withdrawals</string>
+    <string name="collectionSheetCustomer_disbursal_label">Issues</string>
+    <string name="collectionSheetCustomer_ac_Collections_label">A/C Collections</string>
+    <string name="collectionSheetCustomer_totalGroup_label">Group total</string>
+    <string name="collectionSheetCustomer_save_button">Continue</string>
+    <string name="validation_null_error">Field must contain a number</string>
+
+    <string name="invalidCollectionSheet">Invalid Collections: </string>
+    <string name="collectionSheetErrors">Errors: </string>
+    <string name="account_invalid">The accounts have not been updated due to simultaneous updates/insufficient balance/invalid disbursement date/invalid repayment</string>
+</resources>
