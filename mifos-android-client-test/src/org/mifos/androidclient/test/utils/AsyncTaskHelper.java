@@ -11,10 +11,8 @@ public class AsyncTaskHelper {
 		mAsyncTask = asyncTask;
 	}
 	
-	public void waitForFinish(int timeout) {
-		long endTimeMillis = System.currentTimeMillis() + 10000;
-		while (mAsyncTask.getStatus() == AsyncTask.Status.RUNNING
-				&& endTimeMillis > System.currentTimeMillis());
+	public void waitForFinish() {
+		while (mAsyncTask.getStatus() == AsyncTask.Status.RUNNING);
 	}
 	
 }
