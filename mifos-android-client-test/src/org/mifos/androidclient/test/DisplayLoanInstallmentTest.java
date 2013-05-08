@@ -16,6 +16,7 @@ import android.test.suitebuilder.annotation.MediumTest;
 
 public class DisplayLoanInstallmentTest extends ActivityInstrumentationTestCase2<RepaymentScheduleActivity> {
 
+	@SuppressWarnings("deprecation")
 	private static final Date DUE_DATE = new Date(2011, 02, 03);
 	private static final short INSTALLMENT_NO = 2;
 	private static final double PRINCIPAL = 100;

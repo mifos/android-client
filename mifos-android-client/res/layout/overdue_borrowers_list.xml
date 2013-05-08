@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent">
+
+    <TextView
+        style="@style/Header"
+        android:id="@+id/overdue_borrowers_list_label"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/overdueBorrowersList_label"
+        />
+    
+    <TextView
+        style="@style/InfoBig"
+        android:visibility="gone"
+        android:id="@+id/overdueBorrowersList_noDataMessage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/overdue_borrowers_list_label"
+        />
+
+    <LinearLayout
+        android:id="@+id/overdueBorrowersList_content"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/overdueBorrowersList_noDataMessage">
+
+        <TextView
+            style="@style/Info"
+            android:id="@+id/overdueBorrowersList_hint"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/overdueBorrowersList_hint"
+            />
+
+        <!-- This view's purpose is to prevent the edit text below from gaining focus on activity start -->
+        <LinearLayout
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="0px"
+            android:layout_height="0px"
+            />
+
+        <EditText
+            android:id="@+id/overdueBorrowersList_filter_box"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/type_to_filter"
+            android:inputType="text"
+            android:maxLines="1"
+            />
+
+        <ExpandableListView
+            android:id="@+id/overdueBorrowersList_list"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:groupIndicator="@null"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

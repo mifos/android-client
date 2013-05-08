@@ -70,7 +70,7 @@ public class AccountService extends RestNetworkService {
 
     public AbstractAccountDetails getAccountDetailsForEntity(AccountBasicInformation account) {
         AbstractAccountDetails details = null;
-        if (account.getClass() == LoanAccountBasicInformation.class) {
+        if (account instanceof LoanAccountBasicInformation) {
             details = getLoanAccountDetails(account.getGlobalAccountNum());
         } else if (account.getClass() == SavingsAccountBasicInformation.class) {
             details = getSavingsAccountDetails(account.getGlobalAccountNum());

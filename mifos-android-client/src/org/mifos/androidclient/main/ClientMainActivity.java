@@ -70,6 +70,11 @@ public class ClientMainActivity extends MifosActivity {
         Intent intent = new Intent().setClass(this, CollectionSheetCentersActivity.class);
         startActivity(intent);
     }
+    
+    public void onOverdueBorrowersClick(View view) {
+        Intent intent = new Intent().setClass(this, OverdueBorrowersListActivity.class);
+        startActivity(intent);
+    }
 
     /**
      * Checks whether the Mifos server address has been specified or not and

@@ -20,11 +20,23 @@
 
 package org.mifos.androidclient.net.services;
 
-import android.content.Context;
-import org.mifos.androidclient.entities.customer.*;
-import org.mifos.androidclient.entities.simple.*;
-
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
+
+import org.mifos.androidclient.entities.customer.CenterDetails;
+import org.mifos.androidclient.entities.customer.ClientDetails;
+import org.mifos.androidclient.entities.customer.CustomerChargesDetails;
+import org.mifos.androidclient.entities.customer.CustomerDetailsEntity;
+import org.mifos.androidclient.entities.customer.GroupDetails;
+import org.mifos.androidclient.entities.customer.LoanOfficerData;
+import org.mifos.androidclient.entities.customer.OverdueCustomer;
+import org.mifos.androidclient.entities.simple.AbstractCustomer;
+import org.mifos.androidclient.entities.simple.Center;
+import org.mifos.androidclient.entities.simple.CustomersData;
+import org.mifos.androidclient.entities.simple.Group;
+
+import android.content.Context;
 
 public class CustomerService extends RestNetworkService {
 
@@ -35,7 +47,8 @@ public class CustomerService extends RestNetworkService {
     private final static String GROUP_DETAILS_PATH_PREFIX = "/group/num-";
     private final static String CENTER_DETAILS_PATH_PREFIX = "/center/num-";
     private final static String CUSTOMER_APPLICABLE_FEES_PATH = "/customer/num-%s/fees.json";
-
+    private final static String OVERDUE_BORROWERS_PATH = "/personnel/id-current/overdue_borrowers.json";
+    
     private final static String CLIENT_CHARGES_DETAILS_PATH = "/client/num-%s/charges.json";
 
     private final static String CUSTOMER_APPLY_CHARGE_PATH = "/customer/num-%s/charge.json";
@@ -45,6 +58,11 @@ public class CustomerService extends RestNetworkService {
         super(context);
     }
 
+    public List<OverdueCustomer> getLoanOfficersOverdueBorrowers() {
+        String url = getServerUrl() + OVERDUE_BORROWERS_PATH;
+        return Arrays.asList(mRestConnector.getForObject(url, OverdueCustomer[].class));
+    }
+    
     public CustomersData getLoanOfficersCustomers() {
         String url = getServerUrl() + LOAN_OFFICER_CUSTOMERS_PATH;
         return mRestConnector.getForObject(url, CustomersData.class);
@@ -77,7 +95,7 @@ public class CustomerService extends RestNetworkService {
 
     public CustomerDetailsEntity getDetailsForEntity(AbstractCustomer customer) {
         CustomerDetailsEntity details = null;
-        if (customer.getClass() == Customer.class) {
+        if (customer instanceof AbstractCustomer) {
             details = getClientDetails(customer.getGlobalCustNum());
         } else if (customer.getClass() == Group.class) {
             details = getGroupDetails(customer.getGlobalCustNum());
@@ -90,7 +108,7 @@ public class CustomerService extends RestNetworkService {
     public CustomerChargesDetails getChargesForEntity(AbstractCustomer entity) {
         CustomerChargesDetails details = null;
         String url;
-        if (entity.getClass() == Customer.class) {
+        if (entity instanceof AbstractCustomer) {
             url = getServerUrl() + String.format(CLIENT_CHARGES_DETAILS_PATH, entity.getGlobalCustNum());
             details = mRestConnector.getForObject(url, CustomerChargesDetails.class);
         }

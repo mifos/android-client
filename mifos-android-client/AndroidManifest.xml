@@ -46,6 +46,8 @@
                   android:theme="@android:style/Theme.Light"/>
         <activity android:name=".main.MeetingListActivity"
                   android:theme="@android:style/Theme.Light"/>
+        <activity android:name=".main.OverdueBorrowersListActivity"
+                  android:theme="@android:style/Theme.Light"/>
         <activity android:name=".main.DisburseLoanActivity"
                   android:theme="@android:style/Theme.Light"/>
         <activity android:name=".main.ApplyCustomerChargeActivity"

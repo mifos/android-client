@@ -83,7 +83,6 @@ public class CustomerDetailsActivity extends DownloaderActivity
         TabColorUtils.setTabColor(tabs);
         tabs.setOnTabChangedListener(this); 
 
-
         if (bundle != null) {
             if (bundle.containsKey(CustomerDetailsEntity.BUNDLE_KEY)) {
                 mDetails = (CustomerDetailsEntity)bundle.getSerializable(CustomerDetailsEntity.BUNDLE_KEY);
@@ -239,7 +238,7 @@ public class CustomerDetailsActivity extends DownloaderActivity
         }
     }
 
-    public AsyncTask getCustomerDetailsTask() {
+    public CustomerDetailsTask getCustomerDetailsTask() {
     	return mCustomerDetailsTask;
     }
     

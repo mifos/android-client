@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:paddingTop="7dp"
+              android:paddingBottom="7dp"
+              android:paddingLeft="14dp">
+
+    <TextView
+        android:id="@+id/loanAccountListItem_accountName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:id="@+id/loanAccountListItem_status_label"
+        android:layout_below="@id/loanAccountListItem_accountName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/loanAccountListItem_status_label"
+        />
+    <TextView
+        android:id="@+id/loanAccountListItem_status"
+        android:layout_below="@id/loanAccountListItem_accountName"
+        android:layout_toRightOf="@id/loanAccountListItem_status_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:id="@+id/loanAccountListItem_amountDue_label"
+        android:layout_below="@id/loanAccountListItem_status_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/loanAccountListItem_amountDue_label"
+        />
+    <TextView
+        android:id="@+id/loanAccountListItem_amountDue"
+        android:layout_below="@id/loanAccountListItem_status"
+        android:layout_toRightOf="@id/loanAccountListItem_amountDue_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    
+    <TextView
+        android:id="@+id/loanAccountListItem_amountInArrears_label"
+        android:layout_below="@id/loanAccountListItem_amountDue_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/loanAccountListItem_amountInArrears_label"
+        />
+    <TextView
+        android:id="@+id/loanAccountListItem_amountInArrears"
+        android:layout_below="@id/loanAccountListItem_amountDue"
+        android:layout_toRightOf="@+id/loanAccountListItem_amountInArrears_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+</RelativeLayout>

@@ -20,15 +20,17 @@
 
 package org.mifos.androidclient.entities.customer;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-
 import java.io.Serializable;
+
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.mifos.androidclient.util.listadapters.SimpleListItem;
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class LoanAccountBasicInformation extends AccountBasicInformation implements Serializable {
+public class LoanAccountBasicInformation extends AccountBasicInformation implements Serializable, SimpleListItem {
 
     private String outstandingBalance;
     private String totalAmountDue;
-
+    private String totalAmountInArrears;
+    
     public String getOutstandingBalance() {
         return outstandingBalance;
     }
@@ -44,5 +46,23 @@ public class LoanAccountBasicInformation extends AccountBasicInformation impleme
     public void setTotalAmountDue(String totalAmountDue) {
         this.totalAmountDue = totalAmountDue;
     }
+
+	public String getTotalAmountInArrears() {
+		return totalAmountInArrears;
+	}
+
+	public void setTotalAmountInArrears(String totalAmountInArrears) {
+		this.totalAmountInArrears = totalAmountInArrears;
+	}
+
+	@Override
+	public String getListLabel() {
+		return "unused";
+	}
+
+	@Override
+	public int getItemIdentifier() {
+		return 0;
+	}
 
 }

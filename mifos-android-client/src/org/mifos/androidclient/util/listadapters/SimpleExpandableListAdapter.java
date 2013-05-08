@@ -20,15 +20,25 @@
 
 package org.mifos.androidclient.util.listadapters;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
+import org.mifos.androidclient.R;
+import org.springframework.util.StringUtils;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
-import org.mifos.androidclient.R;
-import org.springframework.util.StringUtils;
-
-import java.util.*;
+import android.widget.BaseExpandableListAdapter;
+import android.widget.ExpandableListView;
+import android.widget.Filter;
+import android.widget.Filterable;
+import android.widget.TextView;
 
 /**
  * Represents an adapter which can be used with expandable lists.<br />
@@ -36,12 +46,12 @@ import java.util.*;
  */
 public class SimpleExpandableListAdapter extends BaseExpandableListAdapter implements Filterable {
 
-    private Context mContext;
-    private final Map<SimpleListItem, List<SimpleListItem>> mItems;
-    private Map<Integer, SimpleListItem> mKeys;
-    private Map<Integer, List<SimpleListItem>> mValues;
-    private SimpleExpandableListFilter mFilter;
-    private Boolean mExpandGroups;
+    protected Context mContext;
+    protected final Map<SimpleListItem, List<SimpleListItem>> mItems;
+    protected Map<Integer, SimpleListItem> mKeys;
+    protected Map<Integer, List<SimpleListItem>> mValues;
+    protected Filter mFilter;
+    protected Boolean mExpandGroups;
 
     public SimpleExpandableListAdapter(Context context, Map<SimpleListItem, List<SimpleListItem>> items) {
         mContext = context;
@@ -152,7 +162,7 @@ public class SimpleExpandableListAdapter extends BaseExpandableListAdapter imple
         return true;
     }
 
-    private void splitItems(Map<SimpleListItem, List<SimpleListItem>> items) {
+    protected void splitItems(Map<SimpleListItem, List<SimpleListItem>> items) {
         mKeys = new HashMap<Integer, SimpleListItem>();
         mValues = new HashMap<Integer, List<SimpleListItem>>();
         int i = 0;
@@ -171,8 +181,25 @@ public class SimpleExpandableListAdapter extends BaseExpandableListAdapter imple
         return mFilter;
     }
 
-    private class SimpleExpandableListFilter extends Filter {
+    protected class SimpleExpandableListFilter extends Filter {
 
+    	protected Map<SimpleListItem, List<SimpleListItem>> filterGroups(Map<SimpleListItem, 
+    			List<SimpleListItem>> allItems, String constraint) {
+    		 Map<SimpleListItem, List<SimpleListItem>> filteredItems = new HashMap<SimpleListItem, List<SimpleListItem>>();
+    		 for (SimpleListItem group : allItems.keySet()) {
+                 List<SimpleListItem> clients = new ArrayList<SimpleListItem>();
+                 for (SimpleListItem client : allItems.get(group)) {
+                     if (client.getListLabel().toLowerCase().contains(constraint)) {
+                         clients.add(client);
+                     }
+                 }
+                 if (group.getListLabel().toLowerCase().contains(constraint) || clients.size() > 0) {
+                     filteredItems.put(group, clients);
+                 }
+             }
+    		 return filteredItems;
+    	}
+    	
         @Override
         protected FilterResults performFiltering(CharSequence charSequence) {
             FilterResults results = new FilterResults();
@@ -180,23 +207,12 @@ public class SimpleExpandableListAdapter extends BaseExpandableListAdapter imple
 
             if (StringUtils.hasLength(constraint)) {
                 Map<SimpleListItem, List<SimpleListItem>> allItems = new HashMap<SimpleListItem, List<SimpleListItem>>();
-                Map<SimpleListItem, List<SimpleListItem>> filteredItems = new HashMap<SimpleListItem, List<SimpleListItem>>();
 
                 synchronized (mItems) {
                     allItems.putAll(mItems);
                 }
 
-                for (SimpleListItem group : allItems.keySet()) {
-                    List<SimpleListItem> clients = new ArrayList<SimpleListItem>();
-                    for (SimpleListItem client : allItems.get(group)) {
-                        if (client.getListLabel().toLowerCase().contains(constraint)) {
-                            clients.add(client);
-                        }
-                    }
-                    if (group.getListLabel().toLowerCase().contains(constraint) || clients.size() > 0) {
-                        filteredItems.put(group, clients);
-                    }
-                }
+                Map<SimpleListItem, List<SimpleListItem>> filteredItems = filterGroups(allItems, constraint);
 
                 synchronized (mExpandGroups) {
                     mExpandGroups = true;

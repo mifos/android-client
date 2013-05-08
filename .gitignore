@@ -6,7 +6,14 @@ local.properties
 *.ipr
 *.iws
 *.patch
-gen/org/mifos/androidclient/R.java
+*.class
+.settings/*
+mifos-android-client/bin/*
+mifos-android-client-test/bin/*
+mifos-android-client/.settings/*
+mifos-android-client-test/.settings/*
+mifos-android-client/gen/*
+mifos-android-client-test/gen/*
 out
 build.xml
 target

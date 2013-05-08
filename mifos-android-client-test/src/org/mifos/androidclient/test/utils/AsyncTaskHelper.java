@@ -12,7 +12,7 @@ public class AsyncTaskHelper {
 	}
 	
 	public void waitForFinish() {
-		while (mAsyncTask.getStatus() == AsyncTask.Status.RUNNING);
+		while (mAsyncTask.getStatus() != AsyncTask.Status.FINISHED);
 	}
 	
 }

@@ -78,6 +78,7 @@
     <string name="client_main_button_client_list">Browse customers</string>
     <string name="client_main_button_meetings_list">Upcoming meetings</string>
     <string name="client_main_button_collectionSheet">Enter collection sheet data</string>
+    <string name="client_main_button_overdueBorrowers">Overdue borrowers</string>
     <string name="client_main_label">Welcome to Mifos\nAndroid client!</string>
 
     <!--
@@ -99,6 +100,13 @@
     <string name="centersList_no_centers_available">You are logged in as \'%s\', but it appears You have no customers assigned. </string>
     <string name="centersList_listItemLabel_withChildren"><b>+</b> %1$s (%2$d)</string>
 
+    <!--
+        String values for OverdueBorrowersListActivity:
+    -->
+    <string name="overdueBorrowersList_label">Overdue borrowers</string>
+    <string name="overdueBorrowersList_no_overdue_customers">You are logged in as \'%s\', but it appears You have no overdue borrowers.</string>
+    <string name="overdueBorrowersList_hint">Click on a client to view his/her overdue loans. Do a long click to view customer details.</string>
+    
     <!--
         String values for CustomersListActivity:
     -->
@@ -139,7 +147,8 @@
     <string name="loanAccountListItem_status_label">Status:&#160;</string>
     <string name="loanAccountListItem_outstandingBalance_label">Outstanding balance:&#160;</string>
     <string name="loanAccountListItem_amountDue_label">Amount due:&#160;</string>
-
+    <string name="loanAccountListItem_amountInArrears_label">Total amount in arrears:&#160;</string>
+    
     <string name="loan_label">Loan Accounts</string>
     <string name="savings_label">Savings Accounts</string>
     <string name="charges_label">Client Charges:</string>
