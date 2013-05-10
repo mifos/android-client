@@ -3,7 +3,7 @@
       android:layout_width="fill_parent"
       android:layout_height="fill_parent">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
           android:layout_width="fill_parent"
           android:layout_height="fill_parent">
 
@@ -32,11 +32,20 @@
             android:text="@string/accountDetails_repaymentScheduleButton_label"
             android:onClick="onRepaymentScheduleSelected"
             />
+        
+        <Button
+            android:id="@+id/view_guarantors_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view_repaymentSchedule_button"
+            android:text="@string/accountDetails_guarantorsButton_label"
+            android:onClick="onGuarantorsSelected"
+            />
 
           <TextView
             style="@style/Label"
             android:id="@+id/accountDetailsLoan_interestRules_label"
-            android:layout_below="@id/view_repaymentSchedule_button"
+            android:layout_below="@id/view_guarantors_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/accountDetailsLoan_interestRules_label"

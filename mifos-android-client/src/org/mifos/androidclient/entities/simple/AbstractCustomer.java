@@ -20,20 +20,20 @@
 
 package org.mifos.androidclient.entities.simple;
 
+import java.io.Serializable;
+
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.mifos.androidclient.entities.BaseEntity;
-
-import java.io.Serializable;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public abstract class AbstractCustomer extends BaseEntity implements Serializable {
 
     public static final String BUNDLE_KEY = AbstractCustomer.class.getSimpleName();
     public static final String CUSTOMER_NUMBER_BUNDLE_KEY = AbstractCustomer.class.getSimpleName() + "-globalCustomerNumber";
 
-    private Integer id;
-    private String displayName;
-    private String globalCustNum;
-    private String searchId;
+    protected Integer id;
+    protected String displayName;
+    protected String globalCustNum;
+    protected String searchId;
 
     public Integer getId() {
         return id;

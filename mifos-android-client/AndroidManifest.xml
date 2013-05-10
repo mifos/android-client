@@ -42,6 +42,8 @@
                   android:theme="@android:style/Theme.Light"/>
         <activity android:name=".main.RepaymentScheduleActivity"
                   android:theme="@android:style/Theme.Light"/>
+        <activity android:name=".main.AccountGuarantorsActivity"
+                  android:theme="@android:style/Theme.Light"/>
         <activity android:name=".main.AccountRepaymentScheduleActivity"
                   android:theme="@android:style/Theme.Light"/>
         <activity android:name=".main.MeetingListActivity"

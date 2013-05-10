@@ -188,6 +188,12 @@ public class AccountDetailsActivity extends DownloaderActivity implements OnTabC
         intent.putExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY, mAccount.getGlobalAccountNum());
         startActivity(intent);
     }
+    
+    public void onGuarantorsSelected(View view) {
+        Intent intent = new Intent().setClass(this, AccountGuarantorsActivity.class);
+        intent.putExtra(AbstractAccountDetails.ACCOUNT_NUMBER_BUNDLE_KEY, mAccount.getGlobalAccountNum());
+        startActivity(intent);
+    }
 
     /**
      * A handler of the button for disbursing a loan account.

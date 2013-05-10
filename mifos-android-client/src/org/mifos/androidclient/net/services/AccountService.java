@@ -20,15 +20,21 @@
 
 package org.mifos.androidclient.net.services;
 
-import android.content.Context;
-import org.mifos.androidclient.entities.account.*;
+import java.util.Map;
+
+import org.mifos.androidclient.entities.account.AbstractAccountDetails;
+import org.mifos.androidclient.entities.account.LoanAccountDetails;
+import org.mifos.androidclient.entities.account.RepaymentScheduleItem;
+import org.mifos.androidclient.entities.account.SavingsAccountDetails;
+import org.mifos.androidclient.entities.account.TransactionHistoryEntry;
 import org.mifos.androidclient.entities.account.loan.LoanInstallmentDetails;
 import org.mifos.androidclient.entities.account.savings.SavingsAccountDepositDue;
 import org.mifos.androidclient.entities.customer.AccountBasicInformation;
 import org.mifos.androidclient.entities.customer.LoanAccountBasicInformation;
 import org.mifos.androidclient.entities.customer.SavingsAccountBasicInformation;
+import org.mifos.androidclient.entities.simple.Guarantor;
 
-import java.util.Map;
+import android.content.Context;
 
 public class AccountService extends RestNetworkService {
 
@@ -38,7 +44,8 @@ public class AccountService extends RestNetworkService {
     private static final String LOAN_INSTALLMENT_DETAILS_PATH = "/account/loan/num-%s/installment.json";
     private static final String SAVINGS_DEPOSIT_DUE_DETAILS_PATH = "/account/savings/num-%s/due.json";
     private static final String REPAYMENT_SCHEDULE_PATH = "/account/loan/num-%s/schedule.json";
-
+    private static final String GUARANTORS_PATH = "/account/loan/num-%s/guarantors.json";
+    
     private static final String LOAN_ACCOUNT_APPLY_CHARGE_PATH = "/account/loan/num-%s/charge.json";
     private static final String LOAN_ACCOUNT_FULL_REPAY_LOAN_PATH = "/account/loan/num-%s/fullrepay.json";
     private static final String LOAN_ACCOUNT_REPAY_LOAN_PATH = "/account/loan/num-%s/repay.json";
@@ -86,6 +93,11 @@ public class AccountService extends RestNetworkService {
     public RepaymentScheduleItem[] getAccountRepaymentSchedule(String globalAccountNumber) {
         String url = getServerUrl() + String.format(REPAYMENT_SCHEDULE_PATH, globalAccountNumber);
         return mRestConnector.getForObject(url,RepaymentScheduleItem[].class);
+    }
+    
+    public Guarantor[] getAccountGuarantors(String globalAccountNumber) {
+        String url = getServerUrl() + String.format(GUARANTORS_PATH, globalAccountNumber);
+        return mRestConnector.getForObject(url,Guarantor[].class);
     }
 
     public LoanInstallmentDetails getLoanInstallmentDetails(String globalAccountNumber) {

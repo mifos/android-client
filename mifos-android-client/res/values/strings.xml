@@ -41,6 +41,7 @@
     <string name="dialog_getting_customer_charges">Getting customer charges</string>
     <string name="dialog_getting_deposit_due_details">Getting deposit due details</string>
     <string name="dialog_getting_repayment_schedule">Getting repayment schedule</string>
+    <string name="dialog_getting_guarantors">Getting guarantors</string>
     <string name="dialog_submitting_data">Submitting</string>
 
 
@@ -286,6 +287,7 @@
     <string name="accountDetails_transactionsHistoryButton_label">View Transactions History</string>
     <string name="accountDetails_installmentDetailsButton_label">View Installment Details</string>
     <string name="accountDetails_repaymentScheduleButton_label">View Repayment Schedule</string>
+    <string name="accountDetails_guarantorsButton_label">View Guarantors</string>
     <string name="accountDetails_depositDueDetails_buttonLabel">View Deposit Due Details</string>
 
     <string name="yes">Yes</string>
@@ -324,6 +326,8 @@
     <string name="partiallyPaidTable_date_label">Date</string>
     <string name="partiallyPaidTable_daysLate_label">Days late</string>
 
+    <string name="guarantors_header">Loan guarantors</string>
+  
     <!--
         String values for AccountTransactionHistoryActivity
     -->
