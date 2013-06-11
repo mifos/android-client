@@ -155,7 +155,8 @@
     <string name="charges_label">Client Charges:</string>
     <string name="closedSavingsLabel">Closed Savings Accounts</string>
     <string name="closedLoanLabel">Closed Loan Accounts</string>
-
+	<string name="guaranted_loans_label">Guaranted Loan Accounts</string>
+    
     <string name="loanAccounts_amountDue_label">Amount due:&#160;</string>
 
     <string name="groupOverview_name_label">Group name:</string>

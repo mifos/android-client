@@ -149,6 +149,15 @@ public class ClientDetailsViewBuilder implements CustomerDetailsViewBuilder {
             }
             items.put(closedSavingsLabel, closedSavingsAccounts);
         }
+        
+        if (mDetails.getGuarantedLoanAccounts() != null && mDetails.getGuarantedLoanAccounts().size() > 0) {
+            String guarantedLoansLabel = mContext.getString(R.string.guaranted_loans_label);
+            List<AccountBasicInformation> loanAccounts = new ArrayList<AccountBasicInformation>();
+            for (LoanAccountBasicInformation account : mDetails.getGuarantedLoanAccounts()) {
+                loanAccounts.add(account);
+            }
+            items.put(guarantedLoansLabel, loanAccounts);
+        }
 
         if (items.size() > 0) {
             list.setAdapter(new AccountsExpandableListAdapter(mContext, items));

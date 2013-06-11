@@ -20,10 +20,10 @@
 
 package org.mifos.androidclient.entities.customer;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-
 import java.io.Serializable;
 import java.util.List;
+
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ClientDetails extends CustomerDetailsEntity implements Serializable {
 
@@ -32,11 +32,21 @@ public class ClientDetails extends CustomerDetailsEntity implements Serializable
     private List<LoanAccountBasicInformation> loanAccountsInUse;
     private List<SavingsAccountBasicInformation> closedSavingsAccounts;
     private List<LoanAccountBasicInformation> closedLoanAccounts;
+    private List<LoanAccountBasicInformation> guarantedLoanAccounts;
     private ClientDisplay clientDisplay;
     private Address address;
     
     public Address getAddress() {
 		return address;
+	}
+
+	public List<LoanAccountBasicInformation> getGuarantedLoanAccounts() {
+		return guarantedLoanAccounts;
+	}
+
+	public void setGuarantedLoanAccounts(
+			List<LoanAccountBasicInformation> guarantedLoanAccounts) {
+		this.guarantedLoanAccounts = guarantedLoanAccounts;
 	}
 
 	public void setAddress(Address address) {
