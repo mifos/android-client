@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:padding="2dp"
+              android:orientation="vertical">
+
+    <LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+    
+	    <TextView
+	        android:id="@+id/client_name_label"
+	        android:text="@string/lastRepaymentClient_label"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="3dp"
+	        android:textColor="#000166"
+	        android:textStyle="bold"
+	        android:textSize="14sp"
+	        />
+	
+	    <TextView
+	        android:id="@+id/client_name"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="5dp"
+	        android:textColor="#000166"
+	        android:textStyle="bold"
+	        android:textSize="14sp"
+	        />
+	    
+    </LinearLayout>
+
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+	    
+	    <TextView
+	        android:id="@+id/last_loan_date_label"
+	        android:text="@string/lastRepaymentClient_lastLoanDate_label"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="3dp"
+	        android:textColor="#000166"
+	        android:textStyle="bold"
+	        android:textSize="14sp"
+	        />
+	    
+	    <TextView
+	        android:id="@+id/last_loan_date"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="5dp"
+	        android:textColor="#000166"
+	        android:textSize="14sp"
+	        />
+	    
+    </LinearLayout>
+    
+	<TextView
+	        android:text="@string/lastRepaymentClient_showLastLoan_hint"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center_horizontal"
+	        android:textColor="#000166"
+	        android:textSize="12sp"
+	        />
+</LinearLayout>

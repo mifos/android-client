@@ -76,6 +76,8 @@
                   android:theme="@android:style/Theme.Light"/>
         <activity android:name=".main.PreCollectionSheetActivity"
                   android:theme="@android:style/Theme.Light"/>
+        <activity android:name=".main.LastRepaymentReportActivity"
+                  android:theme="@android:style/Theme.Light"/>
     </application>
 
 </manifest> 

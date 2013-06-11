@@ -30,13 +30,14 @@ import java.util.TreeMap;
 
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.customer.AccountBasicInformation;
-import org.mifos.androidclient.entities.customer.OverdueCustomer;
+import org.mifos.androidclient.entities.customer.LastRepayment;
+import org.mifos.androidclient.entities.customer.LoanAccountBasicInformation;
 import org.mifos.androidclient.entities.simple.AbstractCustomer;
 import org.mifos.androidclient.entities.simple.CustomersData;
 import org.mifos.androidclient.net.services.CustomerService;
 import org.mifos.androidclient.templates.DownloaderActivity;
 import org.mifos.androidclient.templates.ServiceConnectivityTask;
-import org.mifos.androidclient.util.listadapters.OverdueBorrowersListAdapter;
+import org.mifos.androidclient.util.listadapters.LastRepaymentReportListAdapter;
 import org.mifos.androidclient.util.listadapters.SimpleListItem;
 import org.springframework.web.client.RestClientException;
 
@@ -53,109 +54,109 @@ import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class OverdueBorrowersListActivity extends DownloaderActivity implements ExpandableListView.OnChildClickListener,
+public class LastRepaymentReportActivity extends DownloaderActivity implements ExpandableListView.OnChildClickListener,
 		AdapterView.OnItemLongClickListener {
 
     private EditText mFilterBox;
-    private OverdueBorrowersListTextWatcher mTextWatcher;
-    private ExpandableListView mOverdueBorrowersList;
+    private LastRepaymentListTextWatcher mTextWatcher;
+    private ExpandableListView mLastLoanList;
     private LinearLayout mContent;
     private TextView mMessage;
-    private List<OverdueCustomer> mOverdueCustomers;
+    private List<LastRepayment> mLastRepayments;
     private CustomerService mCustomerService;
-    private OverdueBorrowersListTask mOverdueBorrowersListTask;
+    private LastRepaymentReportTask mLastRepaymentReportTask;
     
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setContentView(R.layout.overdue_borrowers_list);
+        setContentView(R.layout.last_repayment_report);
         
         if (bundle != null && bundle.containsKey(CustomersData.BUNDLE_KEY)) {
-            mOverdueCustomers = Arrays.asList((OverdueCustomer[]) bundle.getSerializable(OverdueCustomer.BUNDLE_KEY));
+            mLastRepayments = Arrays.asList((LastRepayment[]) bundle.getSerializable(LastRepayment.BUNDLE_KEY));
         }
 
-        mFilterBox = (EditText)findViewById(R.id.overdueBorrowersList_filter_box);
-        mOverdueBorrowersList = (ExpandableListView) findViewById(R.id.overdueBorrowersList_list);
-        mContent = (LinearLayout)findViewById(R.id.overdueBorrowersList_content);
-        mMessage = (TextView)findViewById(R.id.overdueBorrowersList_noDataMessage);
+        mFilterBox = (EditText)findViewById(R.id.lastRepayment_filter_box);
+        mLastLoanList = (ExpandableListView) findViewById(R.id.lastRepayment_list);
+        mContent = (LinearLayout)findViewById(R.id.lastRepayment_content);
+        mMessage = (TextView)findViewById(R.id.lastRepayment_noDataMessage);
         mCustomerService = new CustomerService(this);
     }
 
     @Override
     protected void onSessionActive() {
-        if (mOverdueCustomers == null) {
-            runClientsListTask();
+        if (mLastRepayments == null) {
+            runLastRepaymentsTask();
         } else {
-            repopulateOverdueBorrowersList(mOverdueCustomers);
+            repopulateLastRepaymentsList(mLastRepayments);
         }
     }
     
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        if (mOverdueCustomers != null) {
-        	outState.putSerializable(CustomersData.BUNDLE_KEY, mOverdueCustomers.toArray());
+        if (mLastRepayments != null) {
+        	outState.putSerializable(LastRepayment.BUNDLE_KEY, mLastRepayments.toArray());
         }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mOverdueBorrowersListTask != null) {
-            mOverdueBorrowersListTask.terminate();
-            mOverdueBorrowersListTask = null;
+        if (mLastRepaymentReportTask != null) {
+        	mLastRepaymentReportTask.terminate();
+        	mLastRepaymentReportTask = null;
         }
         mFilterBox.removeTextChangedListener(mTextWatcher);
     }
     
-    private void runClientsListTask() {
-        if (mOverdueBorrowersListTask == null || mOverdueBorrowersListTask.getStatus() != AsyncTask.Status.RUNNING) {
-            mOverdueBorrowersListTask = new OverdueBorrowersListTask(
+    private void runLastRepaymentsTask() {
+        if (mLastRepaymentReportTask == null || mLastRepaymentReportTask.getStatus() != AsyncTask.Status.RUNNING) {
+        	mLastRepaymentReportTask = new LastRepaymentReportTask(
                     this,
                     getString(R.string.dialog_getting_customer_data),
                     getString(R.string.dialog_loading_message)
             );
-            mOverdueBorrowersListTask.execute();
+        	mLastRepaymentReportTask.execute();
         }
     }
     
-    private void repopulateOverdueBorrowersList(List<OverdueCustomer> overdueCustomers) {
+    private void repopulateLastRepaymentsList(List<LastRepayment> lastRepayments) {
 
-        if (overdueCustomers != null && overdueCustomers.size() > 0) {
+        if (lastRepayments != null && lastRepayments.size() > 0) {
         	Map<SimpleListItem, List<SimpleListItem>> items = new TreeMap<SimpleListItem, List<SimpleListItem>>(new Comparator<SimpleListItem>() {
                 @Override
-                public int compare(SimpleListItem simpleListItem1, SimpleListItem simpleListItem2) {
-                	return simpleListItem1.getListLabel().compareToIgnoreCase(simpleListItem2.getListLabel());
+                public int compare(SimpleListItem lhs, SimpleListItem rhs) {
+                	return ((LastRepayment) lhs).getLastInstallmentDate().compareTo(((LastRepayment) rhs).getLastInstallmentDate());
                 }
             });
-        	for (OverdueCustomer overdueCustomer: overdueCustomers) {
-        		List<SimpleListItem> loans = new ArrayList<SimpleListItem>(overdueCustomer.getOverdueLoans());
-
-        		items.put(overdueCustomer, loans);
+        	for (LastRepayment lastRepayment: lastRepayments) {
+        		List<SimpleListItem> loans = new ArrayList<SimpleListItem>(
+        				Arrays.asList(new LoanAccountBasicInformation[] { lastRepayment.getLoanAccount() }));
+        		items.put(lastRepayment, loans);
             }
-        	OverdueBorrowersListAdapter adapter = new OverdueBorrowersListAdapter(this, items);
-            mOverdueBorrowersList.setAdapter(adapter);
+        	LastRepaymentReportListAdapter adapter = new LastRepaymentReportListAdapter(this, items);
+            mLastLoanList.setAdapter(adapter);
             if (mTextWatcher == null) {
-                mTextWatcher = new OverdueBorrowersListTextWatcher();
+                mTextWatcher = new LastRepaymentListTextWatcher();
             }
             mTextWatcher.setAdapter(adapter);
             mFilterBox.addTextChangedListener(mTextWatcher);
-            mOverdueBorrowersList.setOnChildClickListener(this);
-            mOverdueBorrowersList.setOnItemLongClickListener(this);
+            mLastLoanList.setOnChildClickListener(this);
+            mLastLoanList.setOnItemLongClickListener(this);
             mMessage.setVisibility(View.GONE);
             mContent.setVisibility(View.VISIBLE);
         } else {
-            mMessage.setText(getString(R.string.overdueBorrowersList_no_overdue_customers, getUserLogin()));
+            mMessage.setText(getString(R.string.lastRepayment_no_customers, getUserLogin()));
             mMessage.setVisibility(View.VISIBLE);
             mContent.setVisibility(View.GONE);
         }
     }
 
-    private class OverdueBorrowersListTextWatcher implements TextWatcher {
+    private class LastRepaymentListTextWatcher implements TextWatcher {
 
-    	private OverdueBorrowersListAdapter mAdapter;
+    	private LastRepaymentReportListAdapter mAdapter;
 
-        public void setAdapter(OverdueBorrowersListAdapter adapter) {
+        public void setAdapter(LastRepaymentReportListAdapter adapter) {
             mAdapter = adapter;
         }
 
@@ -173,22 +174,22 @@ public class OverdueBorrowersListActivity extends DownloaderActivity implements 
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
     }
     
-    private class OverdueBorrowersListTask extends ServiceConnectivityTask<Void, Void, List<OverdueCustomer>> {
+    private class LastRepaymentReportTask extends ServiceConnectivityTask<Void, Void, List<LastRepayment>> {
 
-        public OverdueBorrowersListTask(Context context, String progressTitle, String progressMessage) {
+        public LastRepaymentReportTask(Context context, String progressTitle, String progressMessage) {
             super(context, progressTitle, progressMessage);
         }
 
         @Override
-        protected  List<OverdueCustomer> doInBackgroundBody(Void... params) throws RestClientException, IllegalArgumentException {
-        	List<OverdueCustomer> result = null;
+        protected  List<LastRepayment> doInBackgroundBody(Void... params) throws RestClientException, IllegalArgumentException {
+        	List<LastRepayment> result = null;
             if (mCustomerService != null) {
-                result =  mCustomerService.getLoanOfficersOverdueBorrowers();
+                result =  mCustomerService.getLoanOfficersCustomersLastRepayments();
                 if (result != null) {
-                    Collections.sort(result, new Comparator<OverdueCustomer>() {
+                    Collections.sort(result, new Comparator<LastRepayment>() {
 						@Override
-						public int compare(OverdueCustomer lhs, OverdueCustomer rhs) {
-							return lhs.getDisplayName().compareTo(rhs.getDisplayName());
+						public int compare(LastRepayment lhs, LastRepayment rhs) {
+							return lhs.getLastInstallmentDate().compareTo(rhs.getLastInstallmentDate());
 						}
                     });
                 }
@@ -197,10 +198,10 @@ public class OverdueBorrowersListActivity extends DownloaderActivity implements 
         }
 
         @Override
-        protected void onPostExecuteBody(List<OverdueCustomer> result) {
+        protected void onPostExecuteBody(List<LastRepayment> result) {
             if (result != null) {
-                mOverdueCustomers = result;
-                repopulateOverdueBorrowersList(result);
+                mLastRepayments = result;
+                repopulateLastRepaymentsList(result);
             }
         }
     }
@@ -217,21 +218,12 @@ public class OverdueBorrowersListActivity extends DownloaderActivity implements 
 	@Override
     public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long rowId) {
 		Object item = adapterView.getAdapter().getItem(position);
-		if (item instanceof OverdueCustomer) {
+		if (item instanceof LastRepayment) {
         	Intent intent = new Intent().setClass(this, CustomerDetailsActivity.class);
-        	intent.putExtra(AbstractCustomer.BUNDLE_KEY, (OverdueCustomer) item);
+        	intent.putExtra(AbstractCustomer.BUNDLE_KEY, ((LastRepayment) item).getCustomer());
         	startActivity(intent);
 		}
         return true;
     }
 
-	/* Shouldn't be used - For testing purposes only */
-	public void setCustomerService(CustomerService customerService) {
-		mCustomerService = customerService;
-	}
-	
-	/* Shouldn't be used - For testing purposes only */
-	public OverdueBorrowersListTask getOverdueBorrowersListTask() {
-		return mOverdueBorrowersListTask;
-	}
 }

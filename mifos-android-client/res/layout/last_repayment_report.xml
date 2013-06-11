@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent">
+
+    <TextView
+        style="@style/Header"
+        android:id="@+id/last_repayment_list_label"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lastRepayment_label"
+        />
+    
+    <TextView
+        style="@style/InfoBig"
+        android:visibility="gone"
+        android:id="@+id/lastRepayment_noDataMessage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/last_repayment_list_label"
+        />
+
+    <LinearLayout
+        android:id="@+id/lastRepayment_content"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lastRepayment_noDataMessage">
+
+        <TextView
+            style="@style/Info"
+            android:id="@+id/lastRepayment_hint"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lastRepayment_hint"
+            />
+
+        <!-- This view's purpose is to prevent the edit text below from gaining focus on activity start -->
+        <LinearLayout
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="0px"
+            android:layout_height="0px"
+            />
+
+        <EditText
+            android:id="@+id/lastRepayment_filter_box"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/type_to_filter"
+            android:inputType="text"
+            android:maxLines="1"
+            />
+
+        <ExpandableListView
+            android:id="@+id/lastRepayment_list"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:groupIndicator="@null"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

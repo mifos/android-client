@@ -29,6 +29,7 @@ import org.mifos.androidclient.entities.customer.ClientDetails;
 import org.mifos.androidclient.entities.customer.CustomerChargesDetails;
 import org.mifos.androidclient.entities.customer.CustomerDetailsEntity;
 import org.mifos.androidclient.entities.customer.GroupDetails;
+import org.mifos.androidclient.entities.customer.LastRepayment;
 import org.mifos.androidclient.entities.customer.LoanOfficerData;
 import org.mifos.androidclient.entities.customer.OverdueCustomer;
 import org.mifos.androidclient.entities.simple.AbstractCustomer;
@@ -48,16 +49,19 @@ public class CustomerService extends RestNetworkService {
     private final static String CENTER_DETAILS_PATH_PREFIX = "/center/num-";
     private final static String CUSTOMER_APPLICABLE_FEES_PATH = "/customer/num-%s/fees.json";
     private final static String OVERDUE_BORROWERS_PATH = "/personnel/id-current/overdue_borrowers.json";
-    
+    private final static String LAST_REPAYMENTS_PATH = "/personnel/id-current/last-repayments.json";
     private final static String CLIENT_CHARGES_DETAILS_PATH = "/client/num-%s/charges.json";
-
     private final static String CUSTOMER_APPLY_CHARGE_PATH = "/customer/num-%s/charge.json";
-
 
     public CustomerService(Context context) {
         super(context);
     }
 
+    public List<LastRepayment> getLoanOfficersCustomersLastRepayments() {
+        String url = getServerUrl() + LAST_REPAYMENTS_PATH;
+        return Arrays.asList(mRestConnector.getForObject(url, LastRepayment[].class));	
+    }
+    
     public List<OverdueCustomer> getLoanOfficersOverdueBorrowers() {
         String url = getServerUrl() + OVERDUE_BORROWERS_PATH;
         return Arrays.asList(mRestConnector.getForObject(url, OverdueCustomer[].class));

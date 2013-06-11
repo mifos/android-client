@@ -47,6 +47,14 @@
 		       android:onClick="onOverdueBorrowersClick"
 		       />
 
+			<Button
+		       android:id="@+id/view_lastRepaymentReport_button"
+		       android:layout_width="fill_parent"
+		       android:layout_height="wrap_content"
+		       android:text="@string/client_main_button_lastRepaymentReport"
+		       android:onClick="onLastRepaymentReportClick"
+		       />
+		   
     </LinearLayout>
     
 </ScrollView>
