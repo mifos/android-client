@@ -28,11 +28,13 @@ import java.util.Map;
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.account.LoanAccountDetails;
 import org.mifos.androidclient.entities.customer.LoanAccountBasicInformation;
+import org.mifos.androidclient.entities.customer.OverdueCustomer;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListView;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
@@ -44,6 +46,35 @@ public class OverdueBorrowersListAdapter extends SimpleExpandableListAdapter imp
 		super(context, items);
 	}
 
+    @Override
+    public View getGroupView(int groupPos, boolean isExpanded, View convertView, ViewGroup parent) {
+        View row;
+        if (convertView == null) {
+            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            row = inflater.inflate(R.layout.overdue_borrower_list_item, parent, false);
+        } else {
+            row = convertView;
+        }
+        OverdueCustomer item = (OverdueCustomer) getGroup(groupPos);
+        if (item != null) {
+        	
+            TextView name = (TextView) row.findViewById(R.id.client_name);
+            TextView phone = (TextView) row.findViewById(R.id.client_phone);
+            TextView address = (TextView) row.findViewById(R.id.client_address);
+            
+            name.setText(item.getDisplayName());
+            phone.setText(item.getPhoneNumber());
+            address.setText(item.getAddress());
+        }
+        synchronized (mExpandGroups) {
+            if (mExpandGroups == true) {
+                ExpandableListView list = (ExpandableListView)parent;
+                list.expandGroup(groupPos);
+            }
+        }
+        return row;
+    }
+    
     @Override
     public View getChildView(int groupPos, int childPos, boolean isLastChild, View convertView, ViewGroup parent) {
         View row;
