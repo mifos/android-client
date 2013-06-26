@@ -1,12 +1,10 @@
 package org.mifos.androidclient.main;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.account.AbstractAccountDetails;
 import org.mifos.androidclient.entities.account.RepaymentScheduleItem;
@@ -17,10 +15,13 @@ import org.mifos.androidclient.util.listadapters.SimpleListAdapter;
 import org.mifos.androidclient.util.listadapters.SimpleListItem;
 import org.springframework.web.client.RestClientException;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 public class AccountRepaymentScheduleActivity extends DownloaderActivity
         implements AdapterView.OnItemClickListener{
@@ -68,23 +69,49 @@ public class AccountRepaymentScheduleActivity extends DownloaderActivity
         }
     }
 
+    private SimpleListItem getDaysLate(List<RepaymentScheduleItem> items) {
+    	int daysLate = 0;
+    	for (RepaymentScheduleItem item: items) {
+    		daysLate += item.getDaysLate();
+    	}
+    	final int totalDaysLate = daysLate;
+    	
+    	return new SimpleListItem() {
+
+			@Override
+			public String getListLabel() {
+				return getString(R.string.repaymentScheduleItem_totalDaysLate_item, totalDaysLate);
+			}
+
+			@Override
+			public int getItemIdentifier() {
+				return 0;
+			}
+    	};
+    }
+    
     private void updateContent(List<RepaymentScheduleItem> items){
         if(items != null) {
             mRepaymentScheduleItems = items;
-            mRepaymentScheduleList.setAdapter(new SimpleListAdapter(
+            SimpleListAdapter adapter = new SimpleListAdapter(
                     this,
                     new ArrayList<SimpleListItem>(items)
-            ));
+            );
+            adapter.add(getDaysLate(items));
+            mRepaymentScheduleList.setAdapter(adapter);
+            
             mRepaymentScheduleList.setOnItemClickListener(this);
         }
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
-        RepaymentScheduleItem item = (RepaymentScheduleItem)adapterView.getAdapter().getItem(pos);
-        Intent intent = new Intent().setClass(this,RepaymentScheduleActivity.class);
-        intent.putExtra(RepaymentScheduleItem.BUNDLE_KEY, item);
-        startActivity(intent);
+    	if (adapterView.getAdapter().getItem(pos) instanceof RepaymentScheduleItem) {
+    		RepaymentScheduleItem item = (RepaymentScheduleItem)adapterView.getAdapter().getItem(pos);
+        	Intent intent = new Intent().setClass(this,RepaymentScheduleActivity.class);
+        	intent.putExtra(RepaymentScheduleItem.BUNDLE_KEY, item);
+        	startActivity(intent);
+    	}
     }
 
     private void runRepaymentScheduleTask(){

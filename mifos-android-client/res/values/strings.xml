@@ -323,6 +323,7 @@
     <!--
         String values for AccountTransactionHistoryActivity
     -->
+    <string name="repaymentScheduleItem_totalDaysLate_item">Total days late: %d</string>
     <string name="repaymentScheduleItem_header">Repayments Schedule</string>
     <string name="repaymentScheduleItem_installmentNumber_label">No:&#160;</string>
     <string name="repaymentScheduleItem_dueDate_label">Due date:&#160;</string>

@@ -1,16 +1,15 @@
 package org.mifos.androidclient.entities.account;
 
-import android.content.Context;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.mifos.androidclient.util.listadapters.SimpleListItem;
-import org.mifos.androidclient.util.ui.DateUtils;
+import static java.lang.Math.round;
 
 import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 
-import static java.lang.Math.round;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.mifos.androidclient.util.listadapters.SimpleListItem;
+import org.mifos.androidclient.util.ui.DateUtils;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -176,6 +175,16 @@ public class RepaymentScheduleItem implements SimpleListItem, Serializable{
         this.feesActionDetails = feesActionDetails;
     }
 
+    public int getDaysLate() {
+    	Date date = paymentDate != null ? paymentDate : new Date();
+    	long diff = date.getTime() - dueDate.getTime();
+        long daysLate = diff / (86400000);
+        if (daysLate < 0) {
+        	daysLate = 0;
+        }
+        return (int) daysLate;
+    }
+    
     @Override
     public String getListLabel() {
         double feeAmount = 0;
@@ -191,17 +200,15 @@ public class RepaymentScheduleItem implements SimpleListItem, Serializable{
         }
         else total = (feeAmount - feePaid) + (miscFee - miscFeePaid)  + (principal - principalPaid) + (interest - interestPaid);
 
-        Date date = paymentDate != null ? paymentDate : new Date();
-        long diff = date.getTime() - dueDate.getTime();
-        long days = diff / (86400000);
-        if (days < 0) days = 0;
+        int daysLate = getDaysLate();
+        
         
         if (paymentDate != null && paymentStatus == 1){
-            return DateUtils.format(dueDate) + "   " + DateUtils.format(paymentDate) + "       " + days + "     " + Double.valueOf(df.format(round(total)));
+            return DateUtils.format(dueDate) + "   " + DateUtils.format(paymentDate) + "       " + daysLate + "     " + Double.valueOf(df.format(round(total)));
         }else if(paymentDate != null && paymentStatus != 1){
-            return DateUtils.format(dueDate) + "  Partially paid    " + days + "     " + Double.valueOf(df.format(round(total)));
+            return DateUtils.format(dueDate) + "  Partially paid    " + daysLate + "     " + Double.valueOf(df.format(round(total)));
         }
-        else return DateUtils.format(dueDate) + "   Not paid yet     " + days + "     " + Double.valueOf(df.format(round(total)));
+        else return DateUtils.format(dueDate) + "   Not paid yet     " + daysLate + "     " + Double.valueOf(df.format(round(total)));
     }
 
     @Override
