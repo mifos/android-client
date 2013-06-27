@@ -34,6 +34,7 @@ public class LastRepayment implements Serializable, SimpleListItem {
 	private LoanAccountBasicInformation loanAccount;
 	private Customer customer;
     private Date lastInstallmentDate;
+    private boolean group;
 	
 	public LoanAccountBasicInformation getLoanAccount() {
 		return loanAccount;
@@ -59,9 +60,17 @@ public class LastRepayment implements Serializable, SimpleListItem {
 		this.lastInstallmentDate = lastInstallmentDate;
 	}
 
+	public boolean isGroup() {
+		return group;
+	}
+
+	public void setGroup(boolean group) {
+		this.group = group;
+	}
+
 	@Override
 	public String getListLabel() {
-		return customer.getListLabel();
+		return customer.getDisplayName();
 	}
 
 	@Override

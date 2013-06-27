@@ -34,8 +34,10 @@ import org.mifos.androidclient.entities.customer.LoanOfficerData;
 import org.mifos.androidclient.entities.customer.OverdueCustomer;
 import org.mifos.androidclient.entities.simple.AbstractCustomer;
 import org.mifos.androidclient.entities.simple.Center;
+import org.mifos.androidclient.entities.simple.Customer;
 import org.mifos.androidclient.entities.simple.CustomersData;
 import org.mifos.androidclient.entities.simple.Group;
+import org.mifos.androidclient.entities.simple.Guarantor;
 
 import android.content.Context;
 
@@ -99,7 +101,7 @@ public class CustomerService extends RestNetworkService {
 
     public CustomerDetailsEntity getDetailsForEntity(AbstractCustomer customer) {
         CustomerDetailsEntity details = null;
-        if (customer instanceof AbstractCustomer) {
+        if (customer.getClass() == Customer.class || customer.getClass() == OverdueCustomer.class || customer.getClass() == Guarantor.class) {
             details = getClientDetails(customer.getGlobalCustNum());
         } else if (customer.getClass() == Group.class) {
             details = getGroupDetails(customer.getGlobalCustNum());

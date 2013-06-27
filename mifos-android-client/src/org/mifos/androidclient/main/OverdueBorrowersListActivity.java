@@ -220,6 +220,9 @@ public class OverdueBorrowersListActivity extends DownloaderActivity implements 
 		if (item instanceof OverdueCustomer) {
         	Intent intent = new Intent().setClass(this, CustomerDetailsActivity.class);
         	intent.putExtra(AbstractCustomer.BUNDLE_KEY, (OverdueCustomer) item);
+        	if (((OverdueCustomer) item).isGroup()) {
+        		intent.putExtra("isGroup", true);
+        	}
         	startActivity(intent);
 		}
         return true;

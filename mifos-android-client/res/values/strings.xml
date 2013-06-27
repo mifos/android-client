@@ -109,7 +109,8 @@
     <string name="overdueBorrowersList_no_overdue_customers">You are logged in as \'%s\', but it appears You have no overdue borrowers.</string>
     <string name="overdueBorrowersList_hint">Click on a client to view his/her overdue loans. Do a long click to view customer details.</string>
     
-    <string name="overdueBorrowersListItem_name_label">Name:</string>
+    <string name="overdueBorrowersListItem_name_label">Client:</string>
+    <string name="overdueBorrowersListItem_groupName_label">Group:</string>
     <string name="overdueBorrowersListItem_phone_label">Phone:</string>
     <string name="overdueBorrowersListItem_address_label">Address:</string>
 
@@ -121,6 +122,7 @@
     <string name="lastRepayment_no_customers">You are logged in as \'%s\', but it appears You have no customers assigned.</string>
     
     <string name="lastRepaymentClient_label">Client:</string>
+    <string name="lastRepaymentGroup_label">Group:</string>
     <string name="lastRepaymentClient_lastLoanDate_label">Last repayment:</string>
 	<string name="lastRepaymentClient_showLastLoan_hint">Tap to show client\'s last loan</string>
     

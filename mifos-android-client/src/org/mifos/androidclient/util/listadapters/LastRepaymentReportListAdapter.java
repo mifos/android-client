@@ -62,6 +62,10 @@ public class LastRepaymentReportListAdapter extends SimpleExpandableListAdapter 
             TextView name = (TextView) row.findViewById(R.id.client_name);
             TextView lastLoanDate = (TextView) row.findViewById(R.id.last_loan_date);
             
+            if (item.isGroup()) {
+            	((TextView) row.findViewById(R.id.client_name_label)).setText(R.string.lastRepaymentGroup_label);
+            }
+            
             name.setText(item.getCustomer().getDisplayName());
             lastLoanDate.setText(DateUtils.format(item.getLastInstallmentDate()));
         }

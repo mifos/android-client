@@ -60,6 +60,7 @@ public class CustomerDetailsActivity extends DownloaderActivity
     private CustomerDetailsEntity mDetails;
     private Map<String, Map<String, String>> mApplicableFees;
     private TabHost tabs;
+    private boolean isGroup;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -95,6 +96,10 @@ public class CustomerDetailsActivity extends DownloaderActivity
             }
         }
 
+        if (getIntent().hasExtra("isGroup")) {
+        	isGroup = true;
+        }
+        
         mCustomer = (AbstractCustomer)getIntent().getSerializableExtra(AbstractCustomer.BUNDLE_KEY);
         mCustomerService = new CustomerService(this);
     }
@@ -260,7 +265,11 @@ public class CustomerDetailsActivity extends DownloaderActivity
             CustomerDetailsEntity result = null;
             if (mCustomerService != null) {
                 mApplicableFees = mCustomerService.getApplicableFees(params[0].getGlobalCustNum());
-                result = mCustomerService.getDetailsForEntity(params[0]);
+                if (isGroup) {
+                	result = mCustomerService.getGroupDetails(params[0].getGlobalCustNum());
+                } else {
+                	result = mCustomerService.getDetailsForEntity(params[0]);
+                }
             }
             return result;
         }

@@ -18,6 +18,7 @@ public class OverdueCustomer extends AbstractCustomer implements Serializable, S
 	private String phoneNumber;
 	private String address;
 	private List<LoanAccountBasicInformation> overdueLoans;
+	private boolean group;
 
 	public List<LoanAccountBasicInformation> getOverdueLoans() {
 		return overdueLoans;
@@ -41,6 +42,14 @@ public class OverdueCustomer extends AbstractCustomer implements Serializable, S
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public boolean isGroup() {
+		return group;
+	}
+
+	public void setGroup(boolean group) {
+		this.group = group;
 	}
 
 	@Override

@@ -20,12 +20,12 @@
 
 package org.mifos.androidclient.main;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.View;
-import android.widget.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
 import org.mifos.androidclient.R;
 import org.mifos.androidclient.entities.simple.AbstractCustomer;
 import org.mifos.androidclient.entities.simple.Group;
@@ -34,7 +34,16 @@ import org.mifos.androidclient.util.ApplicationConstants;
 import org.mifos.androidclient.util.listadapters.SimpleExpandableListAdapter;
 import org.mifos.androidclient.util.listadapters.SimpleListItem;
 
-import java.util.*;
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class CustomersListActivity extends MifosActivity
         implements ExpandableListView.OnChildClickListener, AdapterView.OnItemLongClickListener {

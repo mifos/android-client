@@ -126,7 +126,8 @@ public class LastRepaymentReportActivity extends DownloaderActivity implements E
         	Map<SimpleListItem, List<SimpleListItem>> items = new TreeMap<SimpleListItem, List<SimpleListItem>>(new Comparator<SimpleListItem>() {
                 @Override
                 public int compare(SimpleListItem lhs, SimpleListItem rhs) {
-                	return ((LastRepayment) lhs).getLastInstallmentDate().compareTo(((LastRepayment) rhs).getLastInstallmentDate());
+                	int result = ((LastRepayment) lhs).getLastInstallmentDate().compareTo(((LastRepayment) rhs).getLastInstallmentDate());
+                	return result != 0 ? result : -1;
                 }
             });
         	for (LastRepayment lastRepayment: lastRepayments) {
@@ -220,7 +221,11 @@ public class LastRepaymentReportActivity extends DownloaderActivity implements E
 		Object item = adapterView.getAdapter().getItem(position);
 		if (item instanceof LastRepayment) {
         	Intent intent = new Intent().setClass(this, CustomerDetailsActivity.class);
-        	intent.putExtra(AbstractCustomer.BUNDLE_KEY, ((LastRepayment) item).getCustomer());
+        	LastRepayment lastRepayment = (LastRepayment) item;
+        	intent.putExtra(AbstractCustomer.BUNDLE_KEY, lastRepayment.getCustomer());
+        	if (lastRepayment.isGroup()) {
+        		intent.putExtra("isGroup", true);
+        	}
         	startActivity(intent);
 		}
         return true;
