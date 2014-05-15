@@ -1,6 +1,7 @@
 package org.mifos.androidclient.entities.customer;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -19,6 +20,7 @@ public class OverdueCustomer extends AbstractCustomer implements Serializable, S
 	private String address;
 	private List<LoanAccountBasicInformation> overdueLoans;
 	private boolean group;
+    private String totalCapitalOutstanding;
 
 	public List<LoanAccountBasicInformation> getOverdueLoans() {
 		return overdueLoans;
@@ -44,7 +46,7 @@ public class OverdueCustomer extends AbstractCustomer implements Serializable, S
 		this.address = address;
 	}
 
-	public boolean isGroup() {
+    public boolean isGroup() {
 		return group;
 	}
 
@@ -61,5 +63,12 @@ public class OverdueCustomer extends AbstractCustomer implements Serializable, S
 	public int getItemIdentifier() {
 		return this.getId();
 	}
-	
+
+    public String getTotalCapitalOutstanding() {
+        return totalCapitalOutstanding;
+    }
+
+    public void setTotalCapitalOutstanding(String totalOutstandingCapital) {
+        this.totalCapitalOutstanding = totalOutstandingCapital;
+    }
 }

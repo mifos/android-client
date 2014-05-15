@@ -61,6 +61,7 @@ public class OverdueBorrowersListAdapter extends SimpleExpandableListAdapter imp
             TextView name = (TextView) row.findViewById(R.id.client_name);
             TextView phone = (TextView) row.findViewById(R.id.client_phone);
             TextView address = (TextView) row.findViewById(R.id.client_address);
+            TextView capital = (TextView) row.findViewById(R.id.total_capital);
             
             if (item.isGroup()) {
             	((TextView) row.findViewById(R.id.client_name_label)).setText(R.string.overdueBorrowersListItem_groupName_label);
@@ -69,6 +70,7 @@ public class OverdueBorrowersListAdapter extends SimpleExpandableListAdapter imp
             name.setText(item.getDisplayName());
             phone.setText(item.getPhoneNumber());
             address.setText(item.getAddress());
+            capital.setText(item.getTotalCapitalOutstanding());
         }
         synchronized (mExpandGroups) {
             if (mExpandGroups == true) {
