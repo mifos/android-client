@@ -105,12 +105,16 @@ public class OverdueBorrowersListAdapter extends SimpleExpandableListAdapter imp
                 text.setVisibility(View.GONE);
                 text = (TextView)row.findViewById(R.id.loanAccountListItem_amountDue);
                 text.setVisibility(View.GONE);
+                text = (TextView)row.findViewById(R.id.loanAccountListItem_capitalExposure);
+                text.setVisibility(View.GONE);
             } else {
                 text = (TextView)row.findViewById(R.id.loanAccountListItem_amountDue);
                 text.setText(overdueLoan.getTotalAmountDue());
             }
             text = (TextView) row.findViewById(R.id.loanAccountListItem_amountInArrears);
             text.setText(overdueLoan.getTotalAmountInArrears());
+            text = (TextView) row.findViewById(R.id.loanAccountListItem_capitalExposure);
+            text.setText(overdueLoan.getCapitalExposure());
         }
         return row;
     }

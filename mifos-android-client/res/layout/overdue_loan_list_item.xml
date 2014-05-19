@@ -55,4 +55,19 @@
         android:layout_height="wrap_content"
         />
 
+    <TextView
+        android:id="@+id/loanAccountListItem_capitalExposure_label"
+        android:layout_below="@id/loanAccountListItem_amountInArrears_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/loanAccountListItem_capitalExposure_label"
+        />
+    <TextView
+        android:id="@+id/loanAccountListItem_capitalExposure"
+        android:layout_below="@id/loanAccountListItem_amountInArrears"
+        android:layout_toRightOf="@+id/loanAccountListItem_capitalExposure_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
 </RelativeLayout>

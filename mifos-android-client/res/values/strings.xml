@@ -113,7 +113,7 @@
     <string name="overdueBorrowersListItem_groupName_label">Group:</string>
     <string name="overdueBorrowersListItem_phone_label">Phone:</string>
     <string name="overdueBorrowersListItem_address_label">Address:</string>
-    <string name="overdueBorrowersListItem_total_capital_label">Capital exposure:</string>
+    <string name="overdueBorrowersListItem_total_capital_label">Total capital exposure:</string>
 
 	<!--
         String values for LastRepaymentReportActivity:
@@ -168,6 +168,7 @@
     <string name="loanAccountListItem_outstandingBalance_label">Outstanding balance:&#160;</string>
     <string name="loanAccountListItem_amountDue_label">Amount due:&#160;</string>
     <string name="loanAccountListItem_amountInArrears_label">Total amount in arrears:&#160;</string>
+    <string name="loanAccountListItem_capitalExposure_label">Capital exposure:&#160;</string>
     
     <string name="loan_label">Loan Accounts</string>
     <string name="savings_label">Savings Accounts</string>

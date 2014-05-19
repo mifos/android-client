@@ -30,6 +30,7 @@ public class LoanAccountBasicInformation extends AccountBasicInformation impleme
     private String outstandingBalance;
     private String totalAmountDue;
     private String totalAmountInArrears;
+    private String capitalExposure;
     
     public String getOutstandingBalance() {
         return outstandingBalance;
@@ -65,4 +66,11 @@ public class LoanAccountBasicInformation extends AccountBasicInformation impleme
 		return 0;
 	}
 
+    public String getCapitalExposure() {
+        return capitalExposure;
+    }
+
+    public void setCapitalExposure(String capitalExposure) {
+        this.capitalExposure = capitalExposure;
+    }
 }
