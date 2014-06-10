@@ -55,6 +55,7 @@ public class DisplayClientInformationTest extends ActivityInstrumentationTestCas
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
+		System.setProperty("dexmaker.dexcache", getInstrumentation().getTargetContext().getCacheDir().getPath());
 	}
 	
 	@MediumTest
